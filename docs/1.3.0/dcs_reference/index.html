@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Trafodion Database Connectivity Services Reference Guide</title>
+<link rel="stylesheet" href="./dcs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Trafodion Database Connectivity Services Reference Guide</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_preface">Preface</a></li>
+<li><a href="#_getting_started">Getting Started</a>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#quickstart">2. Quick Start</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a>
+<ul class="sectlevel1">
+<li><a href="#_java">3. Java</a></li>
+<li><a href="#os">4. Operating System</a></li>
+<li><a href="#_run_modes">5. Run modes</a></li>
+<li><a href="#zookeeper">6. ZooKeeper</a></li>
+<li><a href="#_configuration_files">7. Configuration Files</a></li>
+<li><a href="#_example_configurations">8. Example Configurations</a></li>
+<li><a href="#important.configurations">9. The Important Configurations</a></li>
+</ul>
+</li>
+<li><a href="#architecture">Architecture</a>
+<ul class="sectlevel1">
+<li><a href="#arch-overview">10. Overview</a></li>
+<li><a href="#arch-client">11. Client</a></li>
+<li><a href="#arch-dcsmaster">12. DcsMaster</a></li>
+<li><a href="#server-arch">13. DcsServer</a></li>
+</ul>
+</li>
+<li><a href="#external-apis">External APIs</a>
+<ul class="sectlevel1">
+<li><a href="#rest">14. REST</a></li>
+</ul>
+</li>
+<li><a href="#performance">Performance Tuning</a>
+<ul class="sectlevel1">
+<li><a href="#perf-os">15. Operating System</a></li>
+<li><a href="#perf-network">16. Network</a></li>
+<li><a href="#perf-zookeeper">17. ZooKeeper</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">Troubleshooting and Debugging</a>
+<ul class="sectlevel1">
+<li><a href="#_general_guidelines">18. General Guidelines</a></li>
+<li><a href="#_logs">19. Logs</a></li>
+<li><a href="#trouble-resources">20. Resources</a></li>
+<li><a href="#trouble-tools">21. Tools</a></li>
+<li><a href="#trouble-zookeeper">22. ZooKeeper</a></li>
+</ul>
+</li>
+<li><a href="#ops-mgt">Operational Management</a>
+<ul class="sectlevel1">
+<li><a href="#tools">23. Tools and Utilities</a></li>
+</ul>
+</li>
+<li><a href="#_appendix">Appendix</a>
+<ul class="sectlevel1">
+<li><a href="#appendix-contributing-to-documentation">Appendix A: Contributing to Documentation</a></li>
+<li><a href="#faq">Appendix B: FAQ</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.apache.org/licenses/LICENSE-2.0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><strong>Revision History</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.9.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2015-12-03T01:18</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface">Preface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the official reference guide for the Trafodion DCS (Database Connectivity Services),
+a distributed, ODBC, JDBC connectivity component of <a href="http://www.trafodion.org">Trafodion</a>, built on top of
+<a href="http://zookeeper.apache.org">Apache ZooKeeper</a>.</p>
+</div>
+<div class="paragraph">
+<p>DCS is packaged within the trafodion-1.9.0.tar.gz file on the <a href="http://downloads.trafodion.org">Trafodion download site</a>.
+This document describes DCS version 1.9.0. Herein you will find either the definitive documentation on a DCS topic
+as of its standing when the referenced DCS version shipped, or it will point to the location in
+<a href="http://docs.trafodion.org/dcs_docs/apidocs/index.html">javadoc</a>, where the pertinent information can be found.</p>
+</div>
+<div class="paragraph">
+<div class="title">About This Guide</div>
+<p>This reference guide is a work in progress. The source for this guide can be found in the <em>src/main/ascidoc</em> directory of the DCS source.</p>
+</div>
+</div>
+</div>
+<h1 id="_getting_started" class="sect0">Getting Started</h1>
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="#quickstart">Quick Start</a> will get you up and running on a single-node instance of DCS.
+<a href="#configuration">Configuration</a> describes setup of DCS in a multi-node configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quickstart">2. Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide describes setup of a single node DCS instance.
+It leads you through creating a configuration, and then starting
+up and shutting down your DCS instance. The below exercise
+should take no more than ten minutes (not including download time).</p>
+</div>
+<div class="sect2">
+<h3 id="_download_and_unpack_the_latest_release">2.1. Download and unpack the latest release.</h3>
+<div class="paragraph">
+<p>Decompress and untar your download and then change into the unpacked directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> $ tar xzf dcs-{projectVersion}.tar.gz
+ $ cd dcs-{projectVersion}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Is <em>java</em> installed?</p>
+</div>
+<div class="paragraph">
+<p>The steps in the following sections presume a 1.7 version of Oracle
+<em>java</em> is installed on your machine and available on your path; i.e. when you type <em>java</em>, you see output that describes the
+options the java program takes (DCS requires java 7 or better). If this is not the case, DCS will not start.
+Install <em>java</em>, edit <em>conf/dcs-env.sh</em>, uncommenting the <code>JAVA_HOME</code> line pointing it to your java install.</p>
+</div>
+<div class="paragraph">
+<p>Is <em>Trafodion</em> installed and running?</p>
+</div>
+<div class="paragraph">
+<p>DCS presumes a <em>Trafodion</em> instance is installed and running on your machine and available on your path; i.e. the
+<code>MY_SQROOT</code> is set and when you type <em>sqcheck</em>, you see output that confirms <em>Trafodion</em> is running. If this is not
+the case, DCS may start but you&#8217;ll see many errors in the DcsServer logs related to user program startup.</p>
+</div>
+<div class="paragraph">
+<p>At this point, you are ready to start DCS.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_dcs">2.2. Starting DCS</h3>
+<div class="paragraph">
+<p>Now start DCS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> $ bin/start-dcs.sh
+ localhost: starting zookeeper, logging to /logs/dcs-user-1-zookeeper-hostname.out
+ localhost: running Zookeeper
+ starting master, logging to /logs/dcs-user-1-master-hostname.out
+ localhost: starting server, logging to /logs/dcs-user-1-server-hostname.out</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now have a running DCS instance. DCS logs can be found in the
+<em>logs</em> subdirectory. Peruse them especially if DCS had trouble starting.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stopping_dcs">2.3. Stopping DCS</h3>
+<div class="paragraph">
+<p>Stop your DCS instance by running the stop script.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> $ ./bin/stop-dcs.sh
+ localhost: stopping server.
+ stopping master.
+ localhost: stopping zookeeper.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where to go next?</p>
+</div>
+<div class="paragraph">
+<p>The above described setup is good for testing and experiments only. Next move on to <a href="#configuration">configuration</a>
+where we&#8217;ll go into depth on the different requirements and critical configurations needed setting up a distributed DCS deploy.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="configuration" class="sect0">Configuration</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>This chapter is the Not-So-Quick start guide to DCS configuration.
+Please read this chapter carefully and ensure that all requirements have
+been satisfied.  Failure to do so will cause you (and us) grief debugging strange errors.</p>
+</div>
+<div class="paragraph">
+<p>DCS uses the same configuration mechanism as Apache Hadoop.
+All configuration files are located in the <em>conf/</em> directory.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be careful editing XML.  Make sure you close all elements. Run your file through xmllint or similar to
+ensure well-formedness of your document after an edit session.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Keep Configuration In Sync Across the Cluster</div>
+<div class="paragraph">
+<p>After you make an edit to an DCS configuration file, make sure you copy the content of the <em>conf</em> directory to all nodes of the cluster.
+DCS will not do this for you. Use rsync, scp, or another secure mechanism for copying the configuration files to your nodes.
+A restart is needed for servers to pick up changes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This section lists required services and some required system configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_java">3. Java</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Java</caption>
+<colgroup>
+<col style="width: 14%;">
+<col style="width: 14%;">
+<col style="width: 14%;">
+<col style="width: 57%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">DCS Version</th>
+<th class="tableblock halign-left valign-top">JDK 6</th>
+<th class="tableblock halign-left valign-top">JDK 7</th>
+<th class="tableblock halign-left valign-top">JDK 8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running with JDK 8 has not been tested.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="os">4. Operating System</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ssh">4.1. ssh</h3>
+<div class="paragraph">
+<p><em>ssh</em> must be installed and <em>sshd</em> must be running to use DCS&#8217;s' scripts to manage remote DCS daemons. You must be able to ssh to all
+nodes, including your local node, using passwordless login (Google "ssh passwordless login").</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dns">4.2. DNS</h3>
+<div class="paragraph">
+<p>Both forward and reverse DNS resolving should work. If your machine has multiple interfaces, DCS will use the
+interface that the primary hostname resolves to.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_loopback_ip">4.3. Loopback IP</h3>
+<div class="paragraph">
+<p>DCS expects the loopback IP address to be 127.0.0.1.  Ubuntu and some other distributions,
+for example, will default to 127.0.1.1 and this will cause problems for you. <em>/etc/hosts</em> should look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>            127.0.0.1 localhost
+            127.0.0.1 ubuntu.ubuntu-domain ubuntu</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ntp">4.4. NTP</h3>
+<div class="paragraph">
+<p>The clocks on cluster members should be in basic alignments. Some skew is tolerable but wild skew could generate odd behaviors. Run
+<a href="http://en.wikipedia.org/wiki/Network_Time_Protocol">NTP</a> on your cluster, or an equivalent.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_windows">4.5. Windows</h3>
+<div class="paragraph">
+<p>DCS is not supported on Windows.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_modes">5. Run modes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_single_node">5.1. Single Node</h3>
+<div class="paragraph">
+<p>This is the default mode. Single node is what is described in the <a href="#quickstart">quickstart</a> section. In
+single node, it runs all DCS daemons and a local ZooKeeper all on the same node. Zookeeper binds to a well known port.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_node">5.2. Multi Node</h3>
+<div class="paragraph">
+<p>Multi node is where the daemons are spread across all nodes in the cluster. Before proceeding, ensure you have a working Trafodion instance.</p>
+</div>
+<div class="paragraph">
+<p>Below we describe the different setups. Starting, verification and exploration of your install. Configuration is described in a
+section that follows, <a href="#running.and.confirming.your.installation">Running and Confirming Your Installation</a>.</p>
+</div>
+<div class="paragraph">
+<p>To set up a multi-node deploy, you will need to configure DCS by editing files in the DCS <em>conf</em> directory.</p>
+</div>
+<div class="paragraph">
+<p>You may need to edit <em>conf/dcs-env.sh</em> to tell DCS which <em>java</em> to use. In this file you set DCS environment
+variables such as the heap size and other options for the <em>JVM</em>, the preferred location for log files,
+etc. Set <code>JAVA_HOME</code> to point at the root of your <em>java</em> install.</p>
+</div>
+<div class="sect3">
+<h4 id="__em_servers_em">5.2.1. <em>servers</em></h4>
+<div class="paragraph">
+<p>In addition, a multi-node deploy requires that you
+modify <em>conf/servers</em>. The  <em>servers</em> file  lists all hosts that you would have running
+DcsServers, one host per line or the host name followed by the number of master executor servers.
+All servers listed in this file will be started and stopped when DCS start or stop is run.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__em_backup_masters_em">5.2.2. <em>backup-masters</em></h4>
+<div class="paragraph">
+<p>The  <em>backup-masters</em> file lists all hosts that you would have running
+backup DcsMaster processes, one host per line. All servers listed in this file will be started
+and stopped when DCS start or stop is run.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_zookeeper_and_dcs">5.2.3. ZooKeeper and DCS</h4>
+<div class="paragraph">
+<p>See section <a href="#zookeeper">Zookeeper</a> for ZooKeeper setup for DCS.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running.and.confirming.your.installation">5.3. Running and Confirming Your Installation</h3>
+<div class="paragraph">
+<p>Make sure Trafodion is running first. Start and stop the Trafodion instance by running <em>sqstart.sh</em> over in the
+<code>MY_SQROOT/sql/scripts</code> directory. You can ensure it started properly by testing with <em>sqcheck</em>.
+If you are managing your own ZooKeeper, start it and confirm its running else, DCS will start up ZooKeeper
+for you as part of its start process.</p>
+</div>
+<div class="paragraph">
+<p>Start DCS with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bin/start-dcs.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the above from the <code>DCS_HOME</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>You should now have a running DCS instance. DCS logs can be
+found in the <em>logs</em> subdirectory. Check them out
+especially if DCS had trouble starting.</p>
+</div>
+<div class="paragraph">
+<p>DCS also puts up a UI listing vital attributes and metrics. By default its deployed on the DcsMaster
+host at port 40010 (DcsServers put up an informational http server at 40030+their instance number).
+If the DcsMaster were running on a host named <code>master.example.org</code> on the default port, to see the
+DcsMaster&#8217;s homepage you&#8217;d point your browser at  <em><a href="http://master.example.org:40010" class="bare">http://master.example.org:40010</a></em>.</p>
+</div>
+<div class="paragraph">
+<p>To stop DCS after exiting the DCS shell enter</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>./bin/stop-dcs.sh
+stopping dcs...............</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shutdown can take a moment to  complete. It can take longer if your cluster is comprised of many machines.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="zookeeper">6. ZooKeeper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DCS depends on a running ZooKeeper cluster.All participating nodes and clients need to be able to access the
+running ZooKeeper ensemble. DCS by default manages a ZooKeeper "cluster" for you. It will start and stop the ZooKeeper ensemble
+as part of the DCS start/stop process. You can also manage the ZooKeeper ensemble independent of DCS and just point DCS at
+the cluster it should use. To toggle DCS management of ZooKeeper, use the <code>DCS_MANAGES_ZK</code> variable in
+<em>conf/dcs-env.sh</em>. This variable, which defaults to <code>true</code>, tells DCS whether to start/stop the ZooKeeper ensemble servers as part of DCS
+start/stop.</p>
+</div>
+<div class="paragraph">
+<p>When DCS manages the ZooKeeper ensemble, you can specify ZooKeeper configuration using its native
+<em>zoo.cfg</em> file, or, the easier option is to just specify ZooKeeper options directly in
+<em>conf/dcs-site.xml</em>. A ZooKeeper configuration option can be set as a property in the DCS
+<em>dcs-site.xml</em> XML configuration file by prefacing the ZooKeeper option name with
+<code>dcs.zookeeper.property</code>. For example, the <code>clientPort</code> setting in ZooKeeper can be changed
+by setting the <code>dcs.zookeeper.property.clientPort</code> property. For all default values used by DCS, including ZooKeeper
+configuration, see section <a href="#dcs_default_configurations">DCS Default Configuration</a>. Look for the <code>dcs.zookeeper.property</code> prefix
+For the full list of ZooKeeper configurations, see ZooKeeper&#8217;s <em>zoo.cfg</em>. DCS does not ship with a <em>zoo.cfg</em> so you will need to browse
+the <em>conf</em> directory in an appropriate ZooKeeper download.</p>
+</div>
+<div class="paragraph">
+<p>You must at least list the ensemble servers in <em>dcs-site.xml</em> using the <code>dcs.zookeeper.quorum</code> property. This property
+defaults to a single ensemble member at <code>localhost</code> which is not suitable for a fully distributed DCS.
+(It binds to the local machine only and remote clients will not be able to connect).</p>
+</div>
+<div class="paragraph">
+<p>How many ZooKeepers should I run?</p>
+</div>
+<div class="paragraph">
+<p>You can run a ZooKeeper ensemble that comprises 1 node only but in production it is recommended that you run a
+ZooKeeper ensemble of 3, 5 or 7 machines; the more members a nensemble has, the more tolerant the ensemble is of host
+failures. Also, run an odd number of machines. In ZooKeeper, an even number of peers is supported, but it is normally not used
+because an even sized ensemble requires, proportionally, more peers to form a quorum than an odd sized ensemble requires. For example, an
+ensemble with 4 peers requires 3 to form a quorum, while an ensemble with 5 also requires 3 to form a quorum. Thus, an ensemble of 5 allows 2 peers to
+fail, and thus is more fault tolerant than the ensemble of 4, which allows only 1 down peer.</p>
+</div>
+<div class="paragraph">
+<p>Give each ZooKeeper server around 1GB of RAM, and if possible, its own dedicated disk (A dedicated disk is the best thing you can do
+to ensure a performant ZooKeeper ensemble). For very heavily loaded clusters, run ZooKeeper servers on separate machines
+from DcsServers.</p>
+</div>
+<div class="paragraph">
+<p>For example, to have DCS manage a ZooKeeper quorum on nodes host{1,2,3,4,5}.example.com, bound to
+port 2222 (the default is 2181) ensure <code>DCS_MANAGE_ZK</code> is commented out or set to <code>true</code> in <em>conf/dcs-env.sh</em>
+and then edit <em>conf/dcs-site.xml</em> and set <code>dcs.zookeeper.property.clientPort</code> and
+<code>dcs.zookeeper.quorum</code>. You should also set <code>dcs.zookeeper.property.dataDir</code> to other than
+the default as the default has ZooKeeper persist data under <em>/tmp</em> which is often cleared on system
+restart. In the example below we have ZooKeeper persist to <em>/user/local/zookeeper</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;configuration&gt;</span>
+  ...
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>dcs.zookeeper.property.clientPort<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>2222<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>Property from ZooKeeper's config zoo.cfg.
+    The port at which the clients will connect.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>dcs.zookeeper.quorum<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>
+    host1.example.com,host2.example.com,host3.example.com,host4.example.com,host5.example.com
+    <span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>Comma separated list of servers in the ZooKeeper Quorum.
+    For example, &quot;host1.mydomain.com,host2.mydomain.com,host3.mydomain.com&quot;.
+    By default this is set to localhost. For a multi-node setup, this should be set to a full
+    list of ZooKeeper quorum servers. If DCS_MANAGES_ZK=true set in dcs-env.sh
+    this is the list of servers which we will start/stop ZooKeeper on.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>dcs.zookeeper.property.dataDir<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>/usr/local/zookeeper<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>Property from ZooKeeper's config zoo.cfg.
+    The directory where the snapshot is stored.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+...
+<span class="tag">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_existing_zookeeper_ensemble">6.1. Using existing ZooKeeper ensemble</h3>
+<div class="paragraph">
+<p>To point DCS at an existing ZooKeeper cluster, one that is not managed by DCS, uncomment and set <code>DCS_MANAGES_ZK</code>
+in <em>conf/dcs-env.sh</em> to <code>false</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console"># Tell DCS whether it should manage it's own instance of Zookeeper or not.
+export DCS_MANAGES_ZK=false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next set ensemble locations and client port, if non-standard, in
+<em>dcs-site.xml</em>, or add a suitably configured <em>zoo.cfg</em> to DCS&#8217;s <em>CLASSPATH</em>.
+DCS will prefer the configuration found in <em>zoo.cfg</em> over any settings in <em>dcs-site.xml</em>.</p>
+</div>
+<div class="paragraph">
+<p>When DCS manages ZooKeeper, it will start/stop the
+ZooKeeper servers as a part of the regular start/stop scripts.
+If you would like to run ZooKeeper yourself, independent of
+DCS start/stop, you would do the following</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">${DCS_HOME}/bin/dcs-daemons.sh {start,stop} zookeeper</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that you can use DCS in this manner to start up a
+ZooKeeper cluster, unrelated to DCS. Just make sure to uncomment and set
+<code>DCS_MANAGES_ZK</code> to <code>false</code> if you want it to stay up across DCS restarts so that when
+DCS shuts down, it doesn&#8217;t take ZooKeeper down with it.</p>
+</div>
+<div class="paragraph">
+<p>For more information about running a distinct ZooKeeper
+cluster, see the <a href="http://hadoop.apache.org/zookeeper/docs/current/zookeeperStarted.html">ZooKeeper Getting Started Guide</a>.
+Additionally, see the <a href="http://wiki.apache.org/hadoop/ZooKeeper/FAQ#A7">ZooKeeper Wiki</a> or the
+<a href="http://zookeeper.apache.org/doc/r3.3.3/zookeeperAdmin.html#sc_zkMulitServerSetup">ZooKeeper documentation</a>
+for more information on ZooKeeper sizing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_files">7. Configuration Files</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__em_dcs_site_xml_em_and_em_dcs_default_xml_em">7.1. <em>dcs-site.xml</em> and <em>dcs-default.xml</em></h3>
+<div class="paragraph">
+<p>You add site-specific configuration to the <em>dcs-site.xml</em> file, for DCS, site specific customizations go into
+the file <em>conf/dcs-site.xml</em>. For the list of configurable properties, see <a href="#dcs_default_configurations">DCS Default Configuration</a>
+below or view the raw <em>dcs-default.xml</em> source file in the DCS source code at <em>src/main/resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>Not all configuration options make it out to <em>dcs-default.xml</em>.  Configuration
+that it is thought rare anyone would change can exist only in code; the only way
+to turn up such configurations is via a reading of the source code itself.</p>
+</div>
+<div class="paragraph">
+<p>Currently, changes here will require a cluster restart for DCS to notice the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dcs_default_configurations">7.2. DCS Default Configuration</h3>
+<div class="paragraph">
+<p>The documentation below is generated using the default dcs configuration file, <em>dcs-default.xml</em>, as source.</p>
+</div>
+<div id="dcs.tmp.dir" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.tmp.dir</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Temporary directory on the local filesystem. Change this setting to point to a location more permanent than '/tmp' (The '/tmp' directory is often cleared on machine restart).</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>${java.io.tmpdir}/dcs-${user.name}</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.local.dir" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.local.dir</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Directory on the local filesystem to be used as a local storage.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>${dcs.tmp.dir}/local/</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Default DCS port.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>23400</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.port.range" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.port.range</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Default range of ports.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>100</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.info.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.info.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The port for the Dcs Master web UI. Set to -1 if you do not want a UI instance run.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>24400</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.info.bindAddress" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.info.bindAddress</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The bind address for the DcsMaster web UI</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>0.0.0.0</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.server.restart.handler.attempts" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.server.restart.handler.attempts</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Maximum number of times the DcsMaster restart handler will try to restart the DcsServer.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>3</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.server.restart.handler.retry.interval.millis" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.server.restart.handler.retry.interval.millis</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Interval between Server restart handler retries.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>1000</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.listener.request.timeout" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.listener.request.timeout</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Listener Request timeout. Default 30 seconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>30000</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.master.listener.selector.timeout" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.master.listener.selector.timeout</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Listener Selector timeout. Default 10 seconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>10000</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.max.heap.pct.exit" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.max.heap.pct.exit</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Set this value to a percentage of the initial heap size (for example, value: 80), which you do not want the current heap size to exceed. When the Trafodion session disconnects, the DCS server&#8217;s user program checks its current heap size. If the difference between its current and initial heap sizes exceeds this percentage, the user program will exit, and the DCS server will restart it. If the difference between its current and initial heap sizes does not exceed this percentage, the user program will be allowed to keep running. The default is 0, which means that the heap size is not checked after the session disconnects and the user program keeps running.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>0</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.zookeeper.session.timeout" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.zookeeper.session.timeout</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>User program ZooKeeper session timeout. Default 180 seconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>180</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.exit.after.disconnect" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.exit.after.disconnect</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>User program calls exit() after client disconnect. Default is 0 or don&#8217;t 'disconnect after exit. Really only for developer use.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>0</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.info.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.info.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The port for the DcsServer web UI Set to -1 if you do not want the server UI to run.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>40030</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.info.bindAddress" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.info.bindAddress</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The address for the DcsServer web UI</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>0.0.0.0</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.info.port.auto" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.info.port.auto</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Whether or not the DcsServer UI should search for a port to bind to. Enables automatic port search if dcs.server.info.port is already in use.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>true</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.dns.interface" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.dns.interface</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Dcs uses the local host name for reporting its IP address. If your machine has multiple interfaces DCS will use the interface that the primary host name resolves to. If this is insufficient, you can set this property to indicate the primary interface e.g., "eth1". This only works if your cluster configuration is consistent and every host has the same network interface configuration.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>default</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.info.threads.max" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.info.threads.max</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The maximum number of threads of the info server thread pool. Threads in the pool are reused to process requests. This controls the maximum number of requests processed concurrently. It may help to control the memory used by the info server to avoid out of memory issues. If the thread pool is full, incoming requests will be queued up and wait for some free threads. The default is 100.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>100</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.info.threads.min" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.info.threads.min</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The minimum number of threads of the info server thread pool. The thread pool always has at least these number of threads so the info server is ready to serve incoming requests. The default is 2.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.handler.threads.max" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.handler.threads.max</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>For every DcsServer specified in the conf/servers file the maximum number of server handler threads that will be created. There can never be more than this value for any given DcsServer. The default is 10.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>10</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.dns.interface" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.dns.interface</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The name of the Network Interface from which a ZooKeeper server should report its IP address.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>default</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.dns.nameserver" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.dns.nameserver</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The host name or IP address of the name server (DNS) which a ZooKeeper server should use to determine the host name used by the master for communication and display purposes.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>default</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.versionfile.writeattempts" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.versionfile.writeattempts</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>How many time to retry attempting to write a version file before just aborting. Each attempt is seperated by the dcs.server.thread.wakefrequency milliseconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>3</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="zookeeper.session.timeout" class="dlist">
+<dl>
+<dt class="hdlist1"><code>zookeeper.session.timeout</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>ZooKeeper session timeout. dcs passes this to the zk quorum as suggested maximum time for a session (This setting becomes zookeeper&#8217;s 'maxSessionTimeout'). See <a href="http://hadoop.apache.org/zookeeper/docs/current/zookeeperProgrammers.html#ch_zkSessions" class="bare">http://hadoop.apache.org/zookeeper/docs/current/zookeeperProgrammers.html#ch_zkSessions</a> "The client sends a requested timeout, the server responds with the timeout that it can give the client. " In milliseconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>180000</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="zookeeper.znode.parent" class="dlist">
+<dl>
+<dt class="hdlist1"><code>zookeeper.znode.parent</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Root Znode for dcs in ZooKeeper. All of dcs&#8217;s ZooKeeper znodes that are configured with a relative path will go under this node. By default, all of dcs&#8217;s ZooKeeper file path are configured with a relative path, so they will all go under this directory unless changed.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>/${user.name}</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.quorum" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.quorum</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Comma separated list of servers in the ZooKeeper Quorum. For example, "host1.mydomain.com,host2.mydomain.com,host3.mydomain.com". By default this is set to localhost. For a fully-distributed setup, this should be set to a full list of ZooKeeper quorum servers. If DCS_MANAGES_ZK is set in dcs-env.sh this is the list of servers which we will start/stop ZooKeeper on.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>localhost</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.peerport" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.peerport</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Port used by ZooKeeper peers to talk to each other. See <a href="http://hadoop.apache.org/zookeeper/docs/r3.1.1/zookeeperStarted.html#sc_RunningReplicatedZooKeeper" class="bare">http://hadoop.apache.org/zookeeper/docs/r3.1.1/zookeeperStarted.html#sc_RunningReplicatedZooKeeper</a> for more information.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2888</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.leaderport" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.leaderport</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Port used by ZooKeeper for leader election. See <a href="http://hadoop.apache.org/zookeeper/docs/r3.1.1/zookeeperStarted.html#sc_RunningReplicatedZooKeeper" class="bare">http://hadoop.apache.org/zookeeper/docs/r3.1.1/zookeeperStarted.html#sc_RunningReplicatedZooKeeper</a> for more information.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>3888</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.useMulti" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.useMulti</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Instructs DCS to make use of ZooKeeper&#8217;s multi-update functionality. This allows certain ZooKeeper operations to complete more quickly and prevents some issues with rare ZooKeeper failure scenarios (see the release note of HBASE-6710 for an example). IMPORTANT: only set this to true if all ZooKeeper servers in the cluster are on version 3.4+ and will not be downgraded. ZooKeeper versions before 3.4 do not support multi-update and will not fail gracefully if multi-update is invoked (see ZOOKEEPER-1495).</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>false</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.property.initLimit" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.property.initLimit</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Property from ZooKeeper&#8217;s config zoo.cfg. The number of ticks that the initial synchronization phase can take.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>10</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.property.syncLimit" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.property.syncLimit</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Property from ZooKeeper&#8217;s config zoo.cfg. The number of ticks that can pass between sending a request and getting an acknowledgment.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>5</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.property.dataDir" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.property.dataDir</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Property from ZooKeeper&#8217;s config zoo.cfg. The directory where the snapshot is stored.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>${dcs.tmp.dir}/zookeeper</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.property.clientPort" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.property.clientPort</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Property from ZooKeeper&#8217;s config zoo.cfg. The port at which the clients will connect.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2181</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.zookeeper.property.maxClientCnxns" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.zookeeper.property.maxClientCnxns</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Property from ZooKeeper&#8217;s config zoo.cfg. Limit on number of concurrent connections (at the socket level) that a single client, identified by IP address, may make to a single member of the ZooKeeper ensemble. Set high to avoid zk connection issues running standalone and pseudo-distributed.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>300</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.rest.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.rest.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The port for the dcs REST server.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>8080</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.rest.readonly" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.rest.readonly</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Defines the mode the REST server will be started in. Possible values are: false: All HTTP methods are permitted - GET/PUT/POST/DELETE. true: Only the GET method is permitted.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>false</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.rest.threads.max" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.rest.threads.max</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The maximum number of threads of the REST server thread pool. Threads in the pool are reused to process REST requests. This controls the maximum number of requests processed concurrently. It may help to control the memory used by the REST server to avoid out of memory issues. If the thread pool is full, incoming requests will be queued up and wait for some free threads. The default is 100.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>100</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.rest.threads.min" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.rest.threads.min</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The minimum number of threads of the REST server thread pool. The thread pool always has at least these number of threads so the REST server is ready to serve incoming requests. The default is 2.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.rest.refresh.seconds" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.rest.refresh.seconds</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Time in seconds between refresh of the REST server page. Set to 0 to disable automatic refresh. The default is 5.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>5</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.statistics.interval.time" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.statistics.interval.time</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Time in seconds on how often the aggregation data should be published. Setting this value to '0' will revert to default. Setting this value to '-1' will disable publishing aggregation data. The default is 60.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>60</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.statistics.limit.time" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.statistics.limit.time</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Time in seconds for how long the query has been executing before publishing statistics to metric_query_table. To publish all queries set this value to '0'. Setting this value to '-1' will disable publishing any data to metric_query_table. The default is 60. Warning - Setting this value to 0 will cause query performance to degrade</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>60</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.statistics.type" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.statistics.type</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Type of statistics to be published. User can set it as 'session' or 'aggregated'. By 'aggregated', only session stats and aggregation stats will be published and query stats will be published only when query executes longer than specified time limit using the property 'dcs.server.user.program.statistics.limit.time'. By 'session', only session stats will be published. The default is 'aggregated'.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>aggregated</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.statistics.enabled" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.statistics.enabled</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>If statistics publication is enabled. The default is true. Set false to disable.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>true</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.class.name" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.class.name</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The classname of the DcsServer to start. Used for development of multithreaded server</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>org.trafodion.dcs.server.DcsServer</code></p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_dcs_env_sh_em">7.3. <em>dcs-env.sh</em></h3>
+<div class="paragraph">
+<p>Set DCS environment variables in this file. Examples include options to pass the JVM on start of
+an DCS daemon such as heap size and garbarge collector configs. You can also set configurations for DCS configuration, log directories,
+niceness, ssh options, where to locate process pid files, etc. Open the file at <em>conf/dcs-env.sh</em> and peruse its content.
+Each option is fairly well documented.  Add your own environment variables here if you want them read by DCS daemons on startup.</p>
+</div>
+<div class="paragraph">
+<p>Changes here will require a cluster restart for DCS to notice the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_log4j_properties_em">7.4. <em>log4j.properties</em></h3>
+<div class="paragraph">
+<p>Edit this file to change rate at which DCS files are rolled and to change the level at which DCS logs messages.</p>
+</div>
+<div class="paragraph">
+<p>Changes here will require a cluster restart for DCS to notice the change though log levels can be changed for
+particular daemons via the DCS UI.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_backup_masters_em_2">7.5. <em>backup-masters</em></h3>
+<div class="paragraph">
+<p>A plain-text file which lists hosts on which the backup Master process, one host per line, should be started.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_configurations">8. Example Configurations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_distributed_dcs_install">8.1. Basic Distributed DCS Install</h3>
+<div class="paragraph">
+<p>This example shows a basic configuration for a distributed four-node cluster. The nodes are named
+<code>example1</code>,<code>example2</code>, and so on, through node`example4` in this example. The DCS Master is running
+on the node <code>example1</code>. DCS Servers run on nodes <code>example1</code>-<code>example4</code>. A 3-node ZooKeeper ensemble runs on <code>example1</code>,
+<code>example2</code>, and <code>example3</code> on the default ports. ZooKeeper data is persisted to the directory
+<em>/export/zookeeper</em>. Below we show what the main configuration files, <em>dcs-site.xml</em>,
+<em>servers</em>, and <em>dcs-env.sh</em>, found in the DCS <em>conf</em> directory might look like.</p>
+</div>
+<div class="sect3">
+<h4 id="__em_dcs_site_xml_em">8.1.1. <em>dcs-site.xml</em></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;configuration&gt;</span>
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>dcs.zookeeper.quorum<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>example1,example2,example3<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>
+      The directory shared by DcsServers.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>dcs.zookeeper.property.dataDir<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>/export/zookeeper<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>
+      Property from ZooKeeper's config zoo.cfg.
+      The directory where the snapshot is stored.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+<span class="tag">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__em_servers_em_2">8.1.2. <em>servers</em></h4>
+<div class="paragraph">
+<p>In this file, you list the nodes that will run DcsServers. In this case,
+there are two DcsServrs per node each starting a single mxosrvr:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">  example1
+  example2
+  example3
+  example4
+  example1
+  example2
+  example3
+  example4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can list the nodes followed by the number of mxosrvrs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">  example1 2
+  example2 2
+  example3 2
+  example4 2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__em_backup_masters_em_3">8.1.3. <em>backup-masters</em></h4>
+<div class="paragraph">
+<p>In this file, you list the nodes that will run backup DcsMasters. In this case,
+there is a backup master running on the second node:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">  example2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__em_dcs_env_sh_em_2">8.1.4. <em>dcs-env.sh</em></h4>
+<div class="paragraph">
+<p>Below we use a <em>diff</em> to show the differences from default in the <em>dcs-env.sh</em> file. Here we
+are setting the DCS heap to be 4G instead of the default 128M.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git diff dcs-env.sh
+diff --git a/conf/dcs-env.sh b/conf/dcs-env.sh
+index e70ebc6..96f8c27 100644
+--- a/conf/dcs-env.sh
++++ b/conf/dcs-env.sh
+@@ -31,7 +31,7 @@ export JAVA_HOME=/usr/java/jdk1.7.0/
+ # export DCS_CLASSPATH=
+
+ # The maximum amount of heap to use, in MB. Default is 128.
+-# export DCS_HEAPSIZE=128
++export DCS_HEAPSIZE=4096
+
+
+ # Extra Java runtime options.
+ # Below are what we set by default. May only work with SUN JVM.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <em>rsync</em> to copy the content of the  <em>conf</em> directory to all nodes of the cluster.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="important.configurations">9. The Important Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below we list the <strong>important</strong> Configurations. We&#8217;ve divided this section into required configuration
+and worth-a-look recommended configs.</p>
+</div>
+<div class="sect2">
+<h3 id="_required_configurations">9.1. Required Configurations</h3>
+<div class="paragraph">
+<p>Review the <a href="#os">OS</a> section.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recommended_configurations">9.2. Recommended Configurations</h3>
+<div class="sect3">
+<h4 id="__code_dcs_master_port_code">9.2.1. <code>dcs.master.port</code></h4>
+<div class="paragraph">
+<p>The default value is 37800. This is the port the DcsMaster listener binds to
+waiting for JDBC/ODBC T4 client connections. The value may need to be changed
+if this port number conflicts with other ports in use on your cluster.</p>
+</div>
+<div class="paragraph">
+<p>To change this configuration, edit <em>conf/dcs-site.xml</em>, copy the changed file around the cluster and restart.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_dcs_master_port_range_code">9.2.2. <code>dcs.master.port.range</code></h4>
+<div class="paragraph">
+<p>The default value is 100. This is the total number of ports that MXOSRVRs will scan trying
+to find an available port to use. You must ensure the value is large enough to support the
+number of MXOSRVRs configured in <em>conf/servers</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_dcs_master_floating_ip_code">9.2.3. <code>dcs.master.floating.ip</code></h4>
+<div class="paragraph">
+<p>The default value is false. When set to true the floating IP feature in the DcsMaster is enabled via the <em>bin/dcsbind.sh</em> script.
+This allows backup DcsMaster to takeover and set the floating IP address.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_dcs_master_floating_ip_external_interface_code">9.2.4. <code>dcs.master.floating.ip.external.interface</code></h4>
+<div class="paragraph">
+<p>There is no default value. You must ensure the value contains the correct interface
+for your networking configuration.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_dcs_master_floating_ip_external_ip_address_code">9.2.5. <code>dcs.master.floating.ip.external.ip.address</code></h4>
+<div class="paragraph">
+<p>There is no default value. It is importatnt that you set this to the dotted IP address appropriate for your network.</p>
+</div>
+<div class="paragraph">
+<p>To change this configuration, edit <em>dcs-site.xml</em>, copy the changed file around the cluster and restart.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="architecture" class="sect0">Architecture</h1>
+<div class="sect1">
+<h2 id="arch-overview">10. Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="arch-overview-dcs">10.1. DCS</h3>
+<div class="paragraph">
+<p>DCS, see figure <a href="#img-dcs">Figure 1</a>, is a framework that connects
+ODBC/JDBC Type 4 clients to Trafodion user programs (MXOSRVR servers). In a nutshell, clients connect to a listening
+DcsMaster on a well known port. DcsMaster looks in ZooKeeper for an "available"
+DcsServer user program (MXOSRVR) and returns an object reference to that server back to the client.
+The client then connects directly to the MXOSRVR. After the initial startup DcsMaster restarts any failed
+DcsServers. And, DcsServers restart any failed MXOSRVRs.</p>
+</div>
+<div class="paragraph">
+<p>DCS provides the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A lightweight process management framework.</p>
+</li>
+<li>
+<p>High performance client listener using Java NIO.</p>
+</li>
+<li>
+<p>Simple configuration and startup</p>
+</li>
+<li>
+<p>A highly available and scaleable Trafodion connectivity service.</p>
+</li>
+<li>
+<p>Uses ZooKeeper as backbone for coordination and process management.</p>
+</li>
+<li>
+<p>Embedded user interface to examine state, logs, process status.</p>
+</li>
+<li>
+<p>Standalone REST server.</p>
+</li>
+<li>
+<p>100% Java implementation.</p>
+</li>
+</ul>
+</div>
+<div id="img-dcs" class="imageblock">
+<div class="content">
+<img src="./images/architecture.png" alt="architecture">
+</div>
+<div class="title">Figure 1: DCS Architecture</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-client">11. Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Trafodion ODBC/JDBC Type 4 client drivers connect to MXOSRVRs through the DCS Master.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-dcsmaster">12. DcsMaster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>DcsMaster</em> is the implementation of the Master Server. The Master server
+is responsible for listening for client connection requests, monitoring all DcsServer instances in the cluster
+and restarting any DcsServers that fail after initial startup.</p>
+</div>
+<div class="sect2">
+<h3 id="master-startup">12.1. Startup Behavior</h3>
+<div class="paragraph">
+<p>The DcsMaster is started via the scripts found in the <em>/bin</em> directory. During startup it registers itself in Zookeeper.
+If the DcsMaster is started as a backup then after registering in Zookeeper it waits to become the next DcsMaster leader.
+If ever the backup becomes the leader it executes the <em>bin/dcsbind.sh</em> script to enable floating IP on a given interface and
+IP address.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="master-runtime">12.2. Runtime Impact</h3>
+<div class="paragraph">
+<p>A common question is what happens to an DCS cluster when the DcsMaster goes down. Because the
+DcsMaster doesn&#8217;t affect the running DcsServers or connected clients, the cluster can still function
+i.e., clients already connected to MXOSRVRs can continue to work. However, the DcsMaster controls critical
+functions such as listening for clients and restarting DcsServers. So, while the cluster can still run for
+a time without the DcsMaster, it should be restarted as soon as possible.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_high_availability">12.3. High Availability</h3>
+<div class="paragraph">
+<p>DcsMaster backup servers may be configured by adding host names to the <em>conf/backup-masters</em> file. They are started
+and stopped automatically by the <em>bin/master-backup.sh</em> script whenever DCS is started or stopped. Every backup
+DcsMaster follows the current leader DcsMaster watching for it to fail. If failure of the leader occurs the first
+backup DcsMaster in line for succession checks to see if floating IP is enabled. If enabled it executes
+the <em>bin/scripts/dcsbind.sh</em> script to add a floating IP address to an interface on its node. It then continues
+with normal initialization and eventually starts listening for new client connections. It may take
+several seconds for the takeover to complete. When a failed node is restored a new DcsMaster backup may
+be started manually by executing the <em>bin/dcs-daemon.sh</em> script on the restored node e.g.,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt;bin/dcs-daemon.sh start master</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The newly created DcsMaster backup process will take its place at the back of the line waiting for the current DcsMaster leader to fail.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="master-processes">12.4. Processes</h3>
+<div class="paragraph">
+<p>The DcsMaster runs several background threads:</p>
+</div>
+<div class="sect3">
+<h4 id="_listener">12.4.1. Listener</h4>
+<div class="paragraph">
+<p>The listener thread is responsible for servicing client requests. It pairs
+each client with an registered MXOSRVR found in Zookeeper. A default port
+is configured but this may be changed in the configuration by modifying
+the <em>dcs.master.port</em> and <em>dcs.master.port.range</em> properties.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="master-processes-server-manager">12.4.2. ServerManager</h4>
+<div class="paragraph">
+<p>The server manager thread is responsible for monitoring and restarting its child DcsServers. It
+runs a server handler for each DcsServer found in <em>conf/servers</em>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="server-arch">13. DcsServer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>DcsServer</em> is the server implementation. It is responsible for starting and keeping
+its Trafodion user program (MXOSRVR) running.</p>
+</div>
+<div class="sect2">
+<h3 id="server-startup">13.1. Startup Behavior</h3>
+<div class="paragraph">
+<p>The DcsServer is started via the scripts found in the <em>/bin</em> directory. During startup it registers itself in Zookeeper.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-runtime">13.2. Runtime Impact</h3>
+<div class="paragraph">
+<p>The DcsServer can continue to function if the DcsMaster goes down. the cluster can still function in a "steady
+state." However, the DcsMaster controls critical functions such as DcsServer failure and.
+So while the cluster can still run for a time without the DcsMaster,
+the DcsMaster should be restarted as soon as possible.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-arch-processes">13.3. Processes</h3>
+<div class="paragraph">
+<p>The DcsServer runs a variety of background threads:</p>
+</div>
+<div class="sect3">
+<h4 id="server-processes-server-manager">13.3.1. ServerManager</h4>
+<div class="paragraph">
+<p>The server manager thread is responsible for monitoring and restarting its child MXOSRVRs. It
+runs a server handler for each MXOSRVR found after the hostname in <em>conf/servers</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="server-processes-script-manager">13.3.2. ScriptManager</h4>
+<div class="paragraph">
+<p>The script manager thread is responsible for readng and compiling the script used to run the MXOSRVR. It
+can detect a change in any script found in <em>bin/scripts</em>. If any file changes it will
+reload and compile the changed script.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="external-apis" class="sect0">External APIs</h1>
+<div class="openblock partintro">
+<div class="content">
+This chapter will cover access to DCS either through non-Java languages, or through custom protocols.
+</div>
+</div>
+<div class="sect1">
+<h2 id="rest">14. REST</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<h1 id="performance" class="sect0">Performance Tuning</h1>
+<div class="sect1">
+<h2 id="perf-os">15. Operating System</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="perf-os-ram">15.1. Memory</h3>
+<div class="paragraph">
+<p>RAM, RAM, RAM.  Don&#8217;t starve Dcs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="perf-os-64">15.2. 64-bit</h3>
+<div class="paragraph">
+<p>Use a 64-bit platform (and 64-bit JVM).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="perf-os-swap">15.3. Swapping</h3>
+<div class="paragraph">
+<p>Watch out for swapping. Set swappiness to 0.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="perf-network">16. Network</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="perf-zookeeper">17. ZooKeeper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="#zookeeper">Zookeeper</a> for information on configuring ZooKeeper, and see the part about having a dedicated disk.</p>
+</div>
+</div>
+</div>
+<h1 id="troubleshooting" class="sect0">Troubleshooting and Debugging</h1>
+<div class="sect1">
+<h2 id="_general_guidelines">18. General Guidelines</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logs">19. Logs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The key process logs are as follows&#8230;&#8203;(replace &lt;user&gt; with the user that started the service, &lt;instance&gt; for the server instance and &lt;hostname&gt; for the machine name)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DcsMaster: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-master-&lt;hostname&gt;.log</p>
+</li>
+<li>
+<p>DcsServer: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-server-&lt;hostname&gt;.log</p>
+</li>
+<li>
+<p>ZooKeeper: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-zookeeper-&lt;hostname&gt;.log</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouble-resources">20. Resources</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouble-tools">21. Tools</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="trouble-tools-builtin">21.1. Builtin Tools</h3>
+<div class="sect3">
+<h4 id="trouble-tools-builtin-webmaster">21.1.1. DcsMaster Web Interface</h4>
+<div class="paragraph">
+<p>The DcsMaster starts a web-interface on port 40010 by default.</p>
+</div>
+<div class="paragraph">
+<p>The DcsMaster web UI lists created DcsServers (e.g., build info, zookeeper quorum, metrics, etc.).  Additionally,
+the available DcsServers in the cluster are listed along with selected high-level metrics (listenerRequests, listenerCompletedRequests,
+totalAvailable/totalConnected/totalConnecting MXOSRVRs, totalHeap, usedHeap, maxHeap, etc).
+The DcsMaster web UI allows navigation to each DcsServer&#8217;s web UI.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trouble-tools-builtin-webserver">21.1.2. DcsServer Web Interface</h4>
+<div class="paragraph">
+<p>DcsServers starts a web-interface on port 40030 by default.</p>
+</div>
+<div class="paragraph">
+<p>The DcsServer web UI lists its server metrics (build info, zookeeper quorum, usedHeap, maxHeap, etc.).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trouble-tools-builtin-zkcli">21.1.3. zkcli</h4>
+<div class="paragraph">
+<p><em>zkcli</em> is a very useful tool for investigating ZooKeeper-related issues.  To invoke:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>./dcs zkcli -server host:port &lt;cmd&gt; &lt;args&gt;
+
+The commands (and arguments) are:
+
+	connect host:port
+	get path [watch]
+	ls path [watch]
+	set path data [version]
+	delquota [-n|-b] path
+	quit
+	printwatches on|off
+	create [-s] [-e] path data acl
+	stat path [watch]
+	close
+	ls2 path [watch]
+	history
+	listquota path
+	setAcl path acl
+	getAcl path
+	sync path
+	redo cmdno
+	addauth scheme auth
+	delete path [version]
+	setquota -n|-b val path</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="trouble-tools-external">21.2. External Tools</h3>
+<div class="sect3">
+<h4 id="trouble-tools-tail">21.2.1. tail</h4>
+<div class="paragraph">
+<p><em>tail</em> is the command line tool that lets you look at the end of a file. Add the “-f” option and it will refresh when new data is available. It’s useful when you are wondering what’s happening, for example, when a cluster is taking a long time to shutdown or startup as you can just fire a new terminal and tail the master log (and maybe a few DcsServers).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trouble-tools-top">21.2.2. top</h4>
+<div class="paragraph">
+<p><em>top</em> is probably one of the most important tool when first trying to see what’s running on a machine and how the resources are consumed. Here’s an example from production system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>top - 14:46:59 up 39 days, 11:55,  1 user,  load average: 3.75, 3.57, 3.84
+Tasks: 309 total,   1 running, 308 sleeping,   0 stopped,   0 zombie
+Cpu(s):  4.5%us,  1.6%sy,  0.0%ni, 91.7%id,  1.4%wa,  0.1%hi,  0.6%si,  0.0%st
+Mem:  24414432k total, 24296956k used,   117476k free,     7196k buffers
+Swap: 16008732k total,	14348k used, 15994384k free, 11106908k cached
+
+  PID USER  	PR  NI  VIRT  RES  SHR S %CPU %MEM	TIME+  COMMAND
+15558 hadoop	18  -2 3292m 2.4g 3556 S   79 10.4   6523:52 java
+13268 hadoop	18  -2 8967m 8.2g 4104 S   21 35.1   5170:30 java
+ 8895 hadoop	18  -2 1581m 497m 3420 S   11  2.1   4002:32 java
+…</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we can see that the system load average during the last five minutes is 3.75, which very roughly means that on average 3.75 threads were waiting for CPU time during these 5 minutes.  In general, the “perfect” utilization equals to the number of cores, under that number the machine is under utilized and over that the machine is over utilized.  This is an important concept, see this article to understand it more: <a href="http://www.linuxjournal.com/article/9001">http://www.linuxjournal.com/article/9001</a>.
+Apart from load, we can see that the system is using almost all its available RAM but most of it is used for the OS cache (which is good). The swap only has a few KBs in it and this is wanted, high numbers would indicate swapping activity which is the nemesis of performance of Java systems. Another way to detect swapping is when the load average goes through the roof (although this could also be caused by things like a dying disk, among others).
+The list of processes isn’t super useful by default, all we know is that 3 java processes are using about 111% of the CPUs. To know which is which, simply type “c” and each line will be expanded. Typing “1” will give you the detail of how each CPU is used instead of the average for all of them like shown here.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trouble-tools-jps">21.2.3. jps</h4>
+<div class="paragraph">
+<p><em>jps</em> is shipped with every JDK and gives the java process ids for the current user (if root, then it gives the ids for all users). Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>21160 DcsMaster
+21248 DcsServer</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouble-zookeeper">22. ZooKeeper</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_startup_errors">22.1. Startup Errors</h3>
+<div class="sect3">
+<h4 id="trouble-zookeeper-startup-address">22.1.1. Could not find my address: xyz in list of ZooKeeper quorum servers</h4>
+<div class="paragraph">
+<p>A ZooKeeper server wasn&#8217;t able to start, throws that error. xyz is the name of your server.
+This is a name lookup problem. DCS tries to start a ZooKeeper server on some machine but that machine isn&#8217;t able to find itself in the <em>dcs.zookeeper.quorum</em> configuration.</p>
+</div>
+<div class="paragraph">
+<p>Use the hostname presented in the error message instead of the value you used. If you have a DNS server, you can set <em>dcs.zookeeper.dns.interface</em> and <em>dcs.zookeeper.dns.nameserver</em> in <em>dcs-site.xml</em> to
+make sure it resolves to the correct FQDN.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trouble-zookeeper-general">22.1.2. ZooKeeper, The Cluster Canary</h4>
+<div class="paragraph">
+<p>ZooKeeper is the cluster&#8217;s "canary in the mineshaft". It&#8217;ll be the first to notice issues if any so making sure its happy is the short-cut to a humming cluster.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="http://wiki.apache.org/hadoop/ZooKeeper/Troubleshooting">ZooKeeper Operating Environment Troubleshooting</a> page.
+It has suggestions and tools for checking disk and networking performance; i.e. the operating environment your ZooKeeper
+and DCS are running in.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the utility <a href="#trouble-tools-builtin-zkcli">zkcli</a> may help investigate ZooKeeper issues.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="ops-mgt" class="sect0">Operational Management</h1>
+<div class="openblock partintro">
+<div class="content">
+This chapter will cover operational tools and practices required of a running DCS cluster.
+The subject of operations is related to the topics of <a href="#troubleshooting">troubleshooting and debugging</a>, <a href="#performance">performance tuning</a>
+and <a href="#configuration">configuration</a> but is a distinct topic in itself.
+</div>
+</div>
+<div class="sect1">
+<h2 id="tools">23. Tools and Utilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here we list tools for administration, analysis, and debugging.</p>
+</div>
+</div>
+</div>
+<h1 id="_appendix" class="sect0">Appendix</h1>
+<div class="sect1">
+<h2 id="appendix-contributing-to-documentation">Appendix A: Contributing to Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The DCS project welcomes contributions to the reference guide.</p>
+</div>
+<div class="sect2">
+<h3 id="_dcs_reference_guide_style_guide_and_cheat_sheet">A.1. DCS Reference Guide Style Guide and Cheat Sheet</h3>
+<div class="paragraph">
+<p>The DCS Reference Guide is written in Asciidoc and built using <a href="http://asciidoctor.org">AsciiDoctor</a>. The following cheat sheet is included for your reference.
+More comprehensive documentation is available in the <a href="http://asciidoctor.org/docs/user-manual">AsciiDoctor user manual</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. AsciiDoc Cheat Sheet</caption>
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Element Type</th>
+<th class="tableblock halign-left valign-top">Desired Rendering</th>
+<th class="tableblock halign-left valign-top">How to do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A paragraph</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a paragraph</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Just type some text with a blank line at the top and bottom.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add line breaks within a paragraph without adding blank lines</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manual line breaks</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This will break + at the plus sign. Or prefix the whole paragraph with a line containing <code>[%hardbreaks]</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Give a title to anything</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Colored italic bold differently-sized text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>.MyTitle</code> (no space between the period and the words) on the line before the thing to be titled</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-Line Code or commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monospace</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>`text`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-line literal content (things to be typed exactly as shown)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bold mono</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*`typethis`*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-line replaceable content (things to substitute with your own values)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bold italic mono</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_typesomething_*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code blocks with highlighting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monospace, highlighted, preserve space</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>[source,java]
+----
+  myAwesomeCode() {
+}
+----</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code block included from a separate file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">included just as though it were part of the main file</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>[source,ruby]
+----
+include\::path/to/app.rb[]
+----</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include only part of a separate file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to Javadoc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <a href="http://www.asciidoctor.org/docs/user-manual/#by-tagged-regions" class="bare">http://www.asciidoctor.org/docs/user-manual/#by-tagged-regions</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filenames, directory names, new terms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">italic</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>_dcs-default.xml_</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External naked URLs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link with the URL as link text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>link:http://www.google.com</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External URLs with text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link with arbitrary link text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>link:http://www.google.com[Google]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create an internal anchor to cross-reference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not rendered</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>[[anchor_name]]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference an existing anchor using its default title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">an internal hyperlink using the element title if available, otherwise using the anchor name</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchor_name&gt;&gt;</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference an existing anchor using custom text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">an internal hyperlink using arbitrary text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchor_name,Anchor Text&gt;&gt;</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A block image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image with alt text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image::sunset.jpg[Alt Text]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(put the image in the src/main/site/resources/images directory)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An inline image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image with alt text, as part of the text flow</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image:sunset.jpg [Alt Text]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(only one colon)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Link to a remote image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">show an image hosted elsewhere</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image::http://inkscape.org/doc/examples/tux.svg[Tux,250,350]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(or <code>image:</code>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add dimensions or a URL to the image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">depends</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>inside the brackets after the alt text, specify width, height and/or link="http://my_link.com"</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A footnote</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">subscript link which takes you to the footnote</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Some text.footnote:[The footnote text.]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A note or warning with no title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The admonition image followed by the admonition</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>NOTE:My note here</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>WARNING:My warning here</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A complex note</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The note has a title and/or multiple paragraphs and/or code blocks or lists, etc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>.The Title
+[NOTE]
+====
+Here is the note text. Everything until the second set of four equals signs is part of the note.
+----
+some source code
+----
+====</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bullet lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bullet lists</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>* list item 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(See <a href="http://asciidoctor.org/docs/user-manual/#unordered-lists" class="bare">http://asciidoctor.org/docs/user-manual/#unordered-lists</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numbered lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numbered list</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>. list item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(See <a href="http://asciidoctor.org/docs/user-manual/#ordered-lists" class="bare">http://asciidoctor.org/docs/user-manual/#ordered-lists</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checklists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checked or unchecked boxes</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Checked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- [*]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unchecked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- [ ]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple levels of lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bulleted or numbered or combo</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>. Numbered (1), at top level
+* Bullet (2), nested under 1
+* Bullet (3), nested under 1
+. Numbered (4), at top level
+* Bullet (5), nested under 4
+** Bullet (6), nested under 5
+- [x] Checked (7), at top level</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Labelled lists / variablelists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a list item title or summary followed by content</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Title:: content
+
+Title::
+  content</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sidebars, quotes, or other blocks of text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a block of text, formatted differently from the default</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Delimited using different delimiters, see <a href="http://asciidoctor.org/docs/user-manual/#built-in-blocks-summary" class="bare">http://asciidoctor.org/docs/user-manual/#built-in-blocks-summary</a>. Some of the examples above use delimiters like ...., ----,====.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[example]
+====
+This is an example block.
+====
+
+[source]
+----
+This is a source block.
+----
+
+[note]
+====
+This is a note block.
+====
+
+[quote]
+____
+This is a quote block.
+____</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to insert literal Asciidoc content that keeps being interpreted, when in doubt, use eight dots as the delimiter at the top and bottom.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested Sections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chapter, section, sub-section, etc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>= Book (or chapter if the chapter can be built alone, see the leveloffset info below)
+
+== Chapter (or section if the chapter is standalone)
+
+=== Section (or subsection, etc)
+
+==== Subsection</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and so on up to 6 levels (think carefully about going deeper than 4 levels, maybe you can just titled paragraphs or lists instead). Note that you can include a book inside another book by adding the <code>:leveloffset:+1</code> macro directive directly before your include, and resetting it to 0 directly after. See the <em>index.adoc</em> source for examples, as this is how this guide handles chapters. <strong>Don&#8217;t do it for prefaces, glossaries, appendixes, or other special types of chapters.</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include one file from another</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Content is included as though it were inline</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>include::[/path/to/file.adoc]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For plenty of examples. see <em>book.adoc</em>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A table</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a table</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <a href="http://asciidoctor.org/docs/user-manual/#tables" class="bare">http://asciidoctor.org/docs/user-manual/#tables</a>. Generally rows are separated by newlines and columns by pipes</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comment out a single line</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A  line is skipped during rendering</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>// This line won&#8217;t show up</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comment out a block</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A section of the file is skipped during rendering</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>////
+Nothing between the slashes will show up.
+////</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Highlight text for review</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text shows up with yellow background</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Test between #hash marks# is highlighted yellow.</pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_auto_generated_content">A.2. Auto-Generated Content</h3>
+<div class="paragraph">
+<p>Some parts of the DCS Reference Guide, most notably <a href="#dcs_default_configurations">DCS default configuration</a>, are generated automatically, so that this area of the documentation stays in sync with the code.
+This is done by means of an XSLT transform, which you can examine in the source at <em>src/main/xslt/configuration_to_asciidoc_chapter.xsl</em>.
+This transforms the <em>dcs-common/src/main/resources/dcs-default.xml</em>            file into an Asciidoc output which can be included in the Reference Guide.
+Sometimes, it is necessary to add configuration parameters or modify their descriptions.
+Make the modifications to the source file, and they will be included in the Reference Guide when it is rebuilt.</p>
+</div>
+<div class="paragraph">
+<p>It is possible that other types of content can and will be automatically generated from DCS source files in the future.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_images_in_the_dcs_reference_guide">A.3. Images in the DCS Reference Guide</h3>
+<div class="paragraph">
+<p>You can include images in the DCS Reference Guide. It is important to include an image title if possible, and alternate text always.
+This allows screen readers to navigate to the image and also provides alternative text for the image.
+The following is an example of an image with a title and alternate text. Notice the double colon.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="asciidoc">.My Image Title
+image::sunset.jpg[Alt Text]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example of an inline image with alternate text. Notice the single colon. Inline images cannot have titles. They are generally small images like GUI buttons.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="asciidoc">image:sunset.jpg[Alt Text]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When doing a local build, save the image to the <em>src/main/site/resources/images/</em> directory.
+When you link to the image, do not include the directory portion of the path.
+The image will be copied to the appropriate target location during the build of the output.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_a_new_chapter_to_the_dcs_reference_guide">A.4. Adding a New Chapter to the DCS Reference Guide</h3>
+<div class="paragraph">
+<p>If you want to add a new chapter to the DCS Reference Guide, the easiest way is to copy an existing chapter file, rename it, and change the ID (in double brackets) and title. Chapters are located in the <em>src/main/asciidoc/_chapters/</em> directory.</p>
+</div>
+<div class="paragraph">
+<p>Delete the existing content and create the new content.
+Then open the <em>src/main/asciidoc/book.adoc</em> file, which is the main file for the DCS Reference Guide, and copy an existing <code>include</code> element to include your new chapter in the appropriate location.
+Be sure to add your new file to your Git repository before creating your patch.</p>
+</div>
+<div class="paragraph">
+<p>When in doubt, check to see how other files have been included.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_documentation_issues">A.5. Common Documentation Issues</h3>
+<div class="paragraph">
+<p>The following documentation issues come up often.
+Some of these are preferences, but others can create mysterious build errors or other problems.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Syntax Highlighting</dt>
+<dd>
+<p>The DCS Reference Guide uses <code>coderay</code> for syntax highlighting. To enable syntax highlighting for a given code listing, use the following type of syntax:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source,xml]
+----
+&lt;name&gt;My Name&lt;/name&gt;
+----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several syntax types are supported. The most interesting ones for the DCS Reference Guide are <code>java</code>, <code>xml</code>, <code>sql</code>, and <code>bash</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq">Appendix B: FAQ</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>What is DCS?</em></p>
+<p>See the <a href="#arch-overview">architecture overview</a> in the Architecture chapter.</p>
+</li>
+<li>
+<p><em>How can I get started with my first cluster?</em></p>
+<p>See the <a href="#quickstart">quickstart</a>.</p>
+</li>
+<li>
+<p><em>Where can I learn about the rest of the configuration options?</em></p>
+<p>See the <a href="#configuration">configuration</a> section.</p>
+</li>
+<li>
+<p><em>How can I improve DCS cluster performance?</em></p>
+<p>See the <a href="#performance">performance</a> section.</p>
+</li>
+<li>
+<p><em>How can I troubleshoot my DCS cluster?</em></p>
+<p>See the <a href="#troubleshooting">troubleshooting</a> section.</p>
+</li>
+<li>
+<p><em>How do I manage my DCS cluster?</em></p>
+<p>See the <a href="#ops-mgt">operations management</a> section.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-11-13 22:47:46 -07:00
+</div>
+</div>
+</body>
+</html>

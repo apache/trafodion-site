@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>RequestCancelQuery xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/org/trafodion/dcs/master/listener/RequestCancelQuery.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_javadoccomment">* @@@ START COPYRIGHT @@@</em>
+<a class="jxr_linenumber" name="3" href="#3">3</a>   
+<a class="jxr_linenumber" name="4" href="#4">4</a>   <em class="jxr_javadoccomment">Licensed to the Apache Software Foundation (ASF) under one</em>
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <em class="jxr_javadoccomment">or more contributor license agreements.  See the NOTICE file</em>
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <em class="jxr_javadoccomment">distributed with this work for additional information</em>
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <em class="jxr_javadoccomment">regarding copyright ownership.  The ASF licenses this file</em>
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <em class="jxr_javadoccomment">to you under the Apache License, Version 2.0 (the</em>
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <em class="jxr_javadoccomment">"License"); you may not use this file except in compliance</em>
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <em class="jxr_javadoccomment">with the License.  You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="11" href="#11">11</a>  
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <em class="jxr_javadoccomment">  <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
+<a class="jxr_linenumber" name="13" href="#13">13</a>  
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_javadoccomment">Unless required by applicable law or agreed to in writing,</em>
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <em class="jxr_javadoccomment">software distributed under the License is distributed on an</em>
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <em class="jxr_javadoccomment">"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</em>
+<a class="jxr_linenumber" name="17" href="#17">17</a>  <em class="jxr_javadoccomment">KIND, either express or implied.  See the License for the</em>
+<a class="jxr_linenumber" name="18" href="#18">18</a>  <em class="jxr_javadoccomment">specific language governing permissions and limitations</em>
+<a class="jxr_linenumber" name="19" href="#19">19</a>  <em class="jxr_javadoccomment">under the License.</em>
+<a class="jxr_linenumber" name="20" href="#20">20</a>  
+<a class="jxr_linenumber" name="21" href="#21">21</a>  <em class="jxr_javadoccomment">* @@@ END COPYRIGHT @@@</em>
+<a class="jxr_linenumber" name="22" href="#22">22</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="23" href="#23">23</a>  <strong class="jxr_keyword">package</strong> org.trafodion.dcs.master.listener;
+<a class="jxr_linenumber" name="24" href="#24">24</a>  
+<a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> java.sql.*;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> java.net.*;
+<a class="jxr_linenumber" name="27" href="#27">27</a>  <strong class="jxr_keyword">import</strong> java.io.*;
+<a class="jxr_linenumber" name="28" href="#28">28</a>  <strong class="jxr_keyword">import</strong> java.nio.*;
+<a class="jxr_linenumber" name="29" href="#29">29</a>  <strong class="jxr_keyword">import</strong> java.nio.channels.*;
+<a class="jxr_linenumber" name="30" href="#30">30</a>  <strong class="jxr_keyword">import</strong> java.nio.channels.spi.*;
+<a class="jxr_linenumber" name="31" href="#31">31</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="33" href="#33">33</a>  
+<a class="jxr_linenumber" name="34" href="#34">34</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.logging.Log;
+<a class="jxr_linenumber" name="35" href="#35">35</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.logging.LogFactory;
+<a class="jxr_linenumber" name="36" href="#36">36</a>  <strong class="jxr_keyword">import</strong> org.apache.zookeeper.KeeperException;
+<a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">import</strong> org.apache.zookeeper.ZooDefs;
+<a class="jxr_linenumber" name="38" href="#38">38</a>  <strong class="jxr_keyword">import</strong> org.apache.zookeeper.data.Stat;
+<a class="jxr_linenumber" name="39" href="#39">39</a>  <strong class="jxr_keyword">import</strong> org.apache.zookeeper.CreateMode;
+<a class="jxr_linenumber" name="40" href="#40">40</a>  <strong class="jxr_keyword">import</strong> org.apache.zookeeper.ZooKeeper;
+<a class="jxr_linenumber" name="41" href="#41">41</a>  
+<a class="jxr_linenumber" name="42" href="#42">42</a>  <strong class="jxr_keyword">import</strong> org.trafodion.dcs.Constants;
+<a class="jxr_linenumber" name="43" href="#43">43</a>  <strong class="jxr_keyword">import</strong> org.trafodion.dcs.util.*;
+<a class="jxr_linenumber" name="44" href="#44">44</a>  <strong class="jxr_keyword">import</strong> org.trafodion.dcs.zookeeper.ZkClient;
+<a class="jxr_linenumber" name="45" href="#45">45</a>  
+<a class="jxr_linenumber" name="46" href="#46">46</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../org/trafodion/dcs/master/listener/RequestCancelQuery.html">RequestCancelQuery</a> {
+<a class="jxr_linenumber" name="47" href="#47">47</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong>  <strong class="jxr_keyword">final</strong> Log LOG = LogFactory.getLog(RequestCancelQuery.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="48" href="#48">48</a>  
+<a class="jxr_linenumber" name="49" href="#49">49</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../org/trafodion/dcs/zookeeper/ZkClient.html">ZkClient</a> zkc = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="50" href="#50">50</a>      <strong class="jxr_keyword">private</strong> String parentZnode = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="51" href="#51">51</a>      
+<a class="jxr_linenumber" name="52" href="#52">52</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> dialogueId = 0;
+<a class="jxr_linenumber" name="53" href="#53">53</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> srvrType = 0;
+<a class="jxr_linenumber" name="54" href="#54">54</a>      <strong class="jxr_keyword">private</strong> String srvrObjRef = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="55" href="#55">55</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> stopType = 0;
+<a class="jxr_linenumber" name="56" href="#56">56</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> port = 0;
+<a class="jxr_linenumber" name="57" href="#57">57</a>  
+<a class="jxr_linenumber" name="58" href="#58">58</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> cancelConnection = false;
+<a class="jxr_linenumber" name="59" href="#59">59</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../org/trafodion/dcs/master/listener/GetObjRefException.html">GetObjRefException</a> exception = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="60" href="#60">60</a>      <strong class="jxr_keyword">private</strong> ByteBuffer header = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="61" href="#61">61</a>      <strong class="jxr_keyword">private</strong> ByteBuffer body = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="62" href="#62">62</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../org/trafodion/dcs/master/listener/Header.html">Header</a> hdr = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="63" href="#63">63</a>      <strong class="jxr_keyword">private</strong> SocketAddress clientSocketAddress = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="64" href="#64">64</a>  
+<a class="jxr_linenumber" name="65" href="#65">65</a>      <a href="../../../../../org/trafodion/dcs/master/listener/RequestCancelQuery.html">RequestCancelQuery</a>(<a href="../../../../../org/trafodion/dcs/zookeeper/ZkClient.html">ZkClient</a> zkc,String parentZnode){
+<a class="jxr_linenumber" name="66" href="#66">66</a>          <strong class="jxr_keyword">this</strong>.zkc = zkc;
+<a class="jxr_linenumber" name="67" href="#67">67</a>          <strong class="jxr_keyword">this</strong>.parentZnode = parentZnode;
+<a class="jxr_linenumber" name="68" href="#68">68</a>          init ();
+<a class="jxr_linenumber" name="69" href="#69">69</a>      }
+<a class="jxr_linenumber" name="70" href="#70">70</a>  
+<a class="jxr_linenumber" name="71" href="#71">71</a>      <strong class="jxr_keyword">void</strong> init (){
+<a class="jxr_linenumber" name="72" href="#72">72</a>          dialogueId = 0;
+<a class="jxr_linenumber" name="73" href="#73">73</a>          srvrType = 0;
+<a class="jxr_linenumber" name="74" href="#74">74</a>          srvrObjRef = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="75" href="#75">75</a>          stopType = 0;
+<a class="jxr_linenumber" name="76" href="#76">76</a>          cancelConnection = false;
+<a class="jxr_linenumber" name="77" href="#77">77</a>          exception = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="78" href="#78">78</a>          header = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="79" href="#79">79</a>          body = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="80" href="#80">80</a>          hdr = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="81" href="#81">81</a>          clientSocketAddress = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="82" href="#82">82</a>      }
+<a class="jxr_linenumber" name="83" href="#83">83</a>  
+<a class="jxr_linenumber" name="84" href="#84">84</a>      <strong class="jxr_keyword">void</strong> reset (){
+<a class="jxr_linenumber" name="85" href="#85">85</a>          dialogueId = 0;
+<a class="jxr_linenumber" name="86" href="#86">86</a>          srvrType = 0;
+<a class="jxr_linenumber" name="87" href="#87">87</a>          srvrObjRef = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="88" href="#88">88</a>          stopType = 0;
+<a class="jxr_linenumber" name="89" href="#89">89</a>          cancelConnection = false;
+<a class="jxr_linenumber" name="90" href="#90">90</a>          exception = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="91" href="#91">91</a>          header = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="92" href="#92">92</a>          body = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="93" href="#93">93</a>          hdr = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="94" href="#94">94</a>          clientSocketAddress = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="95" href="#95">95</a>      }
+<a class="jxr_linenumber" name="96" href="#96">96</a>  
+<a class="jxr_linenumber" name="97" href="#97">97</a>      <a href="../../../../../org/trafodion/dcs/master/listener/ClientData.html">ClientData</a> processRequest(<a href="../../../../../org/trafodion/dcs/master/listener/ClientData.html">ClientData</a> clientData, Socket s) { 
+<a class="jxr_linenumber" name="98" href="#98">98</a>          cancelConnection = false;
+<a class="jxr_linenumber" name="99" href="#99">99</a>          exception = <strong class="jxr_keyword">new</strong> <a href="../../../../../org/trafodion/dcs/master/listener/GetObjRefException.html">GetObjRefException</a>();
+<a class="jxr_linenumber" name="100" href="#100">100</a>         header = clientData.header;
+<a class="jxr_linenumber" name="101" href="#101">101</a>         body = clientData.body;
+<a class="jxr_linenumber" name="102" href="#102">102</a>         hdr = clientData.hdr;
+<a class="jxr_linenumber" name="103" href="#103">103</a>         clientSocketAddress = clientData.clientSocketAddress;
+<a class="jxr_linenumber" name="104" href="#104">104</a> 
+<a class="jxr_linenumber" name="105" href="#105">105</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="106" href="#106">106</a> <em class="jxr_comment">// get input</em>
+<a class="jxr_linenumber" name="107" href="#107">107</a>             header.flip();
+<a class="jxr_linenumber" name="108" href="#108">108</a>             hdr.extractFromByteArray(header);
+<a class="jxr_linenumber" name="109" href="#109">109</a>             body.flip();
+<a class="jxr_linenumber" name="110" href="#110">110</a>             dialogueId = body.getInt();
+<a class="jxr_linenumber" name="111" href="#111">111</a>             srvrType = body.getInt();
+<a class="jxr_linenumber" name="112" href="#112">112</a>             srvrObjRef = ByteBufferUtils.extractString(body);
+<a class="jxr_linenumber" name="113" href="#113">113</a>             stopType = body.getInt();
+<a class="jxr_linenumber" name="114" href="#114">114</a>             <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled()){
+<a class="jxr_linenumber" name="115" href="#115">115</a>                 LOG.debug(clientSocketAddress + <span class="jxr_string">". dialogueId :"</span> + dialogueId);
+<a class="jxr_linenumber" name="116" href="#116">116</a>                 LOG.debug(clientSocketAddress + <span class="jxr_string">". srvrType :"</span> + srvrType);
+<a class="jxr_linenumber" name="117" href="#117">117</a>                 LOG.debug(clientSocketAddress + <span class="jxr_string">". srvrObjRef :"</span> + srvrObjRef);
+<a class="jxr_linenumber" name="118" href="#118">118</a>                 LOG.debug(clientSocketAddress + <span class="jxr_string">". stopType :"</span> + stopType);
+<a class="jxr_linenumber" name="119" href="#119">119</a>             }
+<a class="jxr_linenumber" name="120" href="#120">120</a>             String sPort = srvrObjRef;          <em class="jxr_comment">//JDBC --- port #</em>
+<a class="jxr_linenumber" name="121" href="#121">121</a>             <strong class="jxr_keyword">if</strong> (srvrObjRef.startsWith(<span class="jxr_string">"TCP:"</span>)){ <em class="jxr_comment">//ODBC --- TCP:&lt;IpAddress&gt;/&lt;portNumber&gt;:ODBC</em>
+<a class="jxr_linenumber" name="122" href="#122">122</a>                 String[] st = srvrObjRef.split(<span class="jxr_string">":"</span>);
+<a class="jxr_linenumber" name="123" href="#123">123</a>                 String ip[] = st[1].split(<span class="jxr_string">"/"</span>);
+<a class="jxr_linenumber" name="124" href="#124">124</a>                 sPort = ip[1];
+<a class="jxr_linenumber" name="125" href="#125">125</a>             } 
+<a class="jxr_linenumber" name="126" href="#126">126</a>             port = Integer.parseInt(sPort);
+<a class="jxr_linenumber" name="127" href="#127">127</a> <em class="jxr_comment">// process request</em>
+<a class="jxr_linenumber" name="128" href="#128">128</a>             String registeredPath = parentZnode + Constants.DEFAULT_ZOOKEEPER_ZNODE_SERVERS_REGISTERED;
+<a class="jxr_linenumber" name="129" href="#129">129</a>             String nodeRegisteredPath = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="130" href="#130">130</a>             List&lt;String&gt; servers = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="131" href="#131">131</a>             Stat stat = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="132" href="#132">132</a>             String data = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="133" href="#133">133</a>             <strong class="jxr_keyword">boolean</strong> found = false;
+<a class="jxr_linenumber" name="134" href="#134">134</a>             String errorText = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="135" href="#135">135</a>             Integer nodeId = 0;
+<a class="jxr_linenumber" name="136" href="#136">136</a>             Integer processId = 0;
+<a class="jxr_linenumber" name="137" href="#137">137</a>             
+<a class="jxr_linenumber" name="138" href="#138">138</a>             <strong class="jxr_keyword">if</strong> (false == registeredPath.startsWith(<span class="jxr_string">"/"</span>))
+<a class="jxr_linenumber" name="139" href="#139">139</a>                 registeredPath = <span class="jxr_string">"/"</span> + registeredPath;
+<a class="jxr_linenumber" name="140" href="#140">140</a>     
+<a class="jxr_linenumber" name="141" href="#141">141</a>             zkc.sync(registeredPath,<strong class="jxr_keyword">null</strong>,<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="142" href="#142">142</a>             servers =  zkc.getChildren(registeredPath, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="143" href="#143">143</a>             <strong class="jxr_keyword">if</strong>( ! servers.isEmpty()) {
+<a class="jxr_linenumber" name="144" href="#144">144</a>                 <strong class="jxr_keyword">for</strong>(String server : servers) {
+<a class="jxr_linenumber" name="145" href="#145">145</a>                     nodeRegisteredPath = registeredPath + <span class="jxr_string">"/"</span> + server;
+<a class="jxr_linenumber" name="146" href="#146">146</a>                     stat = zkc.exists(nodeRegisteredPath,false);
+<a class="jxr_linenumber" name="147" href="#147">147</a>                     <strong class="jxr_keyword">if</strong>(stat != <strong class="jxr_keyword">null</strong>){
+<a class="jxr_linenumber" name="148" href="#148">148</a>                         data = <strong class="jxr_keyword">new</strong> String(zkc.getData(nodeRegisteredPath, false, stat));
+<a class="jxr_linenumber" name="149" href="#149">149</a>                         <strong class="jxr_keyword">if</strong> (false == data.startsWith(<span class="jxr_string">"CONNECTED:"</span>))
+<a class="jxr_linenumber" name="150" href="#150">150</a>                             <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="151" href="#151">151</a>                         <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="152" href="#152">152</a>                             String[] stData = data.split(<span class="jxr_string">":"</span>);
+<a class="jxr_linenumber" name="153" href="#153">153</a>                             <strong class="jxr_keyword">if</strong> (dialogueId == Long.parseLong(stData[2]) &amp;&amp; port == Integer.parseInt(stData[7])){
+<a class="jxr_linenumber" name="154" href="#154">154</a>                                 nodeId=Integer.parseInt(stData[3]);
+<a class="jxr_linenumber" name="155" href="#155">155</a>                                 processId=Integer.parseInt(stData[4]);
+<a class="jxr_linenumber" name="156" href="#156">156</a>                                 found = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="157" href="#157">157</a>                                 <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="158" href="#158">158</a>                             }
+<a class="jxr_linenumber" name="159" href="#159">159</a>                         }
+<a class="jxr_linenumber" name="160" href="#160">160</a>                     }
+<a class="jxr_linenumber" name="161" href="#161">161</a>                 }
+<a class="jxr_linenumber" name="162" href="#162">162</a>                 <strong class="jxr_keyword">if</strong> (found == <strong class="jxr_keyword">true</strong>){
+<a class="jxr_linenumber" name="163" href="#163">163</a>                     <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="164" href="#164">164</a>                         LOG.debug(clientSocketAddress + <span class="jxr_string">". Server found - dialogueId :"</span> + dialogueId + <span class="jxr_string">" port :"</span> + port + <span class="jxr_string">" nodeId :"</span> + nodeId + <span class="jxr_string">" processId :"</span> + processId);
+<a class="jxr_linenumber" name="165" href="#165">165</a>                         errorText = cancelQuery(nodeId, processId);
+<a class="jxr_linenumber" name="166" href="#166">166</a>                 } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="167" href="#167">167</a>                     errorText = <span class="jxr_string">"Server not found."</span>;
+<a class="jxr_linenumber" name="168" href="#168">168</a>                     <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="169" href="#169">169</a>                         LOG.debug(clientSocketAddress + <span class="jxr_string">". Server not found - dialogueId :"</span> + dialogueId + <span class="jxr_string">" port :"</span> + port);
+<a class="jxr_linenumber" name="170" href="#170">170</a>                }
+<a class="jxr_linenumber" name="171" href="#171">171</a>              }
+<a class="jxr_linenumber" name="172" href="#172">172</a> <em class="jxr_comment">// build output</em>
+<a class="jxr_linenumber" name="173" href="#173">173</a>             header.clear();
+<a class="jxr_linenumber" name="174" href="#174">174</a>             body.clear();
+<a class="jxr_linenumber" name="175" href="#175">175</a>             <strong class="jxr_keyword">if</strong> (false == errorText.equals(<span class="jxr_string">""</span>)){
+<a class="jxr_linenumber" name="176" href="#176">176</a>                 exception.exception_nr = ListenerConstants.DcsMasterParamError_exn;
+<a class="jxr_linenumber" name="177" href="#177">177</a>                 exception.ErrorText = errorText;
+<a class="jxr_linenumber" name="178" href="#178">178</a>                 <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="179" href="#179">179</a>                     LOG.debug(clientSocketAddress + <span class="jxr_string">": "</span> + exception.ErrorText);
+<a class="jxr_linenumber" name="180" href="#180">180</a>             }
+<a class="jxr_linenumber" name="181" href="#181">181</a>             exception.insertIntoByteBuffer(body);
+<a class="jxr_linenumber" name="182" href="#182">182</a>             body.flip();
+<a class="jxr_linenumber" name="183" href="#183">183</a>             hdr.setTotalLength(body.limit());
+<a class="jxr_linenumber" name="184" href="#184">184</a>             hdr.insertIntoByteBuffer(header);
+<a class="jxr_linenumber" name="185" href="#185">185</a>             header.flip();
+<a class="jxr_linenumber" name="186" href="#186">186</a> 
+<a class="jxr_linenumber" name="187" href="#187">187</a>             clientData.header = header;
+<a class="jxr_linenumber" name="188" href="#188">188</a>             clientData.body = body;
+<a class="jxr_linenumber" name="189" href="#189">189</a>             clientData.hdr = hdr;
+<a class="jxr_linenumber" name="190" href="#190">190</a>         } <strong class="jxr_keyword">catch</strong> (UnsupportedEncodingException ue){
+<a class="jxr_linenumber" name="191" href="#191">191</a>             <strong class="jxr_keyword">if</strong>(LOG.isErrorEnabled())
+<a class="jxr_linenumber" name="192" href="#192">192</a>                 LOG.error(<span class="jxr_string">"RequestCancelQuery.UnsupportedEncodingException: "</span> + s.getRemoteSocketAddress() + <span class="jxr_string">": "</span> + ue.getMessage() );
+<a class="jxr_linenumber" name="193" href="#193">193</a>             cancelConnection = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="194" href="#194">194</a>         } <strong class="jxr_keyword">catch</strong> (KeeperException ke){
+<a class="jxr_linenumber" name="195" href="#195">195</a>             <strong class="jxr_keyword">if</strong>(LOG.isErrorEnabled())
+<a class="jxr_linenumber" name="196" href="#196">196</a>                 LOG.error(<span class="jxr_string">"RequestCancelQuery.KeeperException: "</span> + s.getRemoteSocketAddress() + <span class="jxr_string">": "</span> + ke.getMessage() );
+<a class="jxr_linenumber" name="197" href="#197">197</a>             cancelConnection = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="198" href="#198">198</a>         } <strong class="jxr_keyword">catch</strong> (InterruptedException ie){
+<a class="jxr_linenumber" name="199" href="#199">199</a>             <strong class="jxr_keyword">if</strong>(LOG.isErrorEnabled())
+<a class="jxr_linenumber" name="200" href="#200">200</a>                 LOG.error(<span class="jxr_string">"RequestCancelQuery.InterruptedException: "</span> + s.getRemoteSocketAddress() + <span class="jxr_string">": "</span> + ie.getMessage() );
+<a class="jxr_linenumber" name="201" href="#201">201</a>             cancelConnection = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="202" href="#202">202</a>         }
+<a class="jxr_linenumber" name="203" href="#203">203</a>         header = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="204" href="#204">204</a>         body = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="205" href="#205">205</a>         hdr = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="206" href="#206">206</a>         clientSocketAddress = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="207" href="#207">207</a>         exception = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="208" href="#208">208</a> 
+<a class="jxr_linenumber" name="209" href="#209">209</a>         <strong class="jxr_keyword">if</strong> (cancelConnection == <strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="210" href="#210">210</a>             clientData.requestReply = ListenerConstants.REQUST_CLOSE;
+<a class="jxr_linenumber" name="211" href="#211">211</a>         <strong class="jxr_keyword">else</strong>
+<a class="jxr_linenumber" name="212" href="#212">212</a>             clientData.requestReply = ListenerConstants.REQUST_WRITE_EXCEPTION;
+<a class="jxr_linenumber" name="213" href="#213">213</a>         reset();
+<a class="jxr_linenumber" name="214" href="#214">214</a>         <strong class="jxr_keyword">return</strong> clientData;
+<a class="jxr_linenumber" name="215" href="#215">215</a>     }
+<a class="jxr_linenumber" name="216" href="#216">216</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String queryFormatQid = <span class="jxr_string">"select cast(substr(variable_info, position('recentQid:' in variable_info) + 11) as varchar(175) CHARACTER SET UTF8) QUERY_ID  from table (statistics(NULL, 'PROCESS_STATS=%d,CPU=%d'))"</span>;
+<a class="jxr_linenumber" name="217" href="#217">217</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String queryFormatCancel = <span class="jxr_string">"CONTROL QUERY CANCEL QID \&quot;%s\&quot;"</span>;
+<a class="jxr_linenumber" name="218" href="#218">218</a> 
+<a class="jxr_linenumber" name="219" href="#219">219</a>     String cancelQuery(<strong class="jxr_keyword">int</strong> nodeId, <strong class="jxr_keyword">int</strong> processId){
+<a class="jxr_linenumber" name="220" href="#220">220</a>         java.sql.Connection conn = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="221" href="#221">221</a>         java.sql.Statement stmt1 = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="222" href="#222">222</a>         java.sql.Statement stmt2 = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="223" href="#223">223</a>         java.sql.ResultSet rs = <strong class="jxr_keyword">null</strong>; 
+<a class="jxr_linenumber" name="224" href="#224">224</a>         String query = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="225" href="#225">225</a>         String errorText = <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="226" href="#226">226</a>         
+<a class="jxr_linenumber" name="227" href="#227">227</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="228" href="#228">228</a>             query = String.format(queryFormatQid, processId, nodeId);
+<a class="jxr_linenumber" name="229" href="#229">229</a>             conn = DriverManager.getConnection(Constants.T2_DRIVER_URL);
+<a class="jxr_linenumber" name="230" href="#230">230</a>             stmt1 = conn.createStatement();
+<a class="jxr_linenumber" name="231" href="#231">231</a>             stmt2 = conn.createStatement();
+<a class="jxr_linenumber" name="232" href="#232">232</a>             rs = stmt1.executeQuery(query);
+<a class="jxr_linenumber" name="233" href="#233">233</a>             <strong class="jxr_keyword">if</strong> (rs.next()){
+<a class="jxr_linenumber" name="234" href="#234">234</a>                 String queryId = rs.getString(<span class="jxr_string">"QUERY_ID"</span>).trim();
+<a class="jxr_linenumber" name="235" href="#235">235</a>                 <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="236" href="#236">236</a>                     LOG.debug(<span class="jxr_string">"cancelQuery.queryId :"</span> + queryId);
+<a class="jxr_linenumber" name="237" href="#237">237</a>                 <strong class="jxr_keyword">if</strong>(<strong class="jxr_keyword">true</strong> == queryId.endsWith(<span class="jxr_string">"_PUBLICATION"</span>)){
+<a class="jxr_linenumber" name="238" href="#238">238</a>                     <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="239" href="#239">239</a>                         LOG.debug(<span class="jxr_string">"cancelQuery: Publication Query - Cancel Query Request is ignored."</span>);
+<a class="jxr_linenumber" name="240" href="#240">240</a>                 }
+<a class="jxr_linenumber" name="241" href="#241">241</a>                 <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="242" href="#242">242</a>                     query = String.format(queryFormatCancel, queryId);
+<a class="jxr_linenumber" name="243" href="#243">243</a>                     <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="244" href="#244">244</a>                         LOG.debug(<span class="jxr_string">"cancelQuery.query :"</span> + query);
+<a class="jxr_linenumber" name="245" href="#245">245</a>                     stmt2.execute(query);
+<a class="jxr_linenumber" name="246" href="#246">246</a>                 }
+<a class="jxr_linenumber" name="247" href="#247">247</a>             }
+<a class="jxr_linenumber" name="248" href="#248">248</a>             <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="249" href="#249">249</a>                 errorText = <span class="jxr_string">"QueryId not found for ["</span> + nodeId + <span class="jxr_string">"/"</span> + processId + <span class="jxr_string">"]"</span>;
+<a class="jxr_linenumber" name="250" href="#250">250</a>                 <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="251" href="#251">251</a>                     LOG.debug(<span class="jxr_string">"cancelQuery.errorText :"</span> + errorText);
+<a class="jxr_linenumber" name="252" href="#252">252</a>             }
+<a class="jxr_linenumber" name="253" href="#253">253</a>         } <strong class="jxr_keyword">catch</strong> (SQLException se){
+<a class="jxr_linenumber" name="254" href="#254">254</a>             SQLException nextException;
+<a class="jxr_linenumber" name="255" href="#255">255</a>             nextException = se;
+<a class="jxr_linenumber" name="256" href="#256">256</a>             StringBuilder sb = <strong class="jxr_keyword">new</strong> StringBuilder();
+<a class="jxr_linenumber" name="257" href="#257">257</a>             <strong class="jxr_keyword">do</strong> {
+<a class="jxr_linenumber" name="258" href="#258">258</a>                 sb.append(nextException.getMessage());
+<a class="jxr_linenumber" name="259" href="#259">259</a>                 sb.append(<span class="jxr_string">"\nSQLState   "</span> + nextException.getSQLState());
+<a class="jxr_linenumber" name="260" href="#260">260</a>                 sb.append(<span class="jxr_string">"\nError Code "</span> + nextException.getErrorCode());
+<a class="jxr_linenumber" name="261" href="#261">261</a>             } <strong class="jxr_keyword">while</strong> ((nextException = nextException.getNextException()) != <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="262" href="#262">262</a>             errorText = sb.toString();
+<a class="jxr_linenumber" name="263" href="#263">263</a>             <strong class="jxr_keyword">if</strong>(LOG.isDebugEnabled())
+<a class="jxr_linenumber" name="264" href="#264">264</a>                 LOG.debug(<span class="jxr_string">"cancelQuery.SQLException :"</span> + errorText);
+<a class="jxr_linenumber" name="265" href="#265">265</a>         }
+<a class="jxr_linenumber" name="266" href="#266">266</a>         <strong class="jxr_keyword">finally</strong> {
+<a class="jxr_linenumber" name="267" href="#267">267</a>             <strong class="jxr_keyword">if</strong> (conn != <strong class="jxr_keyword">null</strong>)
+<a class="jxr_linenumber" name="268" href="#268">268</a>                 <strong class="jxr_keyword">try</strong> { conn.close(); } <strong class="jxr_keyword">catch</strong>(SQLException e){ conn = <strong class="jxr_keyword">null</strong>;}
+<a class="jxr_linenumber" name="269" href="#269">269</a>         }
+<a class="jxr_linenumber" name="270" href="#270">270</a>         <strong class="jxr_keyword">return</strong> errorText;
+<a class="jxr_linenumber" name="271" href="#271">271</a>     }
+<a class="jxr_linenumber" name="272" href="#272">272</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
