@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Trafodion REST Server Reference Guide</title>
+<link rel="stylesheet" href="./rest.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Trafodion REST Server Reference Guide</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_preface">Preface</a></li>
+<li><a href="#_getting_started">Getting Started</a>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#quickstart">2. Quick Start</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a>
+<ul class="sectlevel1">
+<li><a href="#zookeeper">3. ZooKeeper</a></li>
+<li><a href="#_configuration_files">4. Configuration Files</a></li>
+<li><a href="#important.configurations">5. The Important Configurations</a></li>
+</ul>
+</li>
+<li><a href="#architecture">Architecture</a>
+<ul class="sectlevel1">
+<li><a href="#arch-overview">6. Overview</a></li>
+<li><a href="#arch-client">7. Client</a></li>
+<li><a href="#arch-trafodionrest">8. TrafodionRest</a></li>
+</ul>
+</li>
+<li><a href="#apis">APIs</a>
+<ul class="sectlevel1">
+<li><a href="#rest">9. Resource Identifiers</a></li>
+<li><a href="#_http_requests">10. HTTP Requests</a></li>
+<li><a href="#_http_responses">11. HTTP Responses</a></li>
+<li><a href="#_example_usage">12. Example Usage</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">Troubleshooting and Debugging</a>
+<ul class="sectlevel1">
+<li><a href="#_logs">13. Logs</a></li>
+<li><a href="#trouble-tools">14. Tools</a></li>
+</ul>
+</li>
+<li><a href="#_appendix">Appendix</a>
+<ul class="sectlevel1">
+<li><a href="#appendix-contributing-to-documentation">Appendix A: Contributing to Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.apache.org/licenses/LICENSE-2.0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><strong>Revision History</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-01-14T18:43</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface">Preface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Trafodion REST server is packaged within the trafodion-1.3.0.tar.gz file on the <a href="http://downloads.trafodion.org">Trafodion download site</a>.
+This document describes server version 1.3.0. Herein you will find either the definitive documentation on a REST server topic
+as of its standing when the referenced REST server version shipped, or it will point to the location in
+<a href="http://docs.trafodion.org/rest_docs/apidocs/index.html">javadoc</a>, where the pertinent information can be found.</p>
+</div>
+<div class="paragraph">
+<div class="title">About This document</div>
+<p>This document is a work in progress. The source can be found in the <em>core/rest/src/main/ascidoc</em> directory.</p>
+</div>
+</div>
+</div>
+<h1 id="_getting_started" class="sect0">Getting Started</h1>
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="#quickstart">Quick Start</a> will get your REST server up and running quickly.
+<a href="#configuration">Configuration</a> describes setup of REST in more detail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quickstart">2. Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes setup of a Trafodion REST server. It leads you through the starting up and shutting down of your REST server.
+The Trafodion installer modifies the configuration files for you and starts/stops the server as part of the Trafodion
+<em>sqstart</em> and <em>sqstop</em> scripts so the following sections are for those times when you need a non-standard configuration
+or wish to start/stop the server independently.</p>
+</div>
+<div class="paragraph">
+<p>Is Trafodion installed and running?</p>
+</div>
+<div class="paragraph">
+<p>The server presumes a Trafodion instance is installed and running on your machine and available on your path; i.e. the
+<code>MY_SQROOT</code> environment variable is set and when you type <em>sqcheck</em>, you see output that confirms Trafodion is running. If this is not
+the case, the server may start but you&#8217;ll see many errors.</p>
+</div>
+<div class="paragraph">
+<p>At this point, you are ready to start the server.</p>
+</div>
+<div class="sect2">
+<h3 id="_starting">2.1. Starting</h3>
+<div class="paragraph">
+<p>Now start your server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> $ bin/start-rest.sh
+ starting rest, logging to /logs/rest-user-1-rest-hostname.out</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now have a running server. Logs can be found in the
+<em>logs</em> subdirectory. Peruse them especially if the server had trouble starting.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stopping">2.2. Stopping</h3>
+<div class="paragraph">
+<p>Stop your server by running the stop script.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> $ ./bin/stop-rest.sh
+ stopping rest..</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="configuration" class="sect0">Configuration</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>This chapter describes the server configuration. Even though the Trafodion installer prepares the configuration files for you
+a thorough read of this chapter will help with non-standard configurations. Please read this chapter carefully and ensure that all
+requirements have been satisfied. Failure to do so will cause you grief debugging strange errors.</p>
+</div>
+<div class="paragraph">
+<p>Trafodion REST uses the same configuration mechanism as Apache Hadoop.
+All configuration files are located in the <em>conf/</em> directory.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be careful editing XML.  Make sure you close all elements. Run your file through xmllint or similar to
+ensure well-formedness of your document after an edit session.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Keep Configuration In Sync Across the Cluster</div>
+<div class="paragraph">
+<p>After you make an edit to any configuration file, make sure you copy the content of the <em>conf</em> directory to all nodes of the cluster.
+The server will not do this for you. Use rsync, scp, or another secure mechanism for copying the configuration files to your nodes.
+A restart is needed for servers to pick up changes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="zookeeper">3. ZooKeeper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The server depends on a running ZooKeeper cluster to retrieve DCS server, client connection status and metrics.</p>
+</div>
+<div class="paragraph">
+<p>Set the ensemble servers and client port in <em>rest-site.xml</em> using the <code>rest.zookeeper.quorum</code> and <code>rest.zookeeper.property.clientPort</code> properties.
+This <code>rest.zookeeper.quorum</code> property defaults to a single ensemble member at <code>localhost</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;configuration&gt;</span>
+  ...
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>rest.zookeeper.property.clientPort<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>2181<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>The port at which ZooKeeper server is listening for clients.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+  <span class="tag">&lt;property&gt;</span>
+    <span class="tag">&lt;name&gt;</span>rest.zookeeper.quorum<span class="tag">&lt;/name&gt;</span>
+    <span class="tag">&lt;value&gt;</span>
+    host1.example.com,host2.example.com,host3.example.com,host4.example.com,host5.example.com
+    <span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;description&gt;</span>Comma separated list of servers in the ZooKeeper Quorum.
+    For example, &quot;host1.mydomain.com,host2.mydomain.com,host3.mydomain.com&quot;.
+    By default this is set to localhost. For a multi-node setup, this should be set to a full
+    list of ZooKeeper quorum servers.
+    <span class="tag">&lt;/description&gt;</span>
+  <span class="tag">&lt;/property&gt;</span>
+...
+<span class="tag">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_files">4. Configuration Files</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="__em_rest_site_xml_em_and_em_rest_default_xml_em">4.1. <em>rest-site.xml</em> and <em>rest-default.xml</em></h3>
+<div class="paragraph">
+<p>You add site-specific configuration to the file <em>conf/rest-site.xml</em>. For the list of configurable properties,
+see <a href="#rest_default_configurations">REST Default Configuration</a> below or view the raw <em>rest-default.xml</em> source
+file in the source code at <em>src/main/resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>Not all configuration options make it out to <em>rest-default.xml</em>. Configuration
+that it is thought rare anyone would change can exist only in code; the only way
+to discover such configurations is via a reading of the source code itself.</p>
+</div>
+<div class="paragraph">
+<p>Currently, changes here will require a restart for the server to notice the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rest_default_configurations">4.2. REST Default Configuration</h3>
+<div class="paragraph">
+<p>The documentation below is generated using the default rest configuration file, <em>rest-default.xml</em>, as source.</p>
+</div>
+<div id="rest.dns.interface" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.dns.interface</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The server uses the local host name for reporting its IP address. If your machine has multiple interfaces the server will use the interface that the primary host name resolves to. If this is insufficient, you can set this property to indicate the primary interface e.g., "eth1". This only works if your cluster configuration is consistent and every host has the same network interface configuration.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>default</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="zookeeper.session.timeout" class="dlist">
+<dl>
+<dt class="hdlist1"><code>zookeeper.session.timeout</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>ZooKeeper session timeout. The server passes this to the ZooKeeper quorum as suggested maximum time for a session (This setting becomes ZooKeeper&#8217;s 'maxSessionTimeout'). See <a href="http://hadoop.apache.org/ZooKeeper/docs/current/ZooKeeperProgrammers.html#ch_zkSessions" class="bare">http://hadoop.apache.org/ZooKeeper/docs/current/ZooKeeperProgrammers.html#ch_zkSessions</a> "The client sends a requested timeout, the server responds with the timeout that it can give the client. " In milliseconds.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>180000</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="zookeeper.znode.parent" class="dlist">
+<dl>
+<dt class="hdlist1"><code>zookeeper.znode.parent</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Root znode in ZooKeeper. The server will look for DCS znodes under this znode and will create any REST server specific znodes here as well.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>/${user.name}</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.zookeeper.quorum" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.zookeeper.quorum</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Comma separated list of servers in the ZooKeeper Quorum. For example, "host1.mydomain.com,host2.mydomain.com,host3.mydomain.com". By default this is set to localhost. For a fully-distributed setup, this should be set to a full list of ZooKeeper quorum servers.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>localhost</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.zookeeper.property.clientPort" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.zookeeper.property.clientPort</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The port at which ZooKeeper is listening for clients.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2181</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The http port for the REST server.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>4200</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.https.port" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.https.port</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The https port for the REST server.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>4201</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.readonly" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.readonly</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Defines the mode the server will be started in. Possible values are: false: All HTTP methods are permitted - GET/PUT/POST/DELETE. true: Only the GET method is permitted.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>false</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.threads.max" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.threads.max</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The maximum number of threads of the server thread pool. Threads in the pool are reused to process requests. This controls the maximum number of requests processed concurrently. It may help to control the memory used by the server to avoid out of memory issues. If the thread pool is full, incoming requests will be queued up and wait for some free threads. The default is 100.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>100</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="rest.threads.min" class="dlist">
+<dl>
+<dt class="hdlist1"><code>rest.threads.min</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The minimum number of threads of the server thread pool. The thread pool always has at least these number of threads so the server is ready to serve incoming requests. The default is 2.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>2</code></p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_rest_env_sh_em">4.3. <em>rest-env.sh</em></h3>
+<div class="paragraph">
+<p>Set server environment variables in this file. Examples include options to pass the JVM on start of
+the server such as heap size and garbarge collector configs. You can also set configurations for server configuration, log directories,
+niceness, ssh options, where to locate process pid files, etc. Open the file at <em>conf/rest-env.sh</em> and peruse its content.
+Each option is fairly well documented.  Add your own environment variables here if you want them read by the server on startup.</p>
+</div>
+<div class="paragraph">
+<p>Changes here will require a restart for the server to notice the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_log4j_properties_em">4.4. <em>log4j.properties</em></h3>
+<div class="paragraph">
+<p>Edit this file to change rate at which the server log files are rolled and to change the level at which the server logs messages.</p>
+</div>
+<div class="paragraph">
+<p>Changes here will require a restart for the server to notice the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rest.keystore">4.5. <em>rest-keystore</em></h3>
+<div class="paragraph">
+<p>This file will only be present if the property <em>rest.https.password</em> has been set in <em>conf/rest-site.xml</em>.
+Please see <a href="#important.configurations">Important Configurations</a> for more detail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="important.configurations">5. The Important Configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below we list the <strong>important</strong> Configurations.</p>
+</div>
+<div class="sect2">
+<h3 id="__code_rest_port_code">5.1. <code>rest.port</code></h3>
+<div class="paragraph">
+<p>The default value is 4200. This is the port the embedded Jetty server binds to
+waiting for client HTTP connections. The value may need to be changed
+if this port number conflicts with other ports in use on your cluster.</p>
+</div>
+<div class="paragraph">
+<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_rest_https_port_code">5.2. <code>rest.https.port</code></h3>
+<div class="paragraph">
+<p>The default value is 4201. This is the port the embedded Jetty server binds to
+waiting for client HTTPS connections. The value may need to be changed
+if this port number conflicts with other ports in use on your cluster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_rest_ssl_password_code">5.3. <code>rest.ssl.password</code></h3>
+<div class="paragraph">
+<p>This property is not present by default in <em>conf/rest-site.xml</em>. Typically the Trafodion
+installer sets this property to an obfuscated password string. If this property is present then the server
+will setup HTTPS in the embedded Jetty server. To create an obfuscated password for this property use
+the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>java -classpath $REST_HOME/lib/jetty-9.2.10.v20150310.jar:$REST_HOME/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of this command is similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OBF:{obfuscated password string}
+MD5:{obfuscated password string}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy/paste the entire string including "OBF:" into this property.
+The server will use this property when creating the <em>/conf/rest-keystore</em> directory.</p>
+</div>
+<div class="paragraph">
+<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To decrypt the obfuscated string in <code>rest.ssl.password</code> do the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>java -classpath $REST_HOME/lib/jetty-9.2.10.v20150310.jar:$REST_HOME/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password {obfuscated password string}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of this command is similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{your unobfuscated password}
+OBF:{obfuscated password string}
+MD5:{obfuscated password string}
+CRYPT:{obfuscated password string}</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__code_dcs_master_port_code">5.4. <code>dcs.master.port</code></h3>
+<div class="paragraph">
+<p>The default value is 37800. This is the port the embedded JDBC Type 4 driver
+uses to connect to Trafodion DCS.</p>
+</div>
+<div class="paragraph">
+<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="architecture" class="sect0">Architecture</h1>
+<div class="sect1">
+<h2 id="arch-overview">6. Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="arch-overview-rest">6.1. REST</h3>
+<div class="paragraph">
+<p>The Trafodion REST server, see figure <a href="#img-rest">Figure 1</a>, is a process that give access to cluster, nodes,
+applications, transactions and ODBC/JDBC Type4 connection information.</p>
+</div>
+<div class="paragraph">
+<p>The REST server provides the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A lightweight standalone server.</p>
+</li>
+<li>
+<p>Simple configuration and startup.</p>
+</li>
+<li>
+<p>Well known REST API.</p>
+</li>
+<li>
+<p>Embedded Jetty server.</p>
+</li>
+<li>
+<p>Embedded JDBC Type 2/Type 4 driver.</p>
+</li>
+<li>
+<p>Embedded ZooKeeper client.</p>
+</li>
+<li>
+<p>Automatic script change detection and recompile.</p>
+</li>
+<li>
+<p>HTTPS encryption.</p>
+</li>
+<li>
+<p>100% Java implementation.</p>
+</li>
+</ul>
+</div>
+<div id="img-rest" class="imageblock">
+<div class="content">
+<img src="./images/architecture.png" alt="architecture">
+</div>
+<div class="title">Figure 1: Trafodion REST Sever Architecture</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-client">7. Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Http clients connect to the server using the default port 4200 for HTTP and 4201 if HTTPS is setup in the embedded
+Jetty server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-trafodionrest">8. TrafodionRest</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TrafodionRest is the implementation of the server. Using its embedded Jetty server it services Http client
+HTTP and HTTPS requests. It&#8217;s a 100% java implementation.</p>
+</div>
+<div class="sect2">
+<h3 id="server-startup">8.1. Startup Behavior</h3>
+<div class="paragraph">
+<p>The server is started/stopped via the scripts found in the <em>/bin</em> directory. During startup it opens a connection to ZooKeeper.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-threads">8.2. Threads</h3>
+<div class="paragraph">
+<p>The server runs several background threads:</p>
+</div>
+<div class="sect3">
+<h4 id="_embedded_jetty">8.2.1. Embedded Jetty</h4>
+<div class="paragraph">
+<p>An <a href="http://docs.codehaus.org/display/JETTY/Jetty+Documentation">embedded Jetty</a> multi-threaded server services all client requests. A default port
+is configured but this may be changed in the configuration by modifying the <em>rest.port</em> and <em>rest.https.port</em> properties.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="server-processes-script-manager">8.2.2. ScriptManager</h4>
+<div class="paragraph">
+<p>The script manager thread is responsible for reading and compiling the Python scripts found in <em>/bin/scripts</em> directory. It
+can detect a change in any script found there. If any script changes it will recompile it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jdbc_type_4">8.2.3. JDBC Type 4</h4>
+<div class="paragraph">
+<p>An embedded driver is available to execute Trafodion SQL queries by connecting to the DCS service.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jdbc_type_2">8.2.4. JDBC Type 2</h4>
+<div class="paragraph">
+<p>An embedded driver is available to execute Trafodion SQL queries.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="apis" class="sect0">APIs</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>The terms "representational state transfer" and "REST" were introduced in 2000 in the doctoral dissertation of
+Roy Fielding, one of the principal authors of the Hypertext Transfer Protocol (HTTP) specification. In a nutshell</p>
+</div>
+<div class="paragraph">
+<p>A GET to an resource requests a copy of the information.</p>
+</div>
+<div class="paragraph">
+<p>A PUT to an resource replaces the resource.</p>
+</div>
+<div class="paragraph">
+<p>POST adds resources.</p>
+</div>
+<div class="paragraph">
+<p>DELETE eliminates resources.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rest">9. Resource Identifiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The URIs for the REST-based web services have the following syntax:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>http://{hostname:port}/{version}/{resourcepath}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The elements in this syntax are as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{hostname} - The http address of the service to get information about.
+                               Currently supported are the Trafodion DTM, RMS and DCS components.
+{version} - The version of the APIs. In this release, the version is v1.
+{resourcepath} - A path that defines a singleton resource or a collection of resources.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_http_requests">10. HTTP Requests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.</p>
+</div>
+<div class="paragraph">
+<div class="title">Headers</div>
+<p>This release ignores Accept and Accept-Encoding headers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_http_responses">11. HTTP Responses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections describe the syntax of HTTP Responses.</p>
+</div>
+<div class="paragraph">
+<div class="title">Compression</div>
+<p>This release does not support compression.</p>
+</div>
+<div class="paragraph">
+<div class="title">Response Formats</div>
+<p>This release of the REST APIs supports responses in JSON format only.</p>
+</div>
+<div class="paragraph">
+<div class="title">JSON response with single resource</div>
+<p>HTTP Request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>GET http://{hostname:4200}/v1/servers</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Status Line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP/1.1 200 OK</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> HTTP/1.1 200 OK
+ Cache-Control: no-cache
+ Content-Type: application/json
+ Transfer-Encoding: chunked</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Body:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "STATE":"UP",
+  "SUBSTATE":"OPERATIONAL",
+  "PROCESSES":
+  [
+    {
+      "PROCESS":"DTM",
+      "CONFIGURED":2,
+      "ACTUAL":2,
+      "DOWN":""},
+    {
+      "PROCESS":"RMS",
+      "CONFIGURED":4,
+      "ACTUAL":4,
+      "DOWN":""
+    },
+    {
+      "PROCESS":"MXOSRVR",
+      "CONFIGURED":4,
+      "ACTUAL":4,
+      "DOWN":""
+    }
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">JSON response with Error response</div>
+<p>Here we request information about DCS client connections when DCS is stopped.</p>
+</div>
+<div class="paragraph">
+<p>HTTP Request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>GET http://{hostname:4200}/v1/servers/dcs/connections</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Status Line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP/1.1 404 Not Found</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  HTTP/1.1 404 Not Found
+  Content-Type: application/json
+  Transfer-Encoding: chunked</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response Body:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+   "RemoteException" : {
+      "javaClassName" : "org.trafodion.rest.NotFoundException",
+      "exception" : "NotFoundException",
+      "message" : "DCS connection resources not found"
+   }
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_usage">12. Example Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are many ways/languages to use the REST API&#8217;s. The following examples use the curl command line interface to do the REST GET calls.</p>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of all Trafodion resources.
+This a jsonized version of the <em>sqcheck -c all</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>{
+  "STATE":"UP",
+  "SUBSTATE":"OPERATIONAL",
+  "PROCESSES":
+  [
+    {
+      "PROCESS":"DTM",
+      "CONFIGURED":2,
+      "ACTUAL":2,"DOWN":""
+    },
+    {
+      "PROCESS":"RMS",
+      "CONFIGURED":4,
+      "ACTUAL":4,"DOWN":""
+    },
+    {
+      "PROCESS":"MXOSRVR",
+      "CONFIGURED":4,
+      "ACTUAL":0,
+      "DOWN":"4"
+    }
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of Trafodion DTM.
+This a jsonized version of the <em>sqcheck -c dtm</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/dtm</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>{
+  "STATE":"UP",
+  "SUBSTATE":"OPERATIONAL",
+  "PROCESSES":
+  [
+    {
+      "PROCESS":"DTM",
+      "CONFIGURED":2,
+      "ACTUAL":2,
+      "DOWN":""
+    },
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of Trafodion RMS.
+This a jsonized version of the <em>sqcheck -c rms</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/rms</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>{
+  "STATE":"UP",
+  "SUBSTATE":"OPERATIONAL",
+  "PROCESSES":
+  [
+    {
+      "PROCESS":"RMS",
+      "CONFIGURED":4,
+      "ACTUAL":4,
+      "DOWN":""
+    },
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of Trafodion DCS.
+This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/dcs</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>{
+  "STATE":"UP",
+  "SUBSTATE":"OPERATIONAL",
+  "PROCESSES":
+  [
+    {
+      "PROCESS":"MXOSRVR",
+      "CONFIGURED":4,
+      "ACTUAL":4,
+      "DOWN":""
+    },
+  ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to see the Trafodion DCS server/client connection information.
+The server retrieves this information from ZooKeeper.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/dcs/connections</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+    "HOSTNAME":"hostname",
+    "INSTANCE":"1",
+    "START_TIME":"Wed Mar 25 18:58:20 UTC 2015",
+    "REGISTERED":"YES",
+    "STATE":"AVAILABLE",
+    "NID":"0",
+    "PID":"21132",
+    "PROCESS_NAME":"$Z000H8S",
+    "IP_ADDRESS":"16.235.163.124",
+    "PORT":"36176",
+    "CLIENT_NAME":"",
+    "CLIENT_APPL":"",
+    "CLIENT_IP_ADDRESS":"",
+    "CLIENT_PORT":""
+  },
+  {
+    "HOSTNAME":"hostname",
+    "INSTANCE":"1",
+    "START_TIME":"Wed Mar 25 18:58:20 UTC 2015",
+    "REGISTERED":"YES",
+    "STATE":"AVAILABLE",
+    "NID":"0",
+    "PID":"20642",
+    "PROCESS_NAME":"$Z000GUS",
+    "IP_ADDRESS":"16.235.163.124",
+    "PORT":"36174",
+    "CLIENT_NAME":"",
+    "CLIENT_APPL":"",
+    "CLIENT_IP_ADDRESS":"",
+    "CLIENT_PORT":""
+  }
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of Trafodion nodes.
+This is a jsonized version of the <em>sqnodestatus</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/nodes</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+    "NODE":"n013",
+    "STATUS":"UP"
+  },
+  {
+    "NODE":"n014",
+    "STATUS":"UP"
+  },
+  {
+    "NODE":"n015",
+    "STATUS":"UP"
+  },
+  {
+    "NODE":"n016",
+    "STATUS":"UP"
+  }
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to see the call stack for a collection of Trafodion processes.
+This is a jsonized version of the <em>sqpstack</em> command. Newlines are added to all lines
+in the response so clients can recognize each end of line.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/pstack</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+  "PROGRAM":"pstack 6332\n
+  #0  0x00000034c10df218 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x00000000004105f1 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x0000000000407359 in ?? ()\n
+  #6  0x00007fffffffe0b8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffffe3f8 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 6334\n
+  #0  0x00000034c10df218 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x0000000000406611 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x00000000004044a9 in ?? ()\n
+  #6  0x00007fffffffe0b8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffffe3f0 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 6336\n
+  Thread 2 (Thread 0x7ffff213a700 (LWP 6337)):\n
+  #0  0x00000034c10acb8d in nanosleep () from \/lib64\/libc.so.6\n
+  #1  0x00000034c10aca00 in sleep () from \/lib64\/libc.so.6\n
+  #2  0x00000034c3c02600 in ?? () from \/usr\/lib64\/libusbmuxd.so.1\n
+  #3  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #4  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 1 (Thread 0x7ffff7fcc7a0 (LWP 6336)):\n
+  #0  0x00000034c10df253 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x0000000000405101 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x0000000000403ee9 in ?? ()\n
+  #6  0x00007fffffffe0b8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffffe3f8 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 11059\n
+  #0  0x00000034c10df218 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x00000000004105f1 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x0000000000407359 in ?? ()\n
+  #6  0x00007fffffff1fb8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffff2868 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 11066\n
+  #0  0x00000034c10df218 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x0000000000406611 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x00000000004044a9 in ?? ()\n
+  #6  0x00007fffffff1fb8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffff2860 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 11068\n
+  Thread 2 (Thread 0x7ffff2139700 (LWP 11070)):\n
+  #0  0x00000034c10acb8d in nanosleep () from \/lib64\/libc.so.6\n
+  #1  0x00000034c10aca00 in sleep () from \/lib64\/libc.so.6\n
+  #2  0x00000034c3c02600 in ?? () from \/usr\/lib64\/libusbmuxd.so.1\n
+  #3  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #4  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 1 (Thread 0x7ffff7fcb7a0 (LWP 11068)):\n
+  #0  0x00000034c10df253 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00000034c243c655 in ?? () from \/lib64\/libglib-2.0.so.0\n
+  #2  0x00000034c243cd55 in g_main_loop_run () from \/lib64\/libglib-2.0.so.0\n
+  #3  0x0000000000405101 in ?? ()\n
+  #4  0x00000034c101ecdd in __libc_start_main () from \/lib64\/libc.so.6\n
+  #5  0x0000000000403ee9 in ?? ()\n
+  #6  0x00007fffffff1fb8 in ?? ()\n
+  #7  0x000000000000001c in ?? ()\n
+  #8  0x0000000000000001 in ?? ()\n
+  #9  0x00007fffffff2868 in ?? ()\n
+  #10 0x0000000000000000 in ?? ()\n"
+  },
+  {
+  "PROGRAM":"pstack 19573\n
+  Thread 8 (Thread 0x7ffff7726700 (LWP 19578)):\n
+  #0  0x00000034c10e8f03 in epoll_wait () from \/lib64\/libc.so.6\n
+  #1  0x000000000045fe8e in CRedirector::redirectThread() ()\n
+  #2  0x00000000004605b5 in redirect(void*) ()\n
+  #3  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #4  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 7 (Thread 0x7ffff6d04700 (LWP 19581)):\n
+  #0  0x00000034c140b7bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x00000000004635b0 in CLock::timedWait(timespec*) ()\n
+  #2  0x0000000000479f86 in CHealthCheck::healthCheckThread() ()\n
+  #3  0x000000000047a57b in healthCheck(void*) ()\n
+  #4  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #5  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 6 (Thread 0x7ffff6303700 (LWP 19583)):\n
+  #0  0x00000034c140e84d in accept () from \/lib64\/libpthread.so.0\n
+  #1  0x000000000041df72 in CCluster::AcceptSock(int) ()\n
+  #2  0x000000000041dcf5 in CCluster::AcceptCommSock() ()\n
+  #3  0x000000000047da7f in CCommAccept::commAcceptorSock() ()\n
+  #4  0x000000000047d716 in CCommAccept::commAcceptor() ()\n
+  #5  0x000000000047dd6d in commAccept(void*) ()\n
+  #6  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #7  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 5 (Thread 0x7ffff39df700 (LWP 19584)):\n
+  #0  0x00000034c1033ad7 in sigwaitinfo () from \/lib64\/libc.so.6\n
+  #1  0x000000000044d7c3 in serialRequestThread(void*) ()\n
+  #2  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #3  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 4 (Thread 0x7ffff2fde700 (LWP 19586)):\n
+  #0  0x00000034c140b43c in pthread_cond_wait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x0000000000463735 in CLock::wait() ()\n
+  #2  0x0000000000450e05 in SQ_LocalIOToClient::waitForNoticeWork() ()\n
+  #3  0x000000000044dafc in pendingNoticeThread(void*) ()\n
+  #4  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #5  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 3 (Thread 0x7ffff25dd700 (LWP 19587)):\n
+  #0  0x00000034c1033ad7 in sigwaitinfo () from \/lib64\/libc.so.6\n
+  #1  0x000000000044dc8c in lioBufCleanupThread(void*) ()\n
+  #2  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #3  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 2 (Thread 0x7ffff1bcb700 (LWP 19591)):\n
+  #0  0x00000034c140b43c in pthread_cond_wait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x0000000000463735 in CLock::wait() ()\n#2  0x0000000000489d2a in CReqQueue::getRequest() ()\n
+  #3  0x000000000047e3ca in CReqWorker::reqWorkerThread() ()\n
+  #4  0x000000000047e6d8 in reqWorker(void*) ()\n
+  #5  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #6  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 1 (Thread 0x7ffff7b38b40 (LWP 19573)):\n
+  #0  0x00000034c10e8f03 in epoll_wait () from \/lib64\/libc.so.6\n
+  #1  0x0000000000417ee9 in CCluster::AllgatherSock(int, void*, char*, int, MPI_Status*) ()\n
+  #2  0x0000000000417103 in CCluster::Allgather(int, void*, char**, int, MPI_Status*) ()\n
+  #3  0x000000000041c48a in CCluster::exchangeNodeData() ()\n
+  #4  0x0000000000409c9c in main ()\n"}]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to see the call stack for Trafodion process id 20642.
+This is a jsonized version of the <em>sqpstack [&lt;program&gt;]</em> command. Newlines are added to all lines
+in the response so clients can recognize each end of line.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/pstack/program/20642</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+  "PROGRAM":"pstack 20642\n
+  Thread 8 (Thread 0x7fffecb17700 (LWP 20660)):\n
+  #0  0x00000034c10e94cd in accept () from \/lib64\/libc.so.6\n
+  #1  0x00007ffff77859a5 in SB_Trans::Sock_Listener::accept() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #2  0x00007ffff778c4f6 in SB_Trans::Sock_Stream_Accept_Thread::run() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #3  0x00007ffff778c223 in sock_stream_accept_thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #4  0x00007ffff53b7b0f in SB_Thread::Thread::disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #5  0x00007ffff53b7f67 in thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #6  0x00007ffff53bb1dc in sb_thread_sthr_disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #7  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #8  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 7 (Thread 0x7fffec116700 (LWP 20664)):\n
+  #0  0x00000034c140b43c in pthread_cond_wait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x00007ffff53ba5a2 in SB_Thread::CV::wait() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #2  0x00007ffff53ba67e in SB_Thread::CV::wait(bool) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #3  0x00007ffff777ec57 in SB_Sig_Queue::remove() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #4  0x00007ffff778c987 in SB_Trans::Sock_Stream_Helper_Thread::run() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #5  0x00007ffff778c24a in sock_helper_thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #6  0x00007ffff53b7b0f in SB_Thread::Thread::disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #7  0x00007ffff53b7f67 in thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #8  0x00007ffff53bb1dc in sb_thread_sthr_disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #9  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #10 0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 6 (Thread 0x7fffe97f2700 (LWP 20671)):\n
+  #0  0x00000034c103399d in sigtimedwait () from \/lib64\/libc.so.6\n
+  #1  0x00007ffff774a5d4 in local_monitor_reader(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #2  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #3  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 5 (Thread 0x7fffe8df1700 (LWP 20677)):\n
+  #0  0x00000034c10df253 in poll () from \/lib64\/libc.so.6\n
+  #1  0x00007ffff6691482 in do_io () from trafodion\/git\/core\/sqf\/export\/lib64d\/libzookeeper_mt.so.2\n
+  #2  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #3  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 4 (Thread 0x7fffe83f0700 (LWP 20679)):\n
+  #0  0x00000034c140b43c in pthread_cond_wait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x00007ffff669126b in do_completion () from trafodion\/git\/core\/sqf\/export\/lib64d\/libzookeeper_mt.so.2\n
+  #2  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #3  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 3 (Thread 0x7fffe79ef700 (LWP 20680)):\n
+  #0  0x00000034c1032d85 in sigwait () from \/lib64\/libc.so.6\n
+  #1  0x00007ffff7793aaf in SB_Timer_Thread::run() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #2  0x00007ffff77938b7 in sb_timer_thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #3  0x00007ffff53b7b0f in SB_Thread::Thread::disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #4  0x00007ffff53b7f67 in thread_fun(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #5  0x00007ffff53bb1dc in sb_thread_sthr_disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #6  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #7  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 2 (Thread 0x7fffe6f90700 (LWP 20685)):\n
+  #0  0x00000034c10e14f3 in select () from \/lib64\/libc.so.6\n
+  #1  0x00000000004c47a7 in CNSKListenerSrvr::tcpip_listener(void*) ()\n
+  #2  0x00007ffff53bb1dc in sb_thread_sthr_disp(void*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #3  0x00000034c1407851 in start_thread () from \/lib64\/libpthread.so.0\n
+  #4  0x00000034c10e890d in clone () from \/lib64\/libc.so.6\n
+  Thread 1 (Thread 0x7fffecdab2e0 (LWP 20642)):\n
+  #0  0x00000034c140b43c in pthread_cond_wait@@GLIBC_2.3.2 () from \/lib64\/libpthread.so.0\n
+  #1  0x00007ffff53ba5a2 in SB_Thread::CV::wait() () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #2  0x00007ffff53ba623 in SB_Thread::CV::wait(bool) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbutil.so\n
+  #3  0x00007ffff775c7d6 in SB_Ms_Event_Mgr::wait(long) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #4  0x00007ffff777d17e in XWAIT_com(short, int, bool) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #5  0x00007ffff777cf2f in XWAIT(short, int) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbms.so\n
+  #6  0x00007ffff79e932a in fs_int_fs_file_awaitiox(short*, void**, int*, long*, int, short*, bool, bool) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbfs.so\n
+  #7  0x00007ffff79e2a09 in BAWAITIOX(short*, void**, int*, long*, int, short*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbfs.so\n
+  #8  0x00007ffff79e5a9d in XAWAITIOX(short*, void**, unsigned short*, long*, int, short*) () from trafodion\/git\/core\/sqf\/export\/lib64d\/libsbfs.so\n
+  #9  0x00000000004c4d85 in CNSKListenerSrvr::runProgram(char*, long, int) ()\n
+  #10 0x00000000005a12bb in runCEE(char*, long, int) ()\n
+  #11 0x00000000005a35f3 in main ()\n"
+  }
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to see the call Java stack for Trafodion process id 20642.
+This is a jsonized version of the <em>jstack [&lt;program&gt;]</em> command. Newlines are added to all lines
+in the response so clients can recognize each end of line.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/jstack/program/8439</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+  "PROGRAM":"2015-04-02 20:47:48
+  Full thread dump Java HotSpot(TM) 64-Bit Server VM (24.65-b04 mixed mode):
+
+  "org.eclipse.jface.text.reconciler.MonoReconciler" daemon prio=10 tid=0x0000000005c55800 nid=0x62e7 in Object.wait() [0x00007fffe600e000]
+     java.lang.Thread.State: TIMED_WAITING (on object monitor)
+      at java.lang.Object.wait(Native Method)
+      - waiting on &lt;0x00000000ecd27e50&gt; (a org.eclipse.jface.text.reconciler.DirtyRegionQueue)
+      at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:179)
+      - locked &lt;0x00000000ecd27e50&gt; (a org.eclipse.jface.text.reconciler.DirtyRegionQueue)
+
+  "Worker-295" prio=10 tid=0x000000000479b800 nid=0x6036 in Object.wait() [0x00007fffe2e6d000]
+     java.lang.Thread.State: TIMED_WAITING (on object monitor)
+      at java.lang.Object.wait(Native Method)
+      - waiting on &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.sleep(WorkerPool.java:188)
+      - locked &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.startJob(WorkerPool.java:220)
+      at org.eclipse.core.internal.jobs.Worker.run(Worker.java:51)
+
+  "Worker-293" prio=10 tid=0x0000000005822800 nid=0x6034 in Object.wait() [0x00007fffdec7e000]
+     java.lang.Thread.State: TIMED_WAITING (on object monitor)
+      at java.lang.Object.wait(Native Method)
+      - waiting on &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.sleep(WorkerPool.java:188)
+      - locked &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.startJob(WorkerPool.java:220)
+      at org.eclipse.core.internal.jobs.Worker.run(Worker.java:51)
+
+  "Worker-291" prio=10 tid=0x0000000005742000 nid=0x3a60 in Object.wait() [0x00007fffe2850000]
+     java.lang.Thread.State: TIMED_WAITING (on object monitor)
+      at java.lang.Object.wait(Native Method)
+      - waiting on &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.sleep(WorkerPool.java:188)
+      - locked &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+      at org.eclipse.core.internal.jobs.WorkerPool.startJob(WorkerPool.java:220)
+      at org.eclipse.core.internal.jobs.Worker.run(Worker.java:51)
+
+  "org.eclipse.jdt.internal.ui.text.JavaReconciler" daemon prio=10 tid=0x000000000100f000 nid=0x2f8d in Object.wait() [0x00007fffe5244000]
+     java.lang.Thread.State: TIMED_WAITING (on object monitor)
+      at java.lang.Object.wait(Native Method)
+      - waiting on &lt;0x00000000eca355f0&gt; (a org.eclipse.jface.text.reconciler.DirtyRegionQueue)
+      at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:179)
+      - locked &lt;0x00000000eca355f0&gt; (a org.eclipse.jface.text.reconciler.DirtyRegionQueue)
+
+  "Worker-288" prio=10 tid=0x0000000004618800 nid=0x6558 in Object.wait() [0x00007fffe244c000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+    at java.lang.Object.wait(Native Method)
+    - waiting on &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+    at org.eclipse.core.internal.jobs.WorkerPool.sleep(WorkerPool.java:188)
+    - locked &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+    at org.eclipse.core.internal.jobs.WorkerPool.startJob(WorkerPool.java:220)
+    at org.eclipse.core.internal.jobs.Worker.run(Worker.java:51)
+
+  "Worker-284" prio=10 tid=0x0000000004148800 nid=0x31e8 in Object.wait() [0x00007fffe5e1c000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+    at java.lang.Object.wait(Native Method)
+    - waiting on &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+    at org.eclipse.core.internal.jobs.WorkerPool.sleep(WorkerPool.java:188)
+    - locked &lt;0x00000000e1614038&gt; (a org.eclipse.core.internal.jobs.WorkerPool)
+    at org.eclipse.core.internal.jobs.WorkerPool.startJob(WorkerPool.java:220)
+    at org.eclipse.core.internal.jobs.Worker.run(Worker.java:51)
+
+  ...intentionally deleted lines for brevity
+
+  "main" prio=10 tid=0x0000000000618800 nid=0x20f8 runnable [0x00007ffff6f46000]
+   java.lang.Thread.State: RUNNABLE
+    at org.eclipse.swt.internal.gtk.OS.Call(Native Method)
+    at org.eclipse.swt.widgets.Display.sleep(Display.java:4294)
+    at org.eclipse.ui.application.WorkbenchAdvisor.eventLoopIdle(WorkbenchAdvisor.java:368)
+    at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.eventLoopIdle(IDEWorkbenchAdvisor.java:918)
+    at org.eclipse.ui.internal.Workbench$3.eventLoopIdle(Workbench.java:498)
+    at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1155)
+    at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+    at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+    at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+    at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+    at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+    at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+    at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+    at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+    at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+    at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+    at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+    at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+    at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+    at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+    at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+    at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
+
+  "VM Thread" prio=10 tid=0x000000000080c000 nid=0x2104 runnable
+
+  "GC task thread#0 (ParallelGC)" prio=10 tid=0x000000000062e000 nid=0x20f9 runnable
+
+  "GC task thread#1 (ParallelGC)" prio=10 tid=0x0000000000630000 nid=0x20fb runnable
+
+  "GC task thread#2 (ParallelGC)" prio=10 tid=0x0000000000631800 nid=0x20fc runnable
+
+  "GC task thread#3 (ParallelGC)" prio=10 tid=0x0000000000633800 nid=0x20fd runnable
+
+  "GC task thread#4 (ParallelGC)" prio=10 tid=0x0000000000635800 nid=0x20fe runnable
+
+  "GC task thread#5 (ParallelGC)" prio=10 tid=0x0000000000637000 nid=0x20ff runnable
+
+  "GC task thread#6 (ParallelGC)" prio=10 tid=0x0000000000639000 nid=0x2100 runnable
+
+  "GC task thread#7 (ParallelGC)" prio=10 tid=0x000000000063b000 nid=0x2101 runnable
+
+  "GC task thread#8 (ParallelGC)" prio=10 tid=0x000000000063d000 nid=0x2102 runnable
+
+  "GC task thread#9 (ParallelGC)" prio=10 tid=0x000000000063e800 nid=0x2103 runnable
+
+  "VM Periodic Task Thread" prio=10 tid=0x0000000000852800 nid=0x210b waiting on condition
+
+  JNI global references: 799
+
+  }
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the status of Trafodion DTM service.
+This is a jsonized version of the <em>dtmci status tm</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/transactions</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+    "node":0,
+    "isLeadTM":true,
+    "state":"UP",
+    "sys_recovery_state":"END",
+    "tmshutdown_level":"RUNNING",
+    "number_active_txns":0
+  },
+  {
+    "node":1,
+    "isLeadTM":false,
+    "state":"UP",
+    "sys_recovery_state":"END",
+    "tmshutdown_level":"RUNNING",
+    "number_active_txns":0
+  }
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to know the Trafodion DTM service statistics.
+This is a jsonized version of the <em>dtmci stats</em> command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/transactions/stats</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>[
+  {
+    "node": 0,
+    "txnStats":
+    {
+      "txnBegins": 17,
+      "txnAborts": 0,
+      "txnCommits": 13
+    }
+  },
+  {
+    "node": 1,
+    "txnStats":
+    {
+      "txnBegins": 0,
+      "txnAborts": 0,
+      "txnCommits": 0
+    }
+  }
+]</pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="troubleshooting" class="sect0">Troubleshooting and Debugging</h1>
+<div class="sect1">
+<h2 id="_logs">13. Logs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The key process logs are as follows&#8230;&#8203;(replace &lt;user&gt; with the user that started the service, &lt;instance&gt; for the server instance and &lt;hostname&gt; for the machine name)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>$REST_HOME/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.log</p>
+</li>
+<li>
+<p>$REST_HOME/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.out</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The logs are your best resource when troubleshooting the REST server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouble-tools">14. Tools</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="trouble-tools-builtin-zkcli">14.1. zkcli</h3>
+<div class="paragraph">
+<p><em>zkcli</em> is a very useful tool for investigating ZooKeeper-related issues.  To invoke:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>./rest zkcli -server host:port &lt;cmd&gt; &lt;args&gt;
+
+The commands (and arguments) are:
+
+	connect host:port
+	get path [watch]
+	ls path [watch]
+	set path data [version]
+	delquota [-n|-b] path
+	quit
+	printwatches on|off
+	create [-s] [-e] path data acl
+	stat path [watch]
+	close
+	ls2 path [watch]
+	history
+	listquota path
+	setAcl path acl
+	getAcl path
+	sync path
+	redo cmdno
+	addauth scheme auth
+	delete path [version]
+	setquota -n|-b val path</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_appendix" class="sect0">Appendix</h1>
+<div class="sect1">
+<h2 id="appendix-contributing-to-documentation">Appendix A: Contributing to Documentation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_reference_guide_style_guide_and_cheat_sheet">A.1. Reference Guide Style Guide and Cheat Sheet</h3>
+<div class="paragraph">
+<p>This Reference Guide is written in Asciidoc and built using <a href="http://asciidoctor.org">AsciiDoctor</a>. The following cheat sheet is included for your reference.
+More comprehensive documentation is available in the <a href="http://asciidoctor.org/docs/user-manual">AsciiDoctor user manual</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. AsciiDoc Cheat Sheet</caption>
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Element Type</th>
+<th class="tableblock halign-left valign-top">Desired Rendering</th>
+<th class="tableblock halign-left valign-top">How to do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A paragraph</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a paragraph</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Just type some text with a blank line at the top and bottom.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add line breaks within a paragraph without adding blank lines</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manual line breaks</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This will break + at the plus sign. Or prefix the whole paragraph with a line containing <code>[%hardbreaks]</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Give a title to anything</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Colored italic bold differently-sized text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>.MyTitle</code> (no space between the period and the words) on the line before the thing to be titled</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-Line Code or commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monospace</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>`text`</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-line literal content (things to be typed exactly as shown)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bold mono</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*`typethis`*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-line replaceable content (things to substitute with your own values)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bold italic mono</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_typesomething_*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code blocks with highlighting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monospace, highlighted, preserve space</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>[source,java]
+----
+  myAwesomeCode() {
+}
+----</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code block included from a separate file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">included just as though it were part of the main file</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>[source,ruby]
+----
+include\::path/to/app.rb[]
+----</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include only part of a separate file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to Javadoc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <a href="http://www.asciidoctor.org/docs/user-manual/#by-tagged-regions" class="bare">http://www.asciidoctor.org/docs/user-manual/#by-tagged-regions</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filenames, directory names, new terms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">italic</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>_rest-default.xml_</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External naked URLs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link with the URL as link text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>link:http://www.google.com</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External URLs with text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link with arbitrary link text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>link:http://www.google.com[Google]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create an internal anchor to cross-reference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not rendered</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>[[anchor_name]]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference an existing anchor using its default title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">an internal hyperlink using the element title if available, otherwise using the anchor name</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchor_name&gt;&gt;</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cross-reference an existing anchor using custom text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">an internal hyperlink using arbitrary text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchor_name,Anchor Text&gt;&gt;</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A block image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image with alt text</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image::sunset.jpg[Alt Text]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(put the image in the src/main/site/resources/images directory)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An inline image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image with alt text, as part of the text flow</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image:sunset.jpg [Alt Text]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(only one colon)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Link to a remote image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">show an image hosted elsewhere</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>image::http://inkscape.org/doc/examples/tux.svg[Tux,250,350]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(or <code>image:</code>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add dimensions or a URL to the image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">depends</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>inside the brackets after the alt text, specify width, height and/or link="http://my_link.com"</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A footnote</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">subscript link which takes you to the footnote</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Some text.footnote:[The footnote text.]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A note or warning with no title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The admonition image followed by the admonition</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>NOTE:My note here</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>WARNING:My warning here</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A complex note</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The note has a title and/or multiple paragraphs and/or code blocks or lists, etc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="literalblock">
+<div class="content">
+<pre>.The Title
+[NOTE]
+====
+Here is the note text. Everything until the second set of four equals signs is part of the note.
+----
+some source code
+----
+====</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bullet lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bullet lists</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>* list item 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(See <a href="http://asciidoctor.org/docs/user-manual/#unordered-lists" class="bare">http://asciidoctor.org/docs/user-manual/#unordered-lists</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numbered lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numbered list</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>. list item 2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(See <a href="http://asciidoctor.org/docs/user-manual/#ordered-lists" class="bare">http://asciidoctor.org/docs/user-manual/#ordered-lists</a>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checklists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checked or unchecked boxes</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Checked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- [*]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unchecked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- [ ]</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple levels of lists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bulleted or numbered or combo</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>. Numbered (1), at top level
+* Bullet (2), nested under 1
+* Bullet (3), nested under 1
+. Numbered (4), at top level
+* Bullet (5), nested under 4
+** Bullet (6), nested under 5
+- [x] Checked (7), at top level</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Labelled lists / variablelists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a list item title or summary followed by content</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Title:: content
+
+Title::
+  content</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sidebars, quotes, or other blocks of text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a block of text, formatted differently from the default</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Delimited using different delimiters, see <a href="http://asciidoctor.org/docs/user-manual/#built-in-blocks-summary" class="bare">http://asciidoctor.org/docs/user-manual/#built-in-blocks-summary</a>. Some of the examples above use delimiters like ...., ----,====.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[example]
+====
+This is an example block.
+====
+
+[source]
+----
+This is a source block.
+----
+
+[note]
+====
+This is a note block.
+====
+
+[quote]
+____
+This is a quote block.
+____</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to insert literal Asciidoc content that keeps being interpreted, when in doubt, use eight dots as the delimiter at the top and bottom.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested Sections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chapter, section, sub-section, etc</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>= Book (or chapter if the chapter can be built alone, see the leveloffset info below)
+
+== Chapter (or section if the chapter is standalone)
+
+=== Section (or subsection, etc)
+
+==== Subsection</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and so on up to 6 levels (think carefully about going deeper than 4 levels, maybe you can just titled paragraphs or lists instead). Note that you can include a book inside another book by adding the <code>:leveloffset:+1</code> macro directive directly before your include, and resetting it to 0 directly after. See the <em>index.adoc</em> source for examples, as this is how this guide handles chapters. <strong>Don&#8217;t do it for prefaces, glossaries, appendixes, or other special types of chapters.</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include one file from another</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Content is included as though it were inline</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>include::[/path/to/file.adoc]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For plenty of examples. see <em>book.adoc</em>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A table</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a table</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <a href="http://asciidoctor.org/docs/user-manual/#tables" class="bare">http://asciidoctor.org/docs/user-manual/#tables</a>. Generally rows are separated by newlines and columns by pipes</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comment out a single line</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A  line is skipped during rendering</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>// This line won&#8217;t show up</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comment out a block</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A section of the file is skipped during rendering</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>////
+Nothing between the slashes will show up.
+////</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Highlight text for review</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text shows up with yellow background</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Test between #hash marks# is highlighted yellow.</pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_auto_generated_content">A.2. Auto-Generated Content</h3>
+<div class="paragraph">
+<p>Some parts of the REST Reference Guide, most notably <a href="#rest_default_configurations">REST default configuration</a>, are generated automatically, so that this area of the documentation stays in sync with the code.
+This is done by means of an XSLT transform, which you can examine in the source at <em>src/main/xslt/configuration_to_asciidoc_chapter.xsl</em>.
+This transforms the <em>rest-common/src/main/resources/rest-default.xml</em>            file into an Asciidoc output which can be included in the Reference Guide.
+Sometimes, it is necessary to add configuration parameters or modify their descriptions.
+Make the modifications to the source file, and they will be included in the Reference Guide when it is rebuilt.</p>
+</div>
+<div class="paragraph">
+<p>It is possible that other types of content can and will be automatically generated from REST source files in the future.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_images_in_the_rest_reference_guide">A.3. Images in the REST Reference Guide</h3>
+<div class="paragraph">
+<p>You can include images in the REST Reference Guide. It is important to include an image title if possible, and alternate text always.
+This allows screen readers to navigate to the image and also provides alternative text for the image.
+The following is an example of an image with a title and alternate text. Notice the double colon.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="asciidoc">.My Image Title
+image::sunset.jpg[Alt Text]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example of an inline image with alternate text. Notice the single colon. Inline images cannot have titles. They are generally small images like GUI buttons.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="asciidoc">image:sunset.jpg[Alt Text]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When doing a local build, save the image to the <em>src/main/site/resources/images/</em> directory.
+When you link to the image, do not include the directory portion of the path.
+The image will be copied to the appropriate target location during the build of the output.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_a_new_chapter_to_the_rest_reference_guide">A.4. Adding a New Chapter to the REST Reference Guide</h3>
+<div class="paragraph">
+<p>If you want to add a new chapter to the REST Reference Guide, the easiest way is to copy an existing chapter file, rename it, and change the ID (in double brackets) and title. Chapters are located in the <em>src/main/asciidoc/_chapters/</em> directory.</p>
+</div>
+<div class="paragraph">
+<p>Delete the existing content and create the new content.
+Then open the <em>src/main/asciidoc/book.adoc</em> file, which is the main file for the REST Reference Guide, and copy an existing <code>include</code> element to include your new chapter in the appropriate location.
+Be sure to add your new file to your Git repository before creating your patch.</p>
+</div>
+<div class="paragraph">
+<p>When in doubt, check to see how other files have been included.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_documentation_issues">A.5. Common Documentation Issues</h3>
+<div class="paragraph">
+<p>The following documentation issues come up often.
+Some of these are preferences, but others can create mysterious build errors or other problems.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Syntax Highlighting</dt>
+<dd>
+<p>The REST Reference Guide uses <code>coderay</code> for syntax highlighting. To enable syntax highlighting for a given code listing, use the following type of syntax:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source,xml]
+----
+&lt;name&gt;My Name&lt;/name&gt;
+----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several syntax types are supported. The most interesting ones for the REST Reference Guide are <code>java</code>, <code>xml</code>, <code>sql</code>, and <code>bash</code>.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-11-09 23:35:11 UTC
+</div>
+</div>
+</body>
+</html>

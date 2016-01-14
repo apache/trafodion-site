@@ -1,0 +1,9 @@
+org.trafodion.rest
+org.trafodion.rest.client
+org.trafodion.rest.model
+org.trafodion.rest.provider
+org.trafodion.rest.provider.producer
+org.trafodion.rest.script
+org.trafodion.rest.util
+org.trafodion.rest.version.util
+org.trafodion.rest.zookeeper
