@@ -552,11 +552,21 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
 </ul>
 </li>
-<li><a href="#_requirements">2. Requirements</a></li>
-<li><a href="#_product_environment_install">3. Product Environment Install</a></li>
-<li><a href="#_build_environment_install">4. Build Environment Install</a></li>
-<li><a href="#_appendix">5. Appendix</a></li>
-<li><a href="#_how_to">6. How-To</a></li>
+<li><a href="#_requirements">2. Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_general_hardware_and_os_requirements_and_recommendations">2.1. General Hardware and OS Requirements and Recommendations</a>
+<ul class="sectlevel3">
+<li><a href="#ip_ports">2.1.1. IP Ports</a></li>
+</ul>
+</li>
+<li><a href="#_prerequisite_software">2.2. Prerequisite Software</a>
+<ul class="sectlevel3">
+<li><a href="#_hadoop_services">2.2.1. Hadoop Services</a></li>
+<li><a href="#_software_packages">2.2.2. Software Packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -601,18 +611,12 @@ specific language governing permissions and limitations under the License.</p>
 <h2 id="_about_this_document">1. About This Document</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide describes how to use Trafodion for:</p>
+<p>This guide describes how to install Trafodion for end-user environments. This install allows you to store and query data using Trafodion, either via Trafodion clients
+(see <a href="http://trafodion.incubator.apache.org/client_install/index.html">Trafodion Client Installation Guide</a> or via application code you write.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Product Environments</strong>: This install allows you to store and query data using Trafodion, either via Trafodion clients
-(see <a href="http://trafodion.incubator.apache.org/client_install.html">Trafodion Installation Guide</a> or via application code you write.</p>
-</li>
-<li>
-<p><strong>Build Environments</strong>: This install allows you to build Trafodion from the Trafodion source code.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>If you want to install a Trafodion developer-build environment, then please refer to the
+<a href="http://trafodion.incubator.apache.org/contributor_guide/index.html">Trafodion Contributors' Guide</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_intended_audience">1.1. Intended Audience</h3>
@@ -622,32 +626,25 @@ specific language governing permissions and limitations under the License.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Product Environments</strong>: Database administrators and support personnel who are installing a Trafodion database for application usage.</p>
-<div class="ulist">
-<ul>
-<li>
 <p><strong>Single-Node Install</strong>: Typically used when you want to evalulate Trafodion.</p>
 </li>
 <li>
-<p><strong>Cluster Install</strong>: Typically used when you deploy Trafodion for application usage.</p>
+<p><strong>Cluster (Multi-Node) Install</strong>: Typically used when you deploy Trafodion for application usage.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Developer Environments</strong>: Developers working on enhancing the Trafodion source code.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Single-Node Install</strong>: Most Trafodion development is done in a single-node environment.</p>
-</li>
-<li>
-<p><strong>Cluster Install</strong>:  Mostly used for Trafodion quality assurance, performance, and scale testing.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Trafodion can be installed on a single-node or multi-node enviroment. Unless specifically noted, the term <strong>cluster</strong> is used
+to mean both single- and multi-node environments.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The installation instructions applies to a diverse set of platforms:</p>
@@ -664,6 +661,20 @@ specific language governing permissions and limitations under the License.</p>
 <p><strong>Bare Metal</strong>: Used for Product Environments as well as for Developer Environments.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The term <strong>node</strong> is used to represent a computing platform on which operating system, Hadoop, and Trafodion software is running.
+Unless specifically qualified (bare-metal node, virtual-machin node, or cloud-node), <strong>node</strong> represents a computing platform in your cluster
+regardless of platform type.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -823,37 +834,243 @@ needs. Send any errors found, suggestions for improvement, or compliments to:</p
 <div class="sect1">
 <h2 id="_requirements">2. Requirements</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>The current release of Trafodion has been tested with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>64-bit Red Hat Enterprise Linux (RHEL) 6.5, 6.6, and 6.7</p>
+</li>
+<li>
+<p>SUSE SLES 11.3</p>
+</li>
+<li>
+<p>Cloudera CDH 5.2</p>
+</li>
+<li>
+<p>Cloudera CDH 5.3</p>
+</li>
+<li>
+<p>Hortonworks HDP 2.2</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other OS releases may work, too. The Trafodion project is currently working on better support for non-distribution version of Hadoop.</p>
+</div>
+<div class="sect2">
+<h3 id="_general_hardware_and_os_requirements_and_recommendations">2.1. General Hardware and OS Requirements and Recommendations</h3>
+<div class="paragraph">
+<p>Trafodion assumes an environment based on the requirements of the supported Hadoop distributions. Please verify these assumptions on
+each server you will install Trafodion on:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bash</code> is available for shell-script execution.</p>
+</li>
+<li>
+<p><code>sshd</code> (the <code>ssh</code> daemon) is running on each node in the cluster.</p>
+</li>
+<li>
+<p><code>ntpd</code> (the <code>ntp</code> daemon) is running and synchronizign time on each node in the cluster.</p>
+</li>
+<li>
+<p><code>/etc/hosts</code> is set up for fully-qualified node names (FQDN).</p>
+</li>
+<li>
+<p><code>/etc/resolv.conf</code> is configured to use a name server tat can resolve commands such as <code>host -T &lt;FQDN&gt;</code>.
+Please attempt to use such a command to validate host-name resolution.</p>
+</li>
+<li>
+<p>The Linux Kernel Firewall (<code>iptables</code>) has either been disabled (to check: <code>service iptables status</code> (requires sudo access)
+or <a href="#ip_ports">ports required by Trafodion</a> have been opened</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="ip_ports">2.1.1. IP Ports</h4>
+<div class="paragraph">
+<p>The following table lists the default ports used by the different Trafodion components plus the configuration file and configuration attribute associated with each port setting.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Default Port</th>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Configuration Entry</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Range</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">4200</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>rest-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>trafodion.rest.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion REST Server.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">4201</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>rest-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>trafodion.rest.https.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion REST Server (HTTPS).</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">23400</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs.master.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>n</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">binary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start of Trafodion DCS port range. (37800 for Trafodion 1.1)</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">24400</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs.master.info.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DCS master web GUI. (40010 for Trafodion 1.1)</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">24410</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs.server.info.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>n</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start of range for DCS server web GUIs. (40020 for Trafodion 1.1)</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">50030</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>mapred-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>mapred.job.tracker.http.address</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MapReduce Job Tracker web GUI.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">50070</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hdfs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dfs.http.address</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HDFS Name Node web GUI.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">50075</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hdfs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dfs.datanode.http.address</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HDFS Data Node web GUI.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">50090</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hdfs-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>dfs.secondary.http.address</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HDFS Secondary Name Node web GUI.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">60010</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.master.info.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HBase Master web GUI.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">60030</p></th>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase-site.xml</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.regionserver.info.port</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HBase Region Server web GUI.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>There are two port ranges used by Trafodion.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>23400 is a range, to allow multiple mxosrvr processes on each node. Allow a range of a few ports,
+enough to cover all the servers per node that are listed in the "servers" file in the DCS configuration directory.</p>
+</li>
+<li>
+<p>24410 is a range as well, enough to cover the DCS servers per node, usually 1 or 2.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On top of the ports identified above, you also need the ports required by your Hadoop distribution. For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_ig_ports_cdh5.html"><em>Cloudera Ports</em></a></p>
+</li>
+<li>
+<p><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0-Win/bk_HDP_Install_Win/content/ref-79239257-778e-42a9-9059-d982d0c08885.1.html"><em>Hortonworks Ports</em></a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Although not all the ports will be used on every node of the cluster, you need to open most of them for all the nodes in the cluster that
+have Trafodion, HBase, or HDFS servers on them.</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_product_environment_install">3. Product Environment Install</h2>
-<div class="sectionbody">
-
+</div>
+<div class="sect2">
+<h3 id="_prerequisite_software">2.2. Prerequisite Software</h3>
+<div class="sect3">
+<h4 id="_hadoop_services">2.2.1. Hadoop Services</h4>
+<div class="paragraph">
+<p>The following Hadoop services must be running on the cluster where you install Trafodion:</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_build_environment_install">4. Build Environment Install</h2>
-<div class="sectionbody">
-
+<div class="sect3">
+<h4 id="_software_packages">2.2.2. Software Packages</h4>
+<div class="paragraph">
+<p>You need to install the following software and dependencies before installing Trafodion.</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_appendix">5. Appendix</h2>
-<div class="sectionbody">
-
 </div>
-</div>
-<div class="sect1">
-<h2 id="_how_to">6. How-To</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-14 18:55:06 UTC
+Last updated 2016-01-25 21:54:53 UTC
 </div>
 </div>
 </body>
