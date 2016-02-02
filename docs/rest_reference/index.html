@@ -95,7 +95,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-01-27T22:50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-02-02T22:14</p></td>
 </tr>
 </tbody>
 </table>
@@ -791,6 +791,12 @@ Roy Fielding, one of the principal authors of the Hypertext Transfer Protocol (H
       "DOWN":""
     },
     {
+      "PROCESS":"DCSMASTER",
+      "CONFIGURED":2,
+      "ACTUAL":2,
+      "DOWN":""
+    },
+    {
       "PROCESS":"MXOSRVR",
       "CONFIGURED":4,
       "ACTUAL":4,
@@ -881,6 +887,12 @@ This a jsonized version of the <em>sqcheck -c all</em> command.</p>
       "ACTUAL":4,"DOWN":""
     },
     {
+      "PROCESS":"DCSMASTER",
+      "CONFIGURED":2,
+      "ACTUAL":2,
+      "DOWN":""
+    },
+    {
       "PROCESS":"MXOSRVR",
       "CONFIGURED":4,
       "ACTUAL":0,
@@ -947,7 +959,7 @@ This a jsonized version of the <em>sqcheck -c rms</em> command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In this example the user wishes to know the status of Trafodion DCS.
+<p>In this example the user wishes to know the status of Trafodion DCS components.
 This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
 </div>
 <div class="listingblock">
@@ -964,6 +976,12 @@ This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
   "SUBSTATE":"OPERATIONAL",
   "PROCESSES":
   [
+    {
+      "PROCESS":"DCSMASTER",
+      "CONFIGURED":2,
+      "ACTUAL":2,
+      "DOWN":""
+    },
     {
       "PROCESS":"MXOSRVR",
       "CONFIGURED":4,

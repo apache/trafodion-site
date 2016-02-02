@@ -582,7 +582,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_parallelize_multiple_commands_and_scripts">4.9. Parallelize Multiple Commands and Scripts</a></li>
 <li><a href="#_limit_number_of_odb_threads">4.10. Limit Number of odb Threads</a></li>
 <li><a href="#_change_executions_distributed_across_threads">4.11. Change Executions Distributed Across Threads</a></li>
-<li><a href="#concepts_load_balancing">4.12. Dynamic Load Balanacing</a></li>
+<li><a href="#concepts_load_balancing">4.12. Dynamic Load Balancing</a></li>
 <li><a href="#_use_variables_in_odb_scripts">4.13. Use Variables in odb Scripts</a></li>
 <li><a href="#_thread_id_thread_execution_and_script_command">4.14. Thread ID, Thread Execution#, and Script Command#</a></li>
 <li><a href="#_validate_sql_scripts">4.15. Validate SQL Scripts</a></li>
@@ -1076,10 +1076,10 @@ linked to the unixODBC driver manager.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ontain the source code tarball from <a href="http://www.unixodbc.org/" class="bare">http://www.unixodbc.org/</a> Use version 2.3.<strong><em>x</em></strong> or later.</p>
+<p>Obtain the source code tar ball from <a href="http://www.unixodbc.org/" class="bare">http://www.unixodbc.org/</a> Use version 2.3.<strong><em>x</em></strong> or later.</p>
 </li>
 <li>
-<p>Unpack the tarball:</p>
+<p>Unpack the tar ball:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ tar xzvf unixODBC-2.3.1.tar.gz</code></pre>
@@ -1347,7 +1347,7 @@ Tracefile = uodbc.trc</code></pre>
 *
 
 * By default the driver open connections with a lock level of 0,
-* drivers should be expecetd to be thread safe now.
+* drivers should be expected to be thread safe now.
 * this can be changed by adding the line
 *
 
@@ -1472,7 +1472,7 @@ Data extraction options [connection required]:
       * rs: default '\n'. Also &lt;ASCII_dec&gt; 0&lt;ASCII_OCT&gt; X&lt;ASCII_HEX&gt;
       * ec: default '\'. Also &lt;ASCII_dec&gt; 0&lt;ASCII_OCT&gt; X&lt;ASCII_HEX&gt;
       * sq: no default. Also &lt;ASCII_dec&gt; 0&lt;ASCII_OCT&gt; X&lt;ASCII_HEX&gt;
-      * gzip compressione level between 0 and 9
+      * gzip compression level between 0 and 9
       * bpc: default 1,bpwc: default 4
 Data copy options [connection required]:
    -cp src={table|-file:tgt=schema[.table][pwhere=where_cond][:soe][:roe=#][:roedel=#ms]
@@ -2303,7 +2303,7 @@ odb [main(1017)] - Warning: won&#8217;t be created more thread (8) than needed (
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="concepts_load_balancing">4.12. Dynamic Load Balanacing</h3>
+<h3 id="concepts_load_balancing">4.12. Dynamic Load Balancing</h3>
 <div class="paragraph">
 <p>As discussed in the previous section, executions are normally <em>pre-assigned</em> to threads using a simple
 round-robin algorithm. This way, the total elapsed time for each thread depends on the complexity of
@@ -2679,7 +2679,7 @@ CREATE TABLE TRAFODION.SEABASE.&quot;REGIONS&quot; ( REGION_ID INTEGER NOT NULL
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>&amp;</code> wildcard allows you to extract the DDL for multiple objects.</p>
+<p>The <code>&amp;</code> wild card allows you to extract the DDL for multiple objects.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -2798,7 +2798,7 @@ the length of wide text fields by 4.</p>
 <p>using <code>|</code> (vertical bar) as a field separator (<code>fs=\|</code>)</p>
 </li>
 <li>
-<p>using <code>1000 rows</code> as rowset buffer (<code>rows=1000</code>)</p>
+<p>using <code>1000 rows</code> as row-set buffer (<code>rows=1000</code>)</p>
 </li>
 <li>
 <p>using <code>UPSERT USING LOAD</code> syntax to achieve better throughput as described in <a href="http://trafodion.incubator.apache.org/load.html">Trafodion Data Loading</a></p>
@@ -2912,7 +2912,7 @@ Default is <code>\</code> (back slash).</p></td>
 You can define the size of this buffer in two different ways:<br>
 <br>
 1. number of rows (for example: <code>rows=100</code> means 100 rows as IO buffer)<br>
-2.* buffer size in kB or MB (for example: <code>rows=k512</code> (512 kB buffer) or <code>rows=m20</code> (20MB buffer))<br>
+2.* buffer size in KB or MB (for example: <code>rows=k512</code> (512 KB buffer) or <code>rows=m20</code> (20MB buffer))<br>
 <br>
 Default value is <code>100</code>.</p></td>
 </tr>
@@ -2952,7 +2952,7 @@ If you add a <code>+</code> sign in front of the file-name, odb  <strong>appends
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>errmax=num</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">odb orints up to num error messages per rowset. Normally used with soe to limit the number of error messages printed to the standard error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odb prints up to num error messages per rowset. Normally used with soe to limit the number of error messages printed to the standard error</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit=auto|end|#rows|x#rs</code></p></td>
@@ -2961,7 +2961,7 @@ If you add a <code>+</code> sign in front of the file-name, odb  <strong>appends
 - <code>auto</code> (default): Commit every single insert (see also rows load operator).<br>
 - <code>end</code>: Commit when all rows (assigned to a given thread) have been inserted.<br>
 - <code>#rows</code>: Commit every <code>#rows</code> inserted rows.<br>
-- <code>x#rs</code>: Commit every <code>#rs</code> rowsets (see <code>rows</code>)</p></td>
+- <code>x#rs</code>: Commit every <code>#rs</code> rowset (see <code>rows</code>)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>direct</code></p></td>
@@ -2978,7 +2978,7 @@ the Read-Only Storage (ROS). See Vertica’s documentation.</p></td>
 - <code>fieldtrunc=3</code>: Like <code>fieldtrunc=0</code> but tries to load the field even if the target column is NOT a text field.<br>
 - <code>fieldtrunc=4</code>: Like fieldtrunc=3 but no warnings are printed.<br>
 <br>
-WARNING: the last two options could bring to unwanted resilts. For example, an input string like <code>2001-10-2345</code> is loaded as a valid
+WARNING: the last two options could bring to unwanted results. For example, an input string like <code>2001-10-2345</code> is loaded as a valid
 2001-10-23 if the target field is a <code>DATE</code>.</p></td>
 </tr>
 <tr>
@@ -3018,7 +3018,7 @@ on the <strong>target system</strong> immediately after the target table has bee
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">odb prints a <strong>timeline</strong> (milliseconds from start) for each insert.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odb prints a <strong>time line</strong> (milliseconds from start) for each insert.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bpc=#</code></p></td>
@@ -3202,7 +3202,7 @@ odb provides mapping/transformation capabilities though <strong>mapfiles</strong
 <p>Insert constants</p>
 </li>
 <li>
-<p>Transform dates/timestamp formats</p>
+<p>Transform dates/timestamps formats</p>
 </li>
 <li>
 <p>Extract substrings</p>
@@ -3421,7 +3421,7 @@ Example: <code>DCONV:B.d.y</code> converts <code>August,24 1991</code> to <code>
 </li>
 <li>
 <p><code>REPLACE:&lt;READ&gt;:&lt;WRITTEN&gt;</code>. Loads the string <code>&lt;WRITTEN&gt;</code> when the input file fields contains <code>&lt;READ&gt;</code>.
-If the input file string doesn’t match <code>&lt;READ&gt;</code>, then it is loaded as is.</p>
+If the input file string doesn&#8217;t match <code>&lt;READ&gt;</code>, then it is loaded as is.</p>
 <div class="paragraph">
 <p>See <a href="#load_mapfiles_ignore">Use mapfiles to Ignore and/or Transform Fields When Loading</a></p>
 </div>
@@ -3559,7 +3559,7 @@ uno,00,48,due,_Antonella_,tre,[underline]#24 Apr 1962#</code></pre>
 </div>
 <div class="paragraph">
 <p>You want to load the marked fields into the appropriate column, <strong><em>generate</em></strong> a unique key for ID and ignore the fields in black text.
-In addition: you need to <strong><em>convert date format</em></strong> and replace all occurrances of <code>Lucia</code> with <code>Lucy</code>.</p>
+In addition: you need to <strong><em>convert date format</em></strong> and replace all occurrences of <code>Lucia</code> with <code>Lucy</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following map file accomplishes these goals:</p>
@@ -3850,7 +3850,7 @@ ignoreme,Giovanni,xyz,_commentG_, ignoreme,Antonella,xyz,commentA</code></pre>
 <div class="sect2">
 <h3 id="load_binary_files">5.7. Loading Binary Files</h3>
 <div class="paragraph">
-<p>Assuming that your backend database (and your ODBC Driver) supports BLOB data types, or equivalent,
+<p>Assuming that your back-end database (and your ODBC Driver) supports BLOB data types, or equivalent,
 you can use odb to directly load binary (or any other) files into a database column using the <code>[:em=char]</code> symbol
 to identify the file to be loaded into that specific database field.</p>
 </div>
@@ -3891,7 +3891,7 @@ to identify the file to be loaded into that specific database field.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>odb onsiders the string following the “em” character as the path of the file to be loaded in that specific field.</p>
+<p>odb considers the string following the “em” character as the path of the file to be loaded in that specific field.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4233,7 +4233,7 @@ is made of 32 partitions, then odb starts <strong>four</strong> threads (four OD
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>multi</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This option can be used in conjunction with parallel operator to write as many ouput files as the number of extraction
+<td class="tableblock halign-left valign-top"><p class="tableblock">This option can be used in conjunction with parallel operator to write as many output files as the number of extraction
 threads. Output file names are built adding four digits at the end of the file identified by the <code>tgt</code> operator.<br>
 <br>
 For example, with <code>src=trafodion.mauro.orders:tgt=%t.csv:parallel=4:multi</code><br>
@@ -4302,7 +4302,7 @@ with <code>min(emp_id)=1</code> and <code>max(emp_id)=1000</code>, the four thre
 <code>thread #2 emp_id &gt;=501 and emp_id &lt; 751</code><br>
 <code>thread #3 emp_id &gt;=751 and emp_id &lt; 1001</code> (odb uses max(emp_id) + 1)<br>
 <br>
-If the values are not equally distributed, then data extraction is deskewed.</p></td>
+If the values are not equally distributed, then data extraction is de-skewed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pre={@sqlfile}|{[sqlcmd]</code></p></td>
@@ -4455,7 +4455,7 @@ Data <strong><em>never lands to disk</em></strong> when using this option.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max=num</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is the max number of records to copy. Default is to copy all ecords in the source table.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the max number of records to copy. Default is to copy all records in the source table.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rows=&lt;num&gt;|k&lt;num&gt;|m&lt;num&gt;</code></p></td>
@@ -4523,7 +4523,7 @@ You can enclose the where condition between square brackets to avoid a misinterp
 <br>
 - <code>auto</code> (Default) &amp;8212; Commits every single insert (see also rows load operator). <code>end</code> commits when all rows (assigned to a given thread) have been inserted.<br>
 - <code>#rows</code> &#8212; Commits every <code>#rows</code> copied rows.<br>
-- <code>x#rs</code> &#8212; Commits every <code>#rs</code> rowsets copied. (See <code>:rows</code>)</p></td>
+- <code>x#rs</code> &#8212; Commits every <code>#rs</code> rowset copied. (See <code>:rows</code>)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>direct</code></p></td>
@@ -4556,7 +4556,7 @@ with <code>min(emp_id)=1</code> and <code>max(emp_id)=1000</code>, then the four
 <code>thread #2 emp_id &gt;=501 and emp_id &lt; 751</code><br>
 <code>thread #3 emp_id &gt;=751 and emp_id &lt; 1001 (odb uses max(emp_id) + 1)</code><br>
 <br>
-If the values are not equally distributed data extraction is deskewed.</p></td>
+If the values are not equally distributed data extraction is de-skewed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pre={@sqlfile}|{[sqlcmd]}</code></p></td>
@@ -4564,7 +4564,7 @@ If the values are not equally distributed data extraction is deskewed.</p></td>
 (enclosed between square brackets) on the <strong>target system</strong> immediately before loading the target table.
 You can, for example, CREATE the target table before loading it.<br>
 <br>
-The target table isn&#8217;te loaded if SQL execution fails and Stop On Error is set.</p></td>
+The target table isn&#8217;t loaded if SQL execution fails and Stop On Error is set.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mpre={@sqlfile}|{[sqlcmd]}</code></p></td>
@@ -4590,7 +4590,7 @@ loaded. You can, for example, update database stats after loading a table.</p></
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>loaders=num</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">odb uses <code>num</code> load threads for each extract thread. Ddefault is two loaders per extractor,</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odb uses <code>num</code> load threads for each extract thread. Default is two loaders per extractor,</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fwc</code></p></td>
@@ -4699,7 +4699,7 @@ file.</p>
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>Usinge different <em>splitby columns</em>.</p>
+<p>Using different <em>splitby columns</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4716,14 +4716,14 @@ src=TRAFODION.MAURIZIO.LINEITEM:splitby=L_PARTKEY</code></pre>
 <div class="sect2">
 <h3 id="_case_sensitive_table_and_column_names">5.13. Case-Sensitive Table and Column Names</h3>
 <div class="paragraph">
-<p>Your database configuration determiens whether you can use case sensitive table/column names.
+<p>Your database configuration determines whether you can use case sensitive table/column names.
 odb maintains table/column case sensitiveness when they are enclosed in double quotes.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>The following commans create a <code>TRAFODION.MAURIZIO.Names</code> table made of three columns:
+<p>The following commands create a <code>TRAFODION.MAURIZIO.Names</code> table made of three columns:
 “name”, “NAME” and “Name”.</p>
 </div>
 <div class="listingblock">
@@ -4762,7 +4762,7 @@ allocates and start the “right” number of threads.</p>
 </div>
 <div class="paragraph">
 <p>A rule of thumb when copying/loading or extracting tables is to use as many <em>data streams</em> as:
-<code>min(number of middletier CPUs, number of source CPUs, number of target CPUs)</code></p>
+<code>min(number of middle-tier CPUs, number of source CPUs, number of target CPUs)</code></p>
 </div>
 <div class="paragraph">
 <p>The number of threads started for each <em>data stream</em> depend on the operation type:</p>
@@ -4856,7 +4856,7 @@ odb does the following to compare two tables:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>One thred reading from the source table.</p>
+<p>One thread reading from the source table.</p>
 </li>
 <li>
 <p>One thread reading from the target table.</p>
@@ -4984,7 +4984,7 @@ src={table|-file}:tgt=table:[key=columns][:output=[+]file][:pwhere=where_cond]
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>src=&lt;CAT.SCH.TAB&gt;|-file</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Definse the source table(s). You can use:<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the source table(s). You can use:<br>
 <br>
 - A single table (for example: TRAFODION.MFTEST.LINEITEM)<br>
 - A file containing a list of tables to compare (<code>-</code> should precede the filename)</p></td>
@@ -5029,7 +5029,7 @@ The default record separator is <code>\n</code> (new line).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rows=&lt;num&gt;|k&lt;num&gt;|m&lt;num&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Definess the size of the I/O buffer for each extraction thread. You
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the size of the I/O buffer for each extraction thread. You
 can define the size of this buffer in two different ways:<br>
 <br>
 - number of rows (for example: <code>rows=100</code> means 100 rows as IO buffer)<br>
@@ -5082,7 +5082,7 @@ If the values are not equally distributed, then data extraction is deskewed.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>print=[I][C][D]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifie which rows are printed in the output file:<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies which rows are printed in the output file:<br>
 <br>
 <code>I</code> prints the new rows on target. (Based on <strong>key</strong>.)<br>
 <code>D</code> prints the missing rows on target. (Based on <strong>key</strong>.)<br>
@@ -5280,11 +5280,11 @@ odb statistics:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Stimeline</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Queries start timeline in milliseconds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Queries start time line in milliseconds.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Etimeline</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Queries end timeline in milliseconds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Queries end time line in milliseconds.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5385,7 +5385,7 @@ This multiplying factors are defined with a <code>&lt;number&gt;:</code> precedi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>odb64luo -P 3: test/queries/* -T 3 -c -q</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Runs <strong>in parallel three times (<code>3:</code>)</strong> all files under <code>test/queries/</code>
-using thre threads (ODBC connections) (<code>-T 3</code>), with CSV output (<code>-c</code>) and omitting query output (<code>-q</code>).
+using three threads (ODBC connections) (<code>-T 3</code>), with CSV output (<code>-c</code>) and omitting query output (<code>-q</code>).
 Scripts will be assigned to threads using <strong><em>standard assignment</em></strong>.</p></td>
 </tr>
 <tr>
@@ -5661,7 +5661,7 @@ command is automatically updated.</p>
 <p><strong>CTRL-X</strong> to kill the current command.</p>
 </li>
 <li>
-<p>See online help for the other <code>mreadline</code> commands.</p>
+<p>See on-line help for the other <code>mreadline</code> commands.</p>
 <div style="page-break-after: always;"></div>
 </li>
 </ul>
@@ -5734,7 +5734,7 @@ will be just prepared, not executed.</p>
 <p>MySQL: <code>use &lt;name&gt;;</code></p>
 </li>
 <li>
-<p>Postgresql/Vertica: <code>set search_path to &lt;name1,name2,…&gt;;</code></p>
+<p>PostgreSQL/Vertica: <code>set search_path to &lt;name1,name2,…&gt;;</code></p>
 </li>
 <li>
 <p>Teradata: <code>set database &lt;name&gt;;</code></p>
@@ -6141,7 +6141,7 @@ odb [2012-10-11 13:27:22]: starting ODBC connection(s)... 0
 </div>
 </div>
 <div class="paragraph">
-<p>Try adding <code>-nocatnull</code> to your command line. When the backend database doesn’t use catalogs,
+<p>Try adding <code>-nocatnull</code> to your command line. When the back-end database doesn&#8217;t use catalogs,
 then you should use an <strong>empty string</strong> as catalog name.</p>
 </div>
 <div class="admonitionblock note">
@@ -6258,7 +6258,7 @@ to code odb:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-16 00:01:35 UTC
+Last updated 2016-01-29 17:42:05 UTC
 </div>
 </div>
 <script>

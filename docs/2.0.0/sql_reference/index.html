@@ -755,7 +755,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#drop_procedure_examples">3.22.3. Examples of DROP PROCEDURE</a></li>
 </ul>
 </li>
-<li><a href="#drop_role_statemment">3.23. DROP ROLE Statement</a>
+<li><a href="#drop_role_statement">3.23. DROP ROLE Statement</a>
 <ul class="sectlevel3">
 <li><a href="#drop_role_syntax">3.23.1. Syntax Description of DROP ROLE</a></li>
 <li><a href="#drop_role_considerations">3.23.2. Considerations for DROP ROLE</a></li>
@@ -818,7 +818,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#get_version_of_software_statement">3.32. GET VERSION OF SOFTWARE Statement</a>
 <ul class="sectlevel3">
 <li><a href="#get_version_of_software_considerations">3.32.1. Considerations for GET VERSION OF SOFTWARE</a></li>
-<li><a href="#get_version_of_software_examles">3.32.2. Examples of GET VERSION OF SOFTWARE</a></li>
+<li><a href="#get_version_of_software_examples">3.32.2. Examples of GET VERSION OF SOFTWARE</a></li>
 </ul>
 </li>
 <li><a href="#grant_statement">3.33. GRANT Statement</a>
@@ -1136,7 +1136,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#creating_and_dropping_schemas">5.18.1. Creating and Dropping Schemas</a></li>
 </ul>
 </li>
-<li><a href="#search_condiation">5.19. Search Condition</a>
+<li><a href="#search_condition">5.19. Search Condition</a>
 <ul class="sectlevel3">
 <li><a href="#considerations_for_search_condition">5.19.1. Considerations for Search Condition</a></li>
 <li><a href="#examples_of_search_condition">5.19.2. Examples of Search Condition</a></li>
@@ -2793,7 +2793,7 @@ so users lose the flexibility of dynamic columns that comes with HBase.</p>
 <div class="sect3">
 <h4 id="ansi_names_for_hive_tables">2.3.1. ANSI Names for Hive Tables</h4>
 <div class="paragraph">
-<p>Hive tables appear in the Trafodion Hive ANSI namespace in a special catalog and schema named <code>HIVE.HIVE</code>.</p>
+<p>Hive tables appear in the Trafodion Hive ANSI name space in a special catalog and schema named <code>HIVE.HIVE</code>.</p>
 </div>
 <div class="paragraph">
 <p>To select from a Hive table named <code>T</code>, specify an implicit or explicit name, such as <code>HIVE.HIVE.T</code>,
@@ -2874,7 +2874,7 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <p>The value <code><em>n</em></code> is determined by <code>CQD HIVE_MAX_STRING_LENGTH</code>. See <a href="#hive_environment_cqds">Hive Environment CQDs</a>.</p>
 </li>
 <li>
-<p>Hive supports timestamps with nanosecond resolution (precision of 9). Tafodion SQL supports only microsecond resolution (precision 6).</p>
+<p>Hive supports timestamps with nanosecond resolution (precision of 9). Trafodion SQL supports only microsecond resolution (precision 6).</p>
 </li>
 </ol>
 </div>
@@ -2946,7 +2946,7 @@ place is released.</p>
 </div>
 <div class="paragraph">
 <p>READ COMMITTED provides the next higher level of data consistency (compared to READ UNCOMMITTED).
-A statement executing with this access option does not allow dirty reads, but both nonrepeatable reads
+A statement executing with this access option does not allow dirty reads, but both non-repeatable reads
 and phantoms are possible.</p>
 </div>
 <div class="paragraph">
@@ -3080,7 +3080,7 @@ when READ COMMITTED is the specified isolation level.</p>
 </div>
 <div class="paragraph">
 <p>READ COMMITTED provides the next level of data consistency. A transaction executing with this isolation level does not
-allow dirty reads, but both nonrepeatable reads and phantoms are possible.</p>
+allow dirty reads, but both non-repeatable reads and phantoms are possible.</p>
 </div>
 <div class="paragraph">
 <p>READ COMMITTED provides sufficient consistency for any transaction that does not require a repeatable-read capability.</p>
@@ -3420,7 +3420,7 @@ transaction (BEGIN WORK&#8230;COMMIT WORK) or when AUTOCOMMIT is OFF. To run the
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#create_function_statement">CREATE FUNCTION Statement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Registers a user-defined function (UDF) written in C as a functionwithin a Trafodion database.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registers a user-defined function (UDF) written in C as a function within a Trafodion database.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#create_index_statement">CREATE INDEX Statement</a></p></td>
@@ -3486,11 +3486,11 @@ referenced by the library object.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#register_user_statement">REGISTER USER Statement</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Registers a user in the SQL database, associating the user&#8217;s login name
-with a database username.</p></td>
+with a database user name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#unregister_user_statement">UNREGISTER USER Statement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes a database username from the SQL database.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes a database user name from the SQL database.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3631,7 +3631,7 @@ commit database changes.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#register_user_statement">REGISTER USER Statement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Registers a user in the SQL database, associating the user&#8217;s login name with a database username.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registers a user in the SQL database, associating the user&#8217;s login name with a database user name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#revoke_statement">REVOKE Statement</a></p></td>
@@ -3647,7 +3647,7 @@ commit database changes.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#unregister_user_statement">UNREGISTER USER Statement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes a database username from the SQL database.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes a database user name from the SQL database.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3905,7 +3905,7 @@ turned ON (the default) for the session.
 <li>
 <p><code><em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of the library object, where each part of the name is a valid sql identifier with a maximum of 128 characters.
+<p>specifies the ANSI logical name of the library object, where each part of the name is a valid sql identifier with a maximum of 128 characters.
 specify the name of a library object that has already been registered in the schema. if you do not fully qualify the library name, trafodion sql
 qualifies it according to the schema of the current session. for more information, see <a href="#identifiers">identifiers</a> and
 <a href="#_database_object_names">database object names</a>.</p>
@@ -3914,7 +3914,7 @@ qualifies it according to the schema of the current session. for more informatio
 <li>
 <p><code>file <em>library-filename</em></code></p>
 <div class="paragraph">
-<p>specifies the full path of the redeployed library file, which either an spj&#8217;s jar file or a udf&#8217;s library file.</p>
+<p>specifies the full path of the redeployed library file, which either an SPJ&#8217;s jar file or a UDF&#8217;s library file.</p>
 </div>
 </li>
 <li>
@@ -4436,7 +4436,7 @@ following must be true:</p>
 <p>For the referencing table, you have the ALTER or ALTER_TABLE component privilege for the SQL_OPERATIONS component.</p>
 </li>
 <li>
-<p>For the referenced table, you have the REFERENCES (or ALL) privilege on the referenced table through your username or through a granted role.</p>
+<p>For the referenced table, you have the REFERENCES (or ALL) privilege on the referenced table through your user name or through a granted role.</p>
 </li>
 </ul>
 </div>
@@ -4676,7 +4676,7 @@ argument-list is:
 <li>
 <p><code><em>argument-list</em></code></p>
 <div class="paragraph">
-<p>accepts arguments for in, inout, or out parameters. the arguments consist of sql expressions, including dynamic parameters,
+<p>accepts arguments for in, in-out, or out parameters. the arguments consist of sql expressions, including dynamic parameters,
 separated by commas:</p>
 </div>
 <div class="paragraph">
@@ -4697,7 +4697,7 @@ separated by commas:</p>
 <li>
 <p>numeric value</p>
 <div class="paragraph">
-<p>interval value expressions are disallowed in spjs. for more information, see
+<p>interval value expressions are disallowed in SPJs. for more information, see
 <a href="#call_input_parameter_arguments">input parameter arguments</a> and
 <a href="#call_output_parameter_arguments">output parameter arguments</a>.</p>
 </div>
@@ -4717,7 +4717,7 @@ separated by commas:</p>
 <h5 id="call_usage_restrictions">Usage Restrictions</h5>
 <div class="paragraph">
 <p>You can use a CALL statement as a stand-alone SQL statement in applications or command-line interfaces,
-such as TrafCI. You cannot use a CALL statement inside a compound statement or with rowsets.</p>
+such as TrafCI. You cannot use a CALL statement inside a compound statement or with row sets.</p>
 </div>
 </div>
 <div class="sect4">
@@ -4781,7 +4781,7 @@ parameter argument, use one of these SQL expressions:</p>
 <h5 id="call_output_parameter_arguments">Output Parameter Arguments</h5>
 <div class="paragraph">
 <p>An SPJ returns values in OUT and INOUT parameters. Output parameter arguments must be dynamic parameters in an
-application (for example, ?) or named or unnamed parameters in HPDCI (for example, ?param or ?). Each
+application (for example, ?) or named or unnamed parameters in DCI (for example, ?param or ?). Each
 calling application defines the semantics of the OUT and INOUT parameters in its environment.</p>
 </div>
 </div>
@@ -5364,7 +5364,7 @@ trafodion. see <a href="#data_types">data types</a>.</p>
 <li>
 <p><code>library <em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of a library containing the external function. if you do not fully qualify the
+<p>specifies the ANSI logical name of a library containing the external function. if you do not fully qualify the
 library name, trafodion sql qualifies it according to the schema of the current session.</p>
 </div>
 </li>
@@ -5391,7 +5391,7 @@ language. this clause is optional.</p>
 <p><code>deterministic | not deterministic</code></p>
 <div class="paragraph">
 <p>specifies whether the function always returns the same values for out parameters for a given set of argument
-values (deterministic, the default behavior) or does not return the same values (not eterministic). if the
+values (deterministic, the default behavior) or does not return the same values (not deterministic). if the
 function is deterministic, trafodion sql is not required to execute the function each time to produce results;
 instead, trafodion sql caches the results and reuses them during subsequent executions, thus optimizing the execution.</p>
 </div>
@@ -5553,7 +5553,7 @@ hbase-options-list is:
 <p><code><em>index</em></code></p>
 <div class="paragraph">
 <p>is an SQL identifier that specifies the simple name for the new index. You cannot qualify <em>index</em> with its schema
-name. Indexes have their own namespace within a schema, so an index name might be the same as a table or constraint
+name. Indexes have their own name space within a schema, so an index name might be the same as a table or constraint
 name. However, no two indexes in a schema can have the same name.</p>
 </div>
 </li>
@@ -5575,7 +5575,7 @@ to the order of the columns in the table.</p>
 <div class="paragraph">
 <p>Rows are ordered by values in the first column specified for the index. If multiple index rows share the same value
 for the first column, the values in the second column are used to order the rows, and so forth. If duplicate index
-rows occur in a nonunique index, their order is based on the sequence specified for the columns of the key of the
+rows occur in a non-unique index, their order is based on the sequence specified for the columns of the key of the
 underlying table. For ordering (but not for other purposes), nulls are greater than other values.</p>
 </div>
 </li>
@@ -5758,10 +5758,10 @@ partitions are not audited and empty.
 </div>
 </li>
 <li>
-<p>After load is complete, the index audit attribute is turned on and it is attached to the base table (to bring the index online).</p>
+<p>After load is complete, the index audit attribute is turned on and it is attached to the base table (to bring the index on-line).</p>
 </li>
 <li>
-<p>The transaction is committed, either by the system or later by the requestor.</p>
+<p>The transaction is committed, either by the system or later by the requester.</p>
 </li>
 </ul>
 </div>
@@ -5784,7 +5784,7 @@ when the operation begins, CREATE INDEX waits until its lock request is granted 
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect4">
-<h5 id="create_index_required_priviges">Required Privileges</h5>
+<h5 id="create_index_required_privileges">Required Privileges</h5>
 <div class="paragraph">
 <p>To issue a CREATE INDEX statement, one of the following must be true:</p>
 </div>
@@ -5823,7 +5823,7 @@ In this case, if you create an index in a private schema, it will be owned by th
 <div class="sect4">
 <h5 id="create_index_limits">Limits on Indexes</h5>
 <div class="paragraph">
-<p>For nonunique indexes, the sum of the lengths of the columns in the index plus the sum of the length of
+<p>For non-unique indexes, the sum of the lengths of the columns in the index plus the sum of the length of
 the clustering key of the underlying table cannot exceed 2048 bytes.</p>
 </div>
 <div class="paragraph">
@@ -5887,7 +5887,7 @@ is OFF. To run this statement, AUTOCOMMIT must be turned ON (the default) for th
 <li>
 <p><code><em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of the library object, where each part of the name is a valid sql
+<p>specifies the ANSI logical name of the library object, where each part of the name is a valid sql
 identifier with a maximum of 128 characters. specify a name that is unique and does not exist for
 libraries in the same schema. if you do not fully qualify the library name, trafodion sq qualifies
 it according to the schema of the current session. for more information, see <a href="#identifiers">identifiers</a>
@@ -5902,7 +5902,7 @@ and <a href="#database_object_names">database object names</a>.</p>
 <li>
 <p><code>file '<em>library-filename</em>'</code></p>
 <div class="paragraph">
-<p>specifies the full path of a deployed library file, which either an spj&#8217;s jar file or a udf&#8217;s library file.</p>
+<p>specifies the full path of a deployed library file, which either an SPJ&#8217;s jar file or a UDF&#8217;s library file.</p>
 </div>
 <div class="paragraph">
 <p>note: make sure to upload the library file to the trafodion cluster and then copy the library file to the
@@ -6089,7 +6089,7 @@ the remaining syntax is not case-sensitive.
 <p><code><em>procedure-ref</em>([<em>sql-parameter</em>[, <em>sql-parameter</em>]&#8230;])</code></p>
 <div class="paragraph">
 <p>specifies the name of the stored procedure in Java (SPJ) and any SQL parameters that correspond to the signature of
-the SPJ methaod.</p>
+the SPJ method.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6108,7 +6108,7 @@ see <a href="#identifiers">identifiers</a> and <a href="#database_object_names">
 <div class="paragraph">
 <p>specify a name that is unique and does not exist for any procedure or function in the same schema. trafodion sql
 does not support the overloading of procedure names. that is, you cannot register the same procedure name more than
-once with different underlying spj methods.</p>
+once with different underlying SPJ methods.</p>
 </div>
 <div class="paragraph">
 <p>if you do not fully qualify the procedure name, trafodion sql qualifies it according to the schema of the current session.</p>
@@ -6117,7 +6117,7 @@ once with different underlying spj methods.</p>
 <li>
 <p><em>sql-parameter</em></p>
 <div class="paragraph">
-<p>specifies an sql parameter that corresponds to the signature of the spj method:</p>
+<p>specifies an sql parameter that corresponds to the signature of the SPJ method:</p>
 </div>
 <div class="paragraph">
 <p><code>[<em>parameter-mode</em>] [<em>sql-identifier</em>] <em>sql-datatype</em></code></p>
@@ -6134,19 +6134,19 @@ once with different underlying spj methods.</p>
 <li>
 <p><code>in</code></p>
 <div class="paragraph">
-<p>specifies a parameter that passes data to an spj.</p>
+<p>specifies a parameter that passes data to an SPJ.</p>
 </div>
 </li>
 <li>
 <p><code>out</code></p>
 <div class="paragraph">
-<p>specifies a parameter that accepts data from an spj. the parameter must be an array.</p>
+<p>specifies a parameter that accepts data from an SPJ. the parameter must be an array.</p>
 </div>
 </li>
 <li>
 <p><code>inout</code></p>
 <div class="paragraph">
-<p>specifies a parameter that passes data to and accepts data from an spj. the parameter must be an array.</p>
+<p>specifies a parameter that passes data to and accepts data from an SPJ. the parameter must be an array.</p>
 </div>
 </li>
 </ul>
@@ -6161,7 +6161,7 @@ once with different underlying spj methods.</p>
 <li>
 <p><code><em>sql-datatype</em></code></p>
 <div class="paragraph">
-<p>specifies an sql data type that corresponds to the java parameter of the spj method.</p>
+<p>specifies an sql data type that corresponds to the java parameter of the SPJ method.</p>
 </div>
 <div class="paragraph">
 <p><em>sql-datatype</em> can be:</p>
@@ -6267,7 +6267,7 @@ only if you specify the wrapper class in the java signature of the external name
 <li>
 <p><code><em>java-method-name</em></code></p>
 <div class="paragraph">
-<p>specifies the case-sensitive name of the spj method of the form:</p>
+<p>specifies the case-sensitive name of the SPJ method of the form:</p>
 </div>
 <div class="paragraph">
 <p><code><em class="_package-name_.">class-name</em>.<em>method-name</em></code></p>
@@ -6277,14 +6277,14 @@ only if you specify the wrapper class in the java signature of the external name
 the java method must be defined as public and static and have a return type of void.</p>
 </div>
 <div class="paragraph">
-<p>if the class file that contains the spj method is part of a package, you must also specify the package name.
-if you do not specify the package name, the create procedure statement fails to register the spj.</p>
+<p>if the class file that contains the SPJ method is part of a package, you must also specify the package name.
+if you do not specify the package name, the create procedure statement fails to register the SPJ.</p>
 </div>
 </li>
 <li>
 <p><code><em>java-signature</em></code></p>
 <div class="paragraph">
-<p>specifies the signature of the spj method and consists of:</p>
+<p>specifies the signature of the SPJ method and consists of:</p>
 </div>
 <div class="paragraph">
 <p><code>([<em>java-datatype</em>[, <em>java-datatype</em>]&#8230;])</code></p>
@@ -6296,7 +6296,7 @@ primitive data type (for example, int). an sql data type maps to a java primitiv
 <div class="paragraph">
 <p>the java signature is case-sensitive and must be placed within parentheses, such as (java.lang.integer, java.lang.integer).
 the signature must specify each of the parameter data types in the order they appear in the java method definition within
-the class file. each java data type that corresponds to an out or inout parameter must befollowed by empty square
+the class file. each java data type that corresponds to an out or inout parameter must be followed by empty square
 brackets ([ ]), such as java.lang.integer[].</p>
 </div>
 </li>
@@ -6318,14 +6318,14 @@ brackets ([ ]), such as java.lang.integer[].</p>
 <li>
 <p><code>library <em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of a library containing the spj method. if you do not fully qualify the library name,
+<p>specifies the ANSI logical name of a library containing the SPJ method. if you do not fully qualify the library name,
 trafodion sql qualifies it according to the schema of the current session.</p>
 </div>
 </li>
 <li>
 <p><code>external security <em>external-security-type</em></code></p>
 <div class="paragraph">
-<p>determines the privileges, or rights, that users have when executing (or calling) the spj. an spj can have one of these
+<p>determines the privileges, or rights, that users have when executing (or calling) the SPJ. An SPJ can have one of these
 types of external security:</p>
 </div>
 <div class="ulist">
@@ -6333,11 +6333,11 @@ types of external security:</p>
 <li>
 <p>invoker determines that users can execute, or invoke, the stored procedure using the privileges of the user who invokes
 the stored procedure. this behavior is referred to as <em>invoker rights</em> and is the default behavior if external security is
-not specified. invoker rights allow a user who has the execute privilege on the spj to call the spj using his or her existing
-privileges. in this case, the user must be granted privileges to access the underlying database objects on which the spj operates.</p>
+not specified. invoker rights allow a user who has the execute privilege on the SPJ to call the SPJ using his or her existing
+privileges. in this case, the user must be granted privileges to access the underlying database objects on which the SPJ operates.</p>
 <div class="paragraph">
 <p>note: granting a user privileges to the underlying database objects gives the user direct access to those database objects,
-which could pose a risk to more sensitive or critical data to which users should not have access. for example, an spj
+which could pose a risk to more sensitive or critical data to which users should not have access. for example, an SPJ
 might operate on a subset of the data in an underlying database object, but that database object might contain other
 more sensitive or critical data to which users should not have access.</p>
 </div>
@@ -6347,8 +6347,8 @@ more sensitive or critical data to which users should not have access.</p>
 the stored procedure. this behavior is referred to as <em>definer rights</em>. the advantage of definer rights is that users are
 allowed to manipulate data by invoking the stored procedure without having to be granted privileges to the underlying
 database objects. that way, users are restricted from directly accessing or manipulating more sensitive or critical data in
-the database. however, be careful about the users to whom you grant execute privilege on an spj with definer external security
-because those users will be able to execute the spj without requiring privileges to the underlying database objects.</p>
+the database. however, be careful about the users to whom you grant execute privilege on an SPJ with definer external security
+because those users will be able to execute the SPJ without requiring privileges to the underlying database objects.</p>
 </li>
 </ul>
 </div>
@@ -6376,13 +6376,13 @@ because those users will be able to execute the spj without requiring privileges
 <li>
 <p><code>no sql</code></p>
 <div class="paragraph">
-<p>specifies that the spj cannot perform sql operations.</p>
+<p>specifies that the SPJ cannot perform sql operations.</p>
 </div>
 </li>
 <li>
 <p><code>contains sql | modifies sql data | reads sql data</code></p>
 <div class="paragraph">
-<p>specifies that the spj can perform sql operations. all these options behave the same as contains sql, meaning that the spj
+<p>specifies that the SPJ can perform sql operations. all these options behave the same as contains sql, meaning that the SPJ
 can read and modify sql data. use one of these options to register a method that contains sql statements. if you do not specify
 an sql access mode, the default is contains sql.</p>
 </div>
@@ -6390,21 +6390,21 @@ an sql access mode, the default is contains sql.</p>
 <li>
 <p><code>dynamic result sets <em>integer</em></code></p>
 <div class="paragraph">
-<p>specifies the maximum number of result sets that the spj can return. this option is applicable only if the method signature
+<p>specifies the maximum number of result sets that the SPJ can return. this option is applicable only if the method signature
 contains a java.sql.resultset[] object. if the method contains a result set object, the valid range is 1 to 255 inclusive.
-the actual number of result sets returned by the spj method can be less than or equal to this number. if you do not specify
-this option, the default value is 0 (zero), meaning that the spj does not return result sets.</p>
+the actual number of result sets returned by the SPJ method can be less than or equal to this number. if you do not specify
+this option, the default value is 0 (zero), meaning that the SPJ does not return result sets.</p>
 </div>
 </li>
 <li>
 <p><code>transaction required | no transaction required</code></p>
 <div class="paragraph">
-<p>determines whether the spj must run in a transaction inherited from the calling application (transaction required, the default
-option) or whether the spj runs without inheriting the calling application’s transaction (no transaction required). typically,
-you will want the stored procedure to inherit the transaction from the calling application. however, if the spj method does
+<p>determines whether the SPJ must run in a transaction inherited from the calling application (transaction required, the default
+option) or whether the SPJ runs without inheriting the calling application’s transaction (no transaction required). typically,
+you will want the stored procedure to inherit the transaction from the calling application. however, if the SPJ method does
 not access the database or if you want the stored procedure to manage its own transactions, you should set the stored
 procedure’s transaction attribute to no transaction required. for more information, see
-<a href="#effects_of_the_transaction_attribute_on_spjs">effects of the transaction attribute on spjs</a>.</p>
+<a href="#effects_of_the_transaction_attribute_on_spjs">effects of the transaction attribute on SPJs</a>.</p>
 </div>
 </li>
 </ul>
@@ -6415,17 +6415,17 @@ procedure’s transaction attribute to no transaction required. for more informa
 <li>
 <p><code>deterministic | not deterministic</code></p>
 <div class="paragraph">
-<p>specifies whether the spj always returns the same values for out and inout parameters for a given set of argument values
+<p>specifies whether the SPJ always returns the same values for out and inout parameters for a given set of argument values
 (deterministic) or does not return the same values (not deterministic, the default option). if you specify deterministic,
-trafodion sql is not required to call the spj each time to produce results; instead, trafodion sql caches the results and
+trafodion sql is not required to call the SPJ each time to produce results; instead, trafodion sql caches the results and
 reuses them during subsequent calls, thus optimizing the call statement.</p>
 </div>
 </li>
 <li>
 <p><code>no isolate | isolate</code></p>
 <div class="paragraph">
-<p>specifies that the spj executes either in the environment of the database server (no isolate) or in an isolated environment
-(isolate, the default option). trafodion sql allows both options but always executes the spj in the udr server process (isolate).</p>
+<p>specifies that the SPJ executes either in the environment of the database server (no isolate) or in an isolated environment
+(isolate, the default option). trafodion sql allows both options but always executes the SPJ in the udr server process (isolate).</p>
 </div>
 </li>
 </ul>
@@ -6760,7 +6760,7 @@ See <a href="#Case_Insensitive_Delimited_Identifiers">Case-Insensitive Delimited
 <p>To create a role, you must either be DB ROOT or have been granted the MANAGE_ROLES component privilege for SQL_OPERATIONS.</p>
 </li>
 <li>
-<p>PUBLIC, <em>SYSTEM, NONE, and database usernames beginning with DB are reserved. You cannot specify a _role-name</em> with any such name.</p>
+<p>PUBLIC, <em>SYSTEM, NONE, and database user names beginning with DB are reserved. You cannot specify a _role-name</em> with any such name.</p>
 </li>
 </ul>
 </div>
@@ -7532,7 +7532,7 @@ as its original <em>source-table</em> counterpart. The new table partitions do n
 Instead, Trafodion SQL generates new names based on the physical file location.</p>
 </div>
 <div class="paragraph">
-<p>If you specify the LIKE clause and the SALT USING <em>num</em> PARITIONS clause, you cannot specify WITH PARTITIONS.</p>
+<p>If you specify the LIKE clause and the SALT USING <em>num</em> PARTITIONS clause, you cannot specify WITH PARTITIONS.</p>
 </div>
 </li>
 </ul>
@@ -7627,7 +7627,7 @@ or through a granted role.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Volatile temporary tables are closely linked to the session. Their namespace is unique across multiple concurrent
+<p>Volatile temporary tables are closely linked to the session. Their name space is unique across multiple concurrent
 sessions, and therefore allow multiple sessions to use the same volatile temporary table names simultaneously without
 any conflicts.</p>
 </li>
@@ -8198,7 +8198,7 @@ that was derived from the select query.</p>
 </li>
 <li>
 <p>The <em>column-attributes</em> must specify either the <em>column-name datatype-info</em> pair or just the <em>column-name</em> for all
-columns. Youcannot specify some columns with just the name and others with name and data type.</p>
+columns. You cannot specify some columns with just the name and others with name and data type.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">create table t(a int, b) as select c,d from t1</code></pre>
@@ -8406,7 +8406,7 @@ In this case, if you create a view in a private schema, it will be owned by the 
 </div>
 <div class="paragraph">
 <p>When you create a view on a single table, the owner of the view is automatically given all privileges WITH GRANT OPTION
-on the view. However, when you create a view that spans multiple tables, the owner ofthe view is given only SELECT
+on the view. However, when you create a view that spans multiple tables, the owner of the view is given only SELECT
 privileges WITH GRANT OPTION. If you try to grant privileges to another user on the view other than SELECT, you will
 receive a warning that you lack the grant option for that privilege.</p>
 </div>
@@ -8653,8 +8653,8 @@ of table A and vp1 fills the role of table B. For the join between vp1 and vp2, 
 the role of table B.</p>
 </div>
 <div class="paragraph">
-<p>The view vp shown in this example uses left outer joins to combine thethree underlying tables. Therefore, if the select list
-in a query that accesses vp does not contain column d from vp2 then the join to tablevp2 in the view vp will not be performed.</p>
+<p>The view vp shown in this example uses left outer joins to combine the three underlying tables. Therefore, if the select list
+in a query that accesses vp does not contain column d from vp2 then the join to table vp2 in the view vp will not be performed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8865,7 +8865,7 @@ must be turned ON (the default) for the session.
 <li>
 <p><code><em class="[_catalog-name_.">schema-name</em>.]<em>function-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of the function, where each part of the name is a valid sql identifier with a maximum of
+<p>specifies the ANSI logical name of the function, where each part of the name is a valid sql identifier with a maximum of
 128 characters. specify the name of a function that has already been registered in the schema. if you do not fully qualify
 the function name, trafodion sql qualifies it according to the schema of the current session. for more information,
 see <a href="#identifiers">identifiers</a> and <a href="#database_object_names">database object names</a>.</p>
@@ -9054,7 +9054,7 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 <li>
 <p><code><em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of the library object, where each part of the name is a valid sql identifier with a
+<p>specifies the ANSI logical name of the library object, where each part of the name is a valid sql identifier with a
 maximum of 128 characters. specify the name of a library object that has already been registered in the schema. if
 you do not fully qualify the library name, trafodion sql qualifies it according to the schema of the current session.
 for more information, see <a href="#identifiers">identifiers</a> and <a href="#database_object_names">database object names</a>.</p>
@@ -9064,7 +9064,7 @@ for more information, see <a href="#identifiers">identifiers</a> and <a href="#d
 <p><code>[restrict | cascade]</code></p>
 <div class="paragraph">
 <p>if you specify restrict, the drop library operation fails if any stored procedures in java (spjs) or user-defined
-functions (udfs) were created based on the specified library.</p>
+functions (UDFs) were created based on the specified library.</p>
 </div>
 <div class="paragraph">
 <p>if you specify cascade, any such dependent procedures or functions are removed as part of the drop library operation.</p>
@@ -9172,7 +9172,7 @@ must be turned ON (the default) for the session.
 <li>
 <p><code><em class="[_catalog-name_.">schema-name</em>.]<em>procedure-name</em></code></p>
 <div class="paragraph">
-<p>specifies the ansi logical name of the stored procedure in java (spj), where each part of the name is a valid sql
+<p>specifies the ANSI logical name of the stored procedure in java (SPJ), where each part of the name is a valid sql
 identifier with a maximum of 128 characters. specify the name of a procedure that has already been registered in the
 schema. if you do not fully qualify the procedure name, trafodion sql qualifies it according to the schema of the
 current session.</p>
@@ -9234,7 +9234,7 @@ DROP PROCEDURE totalprice;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="drop_role_statemment">3.23. DROP ROLE Statement</h3>
+<h3 id="drop_role_statement">3.23. DROP ROLE Statement</h3>
 <div class="paragraph">
 <p>The DROP ROLE statement deletes an SQL role. See <a href="#roles">Roles</a>.</p>
 </div>
@@ -10122,13 +10122,13 @@ the catalog is TRAFODION, and the schema is SEABASE.</p>
 <li>
 <p><code>FUNCTIONS FOR LIBRARY <em class="[_catalog-name_.">schema-name</em>.]<em>library-name</em></code></p>
 <div class="paragraph">
-<p>displays the udfs that reference the specified library.</p>
+<p>displays the UDFs that reference the specified library.</p>
 </div>
 </li>
 <li>
 <p><code>functions in schema <em class="_catalog-name_.">schema-name</em></code></p>
 <div class="paragraph">
-<p>displays the names of all the udfs in the specified schema.</p>
+<p>displays the names of all the UDFs in the specified schema.</p>
 </div>
 </li>
 <li>
@@ -10772,7 +10772,7 @@ installed, the GET VERSION OF SOFTWARE statement displays this output:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="get_version_of_software_examles">3.32.2. Examples of GET VERSION OF SOFTWARE</h4>
+<h4 id="get_version_of_software_examples">3.32.2. Examples of GET VERSION OF SOFTWARE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10907,7 +10907,7 @@ grantor is:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">execute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">can execute a stored procedure using a call statement or can execute a user-defined function (udf).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can execute a stored procedure using a call statement or can execute a user-defined function (UDF).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">usage</p></td>
@@ -10917,7 +10917,7 @@ with read access to the library’s underlying library file.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">all the applicable privileges. when you specify all for a table or view, this includes the select, delete,
-insert, references, and update privileges. when the object is a stored procedure or user-defined function (udf), only the
+insert, references, and update privileges. when the object is a stored procedure or user-defined function (UDF), only the
 execute privilege is applied. when the object is a library, only the update and usage privileges are applied.</p></td>
 </tr>
 </tbody>
@@ -10934,14 +10934,14 @@ execute privilege is applied. when the object is a library, only the update and 
 <p><code>[table] <em class="_schema_.">object</em></code>, where <em>object</em> is a table or view. see <a href="#database_object_names">database object names</a>.</p>
 </li>
 <li>
-<p><code>[procedure] <em class="_schema_.">procedure-name</em></code>, where <em>procedure-name</em> is the name of a stored procedure in java (spj)
+<p><code>[procedure] <em class="_schema_.">procedure-name</em></code>, where <em>procedure-name</em> is the name of a stored procedure in java (SPJ)
 registered in the database.</p>
 </li>
 <li>
 <p><code>[library] <em class="_schema_.">library-name</em></code>, where <em>library-name</em> is the name of a library object in the database.</p>
 </li>
 <li>
-<p><code>[function] <em class="_schema_.">function-name</em></code>, where <em>function-name</em> is the name of a user-defined function (udf) in the database.</p>
+<p><code>[function] <em class="_schema_.">function-name</em></code>, where <em>function-name</em> is the name of a user-defined function (UDF) in the database.</p>
 </li>
 </ul>
 </div>
@@ -11255,7 +11255,7 @@ has been granted to PUBLIC by default.</p></td>
 <div class="paragraph">
 <p>specifies the name of an authorization ID to which you grant privileges. See <a href="#authorization_ids">Authorization IDs</a>.
 The authorization ID must be a registered database username, existing role name, or PUBLIC. The name is a regular or
-delimited case-insensitive identifier. See <a href="#case_insensitive_delimited_iddentifiers">Case-Insensitive Delimited Identifiers</a>.
+delimited case-insensitive identifier. See <a href="#case_insensitive_delimited_identifiers">Case-Insensitive Delimited Identifiers</a>.
 If you grant a privilege to PUBLIC, the privilege remains available to all users, unless it is later revoked from PUBLIC.</p>
 </div>
 </li>
@@ -11564,12 +11564,12 @@ be inserted must be compatible with the data types of the corresponding target c
 <div class="paragraph">
 <p>Any character string data type is compatible with all other character string data types that have the same character set. For fixed length, an
 inserted value shorter than the column length is padded on the right with blank characters of the appropriate character set (for example,
-ISO88591 blanks (HEX20). If the value is longer than the column length, string truncation of nonblank trailing characters returns an error, and
+ISO88591 blanks (HEX20). If the value is longer than the column length, string truncation of non-blank trailing characters returns an error, and
 the truncated string is not inserted.</p>
 </div>
 <div class="paragraph">
 <p>For variable length, a shorter inserted value is not padded. As is the case for fixed length, if the value is longer than the column length,
-string truncation of nonblank trailing characters returns an error, and the truncated string is not inserted.</p>
+string truncation of non-blank trailing characters returns an error, and the truncated string is not inserted.</p>
 </div>
 </div>
 <div class="sect5">
@@ -12346,21 +12346,21 @@ to type than the directory-service username.</p>
 database username of JDoe.</p>
 </div>
 <div class="paragraph">
-<p>Database usernames are authorization IDs. If you specify a name already assigned to another user or to an existing
+<p>Database user names are authorization IDs. If you specify a name already assigned to another user or to an existing
 role, the command will fail. For more information, see <a href="#authorization_ids">Authorization IDs</a>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="register_user_reserved_names">Reserved Names</h5>
 <div class="paragraph">
-<p>PUBLIC, _SYSTEM, NONE, and database usernames beginning with DB are reserved. You cannot register users with any
+<p>PUBLIC, _SYSTEM, NONE, and database user names beginning with DB are reserved. You cannot register users with any
 such name.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="register_user_username_length">Username Length</h5>
 <div class="paragraph">
-<p>Database usernames are limited to 128 characters.</p>
+<p>Database user names are limited to 128 characters.</p>
 </div>
 </div>
 </div>
@@ -13361,7 +13361,7 @@ does not specify a return list.</p>
 <p><code><em>col-expr</em> [[AS] <em>name</em>]</code></p>
 <div class="paragraph">
 <p>specifies a derived column determined by the evaluation of an SQL value expression in the list. Any column referred to in
-a value expression can be specified as being from the row in the old table exposed by the pdate or can be specified as being
+a value expression can be specified as being from the row in the old table exposed by the update or can be specified as being
 from the row in the new table exposed by the update.</p>
 </div>
 <div class="paragraph">
@@ -13449,7 +13449,7 @@ an outer join.</p>
 <p><code><em>join-spec</em>.</code></p>
 <div class="paragraph">
 <p>If you specify an INNER, LEFT, RIGHT, or FULL join as the <em>join-type</em> and you do not specify a NATURAL join, you
-must use an ON clause as the <em>join-spec</em>, as follows: Subqueries are not allowed in the join predicate of FULL OUTER JOIN.</p>
+must use an ON clause as the <em>join-spec</em>, as follows: subqueries are not allowed in the join predicate of FULL OUTER JOIN.</p>
 </div>
 </li>
 <li>
@@ -13672,7 +13672,7 @@ optionally qualified by a table, view, or correlation name; for example, CUSTOME
 <p><code>ASC | DESC</code></p>
 <div class="paragraph">
 <p>specifies the sort order. The default is ASC. When Trafodion SQL orders an intermediate result table on a column that can
-contain null, nulls are considered equal to one another but greater than all other nonnull values.</p>
+contain null, nulls are considered equal to one another but greater than all other non-null values.</p>
 </div>
 </li>
 </ul>
@@ -13803,7 +13803,7 @@ column has been aliased to another name you must use the alias name.</p>
 <p><code>ASC | DESC</code></p>
 <div class="paragraph">
 <p>specifies the sort order. The default is ASC. For ordering a result table on a column that can contain null, nulls are
-considered equal to one another but greater than all other nonnull values.</p>
+considered equal to one another but greater than all other non-null values.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="#considerations_for_order_by">Considerations for ORDER BY</a>.</p>
@@ -14590,7 +14590,7 @@ Order/Num  Part/Num Unit/Price   Qty/Ord    Part/Num Part Description   PRICE   
 <ul>
 <li>
 <p>Select from three tables and display them in employee number order. Two tables are joined by using a LEFT JOIN on matching department
-numbers, then an additional table is joined on matching jobcodes:</p>
+numbers, then an additional table is joined on matching job codes:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT empnum, first_name, last_name, deptname, location, jobdesc
@@ -15105,7 +15105,7 @@ in the form of GRANT statements.</p>
 <p>A constraint may be disabled.</p>
 </li>
 <li>
-<p>A table may be offline.</p>
+<p>A table may be off line.</p>
 </li>
 <li>
 <p>An active DDL lock may exist on an object.</p>
@@ -15378,7 +15378,7 @@ multi-column group.</p>
 <li>
 <p><code>EVERY COLUMN</code></p>
 <div class="paragraph">
-<p>indicates that histogram statistics are to be displayed for each individual column of <em>table</em> and any multicolumns that
+<p>indicates that histogram statistics are to be displayed for each individual column of <em>table</em> and any multi columns that
 make up the primary key and indexes. For columns that do not have histograms, this option returns
 <code>No histogram data for column(s) ---&#93;</code>.</p>
 </div>
@@ -16438,7 +16438,7 @@ called an HFile.</p>
 <p><em>Preparation phase</em>: In this phase, Trafodion reads the data from
 the source files in Hive or HDFS, partitions the data based on the
 target table&#8217;s partitioning scheme, sorts the data, and then generates
-KeyValue pairs that will populate the HFiles. Trafodion also encodes the
+key-value pairs that will populate the HFiles. Trafodion also encodes the
 data for faster storage and retrieval.</p>
 </li>
 <li>
@@ -16551,7 +16551,7 @@ data from the parent table.</p>
 <li>
 <p><code>UPSERT USING LOAD</code></p>
 <div class="paragraph">
-<p>specifies that the data be inserted into the target table using rowset
+<p>specifies that the data be inserted into the target table using row set
 inserts without a transaction.</p>
 </div>
 </li>
@@ -16745,7 +16745,7 @@ index-option is:
 <div class="paragraph">
 <p>is an SQL identifier that specifies the simple name for the index. You
 cannot qualify <em>index</em> with its schema name. Indexes have their own
-namespace within a schema, so an index name might be the same as a table
+name space within a schema, so an index name might be the same as a table
 or constraint name. However, no two indexes in a schema can have the
 same name.</p>
 </div>
@@ -16760,7 +16760,7 @@ same name.</p>
 <li>
 <p><code>ONLINE</code></p>
 <div class="paragraph">
-<p>specifies that the populate operation should be done online. That is,
+<p>specifies that the populate operation should be done on-line. That is,
 ONLINE allows read and write DML access on the base table while the
 populate operation occurs. Additionally, ONLINE reads the audit trail to
 replay updates to the base table during the populate phase. If a lot of
@@ -16772,7 +16772,7 @@ contention to the audit trail. The default is ONLINE.</p>
 <li>
 <p><code>OFFLINE</code></p>
 <div class="paragraph">
-<p>specifies that the populate should be done offline. OFFLINE allows only
+<p>specifies that the populate should be done off-line. OFFLINE allows only
 read DML access to the base table. The base table is unavailable for
 write operations at this time. OFFLINE must be specified explicitly.
 SELECT is allowed.</p>
@@ -16800,13 +16800,13 @@ SELECT is allowed.</p>
 <div class="paragraph">
 <p>If a failure occurs, the rollback is faster because it does not have to
 process a lot of audit. Also, if a failure occurs, the index remains
-empty, unaudited, and not attached to the base table (offline).</p>
+empty, unaudited, and not attached to the base table (off-line).</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>When an offline POPULATE INDEX is being executed, the base table is
-accessible for read DML operations. When an online POPULATE INDEX is
+<p>When an off-line POPULATE INDEX is being executed, the base table is
+accessible for read DML operations. When an on-line POPULATE INDEX is
 being executed, the base table is accessible for read and write DML
 operations during that time period, except during the commit phase at
 the very end.</p>
@@ -16816,7 +16816,7 @@ the very end.</p>
 drop the index again and re-create and repopulate.</p>
 </li>
 <li>
-<p>Online POPULATE INDEX reads the audit trail to replay updates by
+<p>On-line POPULATE INDEX reads the audit trail to replay updates by
 allowing read/write access. If you plan to create many indexes in
 parallel or if you have a high level of activity on the audit trail, you
 should consider using the OFFLINE option.</p>
@@ -17339,7 +17339,7 @@ unchanged in histogram tables.</p>
 <p><code>EVERY COLUMN</code></p>
 <div class="paragraph">
 <p>The EVERY COLUMN keyword indicates that histogram statistics are to be
-generated for each individual column of <em>table</em> and any multicolumns
+generated for each individual column of <em>table</em> and any multi-columns
 that make up the primary key and indexes. For example, <em>table</em> has
 columns A, B, C, D defined, where A, B, C compose the primary key. In
 this case, the ON EVERY COLUMN option generates a single column
@@ -17668,7 +17668,7 @@ However, those statistics will remain until you clear them.</p>
 a table—that is, the primary key, indexes defined on the table, and any
 other columns frequently referenced in predicates in WHERE or GROUP BY
 clauses of queries issued on the table. Use the EVERY COLUMN option to
-generate histograms for every individual column or multicolumns that
+generate histograms for every individual column or multi columns that
 make up the primary key and indexes.</p>
 </div>
 <div class="paragraph">
@@ -17833,12 +17833,12 @@ Internally, the authorization ID is associated with a 32-bit number that the dat
 efficient access and storage.</p>
 </div>
 <div class="paragraph">
-<p>All authorization IDs share the same namespace. An authorization ID can be a database username or a role name.
+<p>All authorization IDs share the same name space. An authorization ID can be a database user name or a role name.
 Therefore, a database user and a role cannot share the same name.</p>
 </div>
 <div class="paragraph">
 <p>An authorization ID can be the PUBLIC authorization ID, which represents all present and future authorization IDs.
-An authorization ID cannot be SYSTEM, which is the implicit grantor of privileges to the creator of bjects.</p>
+An authorization ID cannot be SYSTEM, which is the implicit grantor of privileges to the creator of objects.</p>
 </div>
 </div>
 <div class="sect2">
@@ -18011,7 +18011,7 @@ PRIMARY KEY clause of the CREATE TABLE statement.</p>
 <div class="paragraph">
 <p>When you create a constraint, you can specify a name for it or allow a name to be generated by Trafodion SQL.
 You can optionally specify both column and table constraint names. Constraint names are ANSI logical names.
-See <a href="#database_object_names">Database Object Names</a>. Constraint names are in the same namespace as tables and
+See <a href="#database_object_names">Database Object Names</a>. Constraint names are in the same name space as tables and
 views, so a constraint name cannot have the same name s a table or view.</p>
 </div>
 <div class="paragraph">
@@ -18097,7 +18097,7 @@ WHERE orders.custnum = c.custnum AND orders.custnum = 543;</code></pre>
 <div class="sect2">
 <h3 id="database_objects">5.6. Database Objects</h3>
 <div class="paragraph">
-<p>A database object is an SQL entity that exists in a namespace. SQL statements can access Trafodion SQL database objects.
+<p>A database object is an SQL entity that exists in a name space. SQL statements can access Trafodion SQL database objects.
 The subsections listed below describe these Trafodion SQL database objects.</p>
 </div>
 <div class="ulist">
@@ -18170,7 +18170,7 @@ correlation name.</p>
 contained in a catalog called TRAFODION. A catalog is a collection of schemas. Schema names must be unique within the catalog.</p>
 </div>
 <div class="paragraph">
-<p>Multiple objects with the same name can exist provided that each belongs to a different namespace. Trafodion SQL supports these
+<p>Multiple objects with the same name can exist provided that each belongs to a different name space. Trafodion SQL supports these
 namespaces:</p>
 </div>
 <div class="ulist">
@@ -18193,7 +18193,7 @@ namespaces:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Objects in one schema can refer to objects in a different schema. Objects of a given namespace are required to have
+<p>Objects in one schema can refer to objects in a different schema. Objects of a given name space are required to have
 unique names within a given schema.</p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -18408,7 +18408,7 @@ FRACTION in 4 bytes<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP (with time precision) Point in time, with time precision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS.FFFFFF; actual database storage size is 1b ytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS.FFFFFF; actual database storage size is 1 byte</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Interval</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INTERVAL</p></td>
 </tr>
@@ -18871,9 +18871,9 @@ datetime item can represent a date, a time, or a date and time.</p>
 </div>
 <div class="paragraph">
 <p>When a numeric value is added to or subtracted from a date type, the
-numeric value is automatically CASTed to an INTERVAL DAY value. When a
+numeric value is automatically casted to an INTERVAL DAY value. When a
 numeric value is added to or subtracted from a time type or a timestamp
-type, the numeric value is automatically CASTed to an INTERVAL SECOND
+type, the numeric value is automatically casted to an INTERVAL SECOND
 value. For information on CAST, see <a href="#cast
 expression">CAST
 Expression</a>.</p>
@@ -19690,9 +19690,9 @@ a datetime value expression only in these combinations:</p>
 </table>
 <div class="paragraph">
 <p>When a numeric value is added to or subtracted from a DATE type, the
-numeric value is automatically CASTed to an INTERVAL DAY value. When a
+numeric value is automatically casted to an INTERVAL DAY value. When a
 numeric value is added to or subtracted from a time type or a timestamp
-type, the numeric value is automatically CASTed to an INTERVAL SECOND
+type, the numeric value is automatically casted to an INTERVAL SECOND
 value. For information on CAST, see <a href="#cast expression">CAST Expression</a>.
 For more information on INTERVALS, see
 <a href="#interval_value_expressions">Interval Value Expressions</a></p>
@@ -20603,7 +20603,7 @@ precision needed anywhere in the evaluation.</p>
 <p>SQL identifiers are names used to identify tables, views, columns, and
 other SQL entities. The two types of identifiers are regular and
 delimited. A delimited identifier is enclosed in double quotes (").
-Case-insensitive delimited identifiers are used only for usernames and
+Case-insensitive delimited identifiers are used only for user names and
 role names. Either regular, delimited, or case-sensitive delimited
 identifiers can contain up to 128 characters.</p>
 </div>
@@ -20624,14 +20624,14 @@ quote characters (") and consist of alphanumeric characters, including
 the underscore character (_) or a dash (-). Unlike regular identifiers,
 delimited identifiers are case-sensitive. Trafodion SQL does not support
 spaces or special characters in delimited identifiers given the
-constraints of the underlying HBase filesystem. You can use reserved
+constraints of the underlying HBase file system. You can use reserved
 words as delimited identifiers.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="case_insensitive_delimited_identifiers">5.10.3. Case-Insensitive Delimited Identifiers</h4>
 <div class="paragraph">
-<p>Case-insensitive delimited identifiers, which are used for usernames and
+<p>Case-insensitive delimited identifiers, which are used for user names and
 roles, are character strings that appear within double quote characters
 (") and consist of alphanumeric characters
 (A through Z and a through z), digits (0 through 9), underscores (_), dashes (-), periods (.), at
@@ -20727,7 +20727,7 @@ clustering key)</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>An index name is an SQL identifier. Indexes have their own namespace
+<p>An index name is an SQL identifier. Indexes have their own name space
 within a schema, so an index name might be the same as a table or
 constraint name. However, no two indexes in a schema can have the same
 name.</p>
@@ -20791,7 +20791,7 @@ table rows. Each row in a Trafodion SQL index contains:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For a nonunique index, the clustering key of the index is composed of
+<p>For a non-unique index, the clustering key of the index is composed of
 both items. The clustering key cannot exceed 2048 bytes. Because the
 clustering key includes all the columns in the table, each row is also
 limited to 2048 bytes.</p>
@@ -21607,7 +21607,7 @@ clauses are:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>ORDER BY</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nulls are considered greater than nonnull values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nulls are considered greater than non-null values.</p></td>
 </tr>
 </tbody>
 </table>
@@ -21991,7 +21991,7 @@ values with the same ordinal position in the two lists.) See
 <div class="paragraph">
 <p>Trafodion SQL determines whether a relationship is true or false by
 comparing values in corresponding positions in sequence, until it finds
-the first nonequal pair.</p>
+the first non-equal pair.</p>
 </div>
 <div class="paragraph">
 <p>You cannot use a comparison predicate in a WHERE or HAVING clause to
@@ -22009,7 +22009,7 @@ value constructor are equal to null. Use the IS NULL predicate instead.</p>
 <div class="paragraph">
 <p>Predicate X=Y is true if for all i=1,&#8230;,n: Xi=Yi. For this predicate,
 Trafodion SQL must look through all values. Predicate X = Y is false if
-for some i Xi&lt;&gt;Yi. When SQL finds nonequal components, it stops and does
+for some i Xi&lt;&gt;Yi. When SQL finds non-equal components, it stops and does
 not look at remaining components.</p>
 </div>
 <div class="paragraph">
@@ -22042,7 +22042,7 @@ if all components are equal, or X=Y.</p>
 <div class="paragraph">
 <p>Predicate X&lt;&#61;Y is true if X&lt;Y is true or X=Y is true. In this scenario,
 Trafodion SQL might need to look through all components and return true
-if they are all equal. It stops at the first nonequal components,
+if they are all equal. It stops at the first non-equal components,
 Xm&lt;&gt;Ym. If Xm&lt;Ym, the predicate is true. Otherwise, it is false.</p>
 </div>
 </div>
@@ -22087,8 +22087,8 @@ values must be both year-month intervals or both day-time intervals.</p>
 <div class="sect5">
 <h6 id="comparing_multiple_values">Comparing Multiple Values</h6>
 <div class="paragraph">
-<p>Use multivalue predicates whenever possible; they are generally more
-efficient than equivalent conditions without multivalue predicates.</p>
+<p>Use multi-value predicates whenever possible; they are generally more
+efficient than equivalent conditions without multi-value predicates.</p>
 </div>
 </div>
 </div>
@@ -22143,7 +22143,7 @@ same last name, alphabetically by first name:</p>
 <p>REEVES, ANNE meets this criteria, but MOSS, ANNE does not.</p>
 </div>
 <div class="paragraph">
-<p>This multivalue predicate is equivalent to this condition with three
+<p>This multi-value predicate is equivalent to this condition with three
 comparison predicates:</p>
 </div>
 <div class="listingblock">
@@ -23302,7 +23302,7 @@ information about privileges, see <a href="#privileges">Privileges</a>.</p>
 </div>
 <div class="paragraph">
 <p>A role name is an authorization ID. A role name cannot be identical to a
-registered database username. For more information, see
+registered database user name. For more information, see
 <a href="#authorization_ids">Authorization IDs</a>.</p>
 </div>
 <div class="paragraph">
@@ -23358,7 +23358,7 @@ DROP SCHEMA statement. For more information, see the
 </div>
 </div>
 <div class="sect2">
-<h3 id="search_condiation">5.19. Search Condition</h3>
+<h3 id="search_condition">5.19. Search Condition</h3>
 <div class="paragraph">
 <p>A search condition is used to choose rows from tables or views,
 depending on the result of applying the condition to rows. The condition
@@ -23612,7 +23612,7 @@ WHERE y = 2))</code></pre>
 <p>The complexity of the subqueries.</p>
 </li>
 <li>
-<p>Whether the subquery is correlated and if so, whether it can be unnested.</p>
+<p>Whether the subquery is correlated and if so, whether it can be un-nested.</p>
 </li>
 <li>
 <p>Amount of available memory.</p>
@@ -23803,7 +23803,7 @@ or both, from one or more base tables or other views.</p>
 <h4 id="sql_views">5.22.1. SQL Views</h4>
 <div class="paragraph">
 <p>A view’s name must be unique among table and view names within the
-schema that contains it. Single table views can be updatable. Multitable
+schema that contains it. Single table views can be updatable. Multi-table
 views are not updatable.</p>
 </div>
 <div class="paragraph">
@@ -24860,7 +24860,7 @@ by a table, view, or correlation name; for example, CUSTOMER.CITY.</p>
 <div class="paragraph">
 <p>specifies the sort order. ASC is the default. For ordering an
 intermediate result table on a column that can contain null, nulls are
-considered equal to one another but greater than all other nonnull
+considered equal to one another but greater than all other non-null
 values.</p>
 </div>
 <div class="paragraph">
@@ -26278,7 +26278,7 @@ list, all rows of the SELECT result table form the one and only group.</p>
 <div class="paragraph">
 <p>These functions manipulate character strings and use a character value
 expression as an argument or return a result of a character data type.
-Character string functions treat each single-byte or multibyte character
+Character string functions treat each single-byte or multi-byte character
 in an input string as one character, regardless of the byte length of
 the character.</p>
 </div>
@@ -26321,7 +26321,7 @@ string has been inserted at a specified start position.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#lcase_function">LCASE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Downshifts alphanumeric characters. You can also use LOWER.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Down-shifts alphanumeric characters. You can also use LOWER.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#left_function">LEFT Function</a></p></td>
@@ -26334,7 +26334,7 @@ You can also use POSITION.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#lower_function">LOWER Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Downshifts alphanumeric characters. You can also use LCASE.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Down-shifts alphanumeric characters. You can also use LCASE.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#lpad_function">LPAD Function</a></p></td>
@@ -26398,15 +26398,15 @@ character set.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ucase_function">UCASE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upshifts alphanumeric characters. You can also use UPSHIFT or UPPER.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Up-shifts alphanumeric characters. You can also use UPSHIFT or UPPER.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#upper_function">UPPER Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upshifts alphanumeric characters. You can also use UPSHIFT or UCASE.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Up-shifts alphanumeric characters. You can also use UPSHIFT or UCASE.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#upshift_function">UPSHIFT Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upshifts alphanumeric characters. You can also use UPPER or UCASE.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Up-shift alphanumeric characters. You can also use UPPER or UCASE.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26692,7 +26692,7 @@ returns 0. If value is greater than zero, returns 1.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the hyperbolic tangent of a numeric value expression, where the expression is an angle expressed in radians.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#zeroifnull_dunction">ZEROIFNULL Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#zeroifnull_function">ZEROIFNULL Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the value of the operand unless it is NULL, in which case it returns zero.</p></td>
 </tr>
 </tbody>
@@ -26747,27 +26747,27 @@ sequence function.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingcount_function">MOVINGCOUNT Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the number of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the number of non-null values of a column expression in the current window.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingmax_function">MOVINGMAX Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the maximum of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the maximum of non-null values of a column expression in the current window.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingmin_function">MOVINGMIN Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the minimum of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the minimum of non-null values of a column expression in the current window.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingstddev_function">MOVINGSTDDEV Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the standard deviation of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the standard deviation of non-null values of a column expression in the current window.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingsum_function">MOVINGSUM Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the sum of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the sum of non-null values of a column expression in the current window.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#movingvariance_function">MOVINGVARIANCE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the variance of nonnull values of a column expression in the current window.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the variance of non-null values of a column expression in the current window.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26799,7 +26799,7 @@ sequence function.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#runningavg_function">RUNNINGAVG Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the average of nonnull values of a column expression up to and including the current row.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the average of non-null values of a column expression up to and including the current row.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#runningcount_function">RUNNINGCOUNT Function</a></p></td>
@@ -26819,15 +26819,15 @@ sequence function.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#runningstddev_function">RUNNINGSTDDEV Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the standard deviation of nonnull values of a column expression up to and including the current row.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the standard deviation of non-null values of a column expression up to and including the current row.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#runningsum_function">RUNNINGSUM Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the sum of nonnull values of a column expression up to and including the current row.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the sum of non-null values of a column expression up to and including the current row.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#runningvariance_function">RUNNINGVARIANCE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the variance of nonnull values of a column expression up to and including the current row.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the variance of non-null values of a column expression up to and including the current row.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26842,7 +26842,7 @@ sequence function.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#lastnotnull_function">LASTNOTNULL Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the last nonnull value for the specified column expression. If only null values have been returned, returns null.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the last non-null value for the specified column expression. If only null values have been returned, returns null.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#rows_since_function">ROWS SINCE Function</a></p></td>
@@ -26902,7 +26902,7 @@ the expressions have NULL values, the function returns a NULL value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#current_user_function">CURRENT_USER Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the database username of the current user who invoked the function.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the database user name of the current user who invoked the function.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#decode_function">DECODE Function</a></p></td>
@@ -26926,7 +26926,7 @@ the expressions have NULL values, the function returns a NULL value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#user_function">USER Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns either the database username of the current user who invoked the function or the database username
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns either the database user name of the current user who invoked the function or the database user name
 associated with the specified user ID number.</p></td>
 </tr>
 </tbody>
@@ -27779,7 +27779,7 @@ the ELSE value is not specified.</p>
 in a WHEN clause of a simple CASE, or with each <em>condition</em> in a WHEN
 clause of a searched CASE. All of the <em>result-expressions</em> must have
 comparable data types, and at least one of the
-<em>result-expressions</em> must return nonnull.</p>
+<em>result-expressions</em> must return non-null.</p>
 </div>
 </li>
 <li>
@@ -28208,7 +28208,7 @@ PREMIER INSURANCE       80 P
 <h3 id="char_length_function">7.21. CHAR_LENGTH Function</h3>
 <div class="paragraph">
 <p>The CHAR_LENGTH function returns the number of characters in a string.
-You can also use CHARACTER_LENGTH. Every character, including multibyte
+You can also use CHARACTER_LENGTH. Every character, including multi-byte
 characters, counts as one character.</p>
 </div>
 <div class="listingblock">
@@ -29178,9 +29178,9 @@ SET ship_timestamp = CURRENT_TIMESTAMP WHERE projcode = 1000;</code></pre>
 <div class="sect2">
 <h3 id="current_user_function">7.31. CURRENT_USER Function</h3>
 <div class="paragraph">
-<p>The CURRENT_USER function returns the database username of the current
+<p>The CURRENT_USER function returns the database user name of the current
 user who invoked the function. The current user is the authenticated
-user who started the session. That database username is used for
+user who started the session. That database user name is used for
 authorization of SQL statements in the current session.</p>
 </div>
 <div class="listingblock">
@@ -29209,7 +29209,7 @@ authorization of SQL statements in the current session.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>This example retrieves the database username for the current user:</p>
+<p>This example retrieves the database user name for the current user:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT CURRENT_USER FROM (values(1)) x(a);
@@ -30163,7 +30163,7 @@ function is equal to the result returned by the DAY function.</p>
 <p><code><em>datetime-expression</em></code></p>
 <div class="paragraph">
 <p>is an expression that evaluates to a datetime value of type DATE or
-TIMESTAMP. See <a href="#datetime_value_expressions">Datetime ValueE xpressions</a>.</p>
+TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions</a>.</p>
 </div>
 </li>
 </ul>
@@ -30364,7 +30364,7 @@ comparable types.</p>
 </div>
 <div class="paragraph">
 <p>If <em>expr</em> and a <em>test-expr</em> value are character data, the comparison is
-made using nonpadded comparison semantics.</p>
+made using non-padded comparison semantics.</p>
 </div>
 <div class="paragraph">
 <p>If <em>expr</em> and a <em>test-expr</em> value are numeric data, the comparison is
@@ -31405,7 +31405,7 @@ Start/Date Time/Shipped               (EXPR)
 <p>The INSERT function returns a character string where a specified number
 of characters within the character string has been deleted, beginning at
 a specified start position, and where another character string has been
-inserted at the start position. Every character, including multibyte
+inserted at the start position. Every character, including multi-byte
 characters, is treated as one character.</p>
 </div>
 <div class="paragraph">
@@ -31641,7 +31641,7 @@ START_DATE (EXPR)
 <h3 id="lastnotnull_function">7.54. LASTNOTNULL Function</h3>
 <div class="paragraph">
 <p>The LASTNOTNULL function is a sequence function that returns the last
-nonnull value of a column in an intermediate result table ordered by a
+non-null value of a column in an intermediate result table ordered by a
 SEQUENCE BY clause in a SELECT statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
 <div class="paragraph">
@@ -31668,7 +31668,7 @@ expression. If only null values have been returned, LASTNOTNULL returns null.</p
 <div class="ulist">
 <ul>
 <li>
-<p>Return the last nonnull value of a column:</p>
+<p>Return the last non-null value of a column:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT LASTNOTNULL(I1) AS lastnotnull
@@ -31694,7 +31694,7 @@ lastnotnull
 <div class="sect2">
 <h3 id="lcase_function">7.55. LCASE Function</h3>
 <div class="paragraph">
-<p>The LCASE function downshifts alphanumeric characters. For
+<p>The LCASE function down-shifts alphanumeric characters. For
 non-alphanumeric characters, LCASE returns the same character. LCASE can
 appear anywhere in a query where a value can be used, such as in a
 select list, an ON clause, a WHERE clause, a HAVING clause, a LIKE
@@ -31720,7 +31720,7 @@ data, depending on the data type of the input string.</p>
 <p><code><em>character-expression</em></code></p>
 <div class="paragraph">
 <p>is an SQL character value expression that specifies a string of
-characters to downshift. See
+characters to down-shift. See
 <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </div>
 </li>
@@ -31758,7 +31758,7 @@ Hotel Oregon    HOTEL OREGON          hotel oregon
 <h4 id="left_function">7.55.2. LEFT Function</h4>
 <div class="paragraph">
 <p>The LEFT function returns the leftmost specified number of characters
-from a character expression. Every character, including multibyte
+from a character expression. Every character, including multi-byte
 characters, is treated as one character.</p>
 </div>
 <div class="paragraph">
@@ -31840,7 +31840,7 @@ SECRETARY COMNET
 <p>The LOCATE function searches for a given substring in a character
 string. If the substring is found, Trafodion SQL returns the character
 position of the substring within the string. Every character, including
-multibyte characters, is treated as one character. The result returned
+multi-byte characters, is treated as one character. The result returned
 by the LOCATE function is equal to the result returned by the
 <a href="#position_function">Position Function</a>.</p>
 </div>
@@ -32026,7 +32026,7 @@ approximately 1.3979:</p>
 <div class="sect2">
 <h3 id="lower_function">7.58. LOWER Function</h3>
 <div class="paragraph">
-<p>The LOWER function downshifts alphanumeric characters. For
+<p>The LOWER function down-shifts alphanumeric characters. For
 non-alphanumeric characters, LOWER returns the same character. LOWER can
 appear anywhere in a query where a value can be used, such as in a
 select list, an ON clause, a WHERE clause, a HAVING clause, a LIKE
@@ -32049,7 +32049,7 @@ data, depending on the data type of the input string.</p>
 <p><code><em>character-expression</em></code></p>
 <div class="paragraph">
 <p>is an SQL character value expression that specifies a string of
-characters to downshift.
+characters to down-shift.
 See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </div>
 </li>
@@ -32058,7 +32058,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 <div class="sect3">
 <h4 id="considerations_for_lower">7.58.1. Considerations for LOWER</h4>
 <div class="paragraph">
-<p>For a UTF8 character expression, the LOWER function downshifts all the
+<p>For a UTF8 character expression, the LOWER function down-shifts all the
 uppercase or title case characters in a given string to lowercase and
 returns a character string with the same data type and character set as
 the argument.</p>
@@ -32105,7 +32105,7 @@ Hotel Oregon      HOTEL OREGON        hotel oregon
 <h4 id="lpad_function">7.58.3. LPAD Function</h4>
 <div class="paragraph">
 <p>The LPAD function pads the left side of a string with the specified
-string. Every character in the string, including multibyte characters,
+string. Every character in the string, including multi-byte characters,
 is treated as one character.</p>
 </div>
 <div class="paragraph">
@@ -32622,7 +32622,7 @@ Start/Date Time/Shipped               (EXPR)
 <h3 id="movingavg_function">7.65. MOVINGAVG Function</h3>
 <div class="paragraph">
 <p>The MOVINGAVG function is a sequence function that returns the average
-of nonnull values of a column in the current window of an intermediate
+of non-null values of a column in the current window of an intermediate
 result table ordered by a SEQUENCE BY clause in a SELECT statement. See
 <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -32700,7 +32700,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the average of nonnull values of a column in the current window
+<p>Return the average of non-null values of a column in the current window
 of three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -32737,7 +32737,7 @@ MOVINGAVG3
 <h3 id="movingcount_function">7.66. MOVINGCOUNT Function</h3>
 <div class="paragraph">
 <p>The MOVINGCOUNT function is a sequence function that returns the number
-of nonnull values of a column in the current window of an intermediate
+of non-null values of a column in the current window of an intermediate
 result table ordered by a SEQUENCE BY clause in a SELECT statement. See
 <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -32825,7 +32825,7 @@ values are counted.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the number of nonnull values of a column in the current window of
+<p>Return the number of non-null values of a column in the current window of
 three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -32853,7 +32853,7 @@ MOVINGCOUNT3
 <h3 id="movingmax_function">7.67. MOVINGMAX Function</h3>
 <div class="paragraph">
 <p>The MOVINGMAX function is a sequence function that returns the maximum
-of nonnull values of a column in the current window of an intermediate
+of non-null values of a column in the current window of an intermediate
 result table ordered by a SEQUENCE BY clause in a SELECT statement. See
 <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -32931,7 +32931,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the maximum of nonnull values of a column in the current window
+<p>Return the maximum of non-null values of a column in the current window
 of three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -32959,7 +32959,7 @@ MOVINGMAX3
 <h3 id="movingmin_function">7.68. MOVINGMIN Function</h3>
 <div class="paragraph">
 <p>The MOVINGMIN function is a sequence function that returns the minimum
-of nonnull values of a column in the current window of an intermediate
+of non-null values of a column in the current window of an intermediate
 result table ordered by a SEQUENCE BY clause in a SELECT statement. See
 <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -33017,7 +33017,7 @@ specified. This condition includes the case in which both
 <em>integer-expression</em> and <em>max-rows</em> are larger than the result table.</p>
 </li>
 <li>
-<p>The minimum of i_nteger-expression_ and <em>max-rows</em> is out of range.
+<p>The minimum of <em>integer-expression</em> and <em>max-rows</em> is out of range.
 In this case, <em>integer-expression</em> could be within range, but <em>max-rows</em>
 might be the minimum value of the two and be out of range (for example,
 a negative number).</p>
@@ -33037,7 +33037,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the minimum of nonnull values of a column in the current window
+<p>Return the minimum of non-null values of a column in the current window
 of three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -33065,7 +33065,7 @@ MOVINGMIN3
 <h3 id="movingstddev_function">7.69. MOVINGSTDDEV Function</h3>
 <div class="paragraph">
 <p>The MOVINGSTDDEV function is a sequence function that returns the
-standard deviation of nonnull values of a column in the current window
+standard deviation of non-null values of a column in the current window
 of an intermediate result table ordered by a SEQUENCE BY clause in a
 SELECT statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -33143,7 +33143,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the standard deviation of nonnull values of a column in the
+<p>Return the standard deviation of non-null values of a column in the
 current window of three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -33190,7 +33190,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 <h3 id="movingsum_function">7.70. MOVINGSUM Function</h3>
 <div class="paragraph">
 <p>The MOVINGSUM function is a sequence function that returns the sum of
-nonnull values of a column in the current window of an intermediate
+non-null values of a column in the current window of an intermediate
 result table ordered by a SEQUENCE BY clause in a SELECT statement. See
 <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -33245,7 +33245,7 @@ RUNNINGSUM:</p>
 <li>
 <p>The <em>integer-expression</em> is out of range, and <em>max-rows</em> is not
 specified. This condition includes the case in which both
-i_nteger-expression_ and <em>max-rows</em> are larger than the result table.</p>
+<em>integer-expression</em> and <em>max-rows</em> are larger than the result table.</p>
 </li>
 <li>
 <p>The minimum of <em>integer-expression</em> and <em>max-rows</em> is out of range.
@@ -33268,7 +33268,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the sum of nonnull values of a column in the current window of
+<p>Return the sum of non-null values of a column in the current window of
 three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -33296,7 +33296,7 @@ MOVINGSUM3
 <h3 id="movingvariance_function">7.71. MOVINGVARIANCE Function</h3>
 <div class="paragraph">
 <p>The MOVINGVARIANCE function is a sequence function that returns the
-variance of nonnull values of a column in the current window of an
+variance of non-null values of a column in the current window of an
 intermediate result table ordered by a SEQUENCE BY clause in a SELECT
 statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -33374,7 +33374,7 @@ the result table, negative, or NULL.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the variance of nonnull values of a column in the current window
+<p>Return the variance of non-null values of a column in the current window
 of three rows:</p>
 <div class="listingblock">
 <div class="content">
@@ -33679,7 +33679,7 @@ column as the actual number of storage bytes.</p>
 <div class="paragraph">
 <p>The OCTET_LENGTH and CHAR_LENGTH functions are similar. The OCTET_LENGTH
 function returns the number of bytes, rather than the number of
-characters, in the string. This distinction is important for multibyte
+characters, in the string. This distinction is important for multi-byte
 implementations. For an example of selecting a double-byte column, see
 <a href="#examples_of_octet_length">Example of OCTET_LENGTH</a>.</p>
 </div>
@@ -33816,7 +33816,7 @@ value.</p>
 <p>The POSITION function searches for a given substring in a character
 string. If the substring is found, Trafodion SQL returns the character
 position of the substring within the string. Every character, including
-multibyte characters, is treated as one character. The result returned
+multi-byte characters, is treated as one character. The result returned
 by the POSITION function is equal to the result returned by the
 <a href="#locate_function">LOCATE Function</a>.</p>
 </div>
@@ -34443,7 +34443,7 @@ SYSTEM ANAL TDMNET
 <h3 id="right_function">7.83. RIGHT Function</h3>
 <div class="paragraph">
 <p>The RIGHT function returns the rightmost specified number of characters
-from a character expression. Every character, including multibyte
+from a character expression. Every character, including multi-byte
 characters, is treated as one character.</p>
 </div>
 <div class="paragraph">
@@ -34805,7 +34805,7 @@ FROM mining.seqfcn SEQUENCE BY ts;</code></pre>
 <h3 id="rpad_function">7.87. RPAD Function</h3>
 <div class="paragraph">
 <p>The RPAD function pads the right side of a string with the specified
-string. Every character in the string, including multibyte characters,
+string. Every character in the string, including multi-byte characters,
 is treated as one character.</p>
 </div>
 <div class="paragraph">
@@ -34964,7 +34964,7 @@ fixed length or maximum variable length of <em>character-expression</em>.</p>
 <h3 id="runningavg_function">7.89. RUNNINGAVG Function</h3>
 <div class="paragraph">
 <p>The RUNNINGAVG function is a sequence function that returns the average
-of nonnull values of a column up to and including the current row of an
+of non-null values of a column up to and including the current row of an
 intermediate result table ordered by a SEQUENCE BY clause in a SELECT
 statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -35064,7 +35064,7 @@ the intermediate result table up to and including the current row.</p>
 <div class="paragraph">
 <p>specifies a derived column determined by the evaluation of the column
 expression. If <em>column-expression</em> is the argument, RUNNINGCOUNT returns
-the number of rows containing nonnull values of <em>column-expression</em> in the
+the number of rows containing non-null values of <em>column-expression</em> in the
 intermediate result table up to and including the current row.</p>
 </div>
 </li>
@@ -35234,7 +35234,7 @@ min_i1
 <h4 id="runningstddev_function">7.92.2. RUNNINGSTDDEV Function</h4>
 <div class="paragraph">
 <p>The RUNNINGSTDDEV function is a sequence function that returns the
-standard deviation of nonnull values of a column up to and including the
+standard deviation of non-null values of a column up to and including the
 current row of an intermediate result table ordered by a SEQUENCE BY
 clause in a SELECT statement.
 See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
@@ -35256,7 +35256,7 @@ See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 expression.</p>
 </div>
 <div class="paragraph">
-<p>RUNNINGSTDDEV returns the standard deviation of nonnull values of
+<p>RUNNINGSTDDEV returns the standard deviation of non-null values of
 <em>column-expression</em> up to and including the current row.</p>
 </div>
 </li>
@@ -35330,7 +35330,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 <h3 id="runningsum_function">7.93. RUNNINGSUM Function</h3>
 <div class="paragraph">
 <p>The RUNNINGSUM function is a sequence function that returns the sum of
-nonnull values of a column up to and including the current row of an
+non-null values of a column up to and including the current row of an
 intermediate result table ordered by a SEQUENCE BY clause in a SELECT
 statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -35351,7 +35351,7 @@ statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 expression.</p>
 </div>
 <div class="paragraph">
-<p>RUNNINGSUM returns the sum of nonnull values of <em>column-expression</em> up
+<p>RUNNINGSUM returns the sum of non-null values of <em>column-expression</em> up
 to and including the current row.</p>
 </div>
 </li>
@@ -35362,7 +35362,7 @@ to and including the current row.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the sum of nonnull values of <em>i1</em> up to and including the current
+<p>Return the sum of non-null values of <em>i1</em> up to and including the current
 row:</p>
 <div class="listingblock">
 <div class="content">
@@ -35390,7 +35390,7 @@ sum_i1
 <h3 id="runningvariance_function">7.94. RUNNINGVARIANCE Function</h3>
 <div class="paragraph">
 <p>The RUNNINGVARIANCE function is a sequence function that returns the
-variance of nonnull values of a column up to and including the current
+variance of non-null values of a column up to and including the current
 row of an intermediate result table ordered by a SEQUENCE BY clause in a
 SELECT statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 </div>
@@ -35411,7 +35411,7 @@ SELECT statement. See <a href="#sequence_by_clause">SEQUENCE BY Clause</a>.</p>
 expression.</p>
 </div>
 <div class="paragraph">
-<p>RUNNINGVARIANCE returns the variance of nonnull values of
+<p>RUNNINGVARIANCE returns the variance of non-null values of
 <em>column-expression</em> up to and including the current row.</p>
 </div>
 </li>
@@ -35422,7 +35422,7 @@ expression.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Return the variance of nonnull values of <em>i1</em> up to and including the
+<p>Return the variance of non-null values of <em>i1</em> up to and including the
 current row:</p>
 <div class="listingblock">
 <div class="content">
@@ -35960,7 +35960,7 @@ value with an exact numeric data type and a scale of zero.</p>
 <p><code><em>length</em></code></p>
 <div class="paragraph">
 <p>specifies the number of characters to extract from <em>character-expr</em>.
-Keep in mind that every character, including multibyte characters,
+Keep in mind that every character, including multi-byte characters,
 counts as one character. <em>length</em> is the length of the extracted
 substring and must be a value greater than or equal to zero of exact
 numeric data type and with a scale of zero. The <em>length</em> field is
@@ -36025,8 +36025,8 @@ expression, an empty string ('') is returned.</p>
 </li>
 <li>
 <p>The resulting substring is always of type VARCHAR. If the source
-character string is an upshifted CHAR or VARCHAR string, the result is
-an upshifted VARCHAR type.</p>
+character string is an up-shifted CHAR or VARCHAR string, the result is
+an up-shifted VARCHAR type.</p>
 </li>
 </ul>
 </div>
@@ -36666,7 +36666,7 @@ the string.</p>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>UTF8TOISO88591</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>UTF8</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>ISO88591</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ranslates UTF8 characters to ISO88591 characters. Trafodion SQL will
+<td class="tableblock halign-left valign-top"><p class="tableblock">Translates UTF8 characters to ISO88591 characters. Trafodion SQL will
 display an error if it encounters a Unicode character that cannot be converted to the target character set.</p></td>
 </tr>
 </tbody>
@@ -36703,7 +36703,7 @@ Trafodion SQL returns an error.</p>
 <h3 id="trim_function">7.108. TRIM Function</h3>
 <div class="paragraph">
 <p>The TRIM function removes leading and trailing characters from a
-character string. Every character, including multibyte characters, is
+character string. Every character, including multi-byte characters, is
 treated as one character.</p>
 </div>
 <div class="listingblock">
@@ -36753,8 +36753,8 @@ to trim characters. See <a href="#character_value_expressions">Character Value E
 <div class="paragraph">
 <p>The result is always of type VARCHAR, with maximum length equal to the
 fixed length or maximum variable length of <em>trim-source</em>. If the
-source character string is an upshifts CHAR or VARCHAR string, the
-result is an upshifts VARCHAR type.</p>
+source character string is an up-shifts CHAR or VARCHAR string, the
+result is an up-shifts VARCHAR type.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -36789,7 +36789,7 @@ CHAR(20). This expression uses the TRIM function to return the value
 <div class="sect2">
 <h3 id="ucase_function">7.109. UCASE Function</h3>
 <div class="paragraph">
-<p>The UCASE function upshifts alphanumeric characters. For
+<p>The UCASE function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UCASE can
 appear anywhere in a query where a value can be used, such as in a
 select list, an ON clause, a WHERE clause, a HAVING clause, a LIKE
@@ -36824,7 +36824,7 @@ characters to upshift. See <a href="#character_value_expressions">Character Valu
 <div class="sect3">
 <h4 id="considerations_for_ucase">7.109.1. Considerations for UCASE</h4>
 <div class="paragraph">
-<p>For a UTF8 character_expression, the UCASE function upshifts all
+<p>For a UTF8 character_expression, the UCASE function up-shifts all
 lowercase or title case characters to uppercase and returns a character
 string. If the argument is of type CHAR(<em>n</em>) or VARCHAR(<em>n</em>), the
 result is of type VARCHAR(min(3_n_, 2048)), where the maximum length
@@ -36871,7 +36871,7 @@ Hotel Oregon      HOTEL OREGON        hotel oregon
 <div class="sect3">
 <h4 id="upper_function">7.109.3. UPPER Function</h4>
 <div class="paragraph">
-<p>The UPPER function upshifts alphanumeric characters. For
+<p>The UPPER function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPPER can
 appear anywhere in a query where a value can be used, such as in a
 select list, an ON clause, a WHERE clause, a HAVING clause, a LIKE
@@ -36936,7 +36936,7 @@ see <a href="#upshift_function">UPSHIFT Function</a>.</p>
 <div class="sect3">
 <h4 id="upshift_function">7.109.5. UPSHIFT Function</h4>
 <div class="paragraph">
-<p>The UPSHIFT function upshifts alphanumeric characters. For
+<p>The UPSHIFT function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPSHIFT
 can appear anywhere in a query where a value can be used, such as in a
 select list, an ON clause, a WHERE clause, a HAVING clause, a LIKE
@@ -37036,13 +37036,13 @@ WHERE UPSHIFT(D1.deptname) = UPSHIFT(D2.deptname);</code></pre>
 <div class="sect2">
 <h3 id="user_function">7.110. USER Function</h3>
 <div class="paragraph">
-<p>The USER function returns either the database username associated with
-the specified user ID number or the database username of the current
+<p>The USER function returns either the database user name associated with
+the specified user ID number or the database user name of the current
 user who invoked the function. The current user</p>
 </div>
 <div class="paragraph">
 <p>is the authenticated user who started the session. That database
-username is used for authorization of SQL statements in the current
+user name is used for authorization of SQL statements in the current
 session.</p>
 </div>
 <div class="listingblock">
@@ -37055,7 +37055,7 @@ session.</p>
 <li>
 <p><code><em>user-id</em></code></p>
 <div class="paragraph">
-<p>is the 32-bit number associated with a database username.</p>
+<p>is the 32-bit number associated with a database user name.</p>
 </div>
 <div class="paragraph">
 <p>The USER function is similar to the <a href="#authname_function">AUTHNAME Function</a>
@@ -37082,7 +37082,7 @@ and the <a href="#current_user_function">CURRENT USER Function</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>This example shows the database username of the current user who is
+<p>This example shows the database user name of the current user who is
 logged in to the session:</p>
 <div class="listingblock">
 <div class="content">
@@ -37102,7 +37102,7 @@ TSHAW
 <div class="ulist">
 <ul>
 <li>
-<p>This example shows the database username associated with the user ID number, 33333:</p>
+<p>This example shows the database user name associated with the user ID number, 33333:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT USER (33333) FROM (values(1)) x(a);
@@ -37639,7 +37639,7 @@ DISTINCT in a window function will result in the "4341" error message.</p>
 <div class="sect2">
 <h3 id="avg_window_function">7.117. AVG Window Function</h3>
 <div class="paragraph">
-<p>AVG is a window function that returns the average of nonnull values of
+<p>AVG is a window function that returns the average of non-null values of
 the given expression for the current window specified by the
 <em>inline-window specification</em>.</p>
 </div>
@@ -37955,7 +37955,7 @@ value of the given expression changes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DENSERANK() OVER (inline-window-specification)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">DENSE_RANK() OVER (inline-window-specification)</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -38377,7 +38377,7 @@ of the current window specified by the inline-window-specification.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ROWNUMBER () OVER (inline-window-specification)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">ROW_NUMBER () OVER (inline-window-specification)</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -39763,7 +39763,7 @@ earlier will be reclaimed to free up space for the upcoming queries. This counte
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>Open Time</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>OpenTime</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time (in microseconds) this process spent doing OPENs on behalf of this statement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time (in microseconds) this process spent doing opens on behalf of this statement.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>Processes Created</pre></div></td>
@@ -40617,7 +40617,7 @@ RMS Stats Reset Timestamp   2010/12/05 14:32:33.891083
 <div class="paragraph">
 <p>Use the QUERYID_EXTRACT function within an SQL statement to extract
 components of a query ID for use in a SQL query. The query ID, or QID,
-is a unique, clusterwide identifier for a query and
+is a unique, cluster-wide identifier for a query and
 is generated for dynamic SQL statements whenever a SQL string is
 prepared.</p>
 </div>
@@ -41859,7 +41859,7 @@ CHARACTER SET UTF8, with <em>n</em> being the value of this CQD.</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Category</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Historgrams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Histograms</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Description</p></th>
@@ -41875,7 +41875,7 @@ The default value is '3600' (1 hour).</p></td>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Usage</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Histogram statistics are cached so that the compiler can avoid access to
-the metadata tables, thereby reducing compile times. The timestamp of
+the metadata tables, thereby reducing compile times. The time stamp of
 the tables are checked against those of the cached histograms at an
 interval specified by this CQD, in order to see if the cached histograms
 need to be refreshed.<br>
@@ -41930,7 +41930,7 @@ recently updated statistics.</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Category</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Historgrams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Histograms</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Description</p></th>
@@ -41992,7 +41992,7 @@ histogram statistics, potentially resulting in poorer plans.</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Category</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Historgrams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Histograms</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Description</p></th>
@@ -42042,7 +42042,7 @@ histogram statistics, potentially resulting in poorer plans.</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Category</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Historgrams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Histograms</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Description</p></th>
@@ -42468,7 +42468,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-16 00:01:35 UTC
+Last updated 2016-01-29 17:42:05 UTC
 </div>
 </div>
 <script>

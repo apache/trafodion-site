@@ -596,7 +596,7 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#_run_commands_interactively">5. Run Commands Interactively</a>
 <ul class="sectlevel2">
-<li><a href="#_user_inteface">5.1. User Inteface</a>
+<li><a href="#_user_interface">5.1. User Interface</a>
 <ul class="sectlevel3">
 <li><a href="#_product_banner">5.1.1. Product Banner</a></li>
 <li><a href="#_interface_prompt">5.1.2. Interface Prompt</a></li>
@@ -2549,7 +2549,7 @@ After you enter one of these commands, TrafCI immediately quits running and disa
 <p>After launching TrafCI, you can run SQL statements and interface commands in the command-line interface.</p>
 </div>
 <div class="sect2">
-<h3 id="_user_inteface">5.1. User Inteface</h3>
+<h3 id="_user_interface">5.1. User Interface</h3>
 <div class="sect3">
 <h4 id="_product_banner">5.1.1. Product Banner</h4>
 <div class="paragraph">
@@ -2577,7 +2577,7 @@ SQL terminator and then reenter the command on one line.</p>
 </div>
 <div class="paragraph">
 <p>You can continue any SQL statement over multiple lines, breaking that statement at any point except
-within a word, a numeric literal, or a multicharacter operator (for example, <code>&lt;&#61;</code>). To break a string
+within a word, a numeric literal, or a multi-character operator (for example, <code>&lt;&#61;</code>). To break a string
 literal in a DML statement, use a concatenation operator (<code>||</code>). For more information, see the
 concatenation operator in the
 <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html"><em>Trafodion SQL Reference Manual</em></a>.</p>
@@ -2963,7 +2963,7 @@ LISTCOUNT 0 [All Rows]</code></pre>
 <div class="paragraph">
 <p>To display commands that were recently executed in the TrafCI session, enter the
 <code>HISTORY</code> command. The <code>HISTORY</code> command associates each command with a number that
-you can use to reexecute or edit the command with the <code>FC</code> command. See
+you can use to re-execute or edit the command with the <code>FC</code> command. See
 <a href="#edit_reexecute_command">Edit and Reexecute a Command</a>.</p>
 </div>
 <div class="paragraph">
@@ -2990,7 +2990,7 @@ SQL&gt;</code></pre>
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>This <code>SAVEHIST</code> command saves the session history inca file named <code>history.txt</code> in the
+<p>This <code>SAVEHIST</code> command saves the session history in a file named <code>history.txt</code> in the
 local directory where you are running TrafCI:</p>
 </div>
 <div class="listingblock">
@@ -4293,7 +4293,7 @@ sess=<span class="predefined-constant">None</span></code></pre>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Commmand</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-left valign-top">Documentation</th>
 </tr>
@@ -4346,7 +4346,7 @@ sess=<span class="predefined-constant">None</span></code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>FC</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edits and reexecutes a previous command. This command is restricted to the command-line
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edits and re-executes a previous command. This command is restricted to the command-line
 interface and is disallowed in script files.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#cmd_fc">FC Command</a></p></td>
 </tr>
@@ -4413,7 +4413,7 @@ successful connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>REPEAT</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reexecutes a command.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Re-executes a command.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#cmd_repeat">REPEAT Command</a></p></td>
 </tr>
 <tr>
@@ -4569,7 +4569,7 @@ The default is a semicolon (<code>;</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>SHOW PARAM</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">isplays the parameters that are set in the current session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the parameters that are set in the current session.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#cmd_show_param">SHOW PARAM Command</a></p></td>
 </tr>
 <tr>
@@ -4722,7 +4722,7 @@ If you omit <code><em>section-name</em></code>, the <code>@</code> command execu
 </div>
 </li>
 <li>
-<p>This <code>@</code> command runs the script file in the specified directory on aWindows workstation:</p>
+<p>This <code>@</code> command runs the script file in the specified directory on a Windows workstation:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text"> SQL&gt; @c:\my_files\ddl.sql</code></pre>
@@ -4829,7 +4829,7 @@ the rest of the tokens to be treated as parameters.</p>
 <p><code><em>SQL-terminator</em></code></p>
 <div class="paragraph">
 <p>is the default terminator (<code>;</code>) or a string value defined for the statement terminator by the
-<a href="#cmd_set_sqlterminator">SET SQLTERMINATOR Command</a>. For moreinformation, see
+<a href="#cmd_set_sqlterminator">SET SQLTERMINATOR Command</a>. For more information, see
 <a href="#interactive_set_show_terminator">Set and Show the SQL Terminator</a>.</p>
 </div>
 </li>
@@ -5628,7 +5628,7 @@ the line below the displayed command line:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>characters</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Replaces existing characters one-for-one with characters, beginning with the first character immediately above characters.
-<em>`characters`</em> must begin with a nonblank character.</p></td>
+<em>`characters`</em> must begin with a non-blank character.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5649,7 +5649,7 @@ commands to stop editing the line. If that line is the last line of the command,
 <div class="ulist">
 <ul>
 <li>
-<p>Reexecute the most recent command that begins with SH:</p>
+<p>Re-execute the most recent command that begins with SH:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; FC SH
@@ -5839,11 +5839,11 @@ SQL&gt;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>Message Count</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of messages sent/received between filesystem and disk process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of messages sent/received between file system and disk process.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>Message Bytes</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of message bytes sent/received between filesystem and disk process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of message bytes sent/received between file system and disk process.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>Lock Escl</pre></div></td>
@@ -6051,7 +6051,7 @@ SQL&gt; SELECT  FROM Customers;</code></pre>
 <h3 id="cmd_history">8.15. HISTORY Command</h3>
 <div class="paragraph">
 <p>The <code>HISTORY</code> command displays recently executed commands, identifying each command by a number that you can use
-to reexecute or edit the command.</p>
+to re-execute or edit the command.</p>
 </div>
 <div class="sect3">
 <h4 id="_syntax_14">8.15.1. Syntax</h4>
@@ -6079,8 +6079,8 @@ to reexecute or edit the command.</p>
 <p>You must enter the command on one line. The command does not require an SQL terminator.</p>
 </li>
 <li>
-<p>You can use the <code>FC</code> command to edit and reexecute a command in the history buffer, or use the
-<code>REPEAT</code> command to reexecute a command without modifying it. See <a href="#cmd_fc">FC Command</a> or
+<p>You can use the <code>FC</code> command to edit and re-execute a command in the history buffer, or use the
+<code>REPEAT</code> command to re-execute a command without modifying it. See <a href="#cmd_fc">FC Command</a> or
 <a href="#cmd_repeat">REPEAT Command</a>.</p>
 </li>
 </ul>
@@ -6861,7 +6861,7 @@ SQL&gt; OBEY c:\trafci</code></pre>
 </li>
 <li>
 <p>This command executes all files beginning with the word <code>"script"</code> and contains one character after the word script
-and ends with <code>.sql</code> extenstion. For example: <code>script1.sql</code>, <code>script2.sql</code>, <code>scriptZ.sqland</code> so on.</p>
+and ends with <code>.sql</code> extension. For example: <code>script1.sql</code>, <code>script2.sql</code>, <code>scriptZ.sqland</code> so on.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; OBEY C:\trafci\script?.sql</code></pre>
@@ -6878,7 +6878,7 @@ and ends with <code>.sql</code> extenstion. For example: <code>script1.sql</code
 </li>
 <li>
 <p>This command executes all files that begin with the word <code>"script"</code> and contains one character after the word <code>"script"</code> and
-ends with an extenstion prefixed by a dot. For example: <code>script1.sql</code>, <code>script2.bat</code>, <code>scriptZ.txt</code>, and so on.</p>
+ends with an extension prefixed by a dot. For example: <code>script1.sql</code>, <code>script2.bat</code>, <code>scriptZ.txt</code>, and so on.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; OBEY C:\trafci\script?.</code></pre>
@@ -7311,7 +7311,7 @@ Connected to Trafodion</code></pre>
 <div class="sect2">
 <h3 id="cmd_repeat">8.24. REPEAT Command</h3>
 <div class="paragraph">
-<p>The <code>REPEAT</code> command reexecutes a previous command.</p>
+<p>The <code>REPEAT</code> command re-executes a previous command.</p>
 </div>
 <div class="sect3">
 <h4 id="_syntax_23">8.24.1. Syntax</h4>
@@ -7352,8 +7352,8 @@ command in the history buffer.</p>
 <p>You must enter the command on one line. The command does not require an SQL terminator.</p>
 </li>
 <li>
-<p>To reexecute the immediately preceding command, enter <code>REPEAT</code> without specifying a number. If you enter more than one
-command on a line, then the <code>REPEAT</code> command reexecutes only the last command on the line.</p>
+<p>To re-execute the immediately preceding command, enter <code>REPEAT</code> without specifying a number. If you enter more than one
+command on a line, then the <code>REPEAT</code> command re-executes only the last command on the line.</p>
 </li>
 <li>
 <p>When a command is selected for repeat, and the SQL terminator value has changed since the execution of that command,
@@ -7367,7 +7367,7 @@ then TrafCI replaces the SQL terminator in the command with the current SQL term
 <div class="ulist">
 <ul>
 <li>
-<p>Display the previously executed commands and reexecute the second to the last command:</p>
+<p>Display the previously executed commands and re-execute the second to the last command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; HISTORY
@@ -7399,7 +7399,7 @@ SQL&gt;</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Reexecute the fifth command in the history buffer:</p>
+<p>Re-execute the fifth command in the history buffer:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; REPEAT 5
@@ -7414,7 +7414,7 @@ SQL&gt;</code></pre>
 </div>
 </li>
 <li>
-<p>Reexecute the <code>SHOW TABLES</code> command:</p>
+<p>Re-execute the <code>SHOW TABLES</code> command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SQL&gt; REPEAT SHOW
@@ -9859,7 +9859,7 @@ Elapsed time:00:00:00:078</code></pre>
 <div class="sect2">
 <h3 id="cmd_show_param">8.55. SHOW PARAM Command</h3>
 <div class="paragraph">
-<p>The <code>SHOW PARAM</code> command displays the parameters that are set in thecurrent TrafCI session.</p>
+<p>The <code>SHOW PARAM</code> command displays the parameters that are set in the current TrafCI session.</p>
 </div>
 <div class="sect3">
 <h4 id="_syntax_53">8.55.1. Syntax</h4>
@@ -10918,7 +10918,7 @@ Trafodion Command Interface     : TrafCI_Build_40646</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-16 00:01:35 UTC
+Last updated 2016-01-29 17:42:05 UTC
 </div>
 </div>
 <script>

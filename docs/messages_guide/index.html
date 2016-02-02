@@ -3372,7 +3372,7 @@ and resubmit.</p>
 <h3 id="SQL-1112">3.82. SQL 1112</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">An index column list cannot consist only of the systemgenerated column SYSKEY.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">An index column list cannot consist only of the system-generated column SYSKEY.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3448,7 +3448,7 @@ statement. For information about file system errors, see <a href="#file_system_e
 <h3 id="SQL-1116">3.85. SQL 1116</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">The current partitioning scheme requires a userspecified clustering key on object &lt;table-name&gt;.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">The current partitioning scheme requires a user-specified clustering key on object &lt;table-name&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3641,7 +3641,7 @@ The float data value might not be evaluated consistently to the same
 value each time.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery:</strong> Do not use float datatypes in the partitioning key of a
+<p><strong>Recovery:</strong> Do not use float data types in the partitioning key of a
 partitionable table.</p>
 </div>
 </div>
@@ -3805,7 +3805,7 @@ the primary key.</p>
 </div>
 <div class="paragraph">
 <p><strong>Cause:</strong> You attempted to create a check constraint that references a
-systemgenerated column. The column named SYSKEY is often
+system-generated column. The column named SYSKEY is often
 system-generated.</p>
 </div>
 <div class="paragraph">
@@ -3813,7 +3813,7 @@ system-generated.</p>
 </div>
 <div class="paragraph">
 <p><strong>Recovery:</strong> Modify the statement so that no check constraints reference
-any systemgenerated column and resubmit.</p>
+any system-generated column and resubmit.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4121,7 +4121,7 @@ the Partition Overlay Support feature was not enabled.</p>
 partitions was created.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery:</strong> None if a nonpartitioned table is requested. To request a
+<p><strong>Recovery:</strong> None if a non-partitioned table is requested. To request a
 partitioned table, delete the table, verify that disk volumes are
 available, and resubmit. You can also specify the volume names where the
 partitions need to be created for the given CREATE TABLE through
@@ -4781,10 +4781,8 @@ ISO88591 in a HEADING clause.</p>
 <pre class="CodeRay highlight"><code data-lang="text">The character set for string literals in CONSTRAINT must be ISO88591.</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">se.* You specified a literal with a character set other than</code></pre>
-</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You specified a literal with a character set other than</p>
 </div>
 <div class="paragraph">
 <p>ISO88591 in the text of a constraint.</p>
@@ -5319,7 +5317,7 @@ DDL or utility operation.</p>
 <h3 id="SQL-1301">3.165. SQL 1301</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">NO ACTION referential action for &lt;referential-triggered-action&gt; clause is not yet supported as specified by ANSI SQL99 standard. To alter the behavior, set an appropriate value for the REF_CONSTRAINT_NO_ACTION_LIKE_RESTRICT default.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">NO ACTION referential action for &lt;referential-triggered-action&gt; clause is not yet supported as specified by ANSI SQL-99 standard. To alter the behavior, set an appropriate value for the REF_CONSTRAINT_NO_ACTION_LIKE_RESTRICT default.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7480,18 +7478,18 @@ greater than zero.</p>
 <h3 id="SQL-3004">5.4. SQL 3004</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">A delimited identifier must contain at least one nonblank character.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">A delimited identifier must contain at least one non-blank character.</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Cause:</strong> You defined a delimited identifier as blanks. You must enter at
-least one nonblank character.</p>
+least one non-blank character.</p>
 </div>
 <div class="paragraph">
 <p><strong>Effect:</strong> The operation fails.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery:</strong> Enter at least one nonblank character and resubmit.</p>
+<p><strong>Recovery:</strong> Enter at least one non-blank character and resubmit.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -9819,7 +9817,7 @@ which is not supported.</p>
 <h3 id="SQL-3136">5.130. SQL 3136</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Only LEFT, RIGHT, and FULL OUTER JOIN are valid in \{oj . . .}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Only LEFT, RIGHT, and FULL OUTER JOIN are valid in {oj . . .}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11227,7 +11225,7 @@ operation as a table reference.</p>
 <h3 id="SQL-3220">5.202. SQL 3220</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">SHOWDDL failed for object &lt;object-name&gt; because an SQL/MP display option was used on a SQL/MX object.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SHOWDDL failed for object &lt;object-name&gt; because an SQL/MP display option was used on a Trafodion object.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11250,7 +11248,7 @@ object.</p>
 <h3 id="SQL-3225">5.203. SQL 3225</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for object &lt;object-name&gt;. The object does not exist in the given namespace &lt;name-space&gt;, the object is not accessible, or the object type is not supported. SHOWLABEL supports only SQL/MX tables, views and indexes.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for object &lt;object-name&gt;. The object does not exist in the given namespace &lt;name-space&gt;, the object is not accessible, or the object type is not supported. SHOWLABEL supports only Trafodion tables, views and indexes.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11277,7 +11275,7 @@ namespace of a valid, supported, and accessible object.</p>
 <h3 id="SQL-3226">5.204. SQL 3226</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for physical location name &lt;location-name&gt;. Object does not exist or object type is not supported. SHOWLABEL supports only SQL/MX tables, views, and indexes.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for physical location name &lt;location-name&gt;. Object does not exist or object type is not supported. SHOWLABEL supports only Trafodion tables, views, and indexes.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11300,7 +11298,7 @@ argument.</p>
 <h3 id="SQL-3228">5.205. SQL 3228</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for physical location name &lt;location-name&gt;. SHOWLABEL supports only the data forks of SQL/MX tables, views, and indexes.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SHOWLABEL failed for physical location name &lt;location-name&gt;. SHOWLABEL supports only the data forks of Trafodion tables, views, and indexes.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11645,7 +11643,7 @@ performing.</p>
 </div>
 <div class="paragraph">
 <p>This message appears when the user has not updated statistics for column
-&lt;names&gt; and when the rowcount in table &lt;name&gt; is more than the value of
+&lt;names&gt; and when the row count in table &lt;name&gt; is more than the value of
 the defaults table constant HIST_ROWCOUNT_REQUIRING_STATS. If you want
 to suppress this message, set that value to a very large number, and you
 will see this message only for tables with more rows than that, and for
@@ -11671,7 +11669,7 @@ which there are no updated statistics.</p>
 </div>
 <div class="paragraph">
 <p>This message appears when the user has not updated statistics for column
-&lt;name&gt; and when the rowcount in the table is more than the value of the
+&lt;name&gt; and when the ROWCOUNT in the table is more than the value of the
 defaults table constant HIST_ROWCOUNT_REQUIRING_STATS. If you want to
 suppress this message, set that value to a very large number, and you
 will see this message only for tables with more rows than that, and for
@@ -11772,7 +11770,7 @@ predicate.</p>
 <h3 id="SQL-8012">8.3. SQL 8012</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">8012 Encoding of CONTROL QUERY DEFAULTs: &lt;encoding&gt;.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Encoding of CONTROL QUERY DEFAULTs: &lt;encoding&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12566,10 +12564,8 @@ rather than by Trafodion.</p>
 <p><strong>Effect:</strong> The operation fails.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery:</strong> Commit or abort the transaction by calling SQL COMMIT or</p>
-</div>
-<div class="paragraph">
-<p>ROLLBACKWORK.</p>
+<p><strong>Recovery:</strong> Commit or abort the transaction by calling SQL COMMIT or
+ROLLBACKWORK.</p>
 </div>
 </div>
 <div class="sect2">
@@ -12885,7 +12881,7 @@ attempt was made to contact a nonexistent Trafodion UDR server.</p>
 <h3 id="SQL-8904">8.57. SQL 8904</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">SQL/MX did not receive a reply from MXUDR, possibly caused by internal errors while executing user-defined routines.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Trafodion did not receive a reply from MXUDR, possibly caused by internal errors while executing user-defined routines.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13232,7 +13228,7 @@ not correct the problem, report the entire message to <a href="mailto:user@trafo
 </div>
 <div class="paragraph">
 <p><strong>Recovery:</strong> Make sure there are appropriate disks with enough space for
-scratch file use. Disks such as optical disks, phantom disks, and SMS
+scratch file use. Disks such as optical disks, phantom disks, and
 virtual disks are not considered suitable. See the
 <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html"><em>Trafodion SQL Reference Manual</em></a>
 for more information on how to influence the placement of scratch files.</p>
@@ -13331,7 +13327,7 @@ Contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 <h3 id="SQL-10019-">9.23. SQL 10019</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Sort failed while calling FILENAME_FILENEXT_ with error $0~int0.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Sort failed while calling FILENAME_FILENEXT_ with error &lt;number&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13676,7 +13672,7 @@ text or the SQLCODE value in addition to the SQLSTATE.</p>
 </li>
 <li>
 <p>In the future, the Trafodion error handling might use a different error path, and therefore return a
-slightly different SQLCODE and implementationdefined SQLSTATE value for an error.</p>
+slightly different SQLCODE and implementation defined SQLSTATE value for an error.</p>
 </li>
 </ul>
 </div>
@@ -14318,7 +14314,7 @@ numbers) and error messages (negative SQLCODE numbers).</p>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0153Y</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>1142</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attempting to add a column with a NULL, UNIQUE, CHECK, PRIMARY KEY, or FOREIGN KEY constraint defined. This is not supported for a nonaudited table.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attempting to add a column with a NULL, UNIQUE, CHECK, PRIMARY KEY, or FOREIGN KEY constraint defined. This is not supported for a non-audited table.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0153Z</pre></div></td>
@@ -14538,7 +14534,7 @@ numbers) and error messages (negative SQLCODE numbers).</p>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0160R</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>2027</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">error &lt;num&gt; while sending a startup message to process &lt;name&gt;.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error &lt;num&gt; while sending a startup message to process &lt;name&gt;.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0160S</pre></div></td>
@@ -24282,7 +24278,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0090</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The transaction was aborted by the system because its parent process died, a server using the transaction failed, or a message to a server using the transaction was cancelled.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The transaction was aborted by the system because its parent process died, a server using the transaction failed, or a message to a server using the transaction was canceled.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0091</pre></div></td>
@@ -24446,7 +24442,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0152</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unusual end-tape unit went offline.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unusual end-tape unit went off-line.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0153</pre></div></td>
@@ -24806,7 +24802,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0533</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An internal sequential I/O error occured.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An internal sequential I/O error occurred.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0534</pre></div></td>
@@ -24918,7 +24914,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0593</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The request was cancelled.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The request was canceled.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>0594</pre></div></td>
@@ -25626,7 +25622,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>4104</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Socket operation on nonsocket.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Socket operation on non socket.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>4105</pre></div></td>
@@ -25867,7 +25863,7 @@ contact the <a href="mailto:user@trafodion.incubator.apache.org">Trafodion User 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-25 21:54:53 UTC
+Last updated 2016-01-29 17:42:05 UTC
 </div>
 </div>
 <script>
