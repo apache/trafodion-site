@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.3">
-<meta name="author" content="Version 1.3.0, January 2016">
+<meta name="generator" content="Asciidoctor 1.5.4">
 <title>Trafodion Client Installation Guide</title>
 <style>
 /**
@@ -441,7 +440,7 @@ div.paragraph.indented2 p {padding-left: 6em;}
 div.paragraph.indented3 p {padding-left: 9em;}
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
 /*pre.CodeRay {background-color:#f7f7f8;}*/
@@ -538,12 +537,152 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <h1>Trafodion Client Installation Guide</h1>
 <div class="details">
-<span id="author" class="author">Version 1.3.0, January 2016</span><br>
+<span id="revnumber">version 2.0.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_about_this_document">1. About This Document</a></li>
+<li><a href="#_about_this_document">1. About This Document</a>
+<ul class="sectlevel2">
+<li><a href="#_intended_audience">1.1. Intended Audience</a></li>
+<li><a href="#_new_and_changed_information">1.2. New and Changed Information</a></li>
+<li><a href="#_notation_conventions">1.3. Notation Conventions</a></li>
+<li><a href="#_publishing_history">1.4. Publishing History</a></li>
+<li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
+</ul>
+</li>
+<li><a href="#_trafodion_client_products">2. Trafodion Client Products</a>
+<ul class="sectlevel2">
+<li><a href="#_client_summary">2.1. Client Summary</a></li>
+</ul>
+</li>
+<li><a href="#_install_windows_odbc_driver">3. Install Windows ODBC Driver</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_package">3.1. Installation Package</a></li>
+<li><a href="#_installation_requirements">3.2. Installation Requirements</a></li>
+<li><a href="#_installation_instructions">3.3. Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#win_odbc_install">3.3.1. Install Windows ODBC Driver</a></li>
+<li><a href="#_reinstall_windows_odbc_driver">3.3.2. Reinstall Windows ODBC Driver</a></li>
+<li><a href="#win_odbc_uninstall">3.3.3. Uninstalling Windows ODBC Driver</a></li>
+<li><a href="#win_odbc_client_env">3.3.4. Set Up Client Environment</a></li>
+<li><a href="#_enable_compression">3.3.5. Enable Compression</a></li>
+<li><a href="#win_odbc_run_basicsql">3.3.6. Run Sample Program (<code>basicsql</code>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_install_linux_odbc_driver">4. Install Linux ODBC Driver</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_packaged">4.1. Installation Packaged</a></li>
+<li><a href="#_installation_requirements_2">4.2. Installation Requirements</a></li>
+<li><a href="#_installation_instructions_2">4.3. Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#_download_linux_odbc_driver">4.3.1. Download Linux ODBC Driver</a></li>
+<li><a href="#_install_reinstall_linux_odbc_driver">4.3.2. Install/Reinstall Linux ODBC Driver</a></li>
+<li><a href="#_set_up_client_environment">4.3.3. Set Up Client Environment</a></li>
+<li><a href="#_enable_compression_2">4.3.4. Enable Compression</a></li>
+<li><a href="#_use_third_party_driver_manager">4.3.5. Use Third-Party Driver Manager</a></li>
+<li><a href="#_run_sample_program_code_connect_test_code">4.3.6. Run Sample Program (<code>connect_test</code>)</a></li>
+<li><a href="#linux_odbc_run_basicsql">4.3.7. Run Sample Program (<code>basicsql</code>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_install_jdbc_type_4_driver">5. Install JDBC Type-4 Driver</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_package_2">5.1. Installation Package</a></li>
+<li><a href="#_installation_requirements_3">5.2. Installation Requirements</a>
+<ul class="sectlevel3">
+<li><a href="#jdbct4_JRE">5.2.1. Install Java Runtime Environment (JRE)</a></li>
+</ul>
+</li>
+<li><a href="#jdbct4_install">5.3. Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#jdbct4_download">5.3.1. Download JDBC Type-4 Driver</a></li>
+<li><a href="#jdbct4_install_zip">5.3.2. Install JDBC Type-4 Driver</a></li>
+<li><a href="#_uninstall_jdbc_type_4_driver">5.3.3. Uninstall JDBC Type-4 Driver</a></li>
+<li><a href="#_reinstall_jdbc_type_4_driver">5.3.4. Reinstall JDBC Type-4 Driver</a></li>
+</ul>
+</li>
+<li><a href="#jdbct4_setup_env">5.4. Set Up Client Environment</a>
+<ul class="sectlevel3">
+<li><a href="#_configure_applications">5.4.1. Configure Applications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_install_trafci">6. Install TrafCI</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_package_3">6.1. Installation Package</a></li>
+<li><a href="#_installation_requirements_4">6.2. Installation Requirements</a>
+<ul class="sectlevel3">
+<li><a href="#trafci_JRE">6.2.1. Install/Verify Java Runtime Environment</a></li>
+<li><a href="#trafci_install_jdbct4">6.2.2. Install/Verify JDBC Type-4 Driver</a></li>
+<li><a href="#trafci_perl_python">6.2.3. Install Perl or Python</a></li>
+</ul>
+</li>
+<li><a href="#_installation_instructions_3">6.3. Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#trafci_download_installer">6.3.1. Download Installer</a></li>
+<li><a href="#trafci_run_installer">6.3.2. Run Executable JAR Installer</a></li>
+<li><a href="#trafci_uninstall">6.3.3. Uninstall TrafCI</a></li>
+</ul>
+</li>
+<li><a href="#_post_installation_instructions">6.4. Post-Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#_verify_installed_software_files">6.4.1. Verify Installed Software Files</a></li>
+<li><a href="#_test_launching_trafci">6.4.2. Test Launching TrafCI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_install_odb">7. Install odb</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_package_4">7.1. Installation Package</a></li>
+<li><a href="#_installation_requirements_5">7.2. Installation Requirements</a></li>
+<li><a href="#_installation_instructions_4">7.3. Installation Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#odb_download">7.3.1. Download odb</a></li>
+<li><a href="#odb_install">7.3.2. Install odb</a></li>
+<li><a href="#odb_uninstall">7.3.3. Uninstall odb</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_configure_dbvisualizer">8. Configure DbVisualizer</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisite_software">8.1. Prerequisite Software</a></li>
+<li><a href="#_configuration_instructions">8.2. Configuration Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#_disable_connection_validation_select_option">8.2.1. Disable Connection Validation Select Option</a></li>
+<li><a href="#_register_jdbc_type_4_driver">8.2.2. Register JDBC Type-4 Driver</a></li>
+<li><a href="#_connect_to_trafodion">8.2.3. Connect to Trafodion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_configure_squirrel_client">9. Configure SQuirreL Client</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisite_software_2">9.1. Prerequisite Software</a></li>
+<li><a href="#_configuration_instructions_2">9.2. Configuration Instructions</a>
+<ul class="sectlevel3">
+<li><a href="#_register_jdbc_type_4_driver_2">9.2.1. Register JDBC Type-4 Driver</a></li>
+<li><a href="#_connect_to_trafodion_2">9.2.2. Connect to Trafodion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_appendix">10. Appendix</a>
+<ul class="sectlevel2">
+<li><a href="#odbc_sample_program">10.1. <code>basicsql</code> (Sample ODBC Program)</a>
+<ul class="sectlevel3">
+<li><a href="#__code_basicsql_cpp_code_source_code">10.1.1. <code>basicsql.cpp</code> Source Code</a></li>
+<li><a href="#basicsql_build">10.1.2. Windows Build and Run Files for <code>basicsql</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -596,20 +735,23 @@ specific language governing permissions and limitations under the License.</p>
 <div class="paragraph">
 <p>This manual describes how to install and configure client applications that enable you to connect to and use a Trafodion database.</p>
 </div>
-<div class="openblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_intended_audience">1.1. Intended Audience</h3>
 <div class="paragraph">
-<p>== Intended Audience
-This manual is intended for users who want to connect to and use a Trafodion database.</p>
+<p>This manual is intended for users who want to connect to and use a Trafodion database.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_new_and_changed_information">1.2. New and Changed Information</h3>
 <div class="paragraph">
-<p>== New and Changed Information
-This manual shows updated versions for Trafodion Release 1.3.0. It also provides instructions on how to download and install <a href="#odb">Trafodion odb</a>, a
+<p>This manual shows updated versions for Trafodion Release 1.3.0. It also provides instructions on how to download and install <a href="#odb">Trafodion odb</a>, a
 new multi-threaded, ODBC-based command-line tool for parallel data loading and extracting.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_notation_conventions">1.3. Notation Conventions</h3>
 <div class="paragraph">
-<p>== Notation Conventions
-This list summarizes the notation conventions for syntax presentation in this manual.</p>
+<p>This list summarizes the notation conventions for syntax presentation in this manual.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -800,9 +942,9 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== Publishing History</p>
 </div>
+<div class="sect2">
+<h3 id="_publishing_history">1.4. Publishing History</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -821,9 +963,11 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_comments_encouraged">1.5. Comments Encouraged</h3>
 <div class="paragraph">
-<p>== Comments Encouraged
-The Trafodion community encourages your comments concerning this document. We are committed to providing documentation that meets your
+<p>The Trafodion community encourages your comments concerning this document. We are committed to providing documentation that meets your
 needs. Send any errors found, suggestions for improvement, or compliments to:</p>
 </div>
 <div class="paragraph">
@@ -832,14 +976,20 @@ needs. Send any errors found, suggestions for improvement, or compliments to:</p
 <div class="paragraph">
 <p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_trafodion_client_products">2. Trafodion Client Products</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>= Trafodion Client Products
-This manual describes how to install and configure the following client applications, which enable you to connect to and use a Trafodion
+<p>This manual describes how to install and configure the following client applications, which enable you to connect to and use a Trafodion
 database.</p>
 </div>
+<div class="sect2">
+<h3 id="_client_summary">2.1. Client Summary</h3>
 <div class="paragraph">
-<p>== Client Summary
-The following table lists the clients supported by Trafodion.</p>
+<p>The following table lists the clients supported by Trafodion.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -890,13 +1040,19 @@ script files. For more information, see the <a href="http://trafodion.incubator.
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>= Install Windows ODBC Driver
-These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_windows_odbc_driver">3. Install Windows ODBC Driver</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>== Installation Package
-The installer file for the Trafodion ODBC Driver for Windows is packaged within the Trafodion clients tar file, <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>, on the
+<p>These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_package">3.1. Installation Package</h3>
+<div class="paragraph">
+<p>The installer file for the Trafodion ODBC Driver for Windows is packaged within the Trafodion clients tar file, <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>, on the
 Trafodion downloads site <a href="http://trafodion.incubator.apache.org/download.html" class="bare">http://trafodion.incubator.apache.org/download.html</a>. Use this installer file to install the Trafodion ODBC Driver for Windows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -973,9 +1129,9 @@ correct driver.</p></td>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>== Installation Requirements</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_requirements">3.2. Installation Requirements</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 40%;">
@@ -1010,94 +1166,182 @@ correct driver.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>== Installation Instructions</p>
 </div>
-<div id="win_odbc_install" class="paragraph">
-<p>=== Install Windows ODBC Driver
-NOTE: To install the driver on your PC, you must be logged on with a user ID that has administrator privileges.</p>
+<div class="sect2">
+<h3 id="_installation_instructions">3.3. Installation Instructions</h3>
+<div class="sect3">
+<h4 id="win_odbc_install">3.3.1. Install Windows ODBC Driver</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To install the driver on your PC, you must be logged on with a user ID that has administrator privileges.
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>==== Task 1: Download the ODBC client installation file
-1.  Create a download folder on the client workstation.
-2.  Open a Web browser and navigate to the Trafodion downloads site <a href="http://trafodion.incubator.apache.com/download.html" class="bare">http://trafodion.incubator.apache.com/download.html</a>
-3.  Click on the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code> link to start downloading the Trafodion clients tar file to your workstation.
-4.  Place the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz file</code> into the download folder.
-5.  Extract the contents of the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code> file by using an extract tool like WinZip. The package file contains the
+<div class="sect4">
+<h5 id="_task_1_download_the_odbc_client_installation_file">Task 1: Download the ODBC client installation file</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a download folder on the client workstation.</p>
+</li>
+<li>
+<p>Open a Web browser and navigate to the Trafodion downloads site <a href="http://trafodion.incubator.apache.com/download.html" class="bare">http://trafodion.incubator.apache.com/download.html</a></p>
+</li>
+<li>
+<p>Click on the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code> link to start downloading the Trafodion clients tar file to your workstation.</p>
+</li>
+<li>
+<p>Place the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz file</code> into the download folder.</p>
+</li>
+<li>
+<p>Extract the contents of the <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code> file by using an extract tool like WinZip. The package file contains the
 <code>TFODBC64-1.3.<strong><em>n</em></strong>.msi</code> installer file, which is extracted to the clients sub-directory.</p>
+</li>
+</ol>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_task_2_start_the_installshield_wizard">Task 2: Start the InstallShield wizard</h5>
 <div class="paragraph">
-<p>==== Task 2: Start the InstallShield wizard
-The InstallShield wizard walks you through the steps to install the client components (Trafodion ODBC 1.0) on your workstation. You can
+<p>The InstallShield wizard walks you through the steps to install the client components (Trafodion ODBC 1.0) on your workstation. You can
 perform the installation in <em>interactive mode</em>, in which you provide input or accept defaults when prompted as ODBC is installed.
 Please refer to <a href="#win_odbc_interactive_mode">Interactive Mode Installation</a> below.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="win_odbc_interactive_mode" class="paragraph">
-<p>===== Interactive Mode Installation
-1.  Double-click the <code>.msi</code> distribution file to start the InstallShield wizard.
-2.  On the <strong>Welcome</strong> page, click <strong>Next</strong>.
-3.  On the <strong>Destination Folder</strong> page, click <strong>Next</strong> to select the default location: <code>C:\Program Files\Trafodion\TRAF ODBC 1.0\</code></p>
-</div>
+<div class="sect5">
+<h6 id="win_odbc_interactive_mode">Interactive Mode Installation</h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Double-click the <code>.msi</code> distribution file to start the InstallShield wizard.</p>
+</li>
+<li>
+<p>On the <strong>Welcome</strong> page, click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Destination Folder</strong> page, click <strong>Next</strong> to select the default location: <code>C:\Program Files\Trafodion\TRAF ODBC 1.0\</code></p>
 <div class="paragraph">
-<p>+
-This location is the installation directory for ODBC header and help files. All other ODBC files are installed in <code>%SYSTEMROOT%\system32</code>.
-4.  On the <strong>Set Certificate Directory</strong> page, click <strong>Next</strong> to accept the default location for the security certificate (<code>SYSTEM_DEFAULT</code>).
-5.  On the <strong>Ready to Install the Program</strong> page, click <strong>Install</strong>. The installation begins. The <strong>Installing Trafodion ODBC64 1.0</strong> page displays a
-progress bar.
-6.  On the <strong>InstallShield Wizard Completed</strong> page, click <strong>Finish</strong> to exit the wizard. Do not add a new <code>Trafodion ODBC</code> data source to the MS ODBC
+<p>This location is the installation directory for ODBC header and help files. All other ODBC files are installed in <code>%SYSTEMROOT%\system32</code>.</p>
+</div>
+</li>
+<li>
+<p>On the <strong>Set Certificate Directory</strong> page, click <strong>Next</strong> to accept the default location for the security certificate (<code>SYSTEM_DEFAULT</code>).</p>
+</li>
+<li>
+<p>On the <strong>Ready to Install the Program</strong> page, click <strong>Install</strong>. The installation begins. The <strong>Installing Trafodion ODBC64 1.0</strong> page displays a
+progress bar.</p>
+</li>
+<li>
+<p>On the <strong>InstallShield Wizard Completed</strong> page, click <strong>Finish</strong> to exit the wizard. Do not add a new <code>Trafodion ODBC</code> data source to the MS ODBC
 Administrator until you have restarted your system.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>==== Task 3: Add a client data source
-1.  Start the Microsoft ODBC Administrator:
-* On Windows 7: <strong>Start&gt;All Programs&gt;Trafodion ODBC 1.0&gt;MS ODBC Administrator</strong>
-* On Windows 8: Right-click the <strong>Trafodion ODBC 1.0</strong> icon on the desktop and select MS ODBC Administrator.
-2.  In the <strong>ODBC Data Source Administrator</strong> dialog box, click <strong>Add</strong>.
-3.  Select <strong>TRAF ODBC 1.0</strong>, and then click <strong>Finish</strong> to start the <strong>Create a New Trafodion ODBC Data Source</strong> wizard.
-4.  Enter the data source name (for example, <code>Default_DataSource_Schema1</code>) and an optional description, and click <strong>Next</strong>.
-5.  Enter the <code>IP address</code> or <code>host name</code> for the database platform. Enter the port number as <strong>37800</strong>. Leave the defaults as is, and click <strong>Next</strong>.
-6.  Enter the schema name. The default schema name is <code>SEABASE</code>. Click <strong>Next</strong>.
-7.  Enter the translate DLL name and its option, if you have one. If not, leave it blank. Leave the localization defaults as is.</p>
 </div>
-<div class="paragraph">
-<p>+
-&lt;&lt;&lt;</p>
 </div>
+<div class="sect4">
+<h5 id="_task_3_add_a_client_data_source">Task 3: Add a client data source</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the Microsoft ODBC Administrator:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>On Windows 7: <strong>Start&gt;All Programs&gt;Trafodion ODBC 1.0&gt;MS ODBC Administrator</strong></p>
+</li>
+<li>
+<p>On Windows 8: Right-click the <strong>Trafodion ODBC 1.0</strong> icon on the desktop and select MS ODBC Administrator.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the <strong>ODBC Data Source Administrator</strong> dialog box, click <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Select <strong>TRAF ODBC 1.0</strong>, and then click <strong>Finish</strong> to start the <strong>Create a New Trafodion ODBC Data Source</strong> wizard.</p>
+</li>
+<li>
+<p>Enter the data source name (for example, <code>Default_DataSource_Schema1</code>) and an optional description, and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Enter the <code>IP address</code> or <code>host name</code> for the database platform. Enter the port number as <strong>37800</strong>. Leave the defaults as is, and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Enter the schema name. The default schema name is <code>SEABASE</code>. Click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Enter the translate DLL name and its option, if you have one. If not, leave it blank. Leave the localization defaults as is.</p>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>+
-The Replacement Character replaces any character that is incompatible for translation when retrieving data. It is one character (one or two
+<p>The Replacement Character replaces any character that is incompatible for translation when retrieving data. It is one character (one or two
 bytes long). The Replacement Character is assumed to be in the character set specified in the Client/Server Character Set Interaction. If it is not specified, <code>?</code> is used as the default.</p>
 </div>
 <div class="paragraph">
-<p>+
-Click <strong>Next</strong>.
-8.  Select the trace options, if desired. Change the <strong>Log File Path</strong> to the location you want, or leave the default as is, and click <strong>Finish</strong>.
-9.  The wizard gives you an opportunity to test the connection. Click <strong>Test Connection</strong> and click <strong>OK</strong>.
-10.  The server ID and schema are filled in for you. Enter a valid user name and password, and click <strong>OK</strong>.</p>
+<p>Click <strong>Next</strong>.</p>
 </div>
+</li>
+<li>
+<p>Select the trace options, if desired. Change the <strong>Log File Path</strong> to the location you want, or leave the default as is, and click <strong>Finish</strong>.</p>
+</li>
+<li>
+<p>The wizard gives you an opportunity to test the connection. Click <strong>Test Connection</strong> and click <strong>OK</strong>.</p>
+</li>
+<li>
+<p>The server ID and schema are filled in for you. Enter a valid user name and password, and click <strong>OK</strong>.</p>
 <div class="paragraph">
-<p>+
-The wizard attempts to connect to the data source and displays a message stating whether it was successful or not.
-11.  Click <strong>OK</strong> to save the data source, or click <strong>Cancel</strong> <em>twice</em> to quit the <strong>Create Data Source</strong> wizard.</p>
+<p>The wizard attempts to connect to the data source and displays a message stating whether it was successful or not.</p>
 </div>
+</li>
+<li>
+<p>Click <strong>OK</strong> to save the data source, or click <strong>Cancel</strong> <em>twice</em> to quit the <strong>Create Data Source</strong> wizard.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reinstall_windows_odbc_driver">3.3.2. Reinstall Windows ODBC Driver</h4>
 <div class="paragraph">
-<p>=== Reinstall Windows ODBC Driver
-To reinstall the driver, we recommend that you fully remove your ODBC driver and then install the new version. Please refer to
+<p>To reinstall the driver, we recommend that you fully remove your ODBC driver and then install the new version. Please refer to
 <a href="#win_odbc_uninstall">Uninstalling the Trafodion ODBC Driver for Windows</a> and then <a href="#win_odbc_install">Installing the Trafodion ODBC Driver for Windows</a>.</p>
 </div>
-<div id="win_odbc_uninstall" class="paragraph">
-<p>=== Uninstalling Windows ODBC Driver
-1.  Start to remove the ODBC driver:
-* On Windows 7: <strong>Start&gt;All Programs&gt;Trafodion ODBC 1.0&gt;Remove TRAF ODBC 1.0</strong>
-* On Windows 8: Right-click the <strong>Trafodion ODBC 1.0</strong> icon on the desktop and select <strong>Remove TRAF ODBC 1.0</strong>.
-2.  When the <strong>Windows Installer</strong> dialog box asks you if you want to uninstall this product, click <strong>Yes</strong>.
-3.  The <strong>Trafodion ODBC 1.0</strong> dialog box displays the status and asks you to wait while <code>Windows configures Trafodion ODBC 1.0</code> (that is, removes
-the Trafodion ODBC Driver from your Windows workstation).</p>
 </div>
+<div class="sect3">
+<h4 id="win_odbc_uninstall">3.3.3. Uninstalling Windows ODBC Driver</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start to remove the ODBC driver:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>On Windows 7: <strong>Start&gt;All Programs&gt;Trafodion ODBC 1.0&gt;Remove TRAF ODBC 1.0</strong></p>
+</li>
+<li>
+<p>On Windows 8: Right-click the <strong>Trafodion ODBC 1.0</strong> icon on the desktop and select <strong>Remove TRAF ODBC 1.0</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When the <strong>Windows Installer</strong> dialog box asks you if you want to uninstall this product, click <strong>Yes</strong>.</p>
+</li>
+<li>
+<p>The <strong>Trafodion ODBC 1.0</strong> dialog box displays the status and asks you to wait while <code>Windows configures Trafodion ODBC 1.0</code> (that is, removes
+the Trafodion ODBC Driver from your Windows workstation).</p>
 <div class="paragraph">
-<p>+
-After this dialog box disappears, Trafodion ODBC 1.0 is no longer on your workstation.</p>
+<p>After this dialog box disappears, Trafodion ODBC 1.0 is no longer on your workstation.</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1112,9 +1356,11 @@ Uninstalling the ODBC driver does not remove pre-existing data source definition
 </table>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="win_odbc_client_env" class="paragraph">
-<p>=== Set Up Client Environment
-All client data sources connect to the pre-configured server data source on the database platform, which is <code>Default_DataSource</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="win_odbc_client_env">3.3.4. Set Up Client Environment</h4>
+<div class="paragraph">
+<p>All client data sources connect to the pre-configured server data source on the database platform, which is <code>Default_DataSource</code>.</p>
 </div>
 <div class="paragraph">
 <p>You can configure one data source only, <code>Default_DataSource</code>, on the database platform, but you can create other data source
@@ -1180,9 +1426,11 @@ default, the client error message language is English, and the client’s local 
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_enable_compression">3.3.5. Enable Compression</h4>
 <div class="paragraph">
-<p>=== Enable Compression
-When compression is enabled in the ODBC driver, the ODBC driver can send and receive large volumes of data quickly and efficiently to and from
+<p>When compression is enabled in the ODBC driver, the ODBC driver can send and receive large volumes of data quickly and efficiently to and from
 the Trafodion Database Connectivity Services (DCS) server over a TCP/IP network. By default, compression is disabled.</p>
 </div>
 <div class="paragraph">
@@ -1236,10 +1484,21 @@ maximum available compression</p>
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="win_odbc_run_basicsql" class="paragraph">
-<p>=== Run Sample Program (<code>basicsql</code>)
-NOTE: The Basic SQL sample program is not currently bundled with the ODBC Windows driver. To obtain the source code and the build and run
-files for this program, please refer to  <a href="#odbc_sample_program">ODBC Sample Program</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="win_odbc_run_basicsql">3.3.6. Run Sample Program (<code>basicsql</code>)</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Basic SQL sample program is not currently bundled with the ODBC Windows driver. To obtain the source code and the build and run
+files for this program, please refer to  <a href="#odbc_sample_program">ODBC Sample Program</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To build and run the executable file, follow these steps:</p>
@@ -1290,13 +1549,18 @@ Basic SQL ODBC Test Passed!</code></pre>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>= Install Linux ODBC Driver
-These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Packaged</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_linux_odbc_driver">4. Install Linux ODBC Driver</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_packaged">4.1. Installation Packaged</h3>
 <div class="paragraph">
 <p>The distribution file for the Trafodion ODBC Driver for Linux is packaged within the Trafodion clients tar file,
 <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>, on the Trafodion downloads site <a href="http://trafodion.incubator.apache.org/download.html" class="bare">http://trafodion.incubator.apache.org/download.html</a>.</p>
@@ -1364,21 +1628,20 @@ The following header files are not packaged with the Trafodion ODBC driver:
 <p>To install those header files, <a href="#win_odbc_client_env">Setting Up the Client Environment</a>..</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>== Installation Requirements</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_requirements_2">4.2. Installation Requirements</h3>
 <div class="paragraph">
 <p>The driver for Linux requires <code>libgcc 3.4.3</code> and <code>libstd++ 6.0</code>.</p>
 </div>
 <div class="paragraph">
 <p>If you are building ODBC applications, please use the preferred build platform, RedHat 6.4 or CentOS 6.4.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Instructions</p>
 </div>
-<div class="paragraph">
-<p>=== Download Linux ODBC Driver</p>
-</div>
+<div class="sect2">
+<h3 id="_installation_instructions_2">4.3. Installation Instructions</h3>
+<div class="sect3">
+<h4 id="_download_linux_odbc_driver">4.3.1. Download Linux ODBC Driver</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1406,9 +1669,9 @@ The following header files are not packaged with the Trafodion ODBC driver:
 <div class="paragraph">
 <p>The package file contains the Trafodion ODBC distribution file, <code>TRAF_ODBC_Linux_Driver_64.tar.gz</code>, which is extracted to the clients subdirectory.</p>
 </div>
-<div class="paragraph">
-<p>=== Install/Reinstall Linux ODBC Driver</p>
 </div>
+<div class="sect3">
+<h4 id="_install_reinstall_linux_odbc_driver">4.3.2. Install/Reinstall Linux ODBC Driver</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1465,9 +1728,9 @@ You must have root access to install the Trafodion ODBC Driver for Linux at the 
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>=== Set Up Client Environment</p>
 </div>
+<div class="sect3">
+<h4 id="_set_up_client_environment">4.3.3. Set Up Client Environment</h4>
 <div class="paragraph">
 <p>If you selected default options during installation, ensure that:</p>
 </div>
@@ -1520,9 +1783,9 @@ application.</p>
 <p>The <code>yum</code> command automatically installs the header files in the <code>/usr/include</code> and <code>/usr/include/libiodbc</code> directories.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Enable Compression</p>
 </div>
+<div class="sect3">
+<h4 id="_enable_compression_2">4.3.4. Enable Compression</h4>
 <div class="paragraph">
 <p>When compression is enabled in the ODBC driver, the ODBC driver can send and receive large volumes of data quickly and efficiently to and from
 the Trafodion Database Connectivity Services (DCS) server over a TCP/IP network. By default, compression is disabled.</p>
@@ -1582,9 +1845,9 @@ the Trafodion Database Connectivity Services (DCS) server over a TCP/IP network.
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Use Third-Party Driver Manager</p>
 </div>
+<div class="sect3">
+<h4 id="_use_third_party_driver_manager">4.3.5. Use Third-Party Driver Manager</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1620,9 +1883,9 @@ to <code>odbc.ini</code>).</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Run Sample Program (<code>connect_test</code>)</p>
 </div>
+<div class="sect3">
+<h4 id="_run_sample_program_code_connect_test_code">4.3.6. Run Sample Program (<code>connect_test</code>)</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1710,9 +1973,9 @@ Connect Test Passed...</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="linux_odbc_run_basicsql" class="paragraph">
-<p>=== Run Sample Program (<code>basicsql</code>)</p>
 </div>
+<div class="sect3">
+<h4 id="linux_odbc_run_basicsql">4.3.7. Run Sample Program (<code>basicsql</code>)</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1803,13 +2066,18 @@ Data selected: 1000 CREATE REPORTS 2014-3-22
 Basic SQL ODBC Test Passed!</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>= Install JDBC Type-4 Driver
-These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Package</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_jdbc_type_4_driver">5. Install JDBC Type-4 Driver</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_package_2">5.1. Installation Package</h3>
 <div class="paragraph">
 <p>The distribution file for the Trafodion JDBC Type 4 Driver is packaged within the Trafodion clients tar file, <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>,
 on the Trafodion downloads site <a href="http://trafodion.incubator.apache.org/download.html" class="bare">http://trafodion.incubator.apache.org/download.html</a>.</p>
@@ -1936,9 +2204,9 @@ different directory during installation:</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>== Installation Requirements</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_requirements_3">5.2. Installation Requirements</h3>
 <div class="paragraph">
 <p>The Trafodion JDBC Type 4 Driver requires a Java-enabled platform that supports the Java Development Kit (JDK) 1.7 or higher.</p>
 </div>
@@ -1946,16 +2214,14 @@ different directory during installation:</p>
 <p>To determine the Java version that you have installed on your client workstation and to install a supported version, please refer to
 <a href="#jdbct4_JRE">Install Java Runtime Environment (JRE)</a> below.</p>
 </div>
-<div id="jdbct4_JRE" class="paragraph">
-<p>=== Install Java Runtime Environment (JRE)</p>
-</div>
+<div class="sect3">
+<h4 id="jdbct4_JRE">5.2.1. Install Java Runtime Environment (JRE)</h4>
 <div class="paragraph">
 <p>The Trafodion JDBC Type 4 Driver requires that a compatible Java version be installed on the client workstation and that the Java path be set to
 the correct location. The supported Java version is 1.7 or higher.</p>
 </div>
-<div class="paragraph">
-<p>==== Verify Java Version</p>
-</div>
+<div class="sect4">
+<h5 id="_verify_java_version">Verify Java Version</h5>
 <div class="paragraph">
 <p>To display the Java version of the client workstation on the screen, enter:</p>
 </div>
@@ -2001,9 +2267,9 @@ workstation:</p>
 </li>
 </ul>
 </div>
-<div id="jdbct4_install_java" class="paragraph">
-<p>==== Install Supported Java Version</p>
 </div>
+<div class="sect4">
+<h5 id="jdbct4_install_java">Install Supported Java Version</h5>
 <div class="paragraph">
 <p>The supported Java version is 1.7 or higher. To install one of the supported Java versions on the client workstation,
 go to this link: <a href="http://www.java.com/en/download" class="bare">http://www.java.com/en/download</a></p>
@@ -2022,9 +2288,9 @@ system of your client workstation:</p>
 </li>
 </ul>
 </div>
-<div id="jdbct4_path_windows" class="paragraph">
-<p>==== Set Windows PATH Variable</p>
 </div>
+<div class="sect4">
+<h5 id="jdbct4_path_windows">Set Windows PATH Variable</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2081,9 +2347,9 @@ path in double quotes (") before the semicolon.
 </li>
 </ol>
 </div>
-<div id="jdbct4_path_linux" class="paragraph">
-<p>==== Set Linux PATH Variable</p>
 </div>
+<div class="sect4">
+<h5 id="jdbct4_path_linux">Set Linux PATH Variable</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2128,12 +2394,13 @@ use the setenv command instead of export.
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="jdbct4_install" class="paragraph">
-<p>== Installation Instructions</p>
 </div>
-<div id="jdbct4_download" class="paragraph">
-<p>=== Download JDBC Type-4 Driver</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="jdbct4_install">5.3. Installation Instructions</h3>
+<div class="sect3">
+<h4 id="jdbct4_download">5.3.1. Download JDBC Type-4 Driver</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2164,9 +2431,9 @@ use the setenv command instead of export.
 </li>
 </ol>
 </div>
-<div id="jdbct4_install_zip" class="paragraph">
-<p>=== Install JDBC Type-4 Driver</p>
 </div>
+<div class="sect3">
+<h4 id="jdbct4_install_zip">5.3.2. Install JDBC Type-4 Driver</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2199,9 +2466,11 @@ use the setenv command instead of export.
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="_uninstall_jdbc_type_4_driver">5.3.3. Uninstall JDBC Type-4 Driver</h4>
 <div class="paragraph">
-<p>=== Uninstall JDBC Type-4 Driver
-Run one of these sets of commands to remove the Trafodion JDBC Type 4 Driver:</p>
+<p>Run one of these sets of commands to remove the Trafodion JDBC Type 4 Driver:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2276,9 +2545,9 @@ C:\&gt;</code></pre>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Reinstall JDBC Type-4 Driver</p>
 </div>
+<div class="sect3">
+<h4 id="_reinstall_jdbc_type_4_driver">5.3.4. Reinstall JDBC Type-4 Driver</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2296,9 +2565,10 @@ C:\&gt;</code></pre>
 </li>
 </ol>
 </div>
-<div id="jdbct4_setup_env" class="paragraph">
-<p>== Set Up Client Environment</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="jdbct4_setup_env">5.4. Set Up Client Environment</h3>
 <div class="paragraph">
 <p>Check that you have a supported Java version installed on the client workstation. The supported Java version is 1.7 or higher. For more
 information, see <a href="#jdbct4_JRE">Installing and Verifying the Java Runtime</a>.</p>
@@ -2340,9 +2610,8 @@ replacing <code><em>jdbc-installation-directory</em></code> with the name of the
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Configure Applications</p>
-</div>
+<div class="sect3">
+<h4 id="_configure_applications">5.4.1. Configure Applications</h4>
 <div class="paragraph">
 <p>Edit the <code>t4jdbc.properties</code> file. Set these values for your environment:</p>
 </div>
@@ -2392,13 +2661,18 @@ The driver’s class name is <code>org.trafodion.jdbc.t4.T4Driver</code>.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>= Install TrafCI
-These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Package</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_trafci">6. Install TrafCI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_package_3">6.1. Installation Package</h3>
 <div class="paragraph">
 <p>The distribution file for the Trafodion Command Interface (TrafCI) is packaged within the Trafodion clients tar file,
 <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>, on the Trafodion downloads site <a href="http://trafodion.incubator.apache.org/download.html" class="bare">http://trafodion.incubator.apache.org/download.html</a>.
@@ -2428,9 +2702,9 @@ Use this distribution file to install TrafCI:</p>
 <div class="paragraph">
 <p>The distribution zip file contains this installer file: <code>trafciInstaller.jar</code>, an executable JAR file.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Requirements</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_requirements_4">6.2. Installation Requirements</h3>
 <div class="paragraph">
 <p>The Trafodion Command Interface (TrafCI) runs on Windows and Linux. Before installing TrafCI on the client workstation, follow these
 instructions:</p>
@@ -2448,9 +2722,8 @@ instructions:</p>
 </li>
 </ul>
 </div>
-<div id="trafci_JRE" class="paragraph">
-<p>=== Install/Verify Java Runtime Environment</p>
-</div>
+<div class="sect3">
+<h4 id="trafci_JRE">6.2.1. Install/Verify Java Runtime Environment</h4>
 <div class="paragraph">
 <p>TrafCI and the Trafodion JDBC Type 4 Driver require that a compatible Java version be installed on the client workstation and that the Java
 path be set to the correct location. The supported Java version is 1.7 or higher.</p>
@@ -2459,17 +2732,22 @@ path be set to the correct location. The supported Java version is 1.7 or higher
 <p>To determine the Java version that you have installed on your client workstation and to install a supported version, see
 <a href="#jdbct4_JRE">Install Java Runtime Environment (JRE)</a>.</p>
 </div>
-<div id="trafci_install_jdbct4" class="paragraph">
-<p>=== Install/Verify JDBC Type-4 Driver
-TrafCI requires a compatible version of the Trafodion JDBC Type 4 Driver to be installed on the client workstation before you install TrafCI.</p>
 </div>
+<div class="sect3">
+<h4 id="trafci_install_jdbct4">6.2.2. Install/Verify JDBC Type-4 Driver</h4>
 <div class="paragraph">
-<p>==== Install JDBC Type-4 Driver
-To install and use the JDBC driver, see <a href="#jdbct4_JRE">Install Java Runtime Environment (JRE)</a>.</p>
+<p>TrafCI requires a compatible version of the Trafodion JDBC Type 4 Driver to be installed on the client workstation before you install TrafCI.</p>
 </div>
+<div class="sect4">
+<h5 id="_install_jdbc_type_4_driver_2">Install JDBC Type-4 Driver</h5>
 <div class="paragraph">
-<p>==== Verify JDBC Type-4 Driver
-To display the version of the JDBC driver that is already installed on the client workstation:</p>
+<p>To install and use the JDBC driver, see <a href="#jdbct4_JRE">Install Java Runtime Environment (JRE)</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_verify_jdbc_type_4_driver">Verify JDBC Type-4 Driver</h5>
+<div class="paragraph">
+<p>To display the version of the JDBC driver that is already installed on the client workstation:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2525,9 +2803,10 @@ C:\&lt;user-specified directory&gt;\lib&gt;</code></pre>
 <p>If the JAR file is inaccessible or the returned version is not supported, see <a href="#trafci_install_jdbct4">Install/Verify JDBC Type-4 Driver</a>.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="trafci_perl_python" class="paragraph">
-<p>=== Install Perl or Python</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="trafci_perl_python">6.2.3. Install Perl or Python</h4>
 <div class="paragraph">
 <p>If you plan to use Perl or Python scripts with TrafCI, verify that you have Perl or Python installed on the client workstation. TrafCI supports
 these versions of Perl and Python:</p>
@@ -2551,9 +2830,10 @@ before or after installing TrafCI.</p>
 installed on your client workstation. Use the TrafCI Installation Wizard to automatically download and install both the Perl JavaServer and
 Jython open source extensions. To download them manually, see the <code>README</code> in the samples directory.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Instructions</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_installation_instructions_3">6.3. Installation Instructions</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2583,9 +2863,8 @@ information, see <a href="#trafci_install_jdbct4">Install JDBC Type-4 Driver</a>
 <div class="paragraph">
 <p>To uninstall TrafCI, see <a href="#trafci_uninstall">Uninstall_TrafCI</a>.</p>
 </div>
-<div id="trafci_download_installer" class="paragraph">
-<p>=== Download Installer</p>
-</div>
+<div class="sect3">
+<h4 id="trafci_download_installer">6.3.1. Download Installer</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2642,9 +2921,9 @@ tool):</p>
 </li>
 </ol>
 </div>
-<div id="trafci_run_installer" class="paragraph">
-<p>=== Run Executable JAR Installer</p>
 </div>
+<div class="sect3">
+<h4 id="trafci_run_installer">6.3.2. Run Executable JAR Installer</h4>
 <div class="paragraph">
 <p>When using the executable JAR file, trafciInstaller.jar, to install TrafCI, you have a choice of running the installer from the Installer
 Wizard Graphical User Interface (GUI) or from the command line:</p>
@@ -2659,9 +2938,8 @@ Wizard Graphical User Interface (GUI) or from the command line:</p>
 </li>
 </ul>
 </div>
-<div id="trafci_wizard_install" class="paragraph">
-<p>==== Installer Wizard Steps</p>
-</div>
+<div class="sect4">
+<h5 id="trafci_wizard_install">Installer Wizard Steps</h5>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2676,9 +2954,8 @@ does not have the X Window system, see <a href="#trafci_cmd_install">Command-Lin
 </table>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>===== Launching the Installer Wizard</p>
-</div>
+<div class="sect5">
+<h6 id="_launching_the_installer_wizard">Launching the Installer Wizard</h6>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2717,9 +2994,9 @@ does not have the X Window system, see <a href="#trafci_cmd_install">Command-Lin
 </li>
 </ol>
 </div>
-<div id="trafci_using_wizard" class="paragraph">
-<p>===== Using the Installer Wizard</p>
 </div>
+<div class="sect5">
+<h6 id="trafci_using_wizard">Using the Installer Wizard</h6>
 <div class="paragraph">
 <p>When you execute <code>trafciInstaller.jar</code>, the Installer Wizard appears:</p>
 </div>
@@ -2860,9 +3137,10 @@ the components.</p>
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="trafci_cmd_install" class="paragraph">
-<p>==== Command-Line Installation Steps</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="trafci_cmd_install">Command-Line Installation Steps</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3059,19 +3337,20 @@ Trafodion Command Interface Installation Complete.
 </li>
 </ol>
 </div>
-<div id="trafci_uninstall" class="paragraph">
-<p>=== Uninstall TrafCI</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="trafci_uninstall">6.3.3. Uninstall TrafCI</h4>
 <div class="paragraph">
 <p>If you used the executable JAR file, <code>trafciInstaller.jar</code>, to install TrafCI, delete the entire
 <code>Trafodion Command Interface</code> folder to uninstall TrafCI.</p>
 </div>
-<div class="paragraph">
-<p>== Post-Installation Instructions</p>
 </div>
-<div class="paragraph">
-<p>=== Verify Installed Software Files</p>
 </div>
+<div class="sect2">
+<h3 id="_post_installation_instructions">6.4. Post-Installation Instructions</h3>
+<div class="sect3">
+<h4 id="_verify_installed_software_files">6.4.1. Verify Installed Software Files</h4>
 <div class="paragraph">
 <p>After downloading and running the installer file, verify that the TrafCI software files are installed in the correct locations:</p>
 </div>
@@ -3184,9 +3463,9 @@ Trafodion Command Interface Installation Complete.
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Test Launching TrafCI</p>
 </div>
+<div class="sect3">
+<h4 id="_test_launching_trafci">6.4.2. Test Launching TrafCI</h4>
 <div class="paragraph">
 <p>Before launching TrafCI, make sure that you have set the Java path to the correct location. For more information, see:</p>
 </div>
@@ -3213,13 +3492,18 @@ momentarily in the TrafCI window before the TrafCI window disappears:</p>
 <p>For information about setting up the client, such as choosing the look and feel of the interface or presetting launch parameters, see the
 <a href="http://trafodion.incubator.apache.com/docs/command_interface/index.html"><em>Trafodion Command Interface Guide</em></a>.</p>
 </div>
-<div class="paragraph">
-<p>= Install odb
-These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Package</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_odb">7. Install odb</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These installation instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of the product until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_package_4">7.1. Installation Package</h3>
 <div class="paragraph">
 <p>The distribution file for odb is packaged within the Trafodion clients tar file, <code>clients-1.3.<strong><em>n</em></strong>.tar.gz</code>,
 on the Trafodion downloads site <a href="http://trafodion.incubator.apache.org/download.html" class="bare">http://trafodion.incubator.apache.org/download.html</a>.
@@ -3247,17 +3531,17 @@ Use this distribution file to install odb:</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>== Installation Requirements</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_requirements_5">7.2. Installation Requirements</h3>
 <div class="paragraph">
 <p>The odb tool runs on 64-bit Linux. On a Linux workstation, odb requires <code>pthread</code> libraries, which are usually installed by default. It also
 requires the unixODBC Driver Manager to be installed and configured on the client workstation. For more information, see the
 <a href="http://trafodion.apache.org/docs/odb_user/index.html"><em>Trafodion odb User Guide</em></a>.</p>
 </div>
-<div class="paragraph">
-<p>== Installation Instructions</p>
 </div>
+<div class="sect2">
+<h3 id="_installation_instructions_4">7.3. Installation Instructions</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3288,9 +3572,8 @@ information, see the <a href="http://trafodion.apache.org/docs/odb_user/index.ht
 <p>To uninstall odb, please refer to <a href="#odb_uninstall">Uninstalling odb</a>.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="odb_download" class="paragraph">
-<p>=== Download odb</p>
-</div>
+<div class="sect3">
+<h4 id="odb_download">7.3.1. Download odb</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3321,9 +3604,9 @@ information, see the <a href="http://trafodion.apache.org/docs/odb_user/index.ht
 </li>
 </ol>
 </div>
-<div id="odb_install" class="paragraph">
-<p>=== Install odb</p>
 </div>
+<div class="sect3">
+<h4 id="odb_install">7.3.2. Install odb</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3355,9 +3638,9 @@ information, see the <a href="http://trafodion.apache.org/docs/odb_user/index.ht
 </li>
 </ol>
 </div>
-<div id="odb_uninstall" class="paragraph">
-<p>=== Uninstall odb</p>
 </div>
+<div class="sect3">
+<h4 id="odb_uninstall">7.3.3. Uninstall odb</h4>
 <div class="paragraph">
 <p>To uninstall odb, delete the <code>README</code> and <code>/bin/odb64luo</code> files from their installed location.</p>
 </div>
@@ -3366,13 +3649,18 @@ information, see the <a href="http://trafodion.apache.org/docs/odb_user/index.ht
 <pre class="CodeRay highlight"><code data-lang="text">rm -rf odb-installation-directory</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>= Configure DbVisualizer
-These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of Trafodion until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Prerequisite Software</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_dbvisualizer">8. Configure DbVisualizer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of Trafodion until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisite_software">8.1. Prerequisite Software</h3>
 <div class="paragraph">
 <p>Make sure that you have this software installed on your workstation:</p>
 </div>
@@ -3396,15 +3684,15 @@ These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== Configuration Instructions</p>
 </div>
+<div class="sect2">
+<h3 id="_configuration_instructions">8.2. Configuration Instructions</h3>
+<div class="sect3">
+<h4 id="_disable_connection_validation_select_option">8.2.1. Disable Connection Validation Select Option</h4>
+<div class="sect4">
+<h5 id="_dbvisualizer_9_1_or_an_earlier_version">DbVisualizer 9.1 (or an earlier version)</h5>
 <div class="paragraph">
-<p>=== Disable Connection Validation Select Option</p>
-</div>
-<div class="paragraph">
-<p>==== DbVisualizer 9.1 (or an earlier version)
-Edit the <code><em>DbVisualizer-Install-Dir</em>\resources\dbvis-custom.prefs</code> file and
+<p>Edit the <code><em>DbVisualizer-Install-Dir</em>\resources\dbvis-custom.prefs</code> file and
 disable the <code>ConnectionValidationSelect</code> option as shown below:</p>
 </div>
 <div class="listingblock">
@@ -3412,9 +3700,11 @@ disable the <code>ConnectionValidationSelect</code> option as shown below:</p>
 <pre class="CodeRay highlight"><code data-lang="text">dbvis.generic.-ConnectionValidationSelect=disabled</code></pre>
 </div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_dbvisualizer_9_2_or_a_later_version">DbVisualizer 9.2 (or a later version)</h5>
 <div class="paragraph">
-<p>==== DbVisualizer 9.2 (or a later version)
-Set the <strong>Physical Connection</strong> property to keep your connections alive. Follow these steps:</p>
+<p>Set the <strong>Physical Connection</strong> property to keep your connections alive. Follow these steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -3434,9 +3724,10 @@ Set the <strong>Physical Connection</strong> property to keep your connections a
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Register JDBC Type-4 Driver</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_register_jdbc_type_4_driver">8.2.2. Register JDBC Type-4 Driver</h4>
 <div class="paragraph">
 <p>Use the DbVisualizer Driver Manager and register the Trafodion JDBC Type-4 Driver.</p>
 </div>
@@ -3459,9 +3750,9 @@ Set the <strong>Physical Connection</strong> property to keep your connections a
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Connect to Trafodion</p>
 </div>
+<div class="sect3">
+<h4 id="_connect_to_trafodion">8.2.3. Connect to Trafodion</h4>
 <div class="paragraph">
 <p>Create a new connection by selecting the Trafodion JDBC Type-4 Driver and filling in the connection parameters. Edit the database URL to match
 your Trafodion system’s host name and port number: <code>jdbc:t4jdbc://&lt;host-name or ip-address&gt;:37800/:</code></p>
@@ -3472,13 +3763,18 @@ your Trafodion system’s host name and port number: <code>jdbc:t4jdbc://&lt;hos
 <div class="paragraph">
 <p>Once you have connected successfully, execute a query using SQL Commander to confirm the connection.</p>
 </div>
-<div class="paragraph">
-<p>= Configure SQuirreL Client
-These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of Trafodion until otherwise indicated.</p>
 </div>
-<div class="paragraph">
-<p>== Prerequisite Software</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_squirrel_client">9. Configure SQuirreL Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</em></strong> and subsequent updates of Trafodion until otherwise indicated.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisite_software_2">9.1. Prerequisite Software</h3>
 <div class="paragraph">
 <p>Make sure that you have this software installed on your workstation:</p>
 </div>
@@ -3496,10 +3792,11 @@ These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</e
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>== Configuration Instructions
-=== Register JDBC Type-4 Driver</p>
 </div>
+<div class="sect2">
+<h3 id="_configuration_instructions_2">9.2. Configuration Instructions</h3>
+<div class="sect3">
+<h4 id="_register_jdbc_type_4_driver_2">9.2.1. Register JDBC Type-4 Driver</h4>
 <div class="paragraph">
 <p>Use the <strong>Add Driver</strong> function and register the Trafodion JDBC Type-4 Driver:</p>
 </div>
@@ -3530,9 +3827,9 @@ These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</e
 </ol>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>=== Connect to Trafodion</p>
 </div>
+<div class="sect3">
+<h4 id="_connect_to_trafodion_2">9.2.2. Connect to Trafodion</h4>
 <div class="paragraph">
 <p>Use the Add Alias dialog box and create an alias for your Trafodion System:</p>
 </div>
@@ -3564,12 +3861,17 @@ These configuration instructions apply to Trafodion Release 1.3.<strong><em>n</e
 <div class="paragraph">
 <p>Once you have a successful connection, use the SQL tab and run a query to confirm the connection.</p>
 </div>
-<div class="paragraph">
-<p>= Appendix</p>
 </div>
-<div id="odbc_sample_program" class="paragraph">
-<p>== <code>basicsql</code> (Sample ODBC Program)
-This appendix provides the source code for the ODBC sample program, <code>basicsql,</code> which is not currently bundled with the ODBC drivers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendix">10. Appendix</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="odbc_sample_program">10.1. <code>basicsql</code> (Sample ODBC Program)</h3>
+<div class="paragraph">
+<p>This appendix provides the source code for the ODBC sample program, <code>basicsql,</code> which is not currently bundled with the ODBC drivers.</p>
 </div>
 <div class="paragraph">
 <p>This appendix also provides the code for the script files that are needed to build and run the sample program on Windows. See
@@ -3588,9 +3890,10 @@ This appendix provides the source code for the ODBC sample program, <code>basics
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="__code_basicsql_cpp_code_source_code">10.1.1. <code>basicsql.cpp</code> Source Code</h4>
 <div class="paragraph">
-<p>=== <code>basicsql.cpp</code> Source Code
-You can download the <code>basicsql.cpp</code> example from
+<p>You can download the <code>basicsql.cpp</code> example from
 <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/basicsql.cpp" class="bare">http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/basicsql.cpp</a>.</p>
 </div>
 <div class="paragraph">
@@ -3994,17 +4297,18 @@ SQLHWND hWnd;
 }</code></pre>
 </div>
 </div>
-<div id="basicsql_build" class="paragraph">
-<p>=== Windows Build and Run Files for <code>basicsql</code></p>
 </div>
+<div class="sect3">
+<h4 id="basicsql_build">10.1.2. Windows Build and Run Files for <code>basicsql</code></h4>
 <div class="paragraph">
 <p>The script files that are needed to build and run the sample program on Windows are not currently bundled with the ODBC driver.
 Copy and paste the code from this appendix into the recommended files. To build and run the sample program on Windows,
 see the instructions in <a href="#win_odbc_run_basicsql">Run Sample Program (<code>basicsql</code>)</a>.</p>
 </div>
+<div class="sect4">
+<h5 id="__code_build_bat_code_build_script"><code>build.bat</code> (Build Script)</h5>
 <div class="paragraph">
-<p>==== <code>build.bat</code> (Build Script)
-You can download the <code>build.bat</code> example from
+<p>You can download the <code>build.bat</code> example from
 <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/build.bat" class="bare">http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/build.bat</a>.</p>
 </div>
 <div class="paragraph">
@@ -4042,9 +4346,11 @@ link /OUT:"./basicsql.exe" /NOLOGO "kernel32.lib" "user32.lib" "gdi32.lib" "wins
 <div class="paragraph">
 <p>To build the sample program on Windows, see the instructions in <a href="#win_odbc_run_basicsql">Run Sample Program (<code>basicsql</code>)</a>.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_run_code_run_bat_code">Run <code>run.bat</code></h5>
 <div class="paragraph">
-<p>==== Run <code>run.bat</code>
-You can download the <code>run.bat</code> example from
+<p>You can download the <code>run.bat</code> example from
 <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/run.bat" class="bare">http://trafodion.incubator.apache.org/docs/latest/client_install/resources/source/run.bat</a>.</p>
 </div>
 <div class="paragraph">
@@ -4085,9 +4391,11 @@ basicsql.exe Default_Datasource user1 pwd1</pre>
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-01-29 17:42:05 UTC
+Version 2.0.0<br>
+Last updated 2016-02-12 22:07:12 UTC
 </div>
 </div>
 <script>

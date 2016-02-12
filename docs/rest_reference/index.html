@@ -95,7 +95,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-02-04T21:12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-02-12T22:10</p></td>
 </tr>
 </tbody>
 </table>
@@ -989,6 +989,29 @@ This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
       "DOWN":""
     },
   ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the user wishes to see a summary of the Trafodion DCS configuration.
+The server retrieves this information by executing dcscheck script.</p>
+</div>
+<div class="listingblock">
+<div class="title">Http command</div>
+<div class="content">
+<pre>curl  -X GET -H "Accept: application/json" http://{hostname}:4200/v1/servers/dcs/summary</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Response</div>
+<div class="content">
+<pre>{
+  "Cluster Configuration": "HA",
+  "Zookeeper listen port": "2181",
+  "DcsMaster listen port": "23400",
+  "Configured Primary DcsMaster": "\"node1\"",
+  "Configured Backup DcsMasters": "\"node2 node3\"",
+  "Active DcsMaster": "\"node1\", pid 8526"
 }</pre>
 </div>
 </div>
