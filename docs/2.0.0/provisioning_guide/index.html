@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Trafodion Provisioning Guide</title>
+<title>Provisioning Guide</title>
 <style>
 /**
 * @@@ START COPYRIGHT @@@  
@@ -535,7 +535,7 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Trafodion Provisioning Guide</h1>
+<h1>Provisioning Guide</h1>
 <div class="details">
 <span id="revnumber">version 2.0.0</span>
 </div>
@@ -617,7 +617,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#prepare-install-required-software-packages">4.7. Install Required Software Packages</a>
 <ul class="sectlevel3">
 <li><a href="#prepare-download-and-install-packages">4.7.1. Download and Install Packages</a></li>
-<li><a href="#prepare-build-and-install-log4cplusplus">4.7.2. Build and Install log4c++</a></li>
+<li><a href="#prepare-install-log4cplusplus">4.7.2. Install log4c++</a></li>
 </ul>
 </li>
 <li><a href="#prepare-download-trafodion-binaries">4.8. Download Trafodion Binaries</a></li>
@@ -3656,12 +3656,12 @@ for more information.</p>
 </div>
 <div class="paragraph">
 <p>Install the packages listed in <a href="#requirements-software-packages">Software Packages</a> above on all nodes in the cluster. Note the special
-handling for <code>log4c&#43;&#43;</code>. See <a href="#prepare-build-and-install-log4cplusplus">Build and Install log4c++</a> below for more information.</p>
+handling for <code>log4c&#43;&#43;</code>. See <a href="#prepare-install-log4cplusplus">Install log4c++</a> below for more information.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="prepare-build-and-install-log4cplusplus">4.7.2. Build and Install log4c++</h4>
+<h4 id="prepare-install-log4cplusplus">4.7.2. Install log4c++</h4>
 <div class="paragraph">
 <p>You perform this step as a user with <code>root</code> or <code>sudo</code> access.</p>
 </div>
@@ -3671,31 +3671,7 @@ handling for <code>log4c&#43;&#43;</code>. See <a href="#prepare-build-and-insta
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Perform the following steps on the Provisioning Master Node.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text"># Download required packages
-sudo yum -y install rpm-build apr-devel apr-util-devel doxygen gcc gcc-c++
-
-# Download the log4c++ source rpm
-wget ftp://ftp.rpmfind.net/linux/fedora-secondary/development/rawhide/source/SRPMS/l/log4cxx-0.10.0-13.fc18.src.rpm
-
-# Install the log4c++ source rpm
-sudo rpm -ivv log4cxx-0.10.0-13.fc18.src.rpm
-
-# Build the log4c++ rpm
-sudo rpmbuild -ba /root/rpmbuild/SPECS/log4cxx.spec
-
-# Install the log4c++ rpm
-sudo rpm -U /root/rpmbuild/RPMS/x86_64/log4cxx-0.10.0-13.el6.x86_64.rpm
-
-# Copy the log4c++ rpm to the local directory
-sudo cp /root/rpmbuild/RPMS/x86_64/log4cxx-0.10.0-13.el6.x86_64.rpm .
-
-# Change owner of the local log4c++ rpm
-sudo chown &lt;your-id&gt; log4cxx-0.10.0-13.el6.x86_64.rpm</code></pre>
-</div>
-</div>
+<p>Download the log4c&#43;&#43; RPM from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.</p>
 </li>
 <li>
 <p>Copy and Install the log4c&#43;&#43; RPM on All Nodes</p>
@@ -6158,7 +6134,7 @@ Each LDAP connection configuration section must provide at least one unique iden
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-02-18 16:13:21 UTC
+Last updated 2016-02-24 18:39:33 UTC
 </div>
 </div>
 <script>
