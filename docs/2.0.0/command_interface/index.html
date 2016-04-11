@@ -554,24 +554,18 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_introduction">2. Introduction</a></li>
 <li><a href="#install">3. Install and Configure</a>
 <ul class="sectlevel2">
-<li><a href="#_install_trafci">3.1. Install TrafCI</a></li>
-<li><a href="#install_verify">3.2. Verify and Set the Java Path</a>
-<ul class="sectlevel3">
-<li><a href="#_set_path_on_windows">3.2.1. Set PATH on Windows</a></li>
-<li><a href="#_set_path_on_linux">3.2.2. Set PATH on Linux</a></li>
+<li><a href="#_install_trafci">3.1. Install trafci</a></li>
+<li><a href="#_test_trafci_launch">3.2. Test trafci Launch</a></li>
 </ul>
 </li>
-<li><a href="#_test_trafci_launch">3.3. Test TrafCI Launch</a></li>
-</ul>
-</li>
-<li><a href="#_launch_trafci">4. Launch TrafCI</a>
+<li><a href="#_launch_trafci">4. Launch trafci</a>
 <ul class="sectlevel2">
-<li><a href="#_launch_trafci_on_windows_workstation">4.1. Launch TrafCI on Windows Workstation</a>
+<li><a href="#_launch_trafci_on_windows_workstation">4.1. Launch trafci on Windows Workstation</a>
 <ul class="sectlevel3">
 <li><a href="#trafci_shortcut">4.1.1. Create <code>trafci.cmd</code> Shortcut</a></li>
 </ul>
 </li>
-<li><a href="#_launch_trafci_on_linux_workstation">4.2. Launch TrafCI on Linux Workstation</a>
+<li><a href="#_launch_trafci_on_linux_workstation">4.2. Launch trafci on Linux Workstation</a>
 <ul class="sectlevel3">
 <li><a href="#_set_code_trafci_sh_code_path">4.2.1. Set <code>trafci.sh</code> PATH</a></li>
 <li><a href="#trafci_preset">4.2.2. Preset the Optional Launch Parameters</a></li>
@@ -585,12 +579,12 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#trafci_retry">4.4. Retry Login</a></li>
 <li><a href="#trafci_option_params">4.5. Optional Launch Parameters</a></li>
-<li><a href="#trafci_run_command">4.6. Run Command When Launching TrafCI</a></li>
-<li><a href="#trafci_run_script">4.7. Run Script When Launching TrafCI</a></li>
-<li><a href="#trafci_noconnect">4.8. Launch TrafCI Without Connecting to the Database</a></li>
-<li><a href="#trafci_with_version">4.9. Run TrafCI With <code>-version</code></a></li>
-<li><a href="#trafci_help">4.10. Run TrafCI With -help</a></li>
-<li><a href="#trafci_quit">4.11. Exit TrafCI</a></li>
+<li><a href="#trafci_run_command">4.6. Run Command When Launching trafci</a></li>
+<li><a href="#trafci_run_script">4.7. Run Script When Launching trafci</a></li>
+<li><a href="#trafci_noconnect">4.8. Launch trafci Without Connecting to the Database</a></li>
+<li><a href="#trafci_with_version">4.9. Run trafci With <code>-version</code></a></li>
+<li><a href="#trafci_help">4.10. Run trafci With -help</a></li>
+<li><a href="#trafci_quit">4.11. Exit trafci</a></li>
 </ul>
 </li>
 <li><a href="#_run_commands_interactively">5. Run Commands Interactively</a>
@@ -649,7 +643,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_run_scripts_in_parallel">6.9. Run Scripts in Parallel</a></li>
 </ul>
 </li>
-<li><a href="#_run_trafci_from_perl_or_python">7. Run TrafCI From Perl or Python</a>
+<li><a href="#_run_trafci_from_perl_or_python">7. Run trafci From Perl or Python</a>
 <ul class="sectlevel2">
 <li><a href="#_set_the_login_environment_variables">7.1. Set the Login Environment Variables</a>
 <ul class="sectlevel3">
@@ -659,7 +653,7 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#_perl_and_python_wrapper_scripts">7.2. Perl and Python Wrapper Scripts</a></li>
-<li><a href="#_launch_trafci_from_the_perl_or_python_command_line">7.3. Launch TrafCI From the Perl or Python Command Line</a>
+<li><a href="#_launch_trafci_from_the_perl_or_python_command_line">7.3. Launch trafci From the Perl or Python Command Line</a>
 <ul class="sectlevel3">
 <li><a href="#_example_perl_program_code_sample_pl_code">7.3.1. Example Perl Program (<code>sample.pl</code>)</a></li>
 <li><a href="#_example_python_program_code_sample_py_code">7.3.2. Example Python Program (<code>sample.py</code>)</a></li>
@@ -1154,6 +1148,9 @@ specific language governing permissions and limitations under the License.</p>
 <div class="paragraph">
 <p>Microsoft® and Windows® are U.S. registered trademarks of Microsoft Corporation. Java® is a registered trademark of Oracle and/or its affiliates. DbVisualizer™ is a trademark of DbVis Software AB.</p>
 </div>
+<div class="paragraph">
+<p><strong>Revision History</strong></p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -1167,6 +1164,10 @@ specific language governing permissions and limitations under the License.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">January, 2016</p></td>
 </tr>
@@ -1178,8 +1179,8 @@ specific language governing permissions and limitations under the License.</p>
 <h2 id="_about_this_document">1. About This Document</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide describes how to use the Trafodion Command Interface (TrafCI) on a client workstation to connect to and query a Trafodion database.
-The TrafCI enables you to run SQL statements interactively or from script files.</p>
+<p>This guide describes how to use the Trafodion Command Interface (trafci) on a client workstation to connect to and query a Trafodion database.
+The trafci enables you to run SQL statements interactively or from script files.</p>
 </div>
 <div class="sect2">
 <h3 id="_intended_audience">1.1. Intended Audience</h3>
@@ -1426,16 +1427,16 @@ Or, even better, join our community and help us improve our documentation. Pleas
 <h2 id="_introduction">2. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Trafodion Command Interface (TrafCI) is a command-line interface that you download and install on a client workstation that has the
+<p>The Trafodion Command Interface (trafci) is a command-line interface that you download and install on a client workstation that has the
 Trafodion JDBC Type 4 Driver installed. Operating systems that support the JDBC driver include Windows and Linux. The JDBC driver connects
-TrafCI on a client workstation to a Trafodion database.</p>
+trafci on a client workstation to a Trafodion database.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/VST101.jpg" alt="TrafCI Connected to a Trafodion Database"></span></p>
+<p><span class="image"><img src="images/VST101.jpg" alt="trafci Connected to a Trafodion Database"></span></p>
 </div>
 <div class="paragraph">
-<p>TrafCI enables you to perform daily administrative and database management tasks by running SQL statements or other commands
-interactively or from script files. You can also run TrafCI from a Perl or Python command line or from Perl or Python programs.</p>
+<p>trafci enables you to perform daily administrative and database management tasks by running SQL statements or other commands
+interactively or from script files. You can also run trafci from a Perl or Python command line or from Perl or Python programs.</p>
 </div>
 </div>
 </div>
@@ -1443,124 +1444,20 @@ interactively or from script files. You can also run TrafCI from a Perl or Pytho
 <h2 id="install">3. Install and Configure</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_install_trafci">3.1. Install TrafCI</h3>
+<h3 id="_install_trafci">3.1. Install trafci</h3>
 <div class="paragraph">
-<p>To install TrafCI on a client workstation, follow the procedures in the
-<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html"><em>Trafodion Client Installation Guide</em></a>.</p>
+<p>To install trafci on a client workstation, follow the procedures in the
+<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.
+Ensure that you set up the Java Path per the instructions in that guide.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="install_verify">3.2. Verify and Set the Java Path</h3>
-<div class="sect3">
-<h4 id="_set_path_on_windows">3.2.1. Set PATH on Windows</h4>
+<h3 id="_test_trafci_launch">3.2. Test trafci Launch</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Right-click the <strong>Computer</strong> icon on your desktop, and then select <strong>Properties</strong>.
-The <strong>Control Panel&gt;System and Security&gt;System</strong> window appears.</p>
-</li>
-<li>
-<p>In the left navigation bar, click the <strong>Advanced</strong> system settings link.</p>
-</li>
-<li>
-<p>In the <strong>System Properties</strong> dialog box, click the <strong>Environment Variables</strong> button.</p>
-</li>
-<li>
-<p>Under <em>System variables</em>, select the variable named <strong>Path</strong>, and then click <strong>Edit</strong>:</p>
-<div class="paragraph">
-<p><span class="image"><img src="images/path2.jpg" alt="image"></span></p>
-</div>
-</li>
-<li>
-<p>Place the cursor at the beginning of the <em>Variable</em> value field and enter the path of the Java
-<code>bin</code> directory, ending with a semicolon (<code>;</code>):</p>
-<div class="paragraph">
-<p><span class="image"><img src="images/varval2.jpg" alt="image"></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">&quot;C:\Program Files (x86)\Java\jre7\bin&quot;;</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Check that no space exists after the semicolon (;) in the path. If there are spaces in the directory name, delimit the entire directory
-path in double quotes (") before the semicolon.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click <strong>OK</strong>.</p>
-</li>
-<li>
-<p>Verify that the updated Path appears under <em>System variables</em>, and click OK.</p>
-</li>
-<li>
-<p>In the <strong>System Properties</strong> dialog box, click <strong>OK</strong> to accept the changes.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_set_path_on_linux">3.2.2. Set PATH on Linux</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open the user profile (<code>.profile</code> or <code>.bash_profile</code> for the Bash shell) in the <code>$HOME</code> directory.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">vi .profile</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>In the user profile, set the <code>PATH</code> environment variable to include path of the Java bin
-directory.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">export PATH=/opt/java1.7/jre/bin:$PATH</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Place the path of the Java bin directory before <code>$PATH</code>, and check that no space exists after the colon (<code>:</code>) in the path.
-In the C shell, use the <code>setenv</code> command instead of export.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>To activate the changes, either log out and log in again or execute the user profile.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">. .profile</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_test_trafci_launch">3.3. Test TrafCI Launch</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Launch TrafCI and verify that you can connect to the database. For
-instructions, see <a href="#launch_trafci">Launch TrafCI</a>.</p>
+<p>Launch trafci and verify that you can connect to the database. For
+instructions, see <a href="#launch_trafci">Launch trafci</a>.</p>
 <div class="paragraph">
 <p>This window should appear:</p>
 </div>
@@ -1569,7 +1466,7 @@ instructions, see <a href="#launch_trafci">Launch TrafCI</a>.</p>
 </div>
 </li>
 <li>
-<p>If you cannot launch TrafCI or connect to the database, verify that:</p>
+<p>If you cannot launch trafci or connect to the database, verify that:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1579,7 +1476,7 @@ instructions, see <a href="#launch_trafci">Launch TrafCI</a>.</p>
 <p>The Java path is set to the correct location. See <a href="#install_verify">Verify and Set the Java Path</a>.</p>
 </li>
 <li>
-<p>You installed the TrafCI and JDBC software files correctly.</p>
+<p>You installed the trafci and JDBC software files correctly.</p>
 </li>
 </ul>
 </div>
@@ -1587,17 +1484,17 @@ instructions, see <a href="#launch_trafci">Launch TrafCI</a>.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>See the <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/index.html"><em>Trafodion Client Installation Guide</em></a>.</p>
+<p>See the <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/index.html">Trafodion Client Installation Guide</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_launch_trafci">4. Launch TrafCI</h2>
+<h2 id="_launch_trafci">4. Launch trafci</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This chapter describes how to launch TrafCI from the Window or Linux environment of a client workstation.
-For information about launching TrafCI from Perl or Python, see <a href="#perl_python">Run TrafCI from Perl or Python</a>.</p>
+<p>This chapter describes how to launch trafci from the Window or Linux environment of a client workstation.
+For information about launching trafci from Perl or Python, see <a href="#perl_python">Run trafci from Perl or Python</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1606,14 +1503,14 @@ For information about launching TrafCI from Perl or Python, see <a href="#perl_p
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Before launching TrafCI, make sure that you have set the Java path to the correct location.
+Before launching trafci, make sure that you have set the Java path to the correct location.
 See <a href="#install_verify">Verify and Set Java Path</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_launch_trafci_on_windows_workstation">4.1. Launch TrafCI on Windows Workstation</h3>
+<h3 id="_launch_trafci_on_windows_workstation">4.1. Launch trafci on Windows Workstation</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1625,7 +1522,7 @@ See <a href="#install_verify">Verify and Set Java Path</a>.
 <li>
 <p>Double-click the <code>trafci.cmd</code> file.</p>
 <div class="paragraph">
-<p>TrafCI appears, prompting you to enter the host name or IP address of the database platform, your user name, and password.
+<p>trafci appears, prompting you to enter the host name or IP address of the database platform, your user name, and password.
 See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 </div>
 </li>
@@ -1635,7 +1532,7 @@ See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 <div class="sect3">
 <h4 id="trafci_shortcut">4.1.1. Create <code>trafci.cmd</code> Shortcut</h4>
 <div class="paragraph">
-<p>To enable a user to launch TrafCI from a shortcut icon on the desktop:</p>
+<p>To enable a user to launch trafci from a shortcut icon on the desktop:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1652,7 +1549,7 @@ See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 <p><span class="image"><img src="images/shortct2.jpg" alt="Select shortcut from menu" width="400" height="400"></span></p>
 </div>
 <div class="paragraph">
-<p>For the locations of the installed TrafCI software files,
+<p>For the locations of the installed trafci software files,
 see the <a href="http://trafodion.incubator.apache.org/docs/client_install/latest/index.html"><em>Trafodion Client Installation Guide</em></a>.</p>
 </div>
 </li>
@@ -1693,9 +1590,9 @@ and add the optional launch parameters:</p>
 </div>
 </li>
 <li>
-<p>To launch TrafCI, double-click the shortcut icon.</p>
+<p>To launch trafci, double-click the shortcut icon.</p>
 <div class="paragraph">
-<p>TrafCI appears. If you did not set the optional launch parameters, TrafCI prompts you to enter the
+<p>trafci appears. If you did not set the optional launch parameters, trafci prompts you to enter the
 host name or IP address of the database platform, your user name, and password.
 See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 </div>
@@ -1706,7 +1603,7 @@ See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_launch_trafci_on_linux_workstation">4.2. Launch TrafCI on Linux Workstation</h3>
+<h3 id="_launch_trafci_on_linux_workstation">4.2. Launch trafci on Linux Workstation</h3>
 <div class="paragraph">
 <p>In the terminal window, enter:</p>
 </div>
@@ -1716,14 +1613,14 @@ See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>&lt;trafci-installation-directory&gt;</em> is the directory where you installed the TrafCI software files.
+<p><em>&lt;trafci-installation-directory&gt;</em> is the directory where you installed the trafci software files.
 For more information,
 see the <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/index.html"><em>Trafodion Client Installation Guide</em></a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_set_code_trafci_sh_code_path">4.2.1. Set <code>trafci.sh</code> PATH</h4>
 <div class="paragraph">
-<p>To enable a user to launch TrafCI anywhere on the client workstation:</p>
+<p>To enable a user to launch trafci anywhere on the client workstation:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1745,7 +1642,7 @@ vi .profile</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>trafci-installation-directory</em> is the directory where you installed the TrafCI software files.
+<p><em>trafci-installation-directory</em> is the directory where you installed the trafci software files.
 For more information,
 see the <a href="http://trafodion.incubator.apache.org/docs/latest/client_install/index.html"><em>Trafodion Client Installation Guide</em></a>.
 Check that no space is after the colon (<code>:</code>) in the path.</p>
@@ -1773,14 +1670,14 @@ In the C shell, use the <code>setenv</code> command instead of <code>export</cod
 <div style="page-break-after: always;"></div>
 </li>
 <li>
-<p>On the command line, execute the <code>trafci.sh</code> file to launch TrafCI:</p>
+<p>On the command line, execute the <code>trafci.sh</code> file to launch trafci:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">trafci.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>TrafCI appears, prompting you to enter the host name or IP address of the database platform, your user name, and password.
+<p>trafci appears, prompting you to enter the host name or IP address of the database platform, your user name, and password.
 See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 </div>
 <div class="admonitionblock note">
@@ -1790,7 +1687,7 @@ See <a href="#trafci_login">Log In to Database Platform</a>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To enable all users to launch TrafCI anywhere on the system, create a symbolic link to the
+To enable all users to launch trafci anywhere on the system, create a symbolic link to the
 <code>trafci.sh</code> file in the <code>/usr/bin</code> or <code>/usr/local/bin</code> directory:
 </td>
 </tr>
@@ -1812,7 +1709,7 @@ To enable all users to launch TrafCI anywhere on the system, create a symbolic l
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">alias trafci='trafci.sh -h 16.123.456.78:37800 -u user1 -p xxxxxx'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">alias trafci='trafci.sh -h 16.123.456.78:23400 -u user1 -p xxxxxx'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1828,12 +1725,12 @@ see <a href="#trafci_optional_params">Use Optional Launch Parameters</a>.</p>
 <div class="sect3">
 <h4 id="_log_in_without_login_parameters">4.3.1. Log In Without Login Parameters</h4>
 <div class="paragraph">
-<p>If you launch TrafCI and do not specify login parameters on the command line, follow these steps:</p>
+<p>If you launch trafci and do not specify login parameters on the command line, follow these steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>After you launch TrafCI, TrafCI shows the welcome banner and prompts you to enter the host name
+<p>After you launch trafci, trafci shows the welcome banner and prompts you to enter the host name
 or IP address of the database platform:</p>
 <div class="listingblock">
 <div class="content">
@@ -1851,10 +1748,10 @@ or IP address of the database platform:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If you do not specify the domain name, TrafCI uses the domain of the client workstation.</p>
+<p>If you do not specify the domain name, trafci uses the domain of the client workstation.</p>
 </li>
 <li>
-<p>If you do not specify a port number, TrafCI uses the default port umber, which is <code>37800</code>.</p>
+<p>If you do not specify a port number, trafci uses the default port umber, which is <code>23400</code>.</p>
 <div class="paragraph">
 <p>Or enter an IP address:</p>
 </div>
@@ -1887,7 +1784,7 @@ SQL&gt;</code></pre>
 </div>
 <div class="paragraph">
 <p>At the prompt, you can enter an SQL statement or an interface command.
-For more information, see <a href="#run_interactive">Run Interactive Commands in TrafCI</a>.</p>
+For more information, see <a href="#run_interactive">Run Interactive Commands in trafci</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1896,7 +1793,7 @@ For more information, see <a href="#run_interactive">Run Interactive Commands in
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-TrafCI allows you to reenter the login values, with a maximum of three retries,
+trafci allows you to reenter the login values, with a maximum of three retries,
 before it closes the session. For more information, see <a href="#trafci_retry">Retry Login</a>.
 </td>
 </tr>
@@ -1906,7 +1803,7 @@ before it closes the session. For more information, see <a href="#trafci_retry">
 <div class="sect3">
 <h4 id="trafci_login_params">4.3.2. Use Login Parameters</h4>
 <div class="paragraph">
-<p>To avoid entering a host name, user name, or password each time you launch TrafCI, use these login parameters:</p>
+<p>To avoid entering a host name, user name, or password each time you launch trafci, use these login parameters:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1928,7 +1825,7 @@ before it closes the session. For more information, see <a href="#trafci_retry">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">cd &lt;trafci-installation-directory&gt;\Trafodion Command Interface\bin
 
-trafci.cmd -h 16.123.456.78:37800 -u user1 -p xxxxxx</code></pre>
+trafci.cmd -h 16.123.456.78:23400 -u user1 -p xxxxxx</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1938,11 +1835,11 @@ trafci.cmd -h 16.123.456.78:37800 -u user1 -p xxxxxx</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">cd &lt;trafci-installation-directory&gt;/trafci/bin
 
-./trafci.sh -h 16.123.456.78:37800 -u user1 -p xxxxxx</code></pre>
+./trafci.sh -h 16.123.456.78:23400 -u user1 -p xxxxxx</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>TrafCI launches and prompts you to enter an SQL statement or an interface command:</p>
+<p>trafci launches and prompts you to enter an SQL statement or an interface command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1977,15 +1874,15 @@ You can include these parameters in a shortcut to the <code>trafci.cmd</code> fi
 <div class="sect2">
 <h3 id="trafci_retry">4.4. Retry Login</h3>
 <div class="paragraph">
-<p>TrafCI allows you to reenter the login values, with a maximum of three retries, before it closes the session.</p>
+<p>trafci allows you to reenter the login values, with a maximum of three retries, before it closes the session.</p>
 </div>
 <div class="paragraph">
-<p>TrafCI applies the retry logic as follows:</p>
+<p>trafci applies the retry logic as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If you specify an invalid host name, TrafCI prompts you to reenter the host name.</p>
+<p>If you specify an invalid host name, trafci prompts you to reenter the host name.</p>
 <div class="paragraph">
 <p><strong>Example</strong></p>
 </div>
@@ -2013,10 +1910,10 @@ Connected to Trafodion SQL&gt;</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>If you specify an invalid user name or password, TrafCI prompts you to reenter the user name
+<p>If you specify an invalid user name or password, trafci prompts you to reenter the user name
 and password.</p>
 <div class="paragraph">
-<p>If you specify an invalid password, TrafCI prompts only for your user name and password.
+<p>If you specify an invalid password, trafci prompts only for your user name and password.
 After three unsuccessful retries, the session is terminated:</p>
 </div>
 <div class="paragraph">
@@ -2051,15 +1948,15 @@ Press any key to close this session</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>If all the login parameters that you specify are invalid, TrafCI prompts you to enter the host
-name. When you enter a valid host name or IP address, TrafCI prompts you to enter a user name and password.</p>
+<p>If all the login parameters that you specify are invalid, trafci prompts you to enter the host
+name. When you enter a valid host name or IP address, trafci prompts you to enter a user name and password.</p>
 </li>
 <li>
 <p>The retry logic applies to the CONNECT and RECONNECT commands. For the RECONNECT command, the retry logic
 applies only when no prior connection has been established (<code>-noconnect</code>).</p>
 <div class="paragraph">
 <p>For example, if you specify the CONNECT command with a valid user name and host name, then
-TrafCI prompts for the user name and password only.</p>
+trafci prompts for the user name and password only.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2075,7 +1972,7 @@ Connected to Trafodion SQL&gt;</code></pre>
 </div>
 </li>
 <li>
-<p>TrafCI does not prompt you to reenter the login values in these cases:</p>
+<p>trafci does not prompt you to reenter the login values in these cases:</p>
 </li>
 <li>
 <p>When you include the <code>-q</code> or <code>-version</code> parameter on the command line.
@@ -2091,7 +1988,7 @@ Connected to Trafodion SQL&gt;</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>In these cases, TrafCI returns an error message and closes the session. You must re-launch the TrafCI session
+<p>In these cases, trafci returns an error message and closes the session. You must re-launch the trafci session
 to connect to the Trafodion database.</p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2099,7 +1996,7 @@ to connect to the Trafodion database.</p>
 <div class="sect2">
 <h3 id="trafci_option_params">4.5. Optional Launch Parameters</h3>
 <div class="paragraph">
-<p>To customize how you launch and log in to TrafCI, use the optional parameters described in the table below on the command line:</p>
+<p>To customize how you launch and log in to trafci, use the optional parameters described in the table below on the command line:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2131,8 +2028,8 @@ to connect to the Trafodion database.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the host name or IP address of the database
 platform to which you want the client to connect.
 The <em>host-name</em> should include the domain name of the database platform if it is different from the domain
-of the client workstation. If you do not specify a port number, TrafCI uses the default port number, which
-is <code>37800</code>.<br>
+of the client workstation. If you do not specify a port number, trafci uses the default port number, which
+is <code>23400</code>.<br>
 <br>
 See <a href="#trafici_login_parameters">Use Login Parameters</a>.</p></td>
 </tr>
@@ -2157,39 +2054,39 @@ For an example, see <a href="#trafici_login_parameters">Use Login Parameters</a>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>{-q | -sql} "<em>command</em>"</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies that an SQL statement or an interface command be run when
-launching TrafCI. You cannot specify this parameter at the same time as
+launching trafci. You cannot specify this parameter at the same time as
 the -s or -script parameter.<br>
 <br>
-For more information, see <a href="#trafci_run_command">Run Command When Launching TrafCI</a>.</p></td>
+For more information, see <a href="#trafci_run_command">Run Command When Launching trafci</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>{-s | -script} <em>script-file-name</em></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies that a script file be run when launching TrafCI in interactive
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies that a script file be run when launching trafci in interactive
 mode. You cannot specify this parameter at the same time as the -q or
 -sql parameter.<br>
 <br>
-For more information, see <a href="#trafci_run_script">Run Script When Launching TrafCI</a>.</p></td>
+For more information, see <a href="#trafci_run_script">Run Script When Launching trafci</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-noconnect</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Launches an TrafCI session without connecting to the database.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Launches an trafci session without connecting to the database.<br>
 <br>
-For more information, see <a href="#trafci_noconnect">Launch TrafCI Without Connecting to the Database</a>.</p></td>
+For more information, see <a href="#trafci_noconnect">Launch trafci Without Connecting to the Database</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-version</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the build version of TrafCI and the Trafodion JDBC Type 4
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the build version of trafci and the Trafodion JDBC Type 4
 Driver. Upon completion of the display, the client exits.<br>
 <br>
 If any other parameters are included with the <code>-version</code> parameter, they are ignored.<br>
 <br>
-For more information, see <a href="#trafci_with_version">Run TrafCI With <code>-version</code></a>.</p></td>
+For more information, see <a href="#trafci_with_version">Run trafci With <code>-version</code></a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-help</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of accepted arguments with descriptions and then exits.<br>
 <br>
-For more information, see <a href="#trafci_with_version">Run TrafCI With <code>-version</code></a>.</p></td>
+For more information, see <a href="#trafci_with_version">Run trafci With <code>-version</code></a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2199,11 +2096,11 @@ For more information, see <a href="#trafci_with_version">Run TrafCI With <code>-
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trafci_run_command">4.6. Run Command When Launching TrafCI</h3>
+<h3 id="trafci_run_command">4.6. Run Command When Launching trafci</h3>
 <div class="paragraph">
-<p>To execute an SQL statement or an interface command when launching TrafCI, use the <code>-q</code> or <code>-sql</code>
+<p>To execute an SQL statement or an interface command when launching trafci, use the <code>-q</code> or <code>-sql</code>
 command-line parameter. This parameter enables you to run a single command on the command line
-without having to enter commands in TrafCI.</p>
+without having to enter commands in trafci.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2229,7 +2126,7 @@ is not required at the end of an SQL statement and is disallowed after an interf
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>Use <code>-q</code> or <code>-sql</code> with the <code>CREATE SCHEMA</code> statement to create a schema when launching TrafCI:</p>
+<p>Use <code>-q</code> or <code>-sql</code> with the <code>CREATE SCHEMA</code> statement to create a schema when launching trafci:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2254,13 +2151,13 @@ trafci.cmd -q &quot;create schema persnl&quot;</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>After you enter the SQL statement, TrafCI launches and prompts you to log in by default
+<p>After you enter the SQL statement, trafci launches and prompts you to log in by default
 (if you did not specify <code>-h</code>, <code>-u</code>, and <code>-p</code> on the command line), runs the SQL statement,
 and then returns to the command prompt:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Host Name/IP Address: 16.123.456.78:37800 User Name: user1
+<pre class="CodeRay highlight"><code data-lang="text">Host Name/IP Address: 16.123.456.78:23400 User Name: user1
 
 Password:
 
@@ -2299,9 +2196,9 @@ trafci.cmd -q &quot;prun&quot;</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>After you enter the interface command, TrafCI launches and prompts you to log in by default (if you did not specify
+<p>After you enter the interface command, trafci launches and prompts you to log in by default (if you did not specify
 <code>-h</code>, <code>-u</code>, and <code>-p</code> on the command line), and runs the command.\ The parallel run (<code>PRUN</code>) operation prompts you to
-enter settings and then executes the script files. At the end of the <code>PRUN</code> operation, TrafCI returns to the command prompt.</p>
+enter settings and then executes the script files. At the end of the <code>PRUN</code> operation, trafci returns to the command prompt.</p>
 </div>
 <div class="paragraph">
 <p>For more information about the <code>PRUN</code> operation, see <a href="#trafci_prun"><code>PRUN</code> Command</a>.</p>
@@ -2309,9 +2206,9 @@ enter settings and then executes the script files. At the end of the <code>PRUN<
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trafci_run_script">4.7. Run Script When Launching TrafCI</h3>
+<h3 id="trafci_run_script">4.7. Run Script When Launching trafci</h3>
 <div class="paragraph">
-<p>To run a script file when launching TrafCI, use the <code>-s</code> or <code>-script</code> command-line parameter.</p>
+<p>To run a script file when launching trafci, use the <code>-s</code> or <code>-script</code> command-line parameter.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2326,8 +2223,8 @@ You cannot specify this parameter at the same time as the <code>-q</code> or <co
 </table>
 </div>
 <div class="paragraph">
-<p>After you launch TrafCI with <code>-s</code> or <code>-script</code>, TrafCI executes the script file in interactive mode.
-TrafCI remains open until you enter the <code>EXIT</code>, <code>QUIT</code>, or <code>DISCONNECT</code> command. To quit the interface
+<p>After you launch trafci with <code>-s</code> or <code>-script</code>, trafci executes the script file in interactive mode.
+trafci remains open until you enter the <code>EXIT</code>, <code>QUIT</code>, or <code>DISCONNECT</code> command. To quit the interface
 immediately after executing a script file, include the <code>EXIT</code>, <code>QUIT</code>, or <code>DISCONNECT</code> command
 at the end of the script file.</p>
 </div>
@@ -2335,7 +2232,7 @@ at the end of the script file.</p>
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>You can create a script file that contains <code>SET</code> commands that customize a session when you launch TrafCI:</p>
+<p>You can create a script file that contains <code>SET</code> commands that customize a session when you launch trafci:</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/launchs1.jpg" alt="image"></span></p>
@@ -2376,7 +2273,7 @@ trafci.cmd -s settings.txt</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>TrafCI launches and prompts you to log in by default (if you did not specify <code>-h</code>, <code>-u</code>, and <code>-p</code>
+<p>trafci launches and prompts you to log in by default (if you did not specify <code>-h</code>, <code>-u</code>, and <code>-p</code>
 on the command line), and runs the commands in the script file:</p>
 </div>
 <div class="listingblock">
@@ -2384,7 +2281,7 @@ on the command line), and runs the commands in the script file:</p>
 <pre class="CodeRay highlight"><code data-lang="text">Welcome to Trafodion Command Interface
 Copyright(C) 2013–2105 Apache Software Foundation
 
-Host Name/IP Address: 16.123.456.78:37800 User Name: user1
+Host Name/IP Address: 16.123.456.78:23400 User Name: user1
 Password:
 Connected to Trafodion
 
@@ -2402,9 +2299,9 @@ SQL&gt;SET SQLPROMPT *
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trafci_noconnect">4.8. Launch TrafCI Without Connecting to the Database</h3>
+<h3 id="trafci_noconnect">4.8. Launch trafci Without Connecting to the Database</h3>
 <div class="paragraph">
-<p>To start TrafCI without connecting to a Trafodion database, use the <code>-noconnect option</code>.
+<p>To start trafci without connecting to a Trafodion database, use the <code>-noconnect option</code>.
 See <a href="#cmd_disconnect"><code>DISCONNECT</code> command</a> for a list of interface commands that can
 be run without a connection.</p>
 </div>
@@ -2436,9 +2333,9 @@ trafci.cmd -noconnect</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trafci_with_version">4.9. Run TrafCI With <code>-version</code></h3>
+<h3 id="trafci_with_version">4.9. Run trafci With <code>-version</code></h3>
 <div class="paragraph">
-<p>To display the build version of TrafCI and the Trafodion JDBC Type 4 Driver, use the <code>-version</code>
+<p>To display the build version of trafci and the Trafodion JDBC Type 4 Driver, use the <code>-version</code>
 option. If other parameters are included with the <code>-version</code> parameter, they are ignored.</p>
 </div>
 <div class="paragraph">
@@ -2469,7 +2366,7 @@ trafci.cmd -version</code></pre>
 Copyright(C) 2013–2105 Apache Software Foundation
 
 Trafodion JDBC Type 4 Driver : Traf_JDBC_Type4_Build_40646 Trafodion
-Command Interface : TrafCI_Build_40646</code></pre>
+Command Interface : trafci_Build_40646</code></pre>
 </div>
 </div>
 </li>
@@ -2478,7 +2375,7 @@ Command Interface : TrafCI_Build_40646</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trafci_help">4.10. Run TrafCI With -help</h3>
+<h3 id="trafci_help">4.10. Run trafci With -help</h3>
 <div class="paragraph">
 <p>To display a list of acceptable list of parameters, including proper usage information, use the
 <code>-help</code> option. After displaying this information the application exits.</p>
@@ -2510,9 +2407,9 @@ trafci -help</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trafci_quit">4.11. Exit TrafCI</h3>
+<h3 id="trafci_quit">4.11. Exit trafci</h3>
 <div class="paragraph">
-<p>To exit TrafCI, enter one of these commands at a prompt:</p>
+<p>To exit trafci, enter one of these commands at a prompt:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2534,7 +2431,7 @@ trafci -help</code></pre>
 </div>
 <div class="paragraph">
 <p>These commands are not case-sensitive and do not require a terminator before you press <strong>Enter</strong>.
-After you enter one of these commands, TrafCI immediately quits running and disappears from the screen.</p>
+After you enter one of these commands, trafci immediately quits running and disappears from the screen.</p>
 </div>
 </div>
 </div>
@@ -2543,14 +2440,14 @@ After you enter one of these commands, TrafCI immediately quits running and disa
 <h2 id="_run_commands_interactively">5. Run Commands Interactively</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After launching TrafCI, you can run SQL statements and interface commands in the command-line interface.</p>
+<p>After launching trafci, you can run SQL statements and interface commands in the command-line interface.</p>
 </div>
 <div class="sect2">
 <h3 id="_user_interface">5.1. User Interface</h3>
 <div class="sect3">
 <h4 id="_product_banner">5.1.1. Product Banner</h4>
 <div class="paragraph">
-<p>After you launch TrafCI and connect to the database platform, the product banner appears in the
+<p>After you launch trafci and connect to the database platform, the product banner appears in the
 command-line interface:</p>
 </div>
 <div class="paragraph">
@@ -2600,7 +2497,7 @@ for parts that you enclose in single-quotes (<code>'</code>) or double-quotes (<
 <div class="sect2">
 <h3 id="_interface_commands">5.2. Interface Commands</h3>
 <div class="paragraph">
-<p>The interface commands allow you to customize TrafCI (for example, by using <code>SET</code> commands) or
+<p>The interface commands allow you to customize trafci (for example, by using <code>SET</code> commands) or
 return information about the interface settings or database objects (for example,
 by using <code>SHOW commands</code>).</p>
 </div>
@@ -2623,7 +2520,7 @@ command across more than one line, enter the SQL terminator and then reenter the
 <div class="sect3">
 <h4 id="_show_session_attributes">5.2.1. Show Session Attributes</h4>
 <div class="paragraph">
-<p>To display the attributes and settings of the current TrafCI session, use the <code>ENV</code>, <code>SHOW SESSION</code>,
+<p>To display the attributes and settings of the current trafci session, use the <code>ENV</code>, <code>SHOW SESSION</code>,
 or <code>SESSION</code> command.</p>
 </div>
 <div class="paragraph">
@@ -2645,7 +2542,7 @@ LOG OPTIONS      APPEND,CMDTEXT ON
 MARKUP           RAW
 PROMPT           SQL&gt;
 SCHEMA           SEABASE
-SERVER           sqws135.houston.host.com:37800
+SERVER           sqws135.houston.host.com:23400
 SQLTERMINATOR    ;
 STATISTICS       OFF
 TIME             OFF
@@ -2813,7 +2710,7 @@ the <a href="#cmd_show_sqlterminator">SHOW SQLTERMINATOR Command</a>.</p>
 <div class="sect3">
 <h4 id="interactive_display_elapsed_time">5.2.5. Display the Elapsed Time</h4>
 <div class="paragraph">
-<p>By default, TrafCI does not display the elapsed time of an SQL statement after the statement
+<p>By default, trafci does not display the elapsed time of an SQL statement after the statement
 executes. To display the elapsed time after each SQL statement executes, enter the <code>SET TIMING ON</code>
 command:</p>
 </div>
@@ -2858,7 +2755,7 @@ SQL&gt;</code></pre>
 <h4 id="interactive_set_show_current_schema">5.2.6. Set and Show the Current Schema</h4>
 <div class="paragraph">
 <p>By default, the schema of the session is <code>USR</code>. The SQL statement, <code>SET SCHEMA</code>,
-allows you to set the schema for the TrafCI session.</p>
+allows you to set the schema for the trafci session.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -2958,7 +2855,7 @@ LISTCOUNT 0 [All Rows]</code></pre>
 <div class="sect3">
 <h4 id="interactive_history">5.2.8. Display Executed Commands</h4>
 <div class="paragraph">
-<p>To display commands that were recently executed in the TrafCI session, enter the
+<p>To display commands that were recently executed in the trafci session, enter the
 <code>HISTORY</code> command. The <code>HISTORY</code> command associates each command with a number that
 you can use to re-execute or edit the command with the <code>FC</code> command. See
 <a href="#edit_reexecute_command">Edit and Reexecute a Command</a>.</p>
@@ -2988,7 +2885,7 @@ SQL&gt;</code></pre>
 </div>
 <div class="paragraph">
 <p>This <code>SAVEHIST</code> command saves the session history in a file named <code>history.txt</code> in the
-local directory where you are running TrafCI:</p>
+local directory where you are running trafci:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3004,7 +2901,7 @@ the <a href="#cmd_savehist">SAVEHIST Command</a>.</p>
 <div class="sect3">
 <h4 id="edit_reexecute_command">5.2.9. Edit and Reexecute a Command</h4>
 <div class="paragraph">
-<p>To edit and reexecute a command in the history buffer of an TrafCI session, enter the <code>FC</code> command.
+<p>To edit and reexecute a command in the history buffer of an trafci session, enter the <code>FC</code> command.
 To display the commands in the history buffer, use the <code>HISTORY</code> command. See
 <a href="#interactive_history">Display Executed Commands</a>.</p>
 </div>
@@ -3032,7 +2929,7 @@ SQL&gt; SELECT FROM employee;</code></pre>
 <div class="sect3">
 <h4 id="_clear_the_interface_window">5.2.10. Clear the Interface Window</h4>
 <div class="paragraph">
-<p>After entering commands in TrafCI, you can clear the interface window by using the <code>CLEAR</code> command.</p>
+<p>After entering commands in trafci, you can clear the interface window by using the <code>CLEAR</code> command.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -3053,7 +2950,7 @@ window:</p>
 <div class="sect3">
 <h4 id="_obtain_help">5.2.11. Obtain Help</h4>
 <div class="paragraph">
-<p>To display help text for an interface command that is supported in TrafCI, enter the <code>HELP</code> command.</p>
+<p>To display help text for an interface command that is supported in trafci, enter the <code>HELP</code> command.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -3075,13 +2972,13 @@ window:</p>
 <div class="sect2">
 <h3 id="_run_sql_statements">5.3. Run SQL Statements</h3>
 <div class="paragraph">
-<p>In TrafCI, you can run SQL statements interactively. TrafCI supports all the SQL statements,
+<p>In trafci, you can run SQL statements interactively. trafci supports all the SQL statements,
 SQL utilities, and other SQL-related commands that the Trafodion database engine supports.
 For more information about those SQL statements, see the
 <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html"><em>Trafodion SQL Reference Manual</em></a>.</p>
 </div>
 <div class="paragraph">
-<p>To run SQL statements from script files in TrafCI, see <a href="#run_scripts">Run Scripts</a>.</p>
+<p>To run SQL statements from script files in trafci, see <a href="#run_scripts">Run Scripts</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_execute_an_sql_statement">5.3.1. Execute an SQL Statement</h4>
@@ -3090,7 +2987,7 @@ For more information about those SQL statements, see the
 </div>
 <div class="paragraph">
 <p>You can query the <code>EMPLOYEE</code> table and return an employee’s salary by executing this <code>SELECT</code> statement
-in TrafCI:</p>
+in trafci:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3118,9 +3015,9 @@ SQL&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the SQL statement executes successfully, TrafCI returns a message indicating that the SQL
+<p>If the SQL statement executes successfully, trafci returns a message indicating that the SQL
 operation was successful, followed by the standard prompt. If a problem occurs during the
-execution of the SQL statement, TrafCI returns an error message.</p>
+execution of the SQL statement, trafci returns an error message.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -3253,7 +3150,7 @@ named parameter, <code>?<em>dn</em></code>, for the department number, which app
 <div class="sect4">
 <h5 id="interactive_set_parameters">Setting Parameters</h5>
 <div class="paragraph">
-<p>In an TrafCI session, you can set a parameter of an SQL statement (either prepared or not)
+<p>In an trafci session, you can set a parameter of an SQL statement (either prepared or not)
 by using the SET PARAM command.</p>
 </div>
 <div class="admonitionblock note">
@@ -3506,7 +3403,7 @@ SQL&gt;</code></pre>
 <div class="sect2">
 <h3 id="interactive_log_output">5.4. Log Output</h3>
 <div class="paragraph">
-<p>To log an TrafCI session, use the <code>SPOOL</code> or <code>LOG</code> command. The <code>SPOOL</code> and <code>LOG</code> commands
+<p>To log an trafci session, use the <code>SPOOL</code> or <code>LOG</code> command. The <code>SPOOL</code> and <code>LOG</code> commands
 record into a log file the commands that you enter in the command-line interface and the
 output of those commands.</p>
 </div>
@@ -3534,7 +3431,7 @@ the <a href="#cmd_spool">SPOOL Command</a>.</p>
 <h5 id="__code_spool_on_code_or_code_log_on_code_command"><code>SPOOL ON</code> or <code>LOG ON</code> Command</h5>
 <div class="paragraph">
 <p>The <code>SPOOL ON</code> or <code>LOG ON</code> command logs information about a session in the <code>sqlspool.lst</code>
-file, which TrafCI stores in the bin directory:</p>
+file, which trafci stores in the bin directory:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3547,7 +3444,7 @@ file, which TrafCI stores in the bin directory:</p>
 </div>
 <div class="paragraph">
 <p><code><em>trafci-installation-directory</em></code> is the directory where you installed the
-TrafCI software files.</p>
+trafci software files.</p>
 </div>
 </li>
 <li>
@@ -3559,7 +3456,7 @@ TrafCI software files.</p>
 </div>
 <div class="paragraph">
 <p><code><em>trafci-installation-directory</em></code> is the directory where you installed
-the TrafCI software files.</p>
+the trafci software files.</p>
 </div>
 </li>
 </ul>
@@ -3583,7 +3480,7 @@ the TrafCI software files.</p>
 <p>The <code>SPOOL <em>log-file</em></code> and <code>LOG <em>log-file</em></code> commands record information about a session
 in a log file that you specify. If you specify a directory for the log file, the
 directory must exist as specified. Otherwise, an error occurs when you try to run the
-<code>SPOOL</code> or <code>LOG</code> command. If you do not specify a directory for the log file, TrafCI uses the
+<code>SPOOL</code> or <code>LOG</code> command. If you do not specify a directory for the log file, trafci uses the
 <code>bin</code> directory.</p>
 </div>
 <div class="paragraph">
@@ -3603,7 +3500,7 @@ the <code>C:\log directory</code>:</p>
 <h5 id="_using_the_code_clear_code_option">Using the <code>CLEAR</code> Option</h5>
 <div class="paragraph">
 <p>The CLEAR option clears the contents of an existing log file before logging new information to
-the file. If you omit CLEAR, TrafCI appends new information to existing information in the log file.</p>
+the file. If you omit CLEAR, trafci appends new information to existing information in the log file.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -3619,9 +3516,9 @@ starts logging the session in the log file:</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_log_concurrent_the_trafci_sessions">Log Concurrent the TrafCI Sessions</h5>
+<h5 id="_log_concurrent_the_trafci_sessions">Log Concurrent the trafci Sessions</h5>
 <div class="paragraph">
-<p>If you plan to run two or more TrafCI sessions concurrently on the same workstation, use the
+<p>If you plan to run two or more trafci sessions concurrently on the same workstation, use the
 <code>SPOOL <em>log-file</em></code> or <code>LOG <em>log-file</em></code> command and specify a unique name for each log file.
 Otherwise, each session writes information to the same log file, making it difficult to determine
 which information belongs to each session.</p>
@@ -3647,7 +3544,7 @@ which information belongs to each session.</p>
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>This SPOOL OFF command stops logging in an TrafCI session:</p>
+<p>This SPOOL OFF command stops logging in an trafci session:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3659,7 +3556,7 @@ which information belongs to each session.</p>
 <div class="sect3">
 <h4 id="_view_the_contents_of_a_log_file">5.4.4. View the Contents of a Log File</h4>
 <div class="paragraph">
-<p>The log file is an ASCII text file that contains all the lines in TrafCI from the time you start
+<p>The log file is an ASCII text file that contains all the lines in trafci from the time you start
 logging to the time you stop logging. The logged lines include prompts, entered commands,
 output from commands, and diagnostic messages.</p>
 </div>
@@ -3713,7 +3610,7 @@ SQL&gt; LOG OFF</code></pre>
 <div class="sect2">
 <h3 id="script_create">6.1. Create a Script File</h3>
 <div class="paragraph">
-<p>A script file that you run in TrafCI must be an ASCII text file that contains only these elements:</p>
+<p>A script file that you run in trafci must be an ASCII text file that contains only these elements:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3741,8 +3638,8 @@ SQL&gt; LOG OFF</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You cannot use shell commands in a script file that you run in TrafCI. To create shell scripts
-that run TrafCI, see <a href="#perl_or_python">Run TrafCI from Perl or Python</a>.
+You cannot use shell commands in a script file that you run in trafci. To create shell scripts
+that run trafci, see <a href="#perl_or_python">Run trafci from Perl or Python</a>.
 </td>
 </tr>
 </table>
@@ -3751,7 +3648,7 @@ that run TrafCI, see <a href="#perl_or_python">Run TrafCI from Perl or Python</a
 <div class="sect2">
 <h3 id="script_sql_statements">6.2. SQL Statements</h3>
 <div class="paragraph">
-<p>Script files support any of the various SQL statements that you can run in TrafCI. For more information about
+<p>Script files support any of the various SQL statements that you can run in trafci. For more information about
 SQL statements, see the
 <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html"><em>Trafodion SQL Reference Manual</em></a>.</p>
 </div>
@@ -3796,7 +3693,7 @@ specific statements or commands without removing them from the script file.</p>
 </div>
 <div class="paragraph">
 <p>The <code><em>section-name</em></code> cannot begin with a number or an underscore. Each section name in a script file should be unique
-because TrafCI executes the first section that it finds that matches the section name in the <code>@</code> or <code>OBEY</code> command.
+because trafci executes the first section that it finds that matches the section name in the <code>@</code> or <code>OBEY</code> command.
 For more information, see the <a href="#cmd_at_sign">@ Command</a> <a href="#cmd_obey">OBEY Command</a>.</p>
 </div>
 </div>
@@ -3812,8 +3709,8 @@ For more information, see the <a href="#cmd_at_sign">@ Command</a> <a href="#cmd
 <div class="sect2">
 <h3 id="_run_a_script_file">6.7. Run a Script File</h3>
 <div class="paragraph">
-<p>To run a script file in TrafCI, use the <code>@</code> or OBEY command. The <code>@</code> and <code>OBEY</code> commands run one script file at a time
-in TrafCI. To run a script file when launching TrafCI, see <a href="#trafci_run_script">Run Script When Launching TrafCI</a>.</p>
+<p>To run a script file in trafci, use the <code>@</code> or OBEY command. The <code>@</code> and <code>OBEY</code> commands run one script file at a time
+in trafci. To run a script file when launching trafci, see <a href="#trafci_run_script">Run Script When Launching trafci</a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -3887,10 +3784,10 @@ the <a href="#cmd_obey">OBEY Command</a>.</p>
 <div class="sect2">
 <h3 id="_log_output">6.8. Log Output</h3>
 <div class="paragraph">
-<p>To log output of an TrafCI session while running one script file at a time, use the <code>SPOOL</code> or <code>LOG</code> command.
-When you run an <code>OBEY</code> or <code>@</code> command, TrafCI displays each command in the script file, the output for each
-command, and diagnostic messages in TrafCI. The <code>SPOOL</code> or <code>LOG</code> command captures this output as it appears
-in TrafCI and logs it in a log file.</p>
+<p>To log output of an trafci session while running one script file at a time, use the <code>SPOOL</code> or <code>LOG</code> command.
+When you run an <code>OBEY</code> or <code>@</code> command, trafci displays each command in the script file, the output for each
+command, and diagnostic messages in trafci. The <code>SPOOL</code> or <code>LOG</code> command captures this output as it appears
+in trafci and logs it in a log file.</p>
 </div>
 <div class="paragraph">
 <p>For more information, <a href="#interactive_log_output">Log Output</a>.</p>
@@ -3899,7 +3796,7 @@ in TrafCI and logs it in a log file.</p>
 <div class="sect2">
 <h3 id="_run_scripts_in_parallel">6.9. Run Scripts in Parallel</h3>
 <div class="paragraph">
-<p>In TrafCI, the <code>@</code> and <code>OBEY</code> commands allow you to run only one script file at a time. However, the <code>PRUN</code> command
+<p>In trafci, the <code>@</code> and <code>OBEY</code> commands allow you to run only one script file at a time. However, the <code>PRUN</code> command
 allows you to run multiple script files simultaneously.</p>
 </div>
 <div class="paragraph">
@@ -3911,20 +3808,20 @@ For more information on running scripts in parallel using the <code>PRUN</code> 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_run_trafci_from_perl_or_python">7. Run TrafCI From Perl or Python</h2>
+<h2 id="_run_trafci_from_perl_or_python">7. Run trafci From Perl or Python</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can execute SQL statements in Perl or Python by invoking the TrafCI
+<p>You can execute SQL statements in Perl or Python by invoking the trafci
 Perl or Python wrapper script.</p>
 </div>
 <div class="paragraph">
-<p>These instructions assume that you installed the TrafCI product. For more information,
+<p>These instructions assume that you installed the trafci product. For more information,
 see <a href="#install">Install and Configure</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_set_the_login_environment_variables">7.1. Set the Login Environment Variables</h3>
 <div class="paragraph">
-<p>Before launching TrafCI from Perl or Python, set these login environment variables:</p>
+<p>Before launching trafci from Perl or Python, set these login environment variables:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -4174,11 +4071,11 @@ script is <code>trafci.py</code>. By default, these wrapper scripts are located 
 </tbody>
 </table>
 <div class="paragraph">
-<p><em>trafci-installation-directory</em> is the directory where you installed the TrafCI software files.</p>
+<p><em>trafci-installation-directory</em> is the directory where you installed the trafci software files.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_launch_trafci_from_the_perl_or_python_command_line">7.3. Launch TrafCI From the Perl or Python Command Line</h3>
+<h3 id="_launch_trafci_from_the_perl_or_python_command_line">7.3. Launch trafci From the Perl or Python Command Line</h3>
 <div class="paragraph">
 <p>You can launch the Perl or Python wrapper scripts as shown below:</p>
 </div>
@@ -4211,6 +4108,13 @@ script is <code>trafci.py</code>. By default, these wrapper scripts are located 
 <div style="page-break-after: always;"></div>
 <div class="sect3">
 <h4 id="_example_perl_program_code_sample_pl_code">7.3.1. Example Perl Program (<code>sample.pl</code>)</h4>
+<div class="paragraph">
+<p>You can download the <code>sample.pl</code> example from
+<a href="http://trafodion.incubator.apache.org/docs/command_interface/resources/source/sample.pl" class="bare">http://trafodion.incubator.apache.org/docs/command_interface/resources/source/sample.pl</a>.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, copy and paste the following code into a file named <code>sample.pl</code>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="perl">use lib 'C:\\Program Files (x86)\\Apache Software Foundation\\Trafodion Command Interface\\lib\\perl';
@@ -4220,7 +4124,7 @@ use Session;
 $sess = Session-&gt;new();
 
 # connect to the database
-$sess-&gt;connect(&quot;user1&quot;,&quot;password&quot;,&quot;16.123.456.78&quot;,&quot;37800&quot;);
+$sess-&gt;connect(&quot;user1&quot;,&quot;password&quot;,&quot;16.123.456.78&quot;,&quot;23400&quot;);
 
 $retval=$sess-&gt;execute(&quot; set schema TRAFODION.CI_SAMPLE &quot;);
 print $retval;
@@ -4238,6 +4142,13 @@ $sess-&gt;disconnect();</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_example_python_program_code_sample_py_code">7.3.2. Example Python Program (<code>sample.py</code>)</h4>
+<div class="paragraph">
+<p>You can download the <code>sample.py</code> example from
+<a href="http://trafodion.incubator.apache.org/docs/command_interface/resources/source/sample.py" class="bare">http://trafodion.incubator.apache.org/docs/command_interface/resources/source/sample.py</a>.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, copy and paste the following code into a file named <code>sample.py</code>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="python"><span class="keyword">import</span> <span class="include">os</span> <span class="keyword">import</span> <span class="include">sys</span>
@@ -4250,7 +4161,7 @@ sys.path.append(<span class="string"><span class="delimiter">&quot;</span><span 
 sess = Session.Session()
 
 <span class="comment"># Connect to the database</span>
-x=sess. connect (<span class="string"><span class="delimiter">&quot;</span><span class="content">user1</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">16.123.456.78</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">37800</span><span class="delimiter">&quot;</span></span>)
+x=sess. connect (<span class="string"><span class="delimiter">&quot;</span><span class="content">user1</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">password</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">16.123.456.78</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">23400</span><span class="delimiter">&quot;</span></span>)
 
 <span class="comment"># Execute sample queries</span>
 
@@ -5400,7 +5311,7 @@ LOG OPTIONS      APPEND,CMDTEXT ON
 MARKUP           RAW
 PROMPT           SQL&gt;
 SCHEMA           SEABASE
-SERVER           sqws135.houston.host.com:37800
+SERVER           sqws135.houston.host.com:23400
 SQLTERMINATOR    ;
 STATISTICS       OFF
 TIME             OFF
@@ -5428,7 +5339,7 @@ LOG              OFF
 MARKUP           RAW
 PROMPT           SQL&gt;
 SCHEMA           SEABASE
-SERVER           sqws135.houston.host.com:37800
+SERVER           sqws135.houston.host.com:23400
 SQLTERMINATOR    ;
 STATISTICS       OFF
 TIME             OFF
@@ -10279,7 +10190,7 @@ LOG OPTIONS        APPEND,CMDTEXT ON
 MARKUP             RAW
 PROMPT             SQL&gt;
 SCHEMA             SEABASE
-SERVER             sqws135.houston.host.com:37800
+SERVER             sqws135.houston.host.com:23400
 SQLTERMINATOR      ;
 STATISTICS         OFF
 TIME               OFF
@@ -10302,7 +10213,7 @@ LOG                OFF
 MARKUP             RAW
 PROMPT             SQL&gt;
 SCHEMA             SEABASE
-SERVER             sqws135.houston.host.com:37800
+SERVER             sqws135.houston.host.com:23400
 SQLTERMINATOR      ;
 STATISTICS         OFF
 TIME               OFF
@@ -10916,7 +10827,7 @@ Trafodion Command Interface     : TrafCI_Build_40646</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-02-24 18:39:33 UTC
+Last updated 2016-03-22 23:30:15 UTC
 </div>
 </div>
 <script>
