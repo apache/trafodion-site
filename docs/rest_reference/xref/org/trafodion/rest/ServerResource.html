@@ -343,7 +343,7 @@
 <a class="jxr_linenumber" name="333" href="#333">333</a>     <strong class="jxr_keyword">private</strong> String nodes() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="334" href="#334">334</a>         <a href="../../../org/trafodion/rest/script/ScriptContext.html">ScriptContext</a> scriptContext = <strong class="jxr_keyword">new</strong> <a href="../../../org/trafodion/rest/script/ScriptContext.html">ScriptContext</a>();
 <a class="jxr_linenumber" name="335" href="#335">335</a>         scriptContext.setScriptName(Constants.SYS_SHELL_SCRIPT_NAME);
-<a class="jxr_linenumber" name="336" href="#336">336</a>         scriptContext.setCommand(<span class="jxr_string">"sqnodestatus json"</span>);
+<a class="jxr_linenumber" name="336" href="#336">336</a>         scriptContext.setCommand(<span class="jxr_string">"trafnodestatus -j"</span>);
 <a class="jxr_linenumber" name="337" href="#337">337</a> 
 <a class="jxr_linenumber" name="338" href="#338">338</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="339" href="#339">339</a>             ScriptManager.getInstance().runScript(scriptContext);<em class="jxr_comment">//This will block while script is running</em>
