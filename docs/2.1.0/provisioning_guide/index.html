@@ -1215,17 +1215,17 @@ populate this file.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">./trafodion_install --help
 
-This script will install {project-name}. It will create a configuration
+This script will install Trafodion. It will create a configuration
 file (if one has not been created), setup of the environment needed
-for {project-name}, configure HBase with Hbase-trx and co-processors needed,
-and install a specified {project-name} build.
+for Trafodion, configure HBase with Hbase-trx and co-processors needed,
+and install a specified Trafodion build.
 
 Options:
     --help             Print this message and exit
     --accept_license   If provided, the user agrees to accept all the
-                       provisions in the {project-name} license.  This allows
+                       provisions in the Trafodion license.  This allows
                        for automation by skipping the display and prompt of
-                       the {project-name} license.
+                       the Trafodion license.
     --config_file      If provided, all install prompts will be
                        taken from this file and not prompted for.</code></pre>
 </div>
@@ -1572,13 +1572,13 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 # @@@ END COPYRIGHT @@@
 
 #====================================================
-# {project-name} Configuration File
+# Trafodion Configuration File
 # This file contains default values for the installer.
 
 # Users can also edit this file and provide values for all parameters
 # and then specify this file on the run line of trafodion_install.
 # Example:
-# ./trafodion_install --config_file &lt;{project-name}-config-file&gt;
+# ./trafodion_install --config_file &lt;Trafodion-config-file&gt;
 # WARNING: This mode is for advanced users!
 #
 #=====================================================
@@ -1590,7 +1590,7 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 
 export SUSE_LINUX=&quot;false&quot;
 
-# The working directory where {project-name} installer untars files, etc.
+# The working directory where Trafodion installer untars files, etc.
 # do not change this unless you really know what you are doing
 export TRAF_WORKDIR=&quot;/usr/lib/trafodion&quot;
 
@@ -1603,10 +1603,10 @@ export DCS_SERVERS_PARM=&quot;8&quot;
 # &quot;true&quot; if this is an upgrade
 export UPGRADE_TRAF=&quot;false&quot;
 
-# {project-name} userid, This is the userid the {project-name} instance will run under
+# Trafodion userid, This is the userid the Trafodion instance will run under
 export TRAF_USER=&quot;trafodion&quot;
 
-# {project-name} userid's password
+# Trafodion userid's password
 export TRAF_USER_PASSWORD=&quot;traf123&quot;
 
 # a blank separated list of nodes in your cluster
@@ -1634,7 +1634,7 @@ export JAVA_HOME=&quot;/usr/java/jdk1.7.0_67-cloudera&quot;
 # will be installed from the internet
 export EPEL_RPM=&quot;&quot;
 
-# full path of the {project-name} package tar file
+# full path of the Trafodion package tar file
 export TRAF_PACKAGE=&quot;/home/centos/trafodion-download/apache-trafodion-1.3.0-incubating-bin.tar.gz&quot;
 
 # if TRAF_PACKAGE wasn't specified then these two values must be specified
@@ -1667,7 +1667,7 @@ export HBASE_GROUP=&quot;hbase&quot;
 # The hadoop HBase service name
 export HBASE=&quot;hbase&quot;
 
-# full path of where to install {project-name} to
+# full path of where to install Trafodion to
 # Example is used below. If $HOME_DIR or $TRAF_USER have been changed
 # then this will need to be changed.
 # On an upgrade, it is recommend to choose a different directory.
@@ -1676,7 +1676,7 @@ export HBASE=&quot;hbase&quot;
 # By doing this the previous version will remain and allow for an easier rollback.
 export SQ_ROOT=&quot;/home/trafodion/apache-trafodion-1.3.0-incubating-bin&quot;
 
-# Start {project-name} after install completes
+# Start Trafodion after install completes
 export START=&quot;Y&quot;
 
 # initialize trafodion after starting
@@ -1892,6 +1892,7 @@ A minimum of two cores is required regardless of whether you&#8217;re deploying 
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>&#8226; <code>hostname --fqdn</code> shows the fully-qualified node name, if any.<br>
+&#8226; The fully-qualified node name is part of the <code>/etc/hosts</code> file.<br>
 &#8226; <code>host -T &lt;FQDN&gt;</code> (responds if using a DNS server, times out otherwise)<br>
 &#8226; Simply ssh among nodes using <code>ssh &lt;FQDN&gt;</code>.</p>
 </div></div></td>
@@ -2655,7 +2656,7 @@ These changes are performed by the Trafodion Installer, if used.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text"># {project-name} settings
+<pre class="CodeRay highlight"><code data-lang="text"># Trafodion settings
 trafodion  soft core    unlimited
 trafodion  hard core    unlimited
 trafodion  soft memlock unlimited
@@ -2663,10 +2664,7 @@ trafodion  hard memlock unlimited
 trafodion  soft nofile  32768
 trafodion  hard nofile  65536
 trafodion  soft nproc   100000
-trafodion  hard nproc   100000
-hbase      soft nofile  8192
-trafodion  soft nofile  8192
-trafodion  hard nofile  65535</code></pre>
+trafodion  hard nproc   100000</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3265,14 +3263,14 @@ chmod 600 $HOME/.ssh/config</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Copy the content of the <code>$HOME/.ssh/id_rsa.pub</code> file (public key) and append it to the
+<p>If necessary, create the <code>$HOME/.ssh</code> directory on the other nodes in your cluster and secure it private to yourself (<code>chmod 700</code>).</p>
+</li>
+<li>
+<p>If necessary, create the <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster. Secure it with <code>chmod 600 $HOME/.ssh/authorized_keys</code>.</p>
+</li>
+<li>
+<p>Copy the content of the <code>$HOME/.ssh/authorized_keys</code> file on the Provisioning Master Node and append the to the
 <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster.</p>
-</li>
-<li>
-<p>Copy the <code>$HOME/.ssh/id_rsa</code> file (private key) from the current node to the <code>$HOME/.ssh</code> directory on the other nodes in the cluster.</p>
-</li>
-<li>
-<p>Secure <code>$HOME/.ssh/id_rsa</code> on all nodes as private to yourself (<code>chmod 700</code>).</p>
 </li>
 <li>
 <p><code>ssh</code> to the other nodes in the cluster. Answer <code>y</code> to the prompt asking you whether to continue the connection.
@@ -3723,7 +3721,7 @@ You can download and install the Trafodion Clients once you&#8217;ve installed a
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-download
 $ cd $HOME/trafodion-download
-$ Download the {project-name} Installer binaries
+$ # Download the Trafodion Installer binaries
 $ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-1.3.0.incubating/apache-trafodion-installer-1.3.0-incubating-bin.tar.gz
 Resolving http://apache.cs.utah.edu... 192.168.1.56
 Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
@@ -3739,7 +3737,7 @@ Saving to: &quot;apache-trafodion-installer-1.3.0-incubating-bin.tar.gz&quot;
 <div style="page-break-after: always;"></div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ # Download the {project-name} Server binaries
+<pre class="CodeRay highlight"><code data-lang="text">$ # Download the Trafodion Server binaries
 $ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-1.3.0.incubating/apache-trafodion-1.3.0-incubating-bin.tar.gz
 Resolving http://apache.cs.utah.edu... 192.168.1.56
 Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
@@ -4032,7 +4030,7 @@ $ ./trafodion_install --config_file my
 ***INFO: Working directory: /usr/lib/trafodion
 
 ************************************
- {project-name} Configuration File Check
+ Trafodion Configuration File Check
 ************************************
 
 
@@ -4048,14 +4046,14 @@ $ ./trafodion_install --config_file my
 ***INFO: Testing sudo access on trafodion-1
 ***INFO: Testing sudo access on trafodion-2
 ***DEBUG: trafodionFullName=trafodion_server-1.3.0.tgz
-***INFO: {project-name} version = 1.3.0
+***INFO: Trafodion version = 1.3.0
 ***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
 
 ******************************
  TRAFODION SETUP
 ******************************
 
-***INFO: Starting {project-name} environment setup (2016-02-16-21-12-31)
+***INFO: Starting Trafodion environment setup (2016-02-16-21-12-31)
 === 2016-02-16-21-12-31 ===
 # @@@ START COPYRIGHT @@@
 #
@@ -4087,7 +4085,7 @@ BY TYPING &quot;ACCEPT&quot; YOU AGREE TO THE TERMS OF THIS AGREEMENT: ***INFO: 
 trafodion-1
 trafodion-2
 ***INFO: Total number of nodes = 2
-***INFO: Starting {project-name} Package Setup (2016-02-16-21-12-35)
+***INFO: Starting Trafodion Package Setup (2016-02-16-21-12-35)
 ***INFO: Installing required packages
 ***INFO: Log file located in /var/log/trafodion
 ***INFO: ... EPEL rpm
@@ -4100,7 +4098,7 @@ trafodion-2
 .
 .
 ***INFO: trafodion user added successfully
-***INFO: {project-name} environment setup completed
+***INFO: Trafodion environment setup completed
 ***INFO: creating sqconfig file
 ***INFO: Reserving DCS ports
 
@@ -4139,7 +4137,7 @@ You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-1.3.0-i
 
 
 Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache {project-name} Conversational Interface 1.3.0
+Apache Trafodion Conversational Interface 1.3.0
 Copyright (c) 2015 Apache Software Foundation
 &gt;&gt; initialize trafodion;
 --- SQL operation complete.
@@ -4234,14 +4232,14 @@ $ ./trafodion_install
 ***INFO: Working directory: /usr/lib/trafodion
 
 *******************************
- {project-name} Configuration Setup
+ Trafodion Configuration Setup
 *******************************
 
 ***INFO: Please press [Enter] to select defaults.
 
 Enter trafodion password, default is [traf123]: traf123
 Enter list of nodes (blank separated), default []: trafodion-1 trafodion-2
-Enter {project-name} userid's home directory prefix, default is [/home]: /home
+Enter Trafodion userid's home directory prefix, default is [/home]: /home
 Specify full path to EPEL RPM (including .rpm), default is None:
 ***INFO: Will attempt to download RPM if EPEL is not installed on all nodes.
 Specify location of Java 1.7.0_65 or higher (JDK), default is []: /usr/java/jdk1.7.0_67-cloudera
@@ -4256,10 +4254,10 @@ Enter directory to install trafodion to, default is [/home/trafodion/apache-traf
 Total number of client connections per node, default [16]: 8
 Enable simple LDAP security (Y/N), default is N: N
 ***INFO: Configuration file: /etc/trafodion/trafodion_config
-***INFO: {project-name} configuration setup complete
+***INFO: Trafodion configuration setup complete
 
 ************************************
- {project-name} Configuration File Check
+ Trafodion Configuration File Check
 ************************************
 
 
@@ -4278,14 +4276,14 @@ Are you sure you want to continue connecting (yes/no)? yes
 ***INFO: Testing sudo access on trafodion-1
 ***INFO: Testing sudo access on trafodion-2
 ***DEBUG: trafodionFullName=trafodion_server-1.3.0.tgz
-***INFO: {project-name} version = 1.3.0
+***INFO: Trafodion version = 1.3.0
 ***DEBUG: HBase's java_exec=/usr/java/jdk1.7.0_67-cloudera/bin/java
 
 ******************************
  TRAFODION SETUP
 ******************************
 
-***INFO: Starting {project-name} environment setup (2016-02-15-07-09-58)
+***INFO: Starting Trafodion environment setup (2016-02-15-07-09-58)
 === 2016-02-15-07-09-58 ===
 # @@@ START COPYRIGHT @@@
 #
@@ -4312,7 +4310,7 @@ BY TYPING &quot;ACCEPT&quot; YOU AGREE TO THE TERMS OF THIS AGREEMENT:ACCEPT
 trafodion-1
 trafodion-2
 ***INFO: Total number of nodes = 2
-***INFO: Starting {project-name} Package Setup (2016-02-15-07-11-09)
+***INFO: Starting Trafodion Package Setup (2016-02-15-07-11-09)
 ***INFO: Installing required packages
 ***INFO: Log file located in /var/log/trafodion
 ***INFO: ... pdsh on node trafodion-1
@@ -4325,8 +4323,8 @@ trafodion-2
 .
 .
 ***INFO: modifying limits in /usr/lib/trafodion/trafodion.conf on all nodes
-***INFO: create {project-name} userid &quot;trafodion&quot;
-***INFO: {project-name} userid's (trafodion) home directory: /home/trafodion
+***INFO: create Trafodion userid &quot;trafodion&quot;
+***INFO: Trafodion userid's (trafodion) home directory: /home/trafodion
 ***INFO: testing sudo access
 Generating public/private rsa key pair.
 Created directory '/home/trafodion/.ssh'.
@@ -4352,7 +4350,7 @@ The key's randomart image is:
 trafodion-1
 trafodion-2
 ***INFO: trafodion user added successfully
-***INFO: {project-name} environment setup completed
+***INFO: Trafodion environment setup completed
 ***INFO: creating sqconfig file
 ***INFO: Reserving DCS ports
 
@@ -4375,7 +4373,7 @@ trafodion-2
 ***INFO: waiting for HDFS to exit safemode
 Safe mode is OFF
 ***INFO: Setting HDFS ACLs for snapshot scan support
-***INFO: {project-name} Mods ran successfully.
+***INFO: Trafodion Mods ran successfully.
 
 ******************************
  TRAFODION START
@@ -4410,7 +4408,7 @@ Creating folders for storing certificates
 
 ***INFO: copying /home/trafodion/sqcert directory to all nodes
 ***INFO: copying install to all nodes
-***INFO: starting {project-name} instance
+***INFO: starting Trafodion instance
 Checking orphan processes.
 Removing old mpijob* files from /home/trafodion/apache-trafodion-1.3.0-incubating-bin/tmp
 
@@ -4436,7 +4434,7 @@ You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-1.3.0-i
 
 
 Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache {project-name} Conversational Interface 1.3.0
+Apache Trafodion Conversational Interface 1.3.0
 Copyright (c) 2015 Apache Software Foundation
 &gt;&gt; initialize trafodion;
 --- SQL operation complete.
@@ -4565,7 +4563,7 @@ stopped $zlobsrv1
 Shutting down (normal) the SQ environment!
 Wed Feb 17 05:12:40 UTC 2016
 Processing cluster.conf on local host trafodion-1
-[$Z000KAE] Shell/shell Version 1.0.1 Apache_{project-name} Release 1.3.0 (Build release [1.3.0-0-g5af956f_Bld2], date 20160112_1927)
+[$Z000KAE] Shell/shell Version 1.0.1 Apache_Trafodion Release 1.3.0 (Build release [1.3.0-0-g5af956f_Bld2], date 20160112_1927)
 ps</code></pre>
 </div>
 </div>
@@ -4700,9 +4698,9 @@ $ ./trafodion_install --config_file $HOME/trafodion-configuration/my_config_2.0
 ***INFO: Testing ssh on trafodion-2
 ***INFO: Testing sudo access on trafodion-1
 ***INFO: Testing sudo access on trafodion-2
-***INFO: {project-name} scanner will not be run.
+***INFO: Trafodion scanner will not be run.
 ***DEBUG: trafodionFullName=trafodion_server-2.0.0.tgz
-***INFO: {project-name} version = 2.0.0
+***INFO: Trafodion version = 2.0.0
 ***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
 
 ******************************
@@ -4710,7 +4708,7 @@ $ ./trafodion_install --config_file $HOME/trafodion-configuration/my_config_2.0
 ******************************
 
 ***INFO: Installing required RPM packages
-***INFO: Starting {project-name} Package Setup (2016-02-17-05-33-29)
+***INFO: Starting Trafodion Package Setup (2016-02-17-05-33-29)
 ***INFO: Installing required packages
 ***INFO: Log file located in /var/log/trafodion
 ***INFO: ... pdsh on node trafodion-1
@@ -4732,7 +4730,7 @@ You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-2.0.0-i
 
 
 Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache {project-name} Conversational Interface 1.3.0
+Apache Trafodion Conversational Interface 1.3.0
 Copyright (c) 2015 Apache Software Foundation
 &gt;&gt;Metadata Upgrade: started
 
@@ -4829,7 +4827,7 @@ $ ./trafodion_install
 ***INFO: Working directory: /usr/lib/trafodion
 
 *******************************
- {project-name} Configuration Setup
+ Trafodion Configuration Setup
 *******************************
 
 ***INFO: Please press [Enter] to select defaults.
@@ -4845,14 +4843,14 @@ Enter HDFS username, default is [hdfs]:
 Enter HBase username, default is [hbase]:
 Enter HBase group, default is [hbase]:
 Enter directory to install trafodion to, default is [/home/trafodion/apache-trafodion-1.3.0-incubating-bin]: /home/centos/apache-trafodion-2.0.0-incubating-bin
-Start {project-name} after install (Y/N), default is Y:
+Start Trafodion after install (Y/N), default is Y:
 Total number of client connections per node, default [16]: 8
 Enable simple LDAP security (Y/N), default is N:
 ***INFO: Configuration file: /etc/trafodion/trafodion_config
-***INFO: {project-name} configuration setup complete
+***INFO: Trafodion configuration setup complete
 
 ************************************
- {project-name} Configuration File Check
+ Trafodion Configuration File Check
 ************************************
 
 
@@ -4870,9 +4868,9 @@ Enable simple LDAP security (Y/N), default is N:
 ***INFO: Checking cloudera Version
 ***INFO: nameOfVersion=cdh5.3.0
 ***INFO: HADOOP_PATH=/usr/lib/hbase/lib
-***INFO: {project-name} scanner will not be run.
+***INFO: Trafodion scanner will not be run.
 ***DEBUG: trafodionFullName=trafodion_server-1.3.0.tgz
-***INFO: {project-name} version = 1.3.0
+***INFO: Trafodion version = 1.3.0
 ***DEBUG: HBase's java_exec=/usr/java/jdk1.7.0_67-cloudera/bin/java
 
 ******************************
@@ -4880,7 +4878,7 @@ Enable simple LDAP security (Y/N), default is N:
 ******************************
 
 ***INFO: Installing required RPM packages
-***INFO: Starting {project-name} Package Setup (2016-02-17-08-16-11)
+***INFO: Starting Trafodion Package Setup (2016-02-17-08-16-11)
 ***INFO: Installing required packages
 ***INFO: Log file located in /var/log/trafodion
 ***INFO: ... pdsh on node trafodion-1
@@ -4922,7 +4920,7 @@ You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-2.0.0-i
 
 
 Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache {project-name} Conversational Interface 1.3.0
+Apache Trafodion Conversational Interface 1.3.0
 Copyright (c) 2015 Apache Software Foundation
 &gt;&gt;
 
@@ -5265,10 +5263,10 @@ Mon Feb 15 07:49:26 UTC 2016
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">[admin@trafodion-1 ~]$ cd $HOME/trafodion-installer/installer
 [admin@trafodion-1 installer]$ ./trafodion_uninstaller
-Do you want to uninstall {project-name} (Everything will be removed)? (Y/N) y
+Do you want to uninstall Trafodion (Everything will be removed)? (Y/N) y
 ***INFO: testing sudo access
 ***INFO: NOTE, rpms that were installed will not be removed.
-***INFO: stopping {project-name} instance
+***INFO: stopping Trafodion instance
 SQ environment is not up.
 Going to execute ckillall
 
@@ -5281,11 +5279,11 @@ pdsh@trafodion-1: trafodion-1: ssh exited with exit code 1
 pdsh@trafodion-1: trafodion-2: ssh exited with exit code 1
 pdsh@trafodion-1: trafodion-1: ssh exited with exit code 1
 pdsh@trafodion-1: trafodion-2: ssh exited with exit code 1
-***INFO remove the {project-name} userid and group
+***INFO remove the Trafodion userid and group
 ***INFO: removing all files from /home/trafodion/apache-trafodion-1.3.0-incubating-bin
 ***INFO: removing all files from /usr/lib/trafodion and /var/log/trafodion
 ***INFO: removing all files from /etc/trafodion
-***INFO: {project-name} uninstall complete.
+***INFO: Trafodion uninstall complete.
 [admin@trafodion-1 installer]$</code></pre>
 </div>
 </div>
@@ -5619,12 +5617,12 @@ Options:
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--file</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--file</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>filename</code> is copied to <code>$MY_SQROOT/</code>. Users working in their own private environment can refer to a
 site-specific configuration file from a central location.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--on</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--on</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>traf_authentication_setup</code> invokes <a href="#enable-security-ldapconfigcheck">ldapconfigcheck</a> to verify the configuration file is
 syntactically correct. It also invokes <a href="#enable-security-ldapcheck">ldapcheck</a> to verify that a connection can be made to an LDAP server.<br>
 <br>
@@ -5637,7 +5635,7 @@ The list of privilege-related metadata tables, users, roles, and component privi
 Specifying <code>--on</code> requires that a valid <code>.traf_authentication_config</code> file exists and the Trafodion metadata initialized.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--off</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--off</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>traf_authentication_setup</code> sets the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> to <code>NO</code> in
 <code>$MY_SQROOT/sqenvcom.sh</code> and propagates the file to all the nodes in the cluster.<br>
 <br>
@@ -5645,13 +5643,13 @@ The last step is to disable authorization by removing any privilege-related meta
 The results of this operation is logged in <code>$MY_SQROOT/logs/authEnable.log</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--setup</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--setup</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use this option if the Trafodion metadata has not been initialized. This option enables authentication but does not call the database
 to create privilege-related metadata tables. Later, when Trafodion metadata is initialized, privilege-related metadata tables and default permissions
 are automatically created.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--status</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reports the value of the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> in <code>$MY_SQROOT/sqenvcom.sh</code> on the current node and
 reports the status of security features in the database.</p></td>
 </tr>
@@ -6108,7 +6106,7 @@ Each LDAP connection configuration section must provide at least one unique iden
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2016-05-05 23:38:23 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>
