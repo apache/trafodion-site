@@ -547,8 +547,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_intended_audience">1.1. Intended Audience</a></li>
 <li><a href="#_new_and_changed_information">1.2. New and Changed Information</a></li>
 <li><a href="#_notation_conventions">1.3. Notation Conventions</a></li>
-<li><a href="#_publishing_history">1.4. Publishing History</a></li>
-<li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
+<li><a href="#_comments_encouraged">1.4. Comments Encouraged</a></li>
 </ul>
 </li>
 <li><a href="#introduction">2. Introduction</a>
@@ -713,6 +712,10 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Revision History</strong></p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -726,6 +729,10 @@ specific language governing permissions and limitations under the License.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">January, 2016</p></td>
 </tr>
@@ -738,7 +745,7 @@ specific language governing permissions and limitations under the License.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This guide describes how to provision the end-user Trafodion binaries on top of an existing Hadoop environment. This install allows you to store and query data using Trafodion, either via Trafodion clients
-(see <a href="http://trafodion.incubator.apache.org/client_install/index.html">Trafodion Client Installation Guide</a> or via application code you write.</p>
+(see <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a> or via application code you write.</p>
 </div>
 <div class="paragraph">
 <p>If you want to install a Trafodion developer-build environment, then please refer to the
@@ -996,39 +1003,13 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_publishing_history">1.4. Publishing History</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Product Version</th>
-<th class="tableblock halign-left valign-top">Publication Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">January 2016.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_comments_encouraged">1.5. Comments Encouraged</h3>
+<h3 id="_comments_encouraged">1.4. Comments Encouraged</h3>
 <div class="paragraph">
-<p>The Trafodion community encourages your comments concerning this document. We are committed to providing documentation that meets your
-needs. Send any errors found, suggestions for improvement, or compliments to:</p>
+<p>We encourage your comments concerning this document. We are committed to providing documentation that meets your
+needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
 </div>
 <div class="paragraph">
-<p><a href="mailto:issues@trafodion.incubator.apache.org">issues@trafodion.incubator.apache.org</a></p>
-</div>
-<div class="paragraph">
-<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document. Or, even
-better, join our community and help us improve our documentation. Please refer to
-<a href="http://trafodion.incubator.apache.org/contributing_redirect.html">Trafodion Contributor Guide</a> for details.</p>
+<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
 </div>
 </div>
 </div>
@@ -1076,9 +1057,9 @@ Refer to <a href="#requirements-trafodion-runtime-user">Trafodion Runtime User</
 <p><strong>Trafodion Database Users</strong>: Trafodion users are managed by the Trafodion security features (grant, revoke, etc.),
 which can be integrated with LDAP if so desired. These users are referred to as <strong>database users</strong> and
 do not have direct access to the operating system. Refer to
-<a href="http://trafodion.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
-<a href="http://trafodion.apache.org/docs/sql_reference/index.html#grant_statement">Grant</a>, and other SQL statements
-in the <a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a> for
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#grant_statement">Grant</a>, and other SQL statements
+in the <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a> for
 more information about managing Trafodion Database Users.
 <br>
 <br>
@@ -1181,7 +1162,7 @@ Master Node in order to perform provisioning tasks on the cluster.</p>
 <h3 id="introduction-trafodion-installer">2.5. Trafodion Installer</h3>
 <div class="paragraph">
 <p>The Trafodion Installer is a set of scripts automates most of the tasks requires to install/upgrade Trafodion.
-You download the Trafodion Installer tar file from the Trafodion <a href="http://trafodion.apache.org/download.html">download</a> page.
+You download the Trafodion Installer tar file from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">download</a> page.
 Next, you unpack the tar file.</p>
 </div>
 <div class="paragraph">
@@ -1666,7 +1647,7 @@ export REST_BUILD=&quot;&quot;
 # Either &quot;cloudera&quot; or &quot;hortonworks&quot; (all lowercase)
 export HADOOP_TYPE=&quot;cloudera&quot;
 
-# The URL for Cloudera/Hortonworks REST API (i.e. node1.hp.com:8080)
+# The URL for Cloudera/Hortonworks REST API (i.e. node1.host.com:8080)
 export URL=&quot;trafodion-1.apache.org:7180&quot;
 
 # Cloudera/Hortonworks UI admin's userid and password
@@ -1910,7 +1891,9 @@ A minimum of two cores is required regardless of whether you&#8217;re deploying 
 &#8226; <code>/etc/resolv.conf</code> is configured to use a name server.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>&#8226; <code>host -T &lt;FQDN&gt;</code> (responds if using a DNS server, times out otherwise)<br>
+<p>&#8226; <code>hostname --fqdn</code> shows the fully-qualified node name, if any.<br>
+&#8226; The fully-qualified node name is part of the <code>/etc/hosts</code> file.<br>
+&#8226; <code>host -T &lt;FQDN&gt;</code> (responds if using a DNS server, times out otherwise)<br>
 &#8226; Simply ssh among nodes using <code>ssh &lt;FQDN&gt;</code>.</p>
 </div></div></td>
 </tr>
@@ -2681,10 +2664,7 @@ trafodion  hard memlock unlimited
 trafodion  soft nofile  32768
 trafodion  hard nofile  65536
 trafodion  soft nproc   100000
-trafodion  hard nproc   100000
-hbase      soft nofile  8192
-trafodion  soft nofile  8192
-trafodion  hard nofile  65535</code></pre>
+trafodion  hard nproc   100000</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2773,7 +2753,7 @@ These changes require a restart of HDFS on all nodes in the cluster.
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Used to stage data when processing the Trafodion
-<a href="http://trafodion.apache.org/docs/sql_reference/index.html#load_statement">LOAD INTO table</a>
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#load_statement">LOAD INTO table</a>
 statement and as a temporary directory to create links to actual HFile for snapshot scanning.</p>
 </div></div></td>
 </tr>
@@ -3274,7 +3254,9 @@ You may need to request permission from your cluster-management team to obtain t
 cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys
 echo localhost $(cat /etc/ssh/ssh_host_rsa_key.pub) &gt;&gt; $HOME/.ssh/known_hosts
 echo &quot;NoHostAuthenticationForLocalhost=yes&quot; &gt;&gt; $HOME/.ssh/config
-chmod 600 $HOME/.ssh/config</code></pre>
+chmod 600 $HOME/.ssh/config
+chmod 600 $HOME/.ssh/authorized_keys
+chmod 700 $HOME/.ssh/</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3283,14 +3265,14 @@ chmod 600 $HOME/.ssh/config</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Copy the content of the <code>$HOME/.ssh/id_rsa.pub</code> file (public key) and append it to the
+<p>If necessary, create the <code>$HOME/.ssh</code> directory on the other nodes in your cluster and secure it private to yourself (<code>chmod 700</code>).</p>
+</li>
+<li>
+<p>If necessary, create the <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster. Secure it with <code>chmod 600 $HOME/.ssh/authorized_keys</code>.</p>
+</li>
+<li>
+<p>Copy the content of the <code>$HOME/.ssh/authorized_keys</code> file on the Provisioning Master Node and append the to the
 <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster.</p>
-</li>
-<li>
-<p>Copy the <code>$HOME/.ssh/id_rsa</code> file (private key) from the current node to the <code>$HOME/.ssh</code> directory on the other nodes in the cluster.</p>
-</li>
-<li>
-<p>Secure <code>$HOME/.ssh/id_rsa</code> on all nodes as private to yourself (<code>chmod 700</code>).</p>
 </li>
 <li>
 <p><code>ssh</code> to the other nodes in the cluster. Answer <code>y</code> to the prompt asking you whether to continue the connection.
@@ -3400,7 +3382,7 @@ distribution manager&#8217;s REST API.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of concurrent client sessions per node.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>16</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This number specifies the concurrent sessions per node to be supported. Each session could require up to 1GB of physical memory. The number can be changed post-installation. For more information,
-refer to the <a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p></td>
+refer to the <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>ENABLE_HA</pre></div></td>
@@ -3705,7 +3687,7 @@ log4cxx-0.10.0-13.el6.x86_64</code></pre>
 <div class="sect2">
 <h3 id="prepare-download-trafodion-binaries">4.8. Download Trafodion Binaries</h3>
 <div class="paragraph">
-<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.apache.org/download.html">Download</a> page.
+<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
 </div>
 <div class="ulist">
@@ -3726,7 +3708,7 @@ Download the following packages:</p>
 </td>
 <td class="content">
 You can download and install the Trafodion Clients once you&#8217;ve installed and activated Trafodion. Refer to the
-<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
+<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
 </td>
 </tr>
 </table>
@@ -3741,7 +3723,7 @@ You can download and install the Trafodion Clients once you&#8217;ve installed a
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-download
 $ cd $HOME/trafodion-download
-$ Download the Trafodion Installer binaries
+$ # Download the Trafodion Installer binaries
 $ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-1.3.0.incubating/apache-trafodion-installer-1.3.0-incubating-bin.tar.gz
 Resolving http://apache.cs.utah.edu... 192.168.1.56
 Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
@@ -3969,7 +3951,7 @@ to run the Trafodion Installer.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You <strong>must</strong> install log4c&#43;&#43; on all nodes in the cluster prior to running the Trafodion Installer. Refer
+Prior to version 2.0.0, you <strong>must</strong> install log4c&#43;&#43; on all nodes in the cluster prior to running the Trafodion Installer. Refer
 to <a href="#prepare-build-and-install-log4cplusplus">Build and Install log4c++</a> for instructions.
 </td>
 </tr>
@@ -4517,7 +4499,7 @@ to run the Trafodion Installer.</p>
 <p>You perform this step as the Trafodion Provisioning User.</p>
 </div>
 <div class="paragraph">
-<p>You download the updated Trafodion binaries from the Trafodion <a href="http://trafodion.apache.org/download.html">Download</a> page.
+<p>You download the updated Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
 </div>
 <div class="ulist">
@@ -5062,7 +5044,7 @@ sqcheck</code></pre>
 <h3 id="activate-validate-trafodion-installation">7.2. Validate Trafodion Installation</h3>
 <div class="paragraph">
 <p>You can use sqlci (part of the base product) or trafci (requires separate install; see the
-<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) to validate your installation.</p>
+<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) to validate your installation.</p>
 </div>
 <div class="sect3">
 <h4 id="_smoke_test">7.2.1. Smoke Test</h4>
@@ -5142,10 +5124,10 @@ $</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Install the Trafodion client software. Refer to the <a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p>
+<p>Install the Trafodion client software. Refer to the <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p>
 </li>
 <li>
-<p>Use Trafodion. Refer to the <a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual.</a></p>
+<p>Use Trafodion. Refer to the <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual.</a></p>
 </li>
 <li>
 <p>Review other Trafodion documentation. Refer to the <a href="http://trafodion.apache.org/documentation.html">Trafodion documentation</a>.</p>
@@ -5637,12 +5619,12 @@ Options:
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--file</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--file</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>filename</code> is copied to <code>$MY_SQROOT/</code>. Users working in their own private environment can refer to a
 site-specific configuration file from a central location.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--on</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--on</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>traf_authentication_setup</code> invokes <a href="#enable-security-ldapconfigcheck">ldapconfigcheck</a> to verify the configuration file is
 syntactically correct. It also invokes <a href="#enable-security-ldapcheck">ldapcheck</a> to verify that a connection can be made to an LDAP server.<br>
 <br>
@@ -5655,7 +5637,7 @@ The list of privilege-related metadata tables, users, roles, and component privi
 Specifying <code>--on</code> requires that a valid <code>.traf_authentication_config</code> file exists and the Trafodion metadata initialized.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--off</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--off</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>traf_authentication_setup</code> sets the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> to <code>NO</code> in
 <code>$MY_SQROOT/sqenvcom.sh</code> and propagates the file to all the nodes in the cluster.<br>
 <br>
@@ -5663,13 +5645,13 @@ The last step is to disable authorization by removing any privilege-related meta
 The results of this operation is logged in <code>$MY_SQROOT/logs/authEnable.log</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--setup</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--setup</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use this option if the Trafodion metadata has not been initialized. This option enables authentication but does not call the database
 to create privilege-related metadata tables. Later, when Trafodion metadata is initialized, privilege-related metadata tables and default permissions
 are automatically created.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>--status</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reports the value of the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> in <code>$MY_SQROOT/sqenvcom.sh</code> on the current node and
 reports the status of security features in the database.</p></td>
 </tr>
@@ -5726,7 +5708,7 @@ to the external user name that is used to connect for root operations. To do thi
 </div>
 <div class="paragraph">
 <p>To learn more about how to register users, grant object and component privileges, and manage users and roles, please see the
-<a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -6126,7 +6108,7 @@ Each LDAP connection configuration section must provide at least one unique iden
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-04-11 22:45:44 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>

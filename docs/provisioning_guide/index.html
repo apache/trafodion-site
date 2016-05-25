@@ -537,7 +537,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <h1>Provisioning Guide</h1>
 <div class="details">
-<span id="revnumber">version 2.1.0</span>
+<span id="revnumber">version 2.0.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -3254,7 +3254,9 @@ You may need to request permission from your cluster-management team to obtain t
 cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys
 echo localhost $(cat /etc/ssh/ssh_host_rsa_key.pub) &gt;&gt; $HOME/.ssh/known_hosts
 echo &quot;NoHostAuthenticationForLocalhost=yes&quot; &gt;&gt; $HOME/.ssh/config
-chmod 600 $HOME/.ssh/config</code></pre>
+chmod 600 $HOME/.ssh/config
+chmod 600 $HOME/.ssh/authorized_keys
+chmod 700 $HOME/.ssh/</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6105,7 +6107,7 @@ Each LDAP connection configuration section must provide at least one unique iden
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.1.0<br>
+Version 2.0.0<br>
 Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>

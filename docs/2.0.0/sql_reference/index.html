@@ -548,8 +548,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#New_and_Changed_Information">1.2. New and Changed Information</a></li>
 <li><a href="#Document_Organization">1.3. Document Organization</a></li>
 <li><a href="#_notation_conventions">1.4. Notation Conventions</a></li>
-<li><a href="#_publishing_history">1.5. Publishing History</a></li>
-<li><a href="#_comments_encouraged">1.6. Comments Encouraged</a></li>
+<li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
 </ul>
 </li>
 <li><a href="#introduction">2. Introduction</a>
@@ -1819,122 +1818,129 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#zeroifnull_function">7.114. ZEROIFNULL Function</a>
 <ul class="sectlevel3">
 <li><a href="#examples_of_zeroifnull">7.114.1. Examples of ZEROIFNULL</a></li>
-<li><a href="#olap_functions">7.114.2. OLAP Functions</a></li>
-<li><a href="#considerations_for_window_functions">7.114.3. Considerations for Window Functions</a></li>
-</ul>
-</li>
-<li><a href="#order_by_clause_supports_expressions_for_olap_functions">7.115. ORDER BY Clause Supports Expressions For OLAP Functions</a></li>
-<li><a href="#limitations_for_window_functions">7.116. Limitations for Window Functions</a></li>
-<li><a href="#avg_window_function">7.117. AVG Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_avg_window_function">7.117.1. Examples of AVG Window Function</a></li>
-</ul>
-</li>
-<li><a href="#count_window_function">7.118. COUNT Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_count_window_function">7.118.1. Examples of COUNT Window Function</a></li>
-</ul>
-</li>
-<li><a href="#dense_rank_window_function">7.119. DENSE_RANK Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_dense_rank_window_function">7.119.1. Examples of DENSE_RANK Window Function</a></li>
-<li><a href="#max_window_function">7.119.2. MAX Window Function</a></li>
-<li><a href="#examples_of_max_window_function">7.119.3. Examples of MAX Window Function</a></li>
-</ul>
-</li>
-<li><a href="#min_window_function">7.120. MIN Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_min_window_function">7.120.1. Examples of MIN Window Function</a></li>
-</ul>
-</li>
-<li><a href="#rank_window_function">7.121. RANK Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_rank_window_function">7.121.1. Examples of RANK Window Function</a></li>
-<li><a href="#row_number_window_function">7.121.2. ROW_NUMBER Window Function</a></li>
-<li><a href="#examples_of_row_number_window_function">7.121.3. Examples of ROW_NUMBER Window Function</a></li>
-<li><a href="#stddev_window_function">7.121.4. STDDEV Window Function</a></li>
-<li><a href="#examples_of_stddev">7.121.5. Examples of STDDEV</a></li>
-</ul>
-</li>
-<li><a href="#sum_window_function">7.122. SUM Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_sum_window_function">7.122.1. Examples of SUM Window Function</a></li>
-</ul>
-</li>
-<li><a href="#variance_window_function">7.123. VARIANCE Window Function</a>
-<ul class="sectlevel3">
-<li><a href="#examples_of_variance_window_function">7.123.1. Examples of VARIANCE Window Function</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sql_runtime_statistics">8. SQL Runtime Statistics</a>
+<li><a href="#olap_functions">8. OLAP Functions</a>
 <ul class="sectlevel2">
-<li><a href="#_pertable_and_operator_statistics">8.1. PERTABLE and OPERATOR Statistics</a></li>
-<li><a href="#adaptive_statistics_collection">8.2. Adaptive Statistics Collection</a></li>
-<li><a href="#retrieving_sql_runtime_statistics">8.3. Retrieving SQL Runtime Statistics</a>
+<li><a href="#considerations_for_window_functions">8.1. Considerations for Window Functions</a>
 <ul class="sectlevel3">
-<li><a href="#using_the_get_statistics_command">8.3.1. Using the GET STATISTICS Command</a></li>
-<li><a href="#syntax_of_get_statistics">8.3.2. Syntax of GET STATISTICS</a></li>
-<li><a href="#examples_of_get_statistics">8.3.3. Examples of GET STATISTICS</a></li>
+<li><a href="#_nulls">8.1.1. Nulls</a></li>
 </ul>
 </li>
-<li><a href="#displaying_sql_runtime_statistics">8.4. Displaying SQL Runtime Statistics</a>
+<li><a href="#order_by_clause_supports_expressions_for_olap_functions">8.2. ORDER BY Clause Supports Expressions For OLAP Functions</a></li>
+<li><a href="#limitations_for_window_functions">8.3. Limitations for Window Functions</a></li>
+<li><a href="#avg_window_function">8.4. AVG Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_displaying_sql_runtime_statistics">8.4.1. Examples of Displaying SQL Runtime Statistics</a></li>
-<li><a href="#pertable_statistics_of_an_executing_statement">8.4.2. PERTABLE Statistics of an Executing Statement</a></li>
-<li><a href="#accumulated_statistics_of_an_executing_statement">8.4.3. ACCUMULATED Statistics of an Executing Statement</a></li>
-<li><a href="#progress-statistics-of-an-executing-statement">8.4.4. PROGRESS Statistics of an Executing Statement</a></li>
-<li><a href="#default_statistics_of_an_executing_statement">8.4.5. DEFAULT Statistics of an Executing Statement</a></li>
-<li><a href="#using_the_parent_query_id">8.4.6. Using the Parent Query ID</a></li>
-<li><a href="#child_query_id">8.4.7. Child Query ID</a></li>
+<li><a href="#examples_of_avg_window_function">8.4.1. Examples of AVG Window Function</a></li>
 </ul>
 </li>
-<li><a href="#_gathering_statistics_about_rms">8.5. Gathering Statistics About RMS</a></li>
-<li><a href="#using_the_queryid_extract_function">8.6. Using the QUERYID_EXTRACT Function</a>
+<li><a href="#count_window_function">8.5. COUNT Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#_syntax_of_queryid_extract">8.6.1. Syntax of QUERYID_EXTRACT</a></li>
-<li><a href="#examples_of_queryid_extract">8.6.2. Examples of QUERYID_EXTRACT</a></li>
+<li><a href="#examples_of_count_window_function">8.5.1. Examples of COUNT Window Function</a></li>
 </ul>
 </li>
-<li><a href="#stats_each_fragment_instance_active_query">8.7. Statistics for Each Fragment-Instance of an Active Query</a>
+<li><a href="#dense_rank_window_function">8.6. DENSE_RANK Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#syntax_of_statistics_table-valued_function">8.7.1. Syntax of STATISTICS Table-Valued Function</a></li>
-<li><a href="#considerations_obtaining_stats_fragment">8.7.2. Considerations For Obtaining Statistics For Each Fragment-Instance of an Active Query</a></li>
+<li><a href="#examples_of_dense_rank_window_function">8.6.1. Examples of DENSE_RANK Window Function</a></li>
+<li><a href="#max_window_function">8.6.2. MAX Window Function</a></li>
+<li><a href="#examples_of_max_window_function">8.6.3. Examples of MAX Window Function</a></li>
+</ul>
+</li>
+<li><a href="#min_window_function">8.7. MIN Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_min_window_function">8.7.1. Examples of MIN Window Function</a></li>
+</ul>
+</li>
+<li><a href="#rank_window_function">8.8. RANK Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_rank_window_function">8.8.1. Examples of RANK Window Function</a></li>
+<li><a href="#row_number_window_function">8.8.2. ROW_NUMBER Window Function</a></li>
+<li><a href="#examples_of_row_number_window_function">8.8.3. Examples of ROW_NUMBER Window Function</a></li>
+<li><a href="#stddev_window_function">8.8.4. STDDEV Window Function</a></li>
+<li><a href="#examples_of_stddev">8.8.5. Examples of STDDEV</a></li>
+</ul>
+</li>
+<li><a href="#sum_window_function">8.9. SUM Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_sum_window_function">8.9.1. Examples of SUM Window Function</a></li>
+</ul>
+</li>
+<li><a href="#variance_window_function">8.10. VARIANCE Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_variance_window_function">8.10.1. Examples of VARIANCE Window Function</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#reserved_words">9. Reserved Words</a>
+<li><a href="#sql_runtime_statistics">9. SQL Runtime Statistics</a>
 <ul class="sectlevel2">
-<li><a href="#reserved_sql_identifiers_a">9.1. Reserved SQL Identifiers: A</a></li>
-<li><a href="#reserved_sql_identifiers_b">9.2. Reserved SQL Identifiers: B</a></li>
-<li><a href="#reserved_sql_identifiers_c">9.3. Reserved SQL Identifiers: C</a></li>
-<li><a href="#reserved_sql_identifiers_d">9.4. Reserved SQL Identifiers: D</a></li>
-<li><a href="#reserved_sql_identifiers_e">9.5. Reserved SQL Identifiers: E</a></li>
-<li><a href="#_reserved_sql_identifers_f">9.6. Reserved SQL Identifers:  F</a></li>
-<li><a href="#reserved_sql_identifiers_g">9.7. Reserved SQL Identifiers G</a></li>
-<li><a href="#reserved_sql_identifiers_h">9.8. Reserved SQL Identifiers: H</a></li>
-<li><a href="#reserved_sql_identifiers_i">9.9. Reserved SQL Identifiers: I</a></li>
-<li><a href="#reserved_sql_identifiers_j">9.10. Reserved SQL Identifiers J</a></li>
-<li><a href="#reserved_sql_identifiers_k">9.11. Reserved SQL Identifiers: K</a></li>
-<li><a href="#reserved_sql_identifiers_l">9.12. Reserved SQL Identifiers: L</a></li>
-<li><a href="#reserved_sql_identifiers_m">9.13. Reserved SQL Identifiers: M</a></li>
-<li><a href="#reserved_sql_identifiers_n">9.14. Reserved SQL Identifiers: N</a></li>
-<li><a href="#reserved_sql_identifiers_o">9.15. Reserved SQL Identifiers: O</a></li>
-<li><a href="#reserved_sql_identifiers_p">9.16. Reserved SQL Identifiers: P</a></li>
-<li><a href="#reserved_sql_identifiers_q">9.17. Reserved SQL Identifiers: Q</a></li>
-<li><a href="#reserved_sql_identifiers_r">9.18. Reserved SQL Identifiers: R</a></li>
-<li><a href="#reserved_sql_identifiers_s">9.19. Reserved SQL Identifiers: S</a></li>
-<li><a href="#reserved_sql_identifiers_t">9.20. Reserved SQL Identifiers: T</a></li>
-<li><a href="#reserved_sql_identifiers_u">9.21. Reserved SQL Identifiers: U</a></li>
-<li><a href="#reserved_sql_identifiers_v">9.22. Reserved SQL Identifiers: V</a></li>
-<li><a href="#reserved_sql_identifiers_w">9.23. Reserved SQL Identifiers: W</a></li>
-<li><a href="#reserved_sql_identifiers_y">9.24. Reserved SQL Identifiers Y</a></li>
-<li><a href="#reserved_sql_identifiers_z">9.25. Reserved SQL Identifiers: Z</a></li>
+<li><a href="#_pertable_and_operator_statistics">9.1. PERTABLE and OPERATOR Statistics</a></li>
+<li><a href="#adaptive_statistics_collection">9.2. Adaptive Statistics Collection</a></li>
+<li><a href="#retrieving_sql_runtime_statistics">9.3. Retrieving SQL Runtime Statistics</a>
+<ul class="sectlevel3">
+<li><a href="#using_the_get_statistics_command">9.3.1. Using the GET STATISTICS Command</a></li>
+<li><a href="#syntax_of_get_statistics">9.3.2. Syntax of GET STATISTICS</a></li>
+<li><a href="#examples_of_get_statistics">9.3.3. Examples of GET STATISTICS</a></li>
 </ul>
 </li>
-<li><a href="#limits">10. Limits</a></li>
+<li><a href="#displaying_sql_runtime_statistics">9.4. Displaying SQL Runtime Statistics</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_displaying_sql_runtime_statistics">9.4.1. Examples of Displaying SQL Runtime Statistics</a></li>
+<li><a href="#pertable_statistics_of_an_executing_statement">9.4.2. PERTABLE Statistics of an Executing Statement</a></li>
+<li><a href="#accumulated_statistics_of_an_executing_statement">9.4.3. ACCUMULATED Statistics of an Executing Statement</a></li>
+<li><a href="#progress-statistics-of-an-executing-statement">9.4.4. PROGRESS Statistics of an Executing Statement</a></li>
+<li><a href="#default_statistics_of_an_executing_statement">9.4.5. DEFAULT Statistics of an Executing Statement</a></li>
+<li><a href="#using_the_parent_query_id">9.4.6. Using the Parent Query ID</a></li>
+<li><a href="#child_query_id">9.4.7. Child Query ID</a></li>
+</ul>
+</li>
+<li><a href="#_gathering_statistics_about_rms">9.5. Gathering Statistics About RMS</a></li>
+<li><a href="#using_the_queryid_extract_function">9.6. Using the QUERYID_EXTRACT Function</a>
+<ul class="sectlevel3">
+<li><a href="#_syntax_of_queryid_extract">9.6.1. Syntax of QUERYID_EXTRACT</a></li>
+<li><a href="#examples_of_queryid_extract">9.6.2. Examples of QUERYID_EXTRACT</a></li>
+</ul>
+</li>
+<li><a href="#stats_each_fragment_instance_active_query">9.7. Statistics for Each Fragment-Instance of an Active Query</a>
+<ul class="sectlevel3">
+<li><a href="#syntax_of_statistics_table-valued_function">9.7.1. Syntax of STATISTICS Table-Valued Function</a></li>
+<li><a href="#considerations_obtaining_stats_fragment">9.7.2. Considerations For Obtaining Statistics For Each Fragment-Instance of an Active Query</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#reserved_words">10. Reserved Words</a>
+<ul class="sectlevel2">
+<li><a href="#reserved_sql_identifiers_a">10.1. Reserved SQL Identifiers: A</a></li>
+<li><a href="#reserved_sql_identifiers_b">10.2. Reserved SQL Identifiers: B</a></li>
+<li><a href="#reserved_sql_identifiers_c">10.3. Reserved SQL Identifiers: C</a></li>
+<li><a href="#reserved_sql_identifiers_d">10.4. Reserved SQL Identifiers: D</a></li>
+<li><a href="#reserved_sql_identifiers_e">10.5. Reserved SQL Identifiers: E</a></li>
+<li><a href="#_reserved_sql_identifers_f">10.6. Reserved SQL Identifers:  F</a></li>
+<li><a href="#reserved_sql_identifiers_g">10.7. Reserved SQL Identifiers G</a></li>
+<li><a href="#reserved_sql_identifiers_h">10.8. Reserved SQL Identifiers: H</a></li>
+<li><a href="#reserved_sql_identifiers_i">10.9. Reserved SQL Identifiers: I</a></li>
+<li><a href="#reserved_sql_identifiers_j">10.10. Reserved SQL Identifiers J</a></li>
+<li><a href="#reserved_sql_identifiers_k">10.11. Reserved SQL Identifiers: K</a></li>
+<li><a href="#reserved_sql_identifiers_l">10.12. Reserved SQL Identifiers: L</a></li>
+<li><a href="#reserved_sql_identifiers_m">10.13. Reserved SQL Identifiers: M</a></li>
+<li><a href="#reserved_sql_identifiers_n">10.14. Reserved SQL Identifiers: N</a></li>
+<li><a href="#reserved_sql_identifiers_o">10.15. Reserved SQL Identifiers: O</a></li>
+<li><a href="#reserved_sql_identifiers_p">10.16. Reserved SQL Identifiers: P</a></li>
+<li><a href="#reserved_sql_identifiers_q">10.17. Reserved SQL Identifiers: Q</a></li>
+<li><a href="#reserved_sql_identifiers_r">10.18. Reserved SQL Identifiers: R</a></li>
+<li><a href="#reserved_sql_identifiers_s">10.19. Reserved SQL Identifiers: S</a></li>
+<li><a href="#reserved_sql_identifiers_t">10.20. Reserved SQL Identifiers: T</a></li>
+<li><a href="#reserved_sql_identifiers_u">10.21. Reserved SQL Identifiers: U</a></li>
+<li><a href="#reserved_sql_identifiers_v">10.22. Reserved SQL Identifiers: V</a></li>
+<li><a href="#reserved_sql_identifiers_w">10.23. Reserved SQL Identifiers: W</a></li>
+<li><a href="#reserved_sql_identifiers_y">10.24. Reserved SQL Identifiers Y</a></li>
+<li><a href="#reserved_sql_identifiers_z">10.25. Reserved SQL Identifiers: Z</a></li>
+</ul>
+</li>
+<li><a href="#limits">11. Limits</a></li>
 </ul>
 </div>
 </div>
@@ -1955,11 +1961,54 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>Acknowledgements</strong></p>
 </div>
 <div class="paragraph">
-<p>Microsoft&#174; and Windows&#174; are U.S. registered trademarks of Microsoft Corporation. Java&#174; is a registered trademark of Oracle and/or its affiliates.</p>
+<p>Microsoft®, Windows®, Windows NT®, Windows® XP, and Windows Vista® are
+U.S. registered trademarks of Microsoft Corporation. Intel® and Intel®
+Itanium® are trademarks of Intel Corporation in the U.S. and other
+countries. Java® is a registered trademark of Oracle and/or its
+affiliates. Motif, OSF/1, UNIX®, X/Open®, and the X device is a
+trademark of X/Open Company Ltd. in the UK and other countries.</p>
+</div>
+<div class="paragraph">
+<p>OSF, OSF/1, OSF/Motif, Motif, and Open Software Foundation are trademarks of
+the Open Software Foundation in the U.S. and other countries.
+© 1990, 1991, 1992, 1993 Open Software Foundation, Inc.</p>
+</div>
+<div class="paragraph">
+<p>The OSF documentation and the OSF software to which it relates are derived in
+part from materials supplied by the following: © 1987, 1988, 1989
+Carnegie-Mellon University. © 1989, 1990, 1991 Digital Equipment
+Corporation. © 1985, 1988, 1989, 1990 Encore Computer Corporation. © 1988 Free
+Software Foundation, Inc. © 1987, 1988, 1989, 1990, 1991 Hewlett-Packard
+Company. © 1985, 1987, 1988, 1989, 1990, 1991, 1992 International
+Business Machines Corporation. © 1988, 1989 Massachusetts Institute of
+Technology. © 1988, 1989, 1990 Mentat Inc. © 1988 Microsoft Corporation.
+© 1987, 1988, 1989, 1990, 1991,
+1992 SecureWare, Inc. © 1990, 1991 Siemens Nixdorf Informations systeme
+AG. © 1986, 1989, 1996, 1997 Sun Microsystems, Inc. © 1989, 1990, 1991
+Transarc Corporation.</p>
+</div>
+<div class="paragraph">
+<p>OSF software and documentation are based in part
+on the Fourth Berkeley Software Distribution under license from The
+Regents of the University of California. OSF acknowledges the following
+individuals and institutions for their role in its development: Kenneth
+C.R.C. Arnold, Gregory S. Couch, Conrad C. Huang, Ed James, Symmetric
+Computer Systems, Robert Elz. © 1980, 1981, 1982, 1983, 1985, 1986,
+1987, 1988, 1989 Regents of the University of California. OSF MAKES NO
+WARRANTY OF ANY KIND WITH REGARD TO THE OSF MATERIAL PROVIDED HEREIN,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE. OSF shall not be liable for errors
+contained herein or for incidental consequential damages in connection
+with the furnishing, performance, or use of this material.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Revision History</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1973,6 +2022,10 @@ specific language governing permissions and limitations under the License.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">January, 2016</p></td>
@@ -2324,59 +2377,13 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_publishing_history">1.5. Publishing History</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Product Version</th>
-<th class="tableblock halign-left valign-top">Publication Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">January 2016</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 1.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">April 2015</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">January 2015</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 0.9.0 Beta</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">October 2014</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 0.8.1 Beta</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">August 2014</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 0.8.0 Beta</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">June 2014</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_comments_encouraged">1.6. Comments Encouraged</h3>
+<h3 id="_comments_encouraged">1.5. Comments Encouraged</h3>
 <div class="paragraph">
-<p>The Trafodion community encourages your comments concerning this document. We are committed to providing documentation that meets your
-needs. Send any errors found, suggestions for improvement, or compliments to:</p>
+<p>We encourage your comments concerning this document. We are committed to providing documentation that meets your
+needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
 </div>
 <div class="paragraph">
-<p><a href="mailto:issues@trafodion.incubator.apache.org">issues@trafodion.incubator.apache.org</a></p>
-</div>
-<div class="paragraph">
-<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.
-Or, even better, join our community and help us improve our documentation. Please refer to
-<a href="http://trafodion.incubator.apache.org/contributing_redirect.html">Trafodion Contributor Guide</a> for details.</p>
+<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
 </div>
 </div>
 </div>
@@ -10383,7 +10390,7 @@ Manager (DTM) tables.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Trafodion Conversational Interface 1.1.0
-(c) Copyright 2014 Hewlett-Packard Development Company, LP.
+(c) Copyright 2015 Apache Software Foundation
 
 &gt;&gt;get user hbase objects;
 
@@ -12193,7 +12200,7 @@ such name.</p>
 <p>To register a user and assign a database username different than the user&#8217;s login name:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">REGISTER USER &quot;jsmith@hp.com&quot; AS jsmith;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">REGISTER USER &quot;jsmith@company.com&quot; AS jsmith;</code></pre>
 </div>
 </div>
 </li>
@@ -12201,7 +12208,7 @@ such name.</p>
 <p>To register a user without specifying a database username, so the database username will be the same as the user&#8217;s login name:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">REGISTER USER &quot;jsmith@hp.com&quot;;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">REGISTER USER &quot;jsmith@company.com&quot;;</code></pre>
 </div>
 </div>
 </li>
@@ -15529,7 +15536,7 @@ privileges or roles.</p>
 <p>To unregister a user:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">UNREGISTER USER &quot;jsmith@hp.com&quot;;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">UNREGISTER USER &quot;jsmith@company.com&quot;;</code></pre>
 </div>
 </div>
 </li>
@@ -20637,9 +20644,9 @@ or leading forward slash (/) character.</p>
 <p>Unlike other delimited identifiers, case-insensitive-delimited
 identifiers are case-insensitive. Identifiers are up-shifted before
 being inserted into the SQL metadata. Thus, whether you specify a user&#8217;s
-name as <code>"<a href="mailto:Penelope.Quan@hp.com">Penelope.Quan@hp.com</a>"</code>, <code>"<a href="mailto:PENELOPE.QUAN@hp.com">PENELOPE.QUAN@hp.com</a>"</code>, or
-<code>"<a href="mailto:penelope.quan@hp.com">penelope.quan@hp.com</a>"</code>, the value stored in the metadata will be the
-same: <code>PENELOPE.QUAN@HP.COM</code>.</p>
+name as <code>"<a href="mailto:Penelope.Quan@company.com">Penelope.Quan@company.com</a>"</code>, <code>"<a href="mailto:PENELOPE.QUAN@company.com">PENELOPE.QUAN@company.com</a>"</code>, or
+<code>"<a href="mailto:penelope.quan@company.com">penelope.quan@company.com</a>"</code>, the value stored in the metadata will be the
+same: <code>PENELOPE.QUAN@COMPANY.COM</code>.</p>
 </div>
 <div class="paragraph">
 <p>You can use reserved words as case-insensitive delimited identifiers.</p>
@@ -37434,18 +37441,20 @@ NULL.</p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="olap_functions">7.114.2. OLAP Functions</h4>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="olap_functions">8. OLAP Functions</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This section describes the syntax and semantics of the On Line
 Analytical Process (OLAP) window functions. The OLAP window functions
 are ANSI compliant.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="considerations_for_window_functions">7.114.3. Considerations for Window Functions</h4>
+<div class="sect2">
+<h3 id="considerations_for_window_functions">8.1. Considerations for Window Functions</h3>
 <div class="paragraph">
 <p>These considerations apply to all window functions.</p>
 </div>
@@ -37488,8 +37497,8 @@ AND CURRENT ROW".</p>
 </li>
 </ul>
 </div>
-<div class="sect4">
-<h5 id="_nulls">Nulls</h5>
+<div class="sect3">
+<h4 id="_nulls">8.1.1. Nulls</h4>
 <div class="paragraph">
 <p>All nulls are eliminated before the function is applied to the set of
 values. If the window contains all NULL values, the result of the window
@@ -37503,9 +37512,8 @@ result of the window function is NULL.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="order_by_clause_supports_expressions_for_olap_functions">7.115. ORDER BY Clause Supports Expressions For OLAP Functions</h3>
+<h3 id="order_by_clause_supports_expressions_for_olap_functions">8.2. ORDER BY Clause Supports Expressions For OLAP Functions</h3>
 <div class="paragraph">
 <p>The ORDER BY clause of the OLAP functions now supports expressions.
 However, use of multiple OLAP functions with different expressions in
@@ -37570,7 +37578,7 @@ GROUP BY num, workgroupnum, annualsalary;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="limitations_for_window_functions">7.116. Limitations for Window Functions</h3>
+<h3 id="limitations_for_window_functions">8.3. Limitations for Window Functions</h3>
 <div class="paragraph">
 <p>These limitations apply to all window functions.</p>
 </div>
@@ -37632,7 +37640,7 @@ DISTINCT in a window function will result in the "4341" error message.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="avg_window_function">7.117. AVG Window Function</h3>
+<h3 id="avg_window_function">8.4. AVG Window Function</h3>
 <div class="paragraph">
 <p>AVG is a window function that returns the average of non-null values of
 the given expression for the current window specified by the
@@ -37732,7 +37740,7 @@ computed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_avg_window_function">7.117.1. Examples of AVG Window Function</h4>
+<h4 id="examples_of_avg_window_function">8.4.1. Examples of AVG Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37778,7 +37786,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="count_window_function">7.118. COUNT Window Function</h3>
+<h3 id="count_window_function">8.5. COUNT Window Function</h3>
 <div class="paragraph">
 <p>COUNT is a window function that returns the count of the non null values
 of the given expression for the current window specified by the
@@ -37881,7 +37889,7 @@ computed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_count_window_function">7.118.1. Examples of COUNT Window Function</h4>
+<h4 id="examples_of_count_window_function">8.5.1. Examples of COUNT Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37938,7 +37946,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="dense_rank_window_function">7.119. DENSE_RANK Window Function</h3>
+<h3 id="dense_rank_window_function">8.6. DENSE_RANK Window Function</h3>
 <div class="paragraph">
 <p>DENSE_RANK is a window function that returns the ranking of each row of
 the current partition specified by the inline-window-specification. The
@@ -37978,7 +37986,7 @@ clause specifies how the rows are ordered within each partition.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_dense_rank_window_function">7.119.1. Examples of DENSE_RANK Window Function</h4>
+<h4 id="examples_of_dense_rank_window_function">8.6.1. Examples of DENSE_RANK Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38009,7 +38017,7 @@ FROM persnl.employee;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="max_window_function">7.119.2. MAX Window Function</h4>
+<h4 id="max_window_function">8.6.2. MAX Window Function</h4>
 <div class="paragraph">
 <p>MAX is a window function that returns the maximum value of all non null
 values of the given expression for the current window specified by the
@@ -38109,7 +38117,7 @@ computed.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_max_window_function">7.119.3. Examples of MAX Window Function</h4>
+<h4 id="examples_of_max_window_function">8.6.3. Examples of MAX Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38152,7 +38160,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="min_window_function">7.120. MIN Window Function</h3>
+<h3 id="min_window_function">8.7. MIN Window Function</h3>
 <div class="paragraph">
 <p>MIN is a window function that returns the minimum value of all non null
 values of the given expression for the current window specified by the
@@ -38251,7 +38259,7 @@ computed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_min_window_function">7.120.1. Examples of MIN Window Function</h4>
+<h4 id="examples_of_min_window_function">8.7.1. Examples of MIN Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38295,7 +38303,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rank_window_function">7.121. RANK Window Function</h3>
+<h3 id="rank_window_function">8.8. RANK Window Function</h3>
 <div class="paragraph">
 <p>RANK is a window function that returns the ranking of each row of the
 current partition specified by the inline-window-specification. The
@@ -38335,7 +38343,7 @@ clause specifies how the rows are ordered within each partition.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_rank_window_function">7.121.1. Examples of RANK Window Function</h4>
+<h4 id="examples_of_rank_window_function">8.8.1. Examples of RANK Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38365,7 +38373,7 @@ FROM persnl.employee;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="row_number_window_function">7.121.2. ROW_NUMBER Window Function</h4>
+<h4 id="row_number_window_function">8.8.2. ROW_NUMBER Window Function</h4>
 <div class="paragraph">
 <p>ROW_NUMBER is a window function that returns the row number of each row
 of the current window specified by the inline-window-specification.</p>
@@ -38408,7 +38416,7 @@ computed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_row_number_window_function">7.121.3. Examples of ROW_NUMBER Window Function</h4>
+<h4 id="examples_of_row_number_window_function">8.8.3. Examples of ROW_NUMBER Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38438,7 +38446,7 @@ FROM persnl.employee;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="stddev_window_function">7.121.4. STDDEV Window Function</h4>
+<h4 id="stddev_window_function">8.8.4. STDDEV Window Function</h4>
 <div class="paragraph">
 <p>STDDEV is a window function that returns the standard deviation of non
 null values of the given expression for the current window specified by
@@ -38537,7 +38545,7 @@ computed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_stddev">7.121.5. Examples of STDDEV</h4>
+<h4 id="examples_of_stddev">8.8.5. Examples of STDDEV</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38569,7 +38577,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sum_window_function">7.122. SUM Window Function</h3>
+<h3 id="sum_window_function">8.9. SUM Window Function</h3>
 <div class="paragraph">
 <p>SUM is a window function that returns the sum of non null values of the
 given expression for the current window specified by the
@@ -38667,7 +38675,7 @@ within each partition.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_sum_window_function">7.122.1. Examples of SUM Window Function</h4>
+<h4 id="examples_of_sum_window_function">8.9.1. Examples of SUM Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38710,7 +38718,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="variance_window_function">7.123. VARIANCE Window Function</h3>
+<h3 id="variance_window_function">8.10. VARIANCE Window Function</h3>
 <div class="paragraph">
 <p>VARIANCE is a window function that returns the variance of non null
 values of the given expression for the current window specified by the
@@ -38809,7 +38817,7 @@ computed.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_variance_window_function">7.123.1. Examples of VARIANCE Window Function</h4>
+<h4 id="examples_of_variance_window_function">8.10.1. Examples of VARIANCE Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38837,13 +38845,12 @@ FROM persnl.employee;</code></pre>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="sql_runtime_statistics">8. SQL Runtime Statistics</h2>
+<h2 id="sql_runtime_statistics">9. SQL Runtime Statistics</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Runtime Management System (RMS) shows the status of queries while
@@ -38864,7 +38871,7 @@ value pair of the form <em>token=value</em>. For more information, see
 <p>RMS is enabled and available all the time.</p>
 </div>
 <div class="sect2">
-<h3 id="_pertable_and_operator_statistics">8.1. PERTABLE and OPERATOR Statistics</h3>
+<h3 id="_pertable_and_operator_statistics">9.1. PERTABLE and OPERATOR Statistics</h3>
 <div class="paragraph">
 <p>The SQL database engine determines which type of statistics collection
 is appropriate for the query. The RMS infrastructure provides the
@@ -38914,7 +38921,7 @@ see <a href="#displaying_sql_runtimestatistics">Displaying SQL Runtime Statistic
 </div>
 </div>
 <div class="sect2">
-<h3 id="adaptive_statistics_collection">8.2. Adaptive Statistics Collection</h3>
+<h3 id="adaptive_statistics_collection">9.2. Adaptive Statistics Collection</h3>
 <div class="paragraph">
 <p>The SQL database engine chooses the appropriate statistics collection
 type based on the type of query. By default, the SQL database engine
@@ -38972,9 +38979,9 @@ queries, either no statistics or PERTABLE statistics are collected.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="retrieving_sql_runtime_statistics">8.3. Retrieving SQL Runtime Statistics</h3>
+<h3 id="retrieving_sql_runtime_statistics">9.3. Retrieving SQL Runtime Statistics</h3>
 <div class="sect3">
-<h4 id="using_the_get_statistics_command">8.3.1. Using the GET STATISTICS Command</h4>
+<h4 id="using_the_get_statistics_command">9.3.1. Using the GET STATISTICS Command</h4>
 <div class="paragraph">
 <p>The GET STATISTICS command shows statistical information for:</p>
 </div>
@@ -39001,7 +39008,7 @@ start time is not -1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="syntax_of_get_statistics">8.3.2. Syntax of GET STATISTICS</h4>
+<h4 id="syntax_of_get_statistics">9.3.2. Syntax of GET STATISTICS</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">GET STATISTICS FOR QID { query-id | CURRENT } [stats-view-type] }
@@ -39154,7 +39161,7 @@ see <a href="#pertable_and_operator_statistics">Pertable and Operator Statistics
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_get_statistics">8.3.3. Examples of GET STATISTICS</h4>
+<h4 id="examples_of_get_statistics">9.3.3. Examples of GET STATISTICS</h4>
 <div class="paragraph">
 <p>These examples show the runtime statistics that various get statistics
 commands return. for more information about the runtime statistics and
@@ -39424,7 +39431,7 @@ SQL&gt; GET STATISTICS FOR PID $Z000F3R;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="displaying_sql_runtime_statistics">8.4. Displaying SQL Runtime Statistics</h3>
+<h3 id="displaying_sql_runtime_statistics">9.4. Displaying SQL Runtime Statistics</h3>
 <div class="paragraph">
 <p>By default, GET STATISTICS displays table-wise statistics (PERTABLE). If
 you want to view the statistics in a different format, use the
@@ -39942,7 +39949,7 @@ This allows the memory to be reused as needed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_displaying_sql_runtime_statistics">8.4.1. Examples of Displaying SQL Runtime Statistics</h4>
+<h4 id="examples_of_displaying_sql_runtime_statistics">9.4.1. Examples of Displaying SQL Runtime Statistics</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -40004,7 +40011,7 @@ Stats Collection Type   OPERATOR_STATS
 </div>
 </div>
 <div class="sect3">
-<h4 id="pertable_statistics_of_an_executing_statement">8.4.2. PERTABLE Statistics of an Executing Statement</h4>
+<h4 id="pertable_statistics_of_an_executing_statement">9.4.2. PERTABLE Statistics of an Executing Statement</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40083,7 +40090,7 @@ NEO.SCTEST.T100K
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="accumulated_statistics_of_an_executing_statement">8.4.3. ACCUMULATED Statistics of an Executing Statement</h4>
+<h4 id="accumulated_statistics_of_an_executing_statement">9.4.3. ACCUMULATED Statistics of an Executing Statement</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40162,7 +40169,7 @@ Scr. Buffer Blks Written 0
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="progress-statistics-of-an-executing-statement">8.4.4. PROGRESS Statistics of an Executing Statement</h4>
+<h4 id="progress-statistics-of-an-executing-statement">9.4.4. PROGRESS Statistics of an Executing Statement</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40237,7 +40244,7 @@ Id TDB       Mode Phase  Phase  BMO   BMO    BMO   BMO    BMO     File   Scratch
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="default_statistics_of_an_executing_statement">8.4.5. DEFAULT Statistics of an Executing Statement</h4>
+<h4 id="default_statistics_of_an_executing_statement">9.4.5. DEFAULT Statistics of an Executing Statement</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40309,7 +40316,7 @@ Id  LCId  RCId PaId ExId Frag TDB Name         Dispatches  Oper CPU   Records   
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="using_the_parent_query_id">8.4.6. Using the Parent Query ID</h4>
+<h4 id="using_the_parent_query_id">9.4.6. Using the Parent Query ID</h4>
 <div class="paragraph">
 <p>When executed, some SQL statements execute additional SQL statements,
 resulting in a parent-child relationship. For example, when executed,
@@ -40328,7 +40335,7 @@ indicate "None."</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="child_query_id">8.4.7. Child Query ID</h4>
+<h4 id="child_query_id">9.4.7. Child Query ID</h4>
 <div class="paragraph">
 <p>In many cases, a child query will execute in the same node as its
 parent. In such cases, the GET STATISTICS report on the parent query ID
@@ -40439,7 +40446,7 @@ Id  LCId  RCId PaId ExId Frag TDB Name         Dispatches  Oper CPU   Records   
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gathering_statistics_about_rms">8.5. Gathering Statistics About RMS</h3>
+<h3 id="_gathering_statistics_about_rms">9.5. Gathering Statistics About RMS</h3>
 <div class="paragraph">
 <p>Use the GET STATISTICS FOR RMS command to get information about RMS
 itself. The GET STATISTICS FOR RMS statement can be used to retrieve
@@ -40608,7 +40615,7 @@ RMS Stats Reset Timestamp   2010/12/05 14:32:33.891083
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="using_the_queryid_extract_function">8.6. Using the QUERYID_EXTRACT Function</h3>
+<h3 id="using_the_queryid_extract_function">9.6. Using the QUERYID_EXTRACT Function</h3>
 <div class="paragraph">
 <p>Use the QUERYID_EXTRACT function within an SQL statement to extract
 components of a query ID for use in a SQL query. The query ID, or QID,
@@ -40617,7 +40624,7 @@ is generated for dynamic SQL statements whenever a SQL string is
 prepared.</p>
 </div>
 <div class="sect3">
-<h4 id="_syntax_of_queryid_extract">8.6.1. Syntax of QUERYID_EXTRACT</h4>
+<h4 id="_syntax_of_queryid_extract">9.6.1. Syntax of QUERYID_EXTRACT</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">QUERYID_EXTRACT ('query-id', 'attribute')</code></pre>
@@ -40722,7 +40729,7 @@ format. Here is the QUERYID_EXTRACT function in a SELECT statement:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_queryid_extract">8.6.2. Examples of QUERYID_EXTRACT</h4>
+<h4 id="examples_of_queryid_extract">9.6.2. Examples of QUERYID_EXTRACT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40770,7 +40777,7 @@ format. Here is the QUERYID_EXTRACT function in a SELECT statement:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stats_each_fragment_instance_active_query">8.7. Statistics for Each Fragment-Instance of an Active Query</h3>
+<h3 id="stats_each_fragment_instance_active_query">9.7. Statistics for Each Fragment-Instance of an Active Query</h3>
 <div class="paragraph">
 <p>You can retrieve statistics for a query while it executes by using the
 STATISTICS table-valued function. Depending on the syntax used, you can
@@ -40778,7 +40785,7 @@ obtain statistics summarizing each parallel fragment-instance of the
 query, or for any operator in each fragment-instance.</p>
 </div>
 <div class="sect3">
-<h4 id="syntax_of_statistics_table-valued_function">8.7.1. Syntax of STATISTICS Table-Valued Function</h4>
+<h4 id="syntax_of_statistics_table-valued_function">9.7.1. Syntax of STATISTICS Table-Valued Function</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">TABLE(STATISTICS (NULL, 'qid-str'))
@@ -40811,7 +40818,7 @@ report returned from the GET STATISTICS command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="considerations_obtaining_stats_fragment">8.7.2. Considerations For Obtaining Statistics For Each Fragment-Instance of an Active Query</h4>
+<h4 id="considerations_obtaining_stats_fragment">9.7.2. Considerations For Obtaining Statistics For Each Fragment-Instance of an Active Query</h4>
 <div class="paragraph">
 <p>If the DETAIL=1 or TDBID_DETAIL=<em>tdb_id</em> options are used when the
 query is not executing, the STATISTICS table-valued function will not
@@ -40900,13 +40907,12 @@ bmoHeapUsed: 3147
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="reserved_words">9. Reserved Words</h2>
+<h2 id="reserved_words">10. Reserved Words</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The words listed in this appendix are reserved for use by Trafodion SQL.
@@ -40934,7 +40940,7 @@ Trafodion SQL stored text. They cannot be used as identifiers unless you
 enclose them in double quotes.</p>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_a">9.1. Reserved SQL Identifiers: A</h3>
+<h3 id="reserved_sql_identifiers_a">10.1. Reserved SQL Identifiers: A</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -40976,7 +40982,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_b">9.2. Reserved SQL Identifiers: B</h3>
+<h3 id="reserved_sql_identifiers_b">10.2. Reserved SQL Identifiers: B</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41011,7 +41017,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_c">9.3. Reserved SQL Identifiers: C</h3>
+<h3 id="reserved_sql_identifiers_c">10.3. Reserved SQL Identifiers: C</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41088,7 +41094,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_d">9.4. Reserved SQL Identifiers: D</h3>
+<h3 id="reserved_sql_identifiers_d">10.4. Reserved SQL Identifiers: D</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41144,7 +41150,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_e">9.5. Reserved SQL Identifiers: E</h3>
+<h3 id="reserved_sql_identifiers_e">10.5. Reserved SQL Identifiers: E</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41179,7 +41185,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_reserved_sql_identifers_f">9.6. Reserved SQL Identifers:  F</h3>
+<h3 id="_reserved_sql_identifers_f">10.6. Reserved SQL Identifers:  F</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41214,7 +41220,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_g">9.7. Reserved SQL Identifiers G</h3>
+<h3 id="reserved_sql_identifiers_g">10.7. Reserved SQL Identifiers G</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41242,11 +41248,11 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_h">9.8. Reserved SQL Identifiers: H</h3>
+<h3 id="reserved_sql_identifiers_h">10.8. Reserved SQL Identifiers: H</h3>
 
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_i">9.9. Reserved SQL Identifiers: I</h3>
+<h3 id="reserved_sql_identifiers_i">10.9. Reserved SQL Identifiers: I</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41288,15 +41294,15 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_j">9.10. Reserved SQL Identifiers J</h3>
+<h3 id="reserved_sql_identifiers_j">10.10. Reserved SQL Identifiers J</h3>
 
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_k">9.11. Reserved SQL Identifiers: K</h3>
+<h3 id="reserved_sql_identifiers_k">10.11. Reserved SQL Identifiers: K</h3>
 
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_l">9.12. Reserved SQL Identifiers: L</h3>
+<h3 id="reserved_sql_identifiers_l">10.12. Reserved SQL Identifiers: L</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41338,7 +41344,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_m">9.13. Reserved SQL Identifiers: M</h3>
+<h3 id="reserved_sql_identifiers_m">10.13. Reserved SQL Identifiers: M</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41373,7 +41379,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_n">9.14. Reserved SQL Identifiers: N</h3>
+<h3 id="reserved_sql_identifiers_n">10.14. Reserved SQL Identifiers: N</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41408,7 +41414,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_o">9.15. Reserved SQL Identifiers: O</h3>
+<h3 id="reserved_sql_identifiers_o">10.15. Reserved SQL Identifiers: O</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41450,7 +41456,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_p">9.16. Reserved SQL Identifiers: P</h3>
+<h3 id="reserved_sql_identifiers_p">10.16. Reserved SQL Identifiers: P</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41492,11 +41498,11 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_q">9.17. Reserved SQL Identifiers: Q</h3>
+<h3 id="reserved_sql_identifiers_q">10.17. Reserved SQL Identifiers: Q</h3>
 
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_r">9.18. Reserved SQL Identifiers: R</h3>
+<h3 id="reserved_sql_identifiers_r">10.18. Reserved SQL Identifiers: R</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41545,7 +41551,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_s">9.19. Reserved SQL Identifiers: S</h3>
+<h3 id="reserved_sql_identifiers_s">10.19. Reserved SQL Identifiers: S</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41622,7 +41628,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_t">9.20. Reserved SQL Identifiers: T</h3>
+<h3 id="reserved_sql_identifiers_t">10.20. Reserved SQL Identifiers: T</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41671,7 +41677,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_u">9.21. Reserved SQL Identifiers: U</h3>
+<h3 id="reserved_sql_identifiers_u">10.21. Reserved SQL Identifiers: U</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41706,7 +41712,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_v">9.22. Reserved SQL Identifiers: V</h3>
+<h3 id="reserved_sql_identifiers_v">10.22. Reserved SQL Identifiers: V</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41734,7 +41740,7 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_w">9.23. Reserved SQL Identifiers: W</h3>
+<h3 id="reserved_sql_identifiers_w">10.23. Reserved SQL Identifiers: W</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -41762,17 +41768,17 @@ enclose them in double quotes.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_y">9.24. Reserved SQL Identifiers Y</h3>
+<h3 id="reserved_sql_identifiers_y">10.24. Reserved SQL Identifiers Y</h3>
 
 </div>
 <div class="sect2">
-<h3 id="reserved_sql_identifiers_z">9.25. Reserved SQL Identifiers: Z</h3>
+<h3 id="reserved_sql_identifiers_z">10.25. Reserved SQL Identifiers: Z</h3>
 
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="limits">10. Limits</h2>
+<h2 id="limits">11. Limits</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section lists limits for various parts of Trafodion SQL.</p>
@@ -41804,7 +41810,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-04-11 22:45:44 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>

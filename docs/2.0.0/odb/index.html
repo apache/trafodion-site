@@ -547,8 +547,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_intended_audience">1.1. Intended Audience</a></li>
 <li><a href="#_new_and_changed_information">1.2. New and Changed Information</a></li>
 <li><a href="#_notation_conventions">1.3. Notation Conventions</a></li>
-<li><a href="#_publishing_history">1.4. Publishing History</a></li>
-<li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
+<li><a href="#_comments_encouraged">1.4. Comments Encouraged</a></li>
 </ul>
 </li>
 <li><a href="#_introduction">2. Introduction</a>
@@ -680,6 +679,10 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Revision History</strong></p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -692,6 +695,10 @@ specific language governing permissions and limitations under the License.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">January, 2016</p></td>
@@ -927,40 +934,13 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_publishing_history">1.4. Publishing History</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Product Version</th>
-<th class="tableblock halign-left valign-top">Publication Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion Release 1.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="_comments_encouraged">1.5. Comments Encouraged</h3>
+<h3 id="_comments_encouraged">1.4. Comments Encouraged</h3>
 <div class="paragraph">
-<p>The Trafodion community encourages your comments concerning this document. We are committed to providing documentation that meets your
-needs. Send any errors found, suggestions for improvement, or compliments to:</p>
+<p>We encourage your comments concerning this document. We are committed to providing documentation that meets your
+needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
 </div>
 <div class="paragraph">
-<p><a href="mailto:issues@trafodion.incubator.apache.org">issues@trafodion.incubator.apache.org</a></p>
-</div>
-<div class="paragraph">
-<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.
-Or, even better, join our community and help us improve our documentation. Please refer to
-<a href="http://trafodion.incubator.apache.org/contributing_redirect.html">Trafodion Contributor Guide</a> for details.</p>
+<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
 </div>
 </div>
 </div>
@@ -1104,7 +1084,7 @@ command here above.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ ./configure --prefix=/home/mauro/uodbc --disable-gui --enable-threads --disable-drivers</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ ./configure --prefix=/opt/trafodion/uodbc --disable-gui --enable-threads --disable-drivers</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1151,7 +1131,7 @@ command here above.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCHOME=/home/mauro/uodbc</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCHOME=/opt/trafodion/uodbc</code></pre>
 </div>
 </div>
 </li>
@@ -1160,7 +1140,7 @@ command here above.</p>
 directory under <code>$ODBCHOME</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCSYSINI=$\{ODBCHOME}/etc</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCSYSINI=$ODBCHOME/etc</code></pre>
 </div>
 </div>
 </li>
@@ -1168,7 +1148,7 @@ directory under <code>$ODBCHOME</code>:</p>
 <p>Configure the <code>ODBCINI</code> variable to the full path of the <code>odbc.ini</code> file:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCINI=$\{ODBCSYSINI}/odbc.ini</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ export ODBCINI=$ODBCSYSINI/odbc.ini</code></pre>
 </div>
 </div>
 </li>
@@ -1176,7 +1156,7 @@ directory under <code>$ODBCHOME</code>:</p>
 <p>Add the unixODBC lib directory to your <code>LD_LIBRARY_PATH</code> (Linux) or <code>LIBPATH</code> (IBM AIX) or <code>SHLIB_PATH</code> (HP/UX):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ export LD_LIBRARY_PATH=$\{ODBCHOME}/lib</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ODBCHOME/lib</code></pre>
 </div>
 </div>
 </li>
@@ -1191,7 +1171,10 @@ directory under <code>$ODBCHOME</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">[&lt;DATA_SOURCE_NAME&gt;]
+<pre class="CodeRay highlight"><code data-lang="text">[ODBC]
+AppUnicodeType=utf16
+
+[&lt;DATA_SOURCE_NAME&gt;]
 Description = DSN Description
 Driver = &lt;odbcinst.ini corresponding section&gt;
 ...
@@ -1218,9 +1201,6 @@ UsageCount = 1</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The Trafodion ODBC driver requires an environment variable, <code>AppUnicodeType</code>, to be specified in <code>odbcinst.ini</code>.
-This variable must be set to <code>utf16</code>.<br>
-<br>
 If you are using Vertica, then the Vertica ODBC driver requires an additional section named <code>[Driver]</code> in <code>odbc.ini</code>
 with specific settings for unixODBC (odbcinst library location and UTF level supported by unixODBC).<br>
 <br>
@@ -1242,7 +1222,7 @@ See the <em>Vertica Programmer’s Guide – Additional ODBC Driver Configuratio
 
 [ODBC Data Sources]
 VMFELICI = VerticaMachine1
-traf = Trafodion database
+traf = {project-name} database
 
 [VMFELICI]
 Description = Vertica Machine 1
@@ -1300,11 +1280,10 @@ FileUsage = 1
 UsageCount = 1
 
 [Trafodion]
-Description = Trafodion ODBC Stand Alone Driver
+Description = {project-name} ODBC Stand Alone Driver
 Driver = /&lt;dir-name&gt;/conn/clients/odbc/libtrafodbc_drvr64.so
 FileUsage = 1
 UsageCount = 1
-AppUnicodeType = utf16
 
 [ODBC]
 Threading = 1
@@ -1360,7 +1339,7 @@ Tracefile = uodbc.trc</code></pre>
 <div class="sect2">
 <h3 id="_install_odb">3.3. Install odb</h3>
 <div class="paragraph">
-<p>See the <a href="http://trafodion.incubator.apache.org/docs/latest/odb/index.html">Trafodion Client Installation Guide</a> for details.</p>
+<p>See the <a href="http://trafodion.incubator.apache.org/docs/odb/index.html">Trafodion Client Installation Guide</a> for details.</p>
 </div>
 </div>
 </div>
@@ -1454,7 +1433,7 @@ Data loading options [connection required]:
       * pc: no default. Also &lt;ASCII_dec&gt; 0&lt;ASCII_OCT&gt; X&lt;ASCII_HEX&gt;
       * direct: only for Vertica databases
       * bpc: default 1,bpwc: default 4
-      * loadcmd: default IN. only for Trafodion databases
+      * loadcmd: default IN. only for {project-name} databases
 Data extraction options [connection required]:
    -e {src={table|-file}|sql=&lt;custom sql&gt;}:tgt=[+]file[:pwhere=where_cond]
       [:fs=fieldsep][:rs=recsep][:sq=stringqualifier][:ec=escape_char][:soe]
@@ -1486,7 +1465,7 @@ Data copy options [connection required]:
        * ucs2toutf8: default is 'skip'
        * roe: default 3 if no arguments
        * bpc: default 1,bpwc: default 4
-       * loadcmd: default IN. only for Trafodion databases
+       * loadcmd: default IN. only for {project-name} databases
 Data pipe options [connection required]:
    -pipe sql={[sqlcmd]|@sqlscript|-file}:tgtsql={@sqlfile|[sqlcmd]}[:soe]
       [:rows=#rowset][:nomark][:max=#max_rec][:bpc=#][:bpwc=#][:errdmp=file]
@@ -1613,7 +1592,7 @@ Command-line options take precedence over environment variables.
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -lsdrv
-Trafodion - Description=Trafodion ODBC Stand Alone Driver +
+Trafodion - Description=Trafodion ODBC Stand Alone Driver
 ...</code></pre>
 </div>
 </div>
@@ -1622,8 +1601,9 @@ Trafodion - Description=Trafodion ODBC Stand Alone Driver +
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -lsdsn traf - Trafodion
-VMFELICI – Vertica +
+<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -lsdsn
+traf - Trafodion
+VMFELICI – Vertica
 ...</code></pre>
 </div>
 </div>
@@ -2110,7 +2090,7 @@ script (<code>-f</code>) will be executed, independently from the others, using 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x &quot;select count(&amp;#42;) from types&quot; -f script1.sql</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x &quot;select count(*) from types&quot; -f script1.sql</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2132,7 +2112,7 @@ of `script1.sql</code> and three instances of <code>script2.sql</code> in parall
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x 3:&quot;select count(&amp;#42;) from types&quot; -f 5:script1.sql \
+<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x 3:&quot;select count(*) from types&quot; -f 5:script1.sql \
 -f 3:script2.sql -q
 
 [1.0.0]--- 1 row(s) selected in 0.000s (prep 0.000s, exec 0.000s, fetch 0.000s/0.000s)
@@ -2163,7 +2143,7 @@ of `script1.sql</code> and three instances of <code>script2.sql</code> in parall
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x 3:&quot;select count(&amp;#42;) from types&quot; -f 5:script1.sql \
+<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ ./odb64luo -x 3:&quot;select count(*) from types&quot; -f 5:script1.sql \
 -f 3:script2.sql -q -T 4
 
 [1.0.0]--- 1 row(s) selected in 0.000s (prep 0.000s, exec 0.000s, fetch 0.000s/0.000s)
@@ -2963,7 +2943,7 @@ If you add a <code>+</code> sign in front of the file-name, odb  <strong>appends
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>direct</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds <code>/<strong>+ DIRECT */</code> hint to the insert statement. To be used with Vertica databases in order to store inserted rows *directly</strong> into
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds <code>/*+ DIRECT */</code>* hint to the insert statement. To be used with Vertica databases in order to store inserted rows <strong>directly</strong> into
 the Read-Only Storage (ROS). See Vertica’s documentation.</p></td>
 </tr>
 <tr>
@@ -3562,15 +3542,15 @@ In addition: you need to <strong><em>convert date format</em></strong> and repla
 <div class="paragraph">
 <p>The following map file accomplishes these goals:</p>
 </div>
-<hr>
-<div class="paragraph">
-<p>$ cat test/load_map/ml1.map<br>
-# Map file to load TRAFODION.MFTEST.FRIENDS from friends.dat<br>
-ID:seq:1                  # Inserts into ID column a sequence starting from 1<br>
-NAME:4:REPLACE:Lucia:Lucy # Loads field #4 into NAME and replace all occurrences of Lucia with Lucy<br>
-AGE:2                     # Loads field #2 (they start from zero) into AGE<br>
-BDATE:6:DCONV:d.b.y       # Loads field #6 into BDATE converting date format from dd mmm yyyy
-<strong>*</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ cat test/load_map/ml1.map
+# Map file to load TRAFODION.MFTEST.FRIENDS from friends.dat
+ID:seq:1                  # Inserts into ID column a sequence starting from 1
+NAME:4:REPLACE:Lucia:Lucy # Loads field #4 into NAME and replace all occurrences of Lucia with Lucy
+AGE:2                     # Loads field #2 (they start from zero) into AGE
+BDATE:6:DCONV:d.b.y       # Loads field #6 into BDATE converting date format from dd mmm yyyy</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
@@ -3659,7 +3639,7 @@ the odb capabilities in this area through an example.</p>
 , BDATE DATE NOT NULL
 , SEX CHAR(1) NOT NULL
 , EMAIL VARCHAR(40) NOT NULL
-, SALARY NUMERIC SIGNED(9,2) NOT NULL
+, SALARY NUMERIC(9,2) NOT NULL
 , EMPL VARCHAR(40) NOT NULL
 , NOTES VARCHAR(80)
 , LOADTS TIMESTAMP(0)
@@ -3674,13 +3654,14 @@ the odb capabilities in this area through an example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ cat person.map PID:SEQ:100
-
+<pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ cat person.map
+PID:SEQ:100
 FNAME:DSRAND:datasets/first_names.txt
 LNAME:DSRAND:datasets/last_names.txt
 COUNTRY:DSRAND:datasets/countries.txt
 CITY:DSRAND:datasets/cities.txt
-BDATE:DRAND:1800:2012 SEX:LSTRAND:M,F,U
+BDATE:DRAND:1800:2012
+SEX:LSTRAND:M,F,U
 EMAIL:EMRAND:3:12:5:8:com,edu,org,net
 SALARY:NRAND:9:2
 EMPL:DSRAND:datasets/fortune500.txt
@@ -3747,8 +3728,9 @@ with length between 20 and 80 characters`</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ ./ odb64luo -l src=nofile:tgt=traf.maurizio.person:max=1000000:
-map=person.map:rows=5000:parallel=8:loadcmd=U</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">$ bin/odb64luo -u user -p password -d traf -l src=nofile:
+tgt=traf.maurizio.person:max=1000000:
+map=person.map:rows=5000:parallel=8:loadcmd=INSERT</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5306,7 +5288,7 @@ assign a label to a generic query using:</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">~/Devel/odb $ cat script.sql
 
--- Trafodion TPC-H Query 1 SET QLABEL Q01
+-- {project-name} TPC-H Query 1 SET QLABEL Q01
 SELECT
    L_RETURNFLAG
  , L_LINESTATUS
@@ -6257,7 +6239,7 @@ to code odb:</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-04-11 22:45:44 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>
