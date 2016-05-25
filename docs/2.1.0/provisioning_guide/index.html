@@ -3254,7 +3254,9 @@ You may need to request permission from your cluster-management team to obtain t
 cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys
 echo localhost $(cat /etc/ssh/ssh_host_rsa_key.pub) &gt;&gt; $HOME/.ssh/known_hosts
 echo &quot;NoHostAuthenticationForLocalhost=yes&quot; &gt;&gt; $HOME/.ssh/config
-chmod 600 $HOME/.ssh/config</code></pre>
+chmod 600 $HOME/.ssh/config
+chmod 600 $HOME/.ssh/authorized_keys
+chmod 700 $HOME/.ssh/</code></pre>
 </div>
 </div>
 <div class="paragraph">
