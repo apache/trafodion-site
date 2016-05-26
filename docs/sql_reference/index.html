@@ -7473,8 +7473,7 @@ The partitions will be distributed across the cluster. The default value is four
 configuration.</p>
 </li>
 <li>
-<p>Statistics are not automatically updated for volatile tables. If you need statistics, you must explicitly run
-UPDATE STATISTICS.</p>
+<p>UPDATE STATISTICS is not supported for volatile tables. If you need statistics, you must use a non-volatile table instead.</p>
 </li>
 <li>
 <p>Volatile tables can be created and accessed using one-part, two-part, or three-part names. However, you must use the
