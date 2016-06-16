@@ -3840,8 +3840,7 @@ To run this statement, AUTOCOMMIT must be turned ON (the default) for the sessio
 
 alter-action is:
 
-     ADD [COLUMN] column-definition
-   | ADD IF NOT EXISTS column-definition
+     ADD [IF NOT EXISTS][COLUMN] column-definition
    | ADD [CONSTRAINT constraint-name] table-constraint
    | DROP CONSTRAINT constraint-name [RESTRICT]
    | RENAME TO new-name [CASCADE]
@@ -6861,13 +6860,19 @@ session.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE] TABLE IF NOT EXISTS table
-    { table-spec | like-spec }
+<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE] TABLE [IF NOT EXISTS] table
+    table-spec
     [SALT USING num PARTITIONS [ON (column[, column]...)]]
     [STORE BY {PRIMARY KEY | (key-column-list)}]
-    [HBASEOPTIONS (hbase-options-list)]
+    [HBASE_OPTIONS (hbase-options-list)]
     [LOAD IF EXISTS | NO LOAD]
     [AS select-query]
+
+CREATE [VOLATILE] TABLE [IF NOT EXISTS] table
+    like-spec
+    [SALT USING num PARTITIONS [ON (column[, column]...)]]
+
+Note: Support for SALT on CREATE TABLE LIKE is added in Trafodion release 2.1.
 
 table-spec is:
     (table-element [,table-element]...)
@@ -6944,7 +6949,7 @@ key-column-list is:
     [,column-name [ASC[ENDING] | DESC[ENDING]]]...
 
 like-spec is:
-    LIKE source-table [include-option]
+    LIKE source-table [include-option]...
 
 hbase-options-list is:
     hbase-option = 'value'[, hbase-option = 'value']...</code></pre>
@@ -6980,6 +6985,11 @@ unique among names of tables and views within its schema.</p>
 prefix, thus avoiding hot spots for sequential keys. The number of partitions that you specify can be a function of the
 number of region servers present in the HBase cluster. You can specify a number from 2 to 1024. If you do not specify
 columns, the default is to use all primary key columns.</p>
+</div>
+<div class="paragraph">
+<p>If SALT is specified with LIKE, then this specification overrides that of the <em>source-table</em>. Note:
+this is a new feature in Trafodion 2.1. In earlier releases, the SALT clause is ignored if specified
+with LIKE.</p>
 </div>
 </li>
 </ul>
@@ -7227,8 +7237,7 @@ See <a href="#null">Null</a>.</p>
 <p><code>UNIQUE, or, UNIQUE (<em>column-list</em>)</code></p>
 <div class="paragraph">
 <p>is a column or table constraint, respectively, that specifies that the column or set of columns cannot contain more than
-one occurrence of the same value or set of values. If you omit UNIQUE, duplicate values are allowed unless the column is
-part of the PRIMARY KEY.</p>
+one occurrence of the same value or set of values. If you omit UNIQUE, duplicate values are allowed unless the column or set of columns is the PRIMARY KEY.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7366,6 +7375,24 @@ Instead, Trafodion SQL generates new names based on the physical file location.<
 </div>
 <div class="paragraph">
 <p>If you specify the LIKE clause and the SALT USING <em>num</em> PARTITIONS clause, you cannot specify WITH PARTITIONS.</p>
+</div>
+</li>
+<li>
+<p><code>WITHOUT DIVISION</code></p>
+<div class="paragraph">
+<p>directs Trafodion SQL to not use divisioning from <em>source-table</em>. If this clause is omitted, then
+the <em>table</em> will have the same divisioning as the <em>source-table</em>.</p>
+</div>
+</li>
+<li>
+<p><code>WITHOUT SALT</code></p>
+<div class="paragraph">
+<p>directs Trafodion SQL to not use salting for <em>table</em>. If this clause is omitted,
+and no SALT clause is specified,
+the <em>table</em> will have the same divisioning as the <em>source-table</em>.</p>
+</div>
+<div class="paragraph">
+<p>This option cannot be specified if a SALT clause is also specified.</p>
 </div>
 </li>
 </ul>
@@ -41809,7 +41836,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2016-05-18 18:03:41 UTC
+Last updated 2016-06-07 15:51:17 UTC
 </div>
 </div>
 <script>
