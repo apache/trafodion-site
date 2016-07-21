@@ -550,158 +550,148 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_comments_encouraged">1.4. Comments Encouraged</a></li>
 </ul>
 </li>
-<li><a href="#quickstart">2. Quick Start</a>
+<li><a href="#introduction">2. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#_download_binaries">2.1. Download Binaries</a></li>
-<li><a href="#quickstart-unpack-installer">2.2. Unpack Installer</a></li>
-<li><a href="#quickstart-collect-information">2.3. Collect Information</a>
+<li><a href="#introduction-security-considerations">2.1. Security Considerations</a></li>
+<li><a href="#introduction-provisioning-options">2.2. Provisioning Options</a></li>
+<li><a href="#introduction-provisioning-activities">2.3. Provisioning Activities</a></li>
+<li><a href="#introduction-provisioning-master-node">2.4. Provisioning Master Node</a></li>
+<li><a href="#introduction-trafodion-installer">2.5. Trafodion Installer</a>
 <ul class="sectlevel3">
-<li><a href="#_location_of_trafodion_server_side_binary">2.3.1. Location of Trafodion Server-Side Binary</a></li>
-<li><a href="#_java_location">2.3.2. Java Location</a></li>
-<li><a href="#_data_nodes">2.3.3. Data Nodes</a></li>
-<li><a href="#_trafodion_runtime_user_home_directory">2.3.4. Trafodion Runtime User Home Directory</a></li>
-<li><a href="#_distribution_manager_url">2.3.5. Distribution Manager URL</a></li>
+<li><a href="#introduction-trafodion-installer-usage">2.5.1. Usage</a></li>
+<li><a href="#introduction-trafodion-installer-install-vs-upgrade">2.5.2. Install vs. Upgrade</a></li>
+<li><a href="#introduction-trafodion-installer-guided-setup">2.5.3. Guided Setup</a></li>
+<li><a href="#introduction-trafodion-installer-automated-setup">2.5.4. Automated Setup</a></li>
 </ul>
 </li>
-<li><a href="#quickstart-run-installer">2.4. Run Installer</a></li>
+<li><a href="#introduction-trafodion-provisioning-directories">2.6. Trafodion Provisioning Directories</a></li>
 </ul>
 </li>
-<li><a href="#introduction">3. Introduction</a>
+<li><a href="#requirements">3. Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#introduction-security-considerations">3.1. Security Considerations</a></li>
-<li><a href="#introduction-provisioning-options">3.2. Provisioning Options</a></li>
-<li><a href="#introduction-provisioning-activities">3.3. Provisioning Activities</a></li>
-<li><a href="#introduction-provisioning-master-node">3.4. Provisioning Master Node</a></li>
-<li><a href="#introduction-trafodion-installer">3.5. Trafodion Installer</a>
+<li><a href="#requirements-general-cluster-and-os-requirements-and-recommendations">3.1. General Cluster and OS Requirements and Recommendations</a>
 <ul class="sectlevel3">
-<li><a href="#introduction-trafodion-installer-usage">3.5.1. Usage</a></li>
-<li><a href="#introduction-trafodion-installer-install-vs-upgrade">3.5.2. Install vs. Upgrade</a></li>
-<li><a href="#introduction-trafodion-installer-guided-setup">3.5.3. Guided Setup</a></li>
-<li><a href="#introduction-trafodion-installer-automated-setup">3.5.4. Automated Setup</a></li>
+<li><a href="#requirements-cluster-requirements-and-recommendations">3.1.1. Hardware Requirements and Recommendations</a></li>
+<li><a href="#requirements-os-requirements-and-recommendations">3.1.2. OS Requirements and Recommendations</a></li>
+<li><a href="#requirements-ip-ports">3.1.3. IP Ports</a></li>
 </ul>
 </li>
-<li><a href="#introduction-trafodion-provisioning-directories">3.6. Trafodion Provisioning Directories</a></li>
+<li><a href="#requirements-prerequisite-software">3.2. Prerequisite Software</a>
+<ul class="sectlevel3">
+<li><a href="#requirements-hadoop-software">3.2.1. Hadoop Software</a></li>
+<li><a href="#requirements-software-packages">3.2.2. Software Packages</a></li>
 </ul>
 </li>
-<li><a href="#requirements">4. Requirements</a>
+<li><a href="#requirements-trafodion-user-ids-and-their-privileges">3.3. Trafodion User IDs and Their Privileges</a>
+<ul class="sectlevel3">
+<li><a href="#requirements-trafodion-runtime-user">3.3.1. Trafodion Runtime User</a></li>
+<li><a href="#requirements-trafodion-provisioning-user">3.3.2. Trafodion Provisioning User</a></li>
+</ul>
+</li>
+<li><a href="#requirements-required-configuration-changes">3.4. Required Configuration Changes</a>
+<ul class="sectlevel3">
+<li><a href="#requirements-operating-system-changes">3.4.1. Operating System Changes</a></li>
+<li><a href="#requirements-zookeeper-changes">3.4.2. ZooKeeper Changes</a></li>
+<li><a href="#requirements-hdfs-changes">3.4.3. HDFS Changes</a></li>
+<li><a href="#requirements-hbase-changes">3.4.4. HBase Changes</a></li>
+</ul>
+</li>
+<li><a href="#requirements-recommended-configuration-changes">3.5. Recommended Configuration Changes</a>
+<ul class="sectlevel3">
+<li><a href="#requirements-recommended-security-changes">3.5.1. Recommended Security Changes</a></li>
+<li><a href="#requirements-recommended-hdfs-configuration-changes">3.5.2. Recommended HDFS Configuration Changes</a></li>
+<li><a href="#requirements-recommended-hbase-configuration-changes">3.5.3. Recommended HBase Configuration Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#prepare">4. Prepare</a>
 <ul class="sectlevel2">
-<li><a href="#requirements-general-cluster-and-os-requirements-and-recommendations">4.1. General Cluster and OS Requirements and Recommendations</a>
+<li><a href="#prepare-install-optional-workstation-software">4.1. Install Optional Workstation Software</a></li>
+<li><a href="#configure-installation-user-id">4.2. Configure Installation User ID</a></li>
+<li><a href="#prepare-disable-requiretty">4.3. Disable requiretty</a></li>
+<li><a href="#prepare-verify-os-requirements-and-recommendations">4.4. Verify OS Requirements and Recommendations</a></li>
+<li><a href="#prepare-configure-ldap-identity-store">4.5. Configure LDAP Identity Store</a></li>
+<li><a href="#prepare-gather-configuration-information">4.6. Gather Configuration Information</a></li>
+<li><a href="#prepare-install-required-software-packages">4.7. Install Required Software Packages</a>
 <ul class="sectlevel3">
-<li><a href="#requirements-cluster-requirements-and-recommendations">4.1.1. Hardware Requirements and Recommendations</a></li>
-<li><a href="#requirements-os-requirements-and-recommendations">4.1.2. OS Requirements and Recommendations</a></li>
-<li><a href="#requirements-ip-ports">4.1.3. IP Ports</a></li>
+<li><a href="#prepare-download-and-install-packages">4.7.1. Download and Install Packages</a></li>
+<li><a href="#prepare-install-log4cplusplus">4.7.2. Install log4c++</a></li>
 </ul>
 </li>
-<li><a href="#requirements-prerequisite-software">4.2. Prerequisite Software</a>
+<li><a href="#prepare-download-trafodion-binaries">4.8. Download Trafodion Binaries</a></li>
+<li><a href="#prepare-preparation-for-recipe-based-provisioning">4.9. Preparation for Recipe-Based Provisioning</a>
 <ul class="sectlevel3">
-<li><a href="#requirements-hadoop-software">4.2.1. Hadoop Software</a></li>
-<li><a href="#requirements-software-packages">4.2.2. Software Packages</a></li>
-</ul>
-</li>
-<li><a href="#requirements-trafodion-user-ids-and-their-privileges">4.3. Trafodion User IDs and Their Privileges</a>
-<ul class="sectlevel3">
-<li><a href="#requirements-trafodion-runtime-user">4.3.1. Trafodion Runtime User</a></li>
-<li><a href="#requirements-trafodion-provisioning-user">4.3.2. Trafodion Provisioning User</a></li>
-</ul>
-</li>
-<li><a href="#requirements-required-configuration-changes">4.4. Required Configuration Changes</a>
-<ul class="sectlevel3">
-<li><a href="#requirements-operating-system-changes">4.4.1. Operating System Changes</a></li>
-<li><a href="#requirements-zookeeper-changes">4.4.2. ZooKeeper Changes</a></li>
-<li><a href="#requirements-hdfs-changes">4.4.3. HDFS Changes</a></li>
-<li><a href="#requirements-hbase-changes">4.4.4. HBase Changes</a></li>
-</ul>
-</li>
-<li><a href="#requirements-recommended-configuration-changes">4.5. Recommended Configuration Changes</a>
-<ul class="sectlevel3">
-<li><a href="#requirements-recommended-security-changes">4.5.1. Recommended Security Changes</a></li>
-<li><a href="#requirements-recommended-hdfs-configuration-changes">4.5.2. Recommended HDFS Configuration Changes</a></li>
-<li><a href="#requirements-recommended-hbase-configuration-changes">4.5.3. Recommended HBase Configuration Changes</a></li>
+<li><a href="#prepare-modify-os-settings">4.9.1. Modify OS Settings</a></li>
+<li><a href="#prepare-modify-zookeeper-configuration">4.9.2. Modify ZooKeeper Configuration</a></li>
+<li><a href="#prepare-modify-hdfs-configuration">4.9.3. Modify HDFS Configuration</a></li>
+<li><a href="#prepare-modify-hbase-configuration">4.9.4. Modify HBase Configuration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#prepare">5. Prepare</a>
+<li><a href="#install">5. Install</a>
 <ul class="sectlevel2">
-<li><a href="#prepare-install-optional-workstation-software">5.1. Install Optional Workstation Software</a></li>
-<li><a href="#configure-installation-user-id">5.2. Configure Installation User ID</a></li>
-<li><a href="#prepare-disable-requiretty">5.3. Disable requiretty</a></li>
-<li><a href="#prepare-verify-os-requirements-and-recommendations">5.4. Verify OS Requirements and Recommendations</a></li>
-<li><a href="#prepare-configure-kerberos">5.5. Configure Kerberos</a></li>
-<li><a href="#prepare-configure-ldap-identity-store">5.6. Configure LDAP Identity Store</a></li>
-<li><a href="#prepare-gather-configuration-information">5.7. Gather Configuration Information</a></li>
-<li><a href="#prepare-install-required-software-packages">5.8. Install Required Software Packages</a>
-<ul class="sectlevel3">
-<li><a href="#prepare-download-and-install-packages">5.8.1. Download and Install Packages</a></li>
+<li><a href="#install-unpack-installer">5.1. Unpack Installer</a></li>
+<li><a href="#install-automated-install">5.2. Automated Install</a></li>
+<li><a href="#install-guided-install">5.3. Guided Install</a></li>
 </ul>
 </li>
-<li><a href="#prepare-download-trafodion-binaries">5.9. Download Trafodion Binaries</a></li>
-<li><a href="#prepare-preparation-for-recipe-based-provisioning">5.10. Preparation for Recipe-Based Provisioning</a>
-<ul class="sectlevel3">
-<li><a href="#prepare-modify-os-settings">5.10.1. Modify OS Settings</a></li>
-<li><a href="#prepare-modify-zookeeper-configuration">5.10.2. Modify ZooKeeper Configuration</a></li>
-<li><a href="#prepare-modify-hdfs-configuration">5.10.3. Modify HDFS Configuration</a></li>
-<li><a href="#prepare-modify-hbase-configuration">5.10.4. Modify HBase Configuration</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#install">6. Install</a>
+<li><a href="#upgrade">6. Upgrade</a>
 <ul class="sectlevel2">
-<li><a href="#install-unpack-installer">6.1. Unpack Installer</a></li>
-<li><a href="#install-guided-install">6.2. Guided Install</a></li>
-<li><a href="#install-automated-install">6.3. Automated Install</a></li>
+<li><a href="#upgraded-download-updated-trafodion-binaries">6.1. Download Updated Trafodion Binaries</a></li>
+<li><a href="#upgrade-unpack-installer">6.2. Unpack Installer</a></li>
+<li><a href="#upgrade-stop-tradodion">6.3. Stop Trafodion</a></li>
+<li><a href="#upgrade-automated-upgrade">6.4. Automated Upgrade</a></li>
+<li><a href="#upgrade-guided-upgrade">6.5. Guided Upgrade</a></li>
 </ul>
 </li>
-<li><a href="#upgrade">7. Upgrade</a>
+<li><a href="#activate">7. Activate</a>
 <ul class="sectlevel2">
-<li><a href="#upgraded-download-updated-trafodion-binaries">7.1. Download Updated Trafodion Binaries</a></li>
-<li><a href="#upgrade-unpack-installer">7.2. Unpack Installer</a></li>
-<li><a href="#upgrade-stop-tradodion">7.3. Stop Trafodion</a></li>
-<li><a href="#upgrade-guided-upgrade">7.4. Guided Upgrade</a></li>
-<li><a href="#upgrade-automated-upgrade">7.5. Automated Upgrade</a></li>
-</ul>
-</li>
-<li><a href="#activate">8. Activate</a>
-<ul class="sectlevel2">
-<li><a href="#activate-manage-trafodion">8.1. Manage Trafodion</a></li>
-<li><a href="#activate-validate-trafodion-installation">8.2. Validate Trafodion Installation</a>
+<li><a href="#activate-manage-trafodion">7.1. Manage Trafodion</a></li>
+<li><a href="#activate-validate-trafodion-installation">7.2. Validate Trafodion Installation</a>
 <ul class="sectlevel3">
-<li><a href="#_smoke_test">8.2.1. Smoke Test</a></li>
+<li><a href="#_smoke_test">7.2.1. Smoke Test</a></li>
 </ul>
 </li>
-<li><a href="#activate-troubleshooting-tips">8.3. Troubleshooting Tips</a></li>
+<li><a href="#activate-troubleshooting-tips">7.3. Troubleshooting Tips</a></li>
 </ul>
 </li>
-<li><a href="#remove">9. Remove</a>
+<li><a href="#remove">8. Remove</a>
 <ul class="sectlevel2">
-<li><a href="#_stop_trafodion">9.1. Stop Trafodion</a></li>
-<li><a href="#_run_code_trafodion_uninstaller_code">9.2. Run <code>trafodion_uninstaller</code></a></li>
+<li><a href="#_stop_trafodion">8.1. Stop Trafodion</a></li>
+<li><a href="#_run_code_trafodion_uninstaller_code">8.2. Run <code>trafodion_uninstaller</code></a></li>
 </ul>
 </li>
-<li><a href="#enable-security">10. Enable Security</a>
+<li><a href="#enable-security">9. Enable Security</a>
 <ul class="sectlevel2">
-<li><a href="#enable-security-kerberos">10.1. Configuring Trafodion for Kerberos</a>
+<li><a href="#enable-security-configuring-ldap-servers">9.1. Configuring LDAP Servers</a></li>
+<li><a href="#enable-security-generate-trafodion-certificate">9.2. Generate Trafodion Certificate</a></li>
+<li><a href="#enable-security-authentication-setup-script">9.3. Authentication Setup Script</a></li>
+<li><a href="#enable-security-manage-users">9.4. Manage Users</a></li>
+<li><a href="#enable-security-traf-authentication-config">9.5. .traf_authentication_config</a>
 <ul class="sectlevel3">
-<li><a href="#_kerberos_configuration_file">10.1.1. Kerberos configuration file</a></li>
-<li><a href="#_ticket_management">10.1.2. Ticket Management</a></li>
-<li><a href="#_kerberos_installation">10.1.3. Kerberos installation</a></li>
+<li><a href="#_file_location">9.5.1. File Location</a></li>
+<li><a href="#enable-security-template">9.5.2. Template</a></li>
+<li><a href="#enable-security-configuration-attributes">9.5.3. Configuration Attributes</a></li>
 </ul>
 </li>
-<li><a href="#enable-security-ldap">10.2. Configuring LDAP</a>
+<li><a href="#enable-security-ldapcheck">9.6. ldapcheck</a>
 <ul class="sectlevel3">
-<li><a href="#enable-security-configuring-ldap-servers">10.2.1. Configuring LDAP Servers</a></li>
-<li><a href="#enable-security-generate-trafodion-certificate">10.2.2. Generate Trafodion Certificate</a></li>
-<li><a href="#enable-security-traf-authentication-config">10.2.3. Creating the LDAP configuration file</a></li>
-<li><a href="#enable-security-ldapcheck">10.2.4. Verifying configuration and users through ldapcheck</a></li>
-<li><a href="#enable-security-ldapconfigcheck">10.2.5. Verifying contents of configuration file through ldapconfigcheck</a></li>
+<li><a href="#_usage">9.6.1. Usage</a></li>
+<li><a href="#_considerations">9.6.2. Considerations</a></li>
 </ul>
 </li>
-<li><a href="#enable-security-manage-users">10.3. Manage Users</a></li>
+<li><a href="#enable-security-ldapconfigcheck">9.7. ldapconfigcheck</a>
+<ul class="sectlevel3">
+<li><a href="#enable-security-ldapconfigcheck-considerations">9.7.1. Considerations</a></li>
+<li><a href="#enable-security-ldapconfigcheck-errors">9.7.2. Errors</a></li>
 </ul>
 </li>
-<li><a href="#install-recipe">11. Install Recipe</a></li>
-<li><a href="#upgrade-recipe">12. Upgrade Recipe</a></li>
+</ul>
+</li>
+<li><a href="#install-recipe">10. Install Recipe</a></li>
+<li><a href="#upgrade-recipe">11. Upgrade Recipe</a></li>
 </ul>
 </div>
 </div>
@@ -722,14 +712,7 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
-<div class="paragraph">
-<p><strong>Disclaimer:</strong> <em>Apache Trafodion is an effort undergoing incubation at the Apache Software Foundation (ASF), sponsored by
-the Apache Incubator PMC. Incubation is required of all newly accepted projects until a further review indicates that
-the infrastructure, communications, and decision making process have stabilized in a manner consistent with other
-successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code,
-it does indicate that the project has yet to be fully endorsed by the ASF.</em>
-&lt;&lt;&lt;</p>
-</div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>Revision History</strong></p>
 </div>
@@ -746,12 +729,8 @@ it does indicate that the project has yet to be fully endorsed by the ASF.</em>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">July 7, 2016</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">June 6, 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
@@ -766,11 +745,11 @@ it does indicate that the project has yet to be fully endorsed by the ASF.</em>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This guide describes how to provision the end-user Trafodion binaries on top of an existing Hadoop environment. This install allows you to store and query data using Trafodion, either via Trafodion clients
-(see <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) or via application code you write.</p>
+(see <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a> or via application code you write.</p>
 </div>
 <div class="paragraph">
 <p>If you want to install a Trafodion developer-build environment, then please refer to the
-<a href="http://trafodion.incubator.apache.org/contributing-redirect.html">Trafodion Contributor Guide</a> for instructions.</p>
+<a href="http://trafodion.incubator.apache.org/contributing_redirect.html">Trafodion Contributor Guide</a> for instructions.</p>
 </div>
 <div class="sect2">
 <h3 id="_intended_audience">1.1. Intended Audience</h3>
@@ -838,7 +817,7 @@ regardless of platform type.
 <div class="sect2">
 <h3 id="_new_and_changed_information">1.2. New and Changed Information</h3>
 <div class="paragraph">
-<p>This guide has been updated to include provisioning for LDAP and Kerberos.</p>
+<p>This is a new guide.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1036,674 +1015,7 @@ needs. Send any errors found, suggestions for improvement, or compliments to <a 
 </div>
 </div>
 <div class="sect1">
-<h2 id="quickstart">2. Quick Start</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This chapter provides a quick start for how to use the Trafodion Installer to install Trafodion.</p>
-</div>
-<div class="paragraph">
-<p>You need the following before using the information herein:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A supported and running Hadoop enviroment with HDFS, HBase, and Hive. Refer to the
-<a href="http://trafodion.apache.org/release-notes.html">Release Notes</a> for information about supported versions.</p>
-</li>
-<li>
-<p>A user ID with passwordless SSH among all the nodes in the cluster. This user ID must have sudo access.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Trafodion Installer modifies and restarts your Hadoop environment.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_download_binaries">2.1. Download Binaries</h3>
-<div class="paragraph">
-<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
-Download the following packages:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Trafodion Installer (if planning to use the Trafodion Installer)</p>
-</li>
-<li>
-<p>Trafodion Server</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can download and install the Trafodion Clients once you&#8217;ve installed and activated Trafodion. Refer to the
-<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-download
-$ cd $HOME/trafodion-download
-$ # Download the Trafodion Installer binaries
-$ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-1.3.0.incubating/apache-trafodion-installer-1.3.0-incubating-bin.tar.gz
-Resolving http://apache.cs.utah.edu... 192.168.1.56
-Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 68813 (67K) [application/x-gzip]
-Saving to: &quot;apache-trafodion-installer-1.3.0-incubating-bin.tar.gz&quot;
-
-100%[=====================================================================================================================&gt;] 68,813       124K/s   in 0.5s
-
-2016-02-14 04:19:42 (124 KB/s) - &quot;apache-trafodion-installer-1.3.0-incubating-bin.tar.gz&quot; saved [68813/68813]</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ # Download the Trafodion Server binaries
-$ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-1.3.0.incubating/apache-trafodion-1.3.0-incubating-bin.tar.gz
-Resolving http://apache.cs.utah.edu... 192.168.1.56
-Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 214508243 (205M) [application/x-gzip]
-Saving to: &quot;apache-trafodion-1.3.0-incubating-bin.tar.gz&quot;
-
-100%[=====================================================================================================================&gt;] 214,508,243 3.90M/s   in 55s
-
-2016-02-14 04:22:14 (3.72 MB/s) - &quot;apache-trafodion-1.3.0-incubating-bin.tar.gz&quot; saved [214508243/214508243]
-
-$ ls -l
-total 209552
--rw-rw-r-- 1 centos centos 214508243 Jan 12 20:10 apache-trafodion-1.3.0-incubating-bin.tar.gz
--rw-rw-r-- 1 centos centos     68813 Jan 12 20:10 apache-trafodion-installer-1.3.0-incubating-bin.tar.gz
-$</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="quickstart-unpack-installer">2.2. Unpack Installer</h3>
-<div class="paragraph">
-<p>The first step in the installation process is to unpack the Trafodion Installer tar file.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
-$ cd $HOME/trafodion-downloads
-$ tar -zxf apache-trafodion-installer-1.3.0-incubating-bin.tar.gz -C $HOME/trafodion-installer
-$ ls $HOME/trafodion-installer/installer
-bashrc_default           tools                             traf_config_check           trafodion_apache_hadoop_install  traf_package_setup
-build-version-1.3.0.txt  traf_add_user                     traf_config_setup           trafodion_config_default         traf_setup
-dcs_installer            traf_apache_hadoop_config_setup   traf_create_systemdefaults  trafodion_install                traf_sqconfig
-rest_installer           traf_authentication_conf_default  traf_getHadoopNodes         trafodion_license                traf_start
-setup_known_hosts.exp    traf_cloudera_mods98              traf_hortonworks_mods98     trafodion_uninstaller
-$</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="quickstart-collect-information">2.3. Collect Information</h3>
-<div class="paragraph">
-<p>Collect/decide the following information:</p>
-</div>
-<div class="sect3">
-<h4 id="_location_of_trafodion_server_side_binary">2.3.1. Location of Trafodion Server-Side Binary</h4>
-<div class="paragraph">
-<p>You need the fully-qualified name of the Trafodion server-side binary.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">/home/trafodion-downloads/apache-trafodion-installer-1.3.0-incubating-bin.tar.gz</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_java_location">2.3.2. Java Location</h4>
-<div class="paragraph">
-<p>You need to record the location of the Java. For example, use <code>ps -ef | grep java | grep hadoop | grep hbase</code> to determine what version HBase is running.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ps -ef | grep java | grep hadoop | grep hbase
-hbase     17302  17288  1 20:35 ?        00:00:10 /usr/jdk64/jdk1.7.0_67/bin/java -Dproc_master -XX:OnOutOfMemoryError=kill -9 %p -Dhdp.version=2.3.6.0-3796 -XX:+UseConcMarkSweepGC -XX:ErrorFile=/var/log/hbase/hs_err_pid%p.log -Djava.io.tmpdir=/tmp -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/var/log/hbase/gc.log-201606302035 -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=128m -Dhbase.log.dir=/var/log/hbase -Dhbase.log.file=hbase-hbase-master-ip-172-31-56-238.log -Dhbase.home.dir=/usr/hdp/current/hbase-master/bin/.. -Dhbase.id.str=hbase -Dhbase.root.logger=INFO,RFA -Djava.library.path=:/usr/hdp/2.3.6.0-3796/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.3.6.0-3796/hadoop/lib/native -Dhbase.security.logger=INFO,RFAS org.apache.hadoop.hbase.master.HMaster start</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The Java location is: <code>/usr/jdk64/jdk1.7.0_67</code></p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect3">
-<h4 id="_data_nodes">2.3.3. Data Nodes</h4>
-<div class="paragraph">
-<p>{projet-name} is installed on all data nodes in your Hadoop cluster. You need to record the fully-qualified domain name node for each node.
-For example, refer to <code>/etc/hosts</code>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ cat /etc/hosts
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-
-172.31.56.238              ip-172-31-56-238.ec2.internal node01
-172.31.61.110              ip-172-31-61-110.ec2.internal node02
-172.31.57.143              ip-172-31-57-143.ec2.internal node03</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Record the node names in a space-separated list.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ip-172-31-56-238.ec2.internal ip-172-31-61-110.ec2.internal ip-172-31-57-143.ec2.internal</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_trafodion_runtime_user_home_directory">2.3.4. Trafodion Runtime User Home Directory</h4>
-<div class="paragraph">
-<p>The Installer creates the <code>trafodion</code> user ID. You need to decide the home directory for this user.</p>
-</div>
-<div class="paragraph">
-<p>The default is: <code>/home</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_distribution_manager_url">2.3.5. Distribution Manager URL</h4>
-<div class="paragraph">
-<p>The Installer interacts with the Distribution Manager (for example, Apache Ambari or Cloudera Manager) to modify the
-Hadoop configuration.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="paragraph">
-<p>Apache Ambari URL</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">http://myhost.com:8080</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="quickstart-run-installer">2.4. Run Installer</h3>
-<div class="paragraph">
-<p>You run the Installer once you&#8217;ve collected the base information as described in
-<a href="#quickstart-collect-information">Collect Information</a> above.</p>
-</div>
-<div class="paragraph">
-<p>The following example shows a guided install of Trafodion on a three-node Hortonworks Hadoop cluster.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-By default, the Trafodion Installer invokes <code>sqlci</code> so that you can enter the <code>initialize trafodion;</code> command.
-This is shown in the example below.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run the Trafodion Installer in guided mode.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-installer/installer
-$ ./trafodion_install 2&gt;&amp;1 | tee install.log
-******************************
- TRAFODION INSTALLATION START
-******************************
-
-***INFO: testing sudo access
-***INFO: Log file located at /var/log/trafodion/trafodion_install_2016-06-30-21-02-38.log
-***INFO: Config directory: /etc/trafodion
-***INFO: Working directory: /usr/lib/trafodion
-
-************************************
- Trafodion Configuration File Setup
-************************************
-
-***INFO: Please press [Enter] to select defaults.
-
-Is this a cloud environment (Y/N), default is [N]: N
-Enter trafodion password, default is [traf123]:
-Enter list of data nodes (blank separated), default []: ip-172-31-56-238.ec2.internal ip-172-31-61-110.ec2.internal ip-172-31-57-143.ec2.internal
-Do you h ave a set of management nodes (Y/N), default is N: N
-Enter Trafodion userid's home directory prefix, default is [/home]: /opt
-Specify  location of Java 1.7.0_65 or higher (JDK), default is []: /usr/jdk64/jdk1.7.0_67
-Enter full path (including .tar or .tar.gz) of trafodion tar file []: /home/trafodion-downloads/apache-trafodion_server-2.0.1-incubating.tar.gz
-Enter Backup/Restore username (can be Trafodion), default is [trafodion]:
-Specify the Hadoop distribut ion installed (1: Cloudera, 2: Hortonworks, 3: Other): 2
-Enter Hadoop admin username, default is [admin]: Enter Hadoop admin pas sword, default is [admin]:
-Enter full Hadoop external network URL:port (include 'http://' or 'https://), default is []: http://ip-172-31-56-238.ec2.internal:8080
-Enter  HDFS username or username running HDFS, default is [hdfs]:
-Enter HBase username or username running HBase, default is [hbase]:
-Enter HBase group, default is [hbase]:
-Enter Zookeeper username or username running Zookeeper, default is [zookeeper]:
-Enter  directory to install trafodion to, default is [/opt/trafodion/apache-trafodion_server-2.0.1-incubating]:
-Start Trafodion after install (Y/N), default is Y:
-Total number of client connections per cluster, default [24]: 96
-Enter the node of primary DcsMaste r, default [ip-172-31-56-238.ec2.internal]:
-Enable High Availability (Y/N), default is N:
-Enable simple LDAP security (Y/N), d efault is N:
-***INFO: Trafodion configuration setup complete
-***INFO: Trafodion Configuration File Check
-***INFO: Testing sudo access on node ip-172-31-56-238
-***INFO: Testing sudo access on node ip-172-31-61-110
-***INFO: Testing sudo access on node ip-172-31-57-143
-***INFO: Testing ssh on ip-172-31-56-238
-***INFO: Testing ssh on ip-172-31-61-110
-***INFO: Testing ssh on ip-172-31-57-143
-#!/bin/bash
-#
-# @@@ START COPYRIGHT @@@
-#
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# &quot;License&quot;); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied.  See the License for the
-# specific language governing permissions and limitations
-# under the License.
-#
-.
-.
-.
-9. Accepting Warranty or Additional Liability. While redistributing
-the Work or Derivative Works thereof, You may choose to offer, and
-charge a fee for, acceptance of support, warranty, indemnity, or
-other liability obligations and/or rights consistent with this
-License. However, in accepting such obligations, You may act only
-on Your own behalf and on Your sole responsibility, not on behalf
-of any other Contributor, and only if You agree to indemnify, defend,
-and hold each Contributor harmless for any liability incurred by,
-or claims asserted against, such Contributor by reason of your
-accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
-BY TYPING &quot;ACCEPT&quot; YOU AGREE TO THE TERMS OF THIS AGREEMENT: ***INFO: testing sudo access
-***INFO: Starting Trafodion Package Setup (2016-06-30-21-06-40)
-***INFO: Installing required packages
-***INFO: Log file located in /var/log/trafodion
-***INFO: ... pdsh on node ip-172-31-56-238
-***INFO: ... pdsh on node ip-172-31-61-110
-***INFO: ... pdsh on node ip-172-31-57-143
-***INFO: Checking if apr is installed ...
-***INFO: Checking if apr-util is installed ...
-***INFO: Checking if sqlite is installed ...
-***INFO: Checking if expect is installed ...
-***INFO: Checking if perl-DBD-SQLite* is installed ...
-***INFO: Checking if protobuf is installed ...
-***INFO: Checking if xerces-c is installed ...
-***INFO: Checking if perl-Params-Validate is installed ...
-***INFO: Checking if perl-Time-HiRes is installed ...
-***INFO: Checking if gzip is installed ...
-***INFO: Checking if lzo is installed ...
-***INFO: Checking if lzop is installed ...
-***INFO: Checking if unzip is installed ...
-***INFO: modifying limits in /usr/lib/trafodion/trafodion.conf on all nodes
-***INFO: create Trafodion userid &quot;trafodion&quot;
-***INFO: Trafodion userid's (trafodion) home directory: /opt/trafodion
-***INFO: testing sudo access
-Generating public/private rsa key pair.
-Created directory '/opt/trafodion/.ssh'.
-Your identification has been saved in /opt/trafodion/.ssh/id_rsa.
-Your public key has been saved in /opt/trafodion/.ssh/id_rsa.pub.
-The key fingerprint is:
-12:59:ab:d7:59:a2:0e:e8:38:1c:e9:e1:86:f6:18:23 trafodion@ip-172-31-56-238
-The key's randomart image is:
-+--[ RSA 2048]----+
-|        .        |
-|       o .       |
-|      o . . .    |
-|   . . o o +     |
-|  + . + S o      |
-| = =   =         |
-|E+B .   .        |
-|o.=.             |
-| . .             |
-+-----------------+
-***INFO: creating .bashrc file
-***INFO: Setting up userid trafodion on all other nodes in cluster
-***INFO: Creating known_hosts file for all nodes
-ip-172-31-56-238
-ip-172-31-56-238 ip-172-31-61-110 ip-172-31-57-143
-ip-172-31-61-110
-ip-172-31-56-238 ip-172-31-61-110 ip-172-31-57-143
-ip-172-31-57-143
-ip-172-31-56-238 ip-172-31-61-110 ip-172-31-57-143
-***INFO: trafodion user added successfully
-***INFO: Trafodion environment setup completed
-***INFO: creating sqconfig file
-***INFO: Reserving DCS ports
-
-***INFO: Creating trafodion sudo access file
-
-
-******************************
- TRAFODION MODS
-******************************
-
-***INFO: Hortonworks installed will run traf_hortonworks_mods
-***INFO: copying hbase-trx-hdp2_3-*.jar to all nodes
-***INFO: hbase-trx-hdp2_3-*.jar copied correctly! Huzzah.
-USERID=admin
-PASSWORD=admin
-PORT=:8080
-########## Performing 'set' hbase.master.distributed.log.splitting:true on (Site:hbase-site, Tag:version1)
-########## PUTting json into: doSet_version1467320863286001262.json
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-101  5757  102  3588  103  2169    98k  60930 --:--:-- --:--:-- --:--:--  100k
-{
-  &quot;resources&quot; : [
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/configurations/service_config_versions?ser
-vice_name=HBASE&amp;service_config_version=2&quot;,
-.
-.
-.
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/tasks/128&quot;,
-      &quot;Tasks&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;id&quot; : 128,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 2
-      }
-    },
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/tasks/129&quot;,
-      &quot;Tasks&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;id&quot; : 129,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 2
-      }
-    },
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/tasks/130&quot;,
-      &quot;Tasks&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;id&quot; : 130,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 2
-      }
-    }
-  ],
-  &quot;stages&quot; : [
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/stages/0&quot;,
-      &quot;Stage&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 0
-      }
-    },
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/stages/1&quot;,
-      &quot;Stage&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 1
-      }
-    },
-    {
-      &quot;href&quot; : &quot;http://ip-172-31-56-238.ec2.internal:8080/api/v1/clusters/trafodion/requests/12/stages/2&quot;,
-      &quot;Stage&quot; : {
-        &quot;cluster_name&quot; : &quot;trafodion&quot;,
-        &quot;request_id&quot; : 12,
-        &quot;stage_id&quot; : 2
-      }
-    }
-  ]
-}***INFO: ...polling every 30 seconds until HBase start is completed.
-***INFO: HBase restart completed
-***INFO: Setting HDFS ACLs for snapshot scan support
-cp: `trafodion_config' and `/home/trafinstall/trafodion-2.0.1/installer/trafodion_config' are the same file
-***INFO: Trafodion Mods ran successfully.
-
-******************************
- TRAFODION CONFIGURATION
-******************************
-
-/usr/lib/trafodion/installer/..
-/opt/trafodion/apache-trafodion_server-2.0.1-incubating
-***INFO: untarring file  to /opt/trafodion/apache-trafodion_server-2.0.1-incubating
-***INFO: modifying .bashrc to set Trafodion environment variables
-***INFO: copying .bashrc file to all nodes
-***INFO: copying sqconfig file (/opt/trafodion/sqconfig) to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/sql/script
-s/sqconfig
-***INFO: Creating /opt/trafodion/apache-trafodion_server-2.0.1-incubating directory on all nodes
-***INFO: Start of DCS install
-***INFO: DCS Install Directory: /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1
-***INFO: modifying /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/conf/dcs-env.sh
-***INFO: modifying /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/conf/dcs-site.xml
-***INFO: creating /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/conf/servers file
-***INFO: End of DCS install.
-***INFO: Start of REST Server install
-***INFO: Rest Install Directory: /opt/trafodion/apache-trafodion_server-2.0.1-incubating/rest-2.0.1
-***INFO: modifying /opt/trafodion/apache-trafodion_server-2.0.1-incubating/rest-2.0.1/conf/rest-site.xml
-***INFO: End of REST Server install.
-***INFO: starting sqgen
-ip-172-31-56-238,ip-172-31-57-143,ip-172-31-61-110
-
-Creating directories on cluster nodes
-/usr/bin/pdsh -R exec -w ip-172-31-56-238,ip-172-31-57-143,ip-172-31-61-110 -x ip-172-31-56-238 ssh -q -n %h mkdir -p /opt/tra
-fodion/apache-trafodion_server-2.0.1-incubating/etc
-/usr/bin/pdsh -R exec -w ip-172-31-56-238,ip-172-31-57-143,ip-172-31-61-110 -x ip-172-31-56-238 ssh -q -n %h mkdir -p /opt/tra
-fodion/apache-trafodion_server-2.0.1-incubating/logs
-/usr/bin/pdsh -R exec -w ip-172-31-56-238,ip-172-31-57-143,ip-172-31-61-110 -x ip-172-31-56-238 ssh -q -n %h mkdir -p /opt/tra
-fodion/apache-trafodion_server-2.0.1-incubating/tmp
-/usr/bin/pdsh -R exec -w ip-172-31-56-238,ip-172-31-57-143,ip-172-31-61-110 -x ip-172-31-56-238 ssh -q -n %h mkdir -p /opt/tra
-fodion/apache-trafodion_server-2.0.1-incubating/sql/scripts
-
-Generating SQ environment variable file: /opt/trafodion/apache-trafodion_server-2.0.1-incubating/etc/ms.env
-
-Note: Using cluster.conf format type 2.
-
-Generating SeaMonster environment variable file: /opt/trafodion/apache-trafodion_server-2.0.1-incubating/etc/seamonster.env
-
-
-Generated SQ startup script file: ./gomon.cold
-Generated SQ startup script file: ./gomon.warm
-Generated SQ cluster config file: /opt/trafodion/apache-trafodion_server-2.0.1-incubating/tmp/cluster.conf
-Generated SQ Shell          file: sqshell
-Generated RMS Startup       file: rmsstart
-Generated RMS Stop          file: rmsstop
-Generated RMS Check         file: rmscheck.sql
-Generated SSMP Startup      file: ssmpstart
-Generated SSMP Stop         file: ssmpstop
-Generated SSCP Startup      file: sscpstart
-Generated SSCP Stop         file: sscpstop
-
-
-Copying the generated files to all the nodes in the cluster
-.
-.
-.
-SQ Startup script (/opt/trafodion/apache-trafodion_server-2.0.1-incubating/sql/scripts/gomon.cold) ran successfully. Performin
-g further checks...
-Checking if processes are up.
-Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
-
-The SQ environment is up!
-
-
-Process                Configured        Actual            Down
--------                ----------        ------            ----
-DTM                3                3
-RMS                6                6
-DcsMaster        1                0            1
-DcsServer        3                0            3
-mxosrvr                96                0            96
-
-Thu Jun 30 21:15:29 UTC 2016
-Checking if processes are up.
-Checking attempt: 1; user specified max: 1. Execution time in seconds: 0.
-
-The SQ environment is up!
-
-
-Process                Configured        Actual            Down
--------                ----------        ------            ----
-DTM                3                3
-RMS                6                6
-DcsMaster        1                0            1
-DcsServer        3                0            3
-mxosrvr                96                0            96
-
-Starting the DCS environment now
-starting master, logging to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/bin/../logs/dcs-trafodion-1-mast
-er-ip-172-31-56-238.out
-ip-172-31-56-238: starting server, logging to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/bin/../logs/dc
-s-trafodion-1-server-ip-172-31-56-238.out
-ip-172-31-57-143: starting server, logging to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/bin/../logs/dc
-s-trafodion-3-server-ip-172-31-57-143.out
-ip-172-31-61-110: starting server, logging to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/dcs-2.0.1/bin/../logs/dc
-s-trafodion-2-server-ip-172-31-61-110.out
-Checking if processes are up.
-Checking attempt: 1; user specified max: 2. Execution time in seconds: 1.
-
-The SQ environment is up!
-
-
-Process                Configured        Actual            Down
--------                ----------        ------            ----
-DTM                3                3
-RMS                6                6
-DcsMaster        1                1
-DcsServer        3                3
-mxosrvr                96                7            89
-
-Starting the REST environment now
-starting rest, logging to /opt/trafodion/apache-trafodion_server-2.0.1-incubating/rest-2.0.1/bin/../logs/rest-trafodion-1-rest
--ip-172-31-56-238.out
-
-
-
-Zookeeper listen port: 2181
-DcsMaster listen port: 23400
-
-Configured Primary DcsMaster: &quot;ip-172-31-56-238.ec2.internal&quot;
-Active DcsMaster            : &quot;ip-172-31-56-238&quot;
-
-Process                Configured        Actual                Down
----------        ----------        ------                ----
-DcsMaster        1                1
-DcsServer        3                3
-mxosrvr                96                94                2
-
-
-You can monitor the SQ shell log file : /opt/trafodion/apache-trafodion_server-2.0.1-incubating/logs/sqmon.log
-
-
-Startup time  0 hour(s) 2 minute(s) 19 second(s)
-Apache Trafodion Conversational Interface 2.0.1
-Copyright (c) 2015-2016 Apache Software Foundation
-&gt;&gt;
---- SQL operation complete.
-&gt;&gt;
-
-End of MXCI Session
-
-***INFO: Installation setup completed successfully.
-
-******************************
- TRAFODION INSTALLATION END
-******************************</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Switch to the Trafodion Runtime User and check the status of Trafodion.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ sudo su - trafodion
-$ sqcheck
-Checking if processes are up.
-Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
-
-The SQ environment is up!
-
-
-Process                Configured        Actual            Down
--------                ----------        ------            ----
-DTM                3                3
-RMS                6                6
-DcsMaster        1                1
-DcsServer        3                3
-mxosrvr                96                96
-$</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Trafodion is now running on your Hadoop cluster. Please refer to the <a href="#activate">Activate</a> chapter for
-basic instructions on how to verify the Trafodion management and how to perform basic management
-operations.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="introduction">3. Introduction</h2>
+<h2 id="introduction">2. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Trafodion is a Hadoop add-on service that provides transactional SQL on top of HBase. Typically, you
@@ -1721,9 +1033,9 @@ Hadoop environment specifically for Hadoop.</p>
 Trafodion.</p>
 </div>
 <div class="sect2">
-<h3 id="introduction-security-considerations">3.1. Security Considerations</h3>
+<h3 id="introduction-security-considerations">2.1. Security Considerations</h3>
 <div class="paragraph">
-<p>The following users and principals need be considered for Trafodion:</p>
+<p>The following users need be considered for Trafodion:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1742,69 +1054,34 @@ In addition, this  user ID requires passwordless access among the nodes where Tr
 Refer to <a href="#requirements-trafodion-runtime-user">Trafodion Runtime User</a> for more information about this user ID.</p>
 </li>
 <li>
-<p><strong>Trafodion Database Users</strong>: Trafodion users are managed by Trafodion security features (grant, revoke, etc.),
+<p><strong>Trafodion Database Users</strong>: Trafodion users are managed by the Trafodion security features (grant, revoke, etc.),
 which can be integrated with LDAP if so desired. These users are referred to as <strong>database users</strong> and
-do not have direct access to the operating system. Refer to <a href="#enable-security-ldap">LDAP</a> for
-details on enabling LDAP for authenticating database users.
-Refer to <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
+do not have direct access to the operating system. Refer to
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
 <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#grant_statement">Grant</a>, and other SQL statements
 in the <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a> for
 more information about managing Trafodion Database Users.
 <br>
 <br>
-If your environment has been provisioned with Kerberos, then the following additional information is required.</p>
-</li>
-<li>
-<p><strong>KDC admin principal</strong>: Trafodion requires administrator access to Kerberos to create principals
-and keytabs for the <code>trafodion</code> user, and to look-up principal names for HDFS and HBase keytabs.  Refer to
-<a href="#enable-security-kerberos">Kerberos</a> for more information about the requirements and usage associated with this principal.</p>
-</li>
-<li>
-<p><strong>HBase keytab location</strong>: Trafodion requires administrator access to HBase to grant required privileges to the <code>trafodion</code> user.  Refer to
-<a href="#enable-security-kerberos">Kerberos</a> for more information about the requirements and usage associated with this keytab.</p>
-</li>
-<li>
-<p><strong>HDFS keytab location</strong>: Trafodion requires administrator access to HDFS to create directories that store files needed to perform SQL requests
-such as data loads and backups.  Refer to
-<a href="#enable-security-kerberos">Kerberos</a> for more information about the requirements and usage associated with this keytab.
-<br>
-<br>
-If your environment is using LDAP for authentication, then the following additional information is required.</p>
-</li>
-<li>
-<p><strong>LDAP username for database root access</strong>:  When Trafodion is installed, it creates a predefined database user referred to as the DB__ROOT user.
-In order to connect to the database as database root, there must be a mapping between the database user DB__ROOT and an LDAP user. Refer to
-<a href="#enable-security-ldap">LDAP</a> for more information about this option.</p>
-</li>
-<li>
-<p><strong>LDAP search user name</strong>: Trafodion optionally requests an LDAP username and password in order to perform LDAP operations
-such as LDAP search.  Refer to
-<a href="#enable-security-ldap">LDAP</a> for more information about this option.</p>
+Optionally, you can enable Trafodion Security. If you do not enable security in Trafodion, then a client interface
+to Trafodion may request a user name and password, but Trafodion ignores the user name and password entered in the
+client interface, and the session runs as the database <strong>root</strong> user, <code>DB__ROOT</code>, without restrictions. If you want
+to restrict users, restrict access to certain users only, or restrict access to an object or operation, then you must
+enable security, which enforces authentication and authorization. Refer to
+<a href="#enable-security">Enable Security</a> for more information about this option.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="introduction-provisioning-options">3.2. Provisioning Options</h3>
+<h3 id="introduction-provisioning-options">2.2. Provisioning Options</h3>
 <div class="paragraph">
-<p>Trafodion ships with a set of scripts that takes care of many of the installation and upgrade
-tasks associated with the Trafodion software and its requirements. The main features include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Trafodion installer</strong>: Performs installation and upgrade for Trafodion</p>
-</li>
-<li>
-<p><strong>Trafodion uninstaller</strong>: Uninstalls Trafodion</p>
-</li>
-<li>
-<p><strong>Trafodion security installer</strong>: Enables security features including Kerberos and LDAP for an existing Trafodion installation</p>
-</li>
-</ul>
+<p>Trafodion ships with a set of scripts (the Trafodion Installer) that takes care of many of the installation and upgrade
+tasks associated with the Trafodion software and its requirements. There is a separate set of scripts to remove Trafodion,
+if needed.</p>
 </div>
 <div class="paragraph">
-<p>Currently, the Trafodion Installer is able to install Trafodion on select Cloudera and  Hortonworks Hadoop distributions, and for select vanilla Hadoop installations.
+<p>Currently, the Trafodion Installer is able to install Trafodion on select Cloudera and  Hortonworks Hadoop distributions only.
 The Trafodion Installer limitations are noted as they apply in the different chapters below. For example, the Trafodion Installer
 is less capable on SUSE than it is on RedHat/CentOS; you have to install the prerequisite software packages outside the Trafodion Installer.</p>
 </div>
@@ -1813,7 +1090,7 @@ is less capable on SUSE than it is on RedHat/CentOS; you have to install the pre
 installing required software packages and making required changes to your Hadoop environment via creating
 the Trafodion runtime user ID to installing and starting Trafodion. It is, therefore,  highly recommend that
 you use the Trafodion Installer for initial installation and upgrades of Trafodion. These steps are referred to as
-"Script-Based Provisioning" in this guide. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a> that provides
+"Script-Based Provisioning" in this guide. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a> provides
 usage information.</p>
 </div>
 <div class="paragraph">
@@ -1824,7 +1101,7 @@ administrative tasks if using Recipe-Based Provisioning.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="introduction-provisioning-activities">3.3. Provisioning Activities</h3>
+<h3 id="introduction-provisioning-activities">2.3. Provisioning Activities</h3>
 <div class="paragraph">
 <p>Trafodion provisioning is divided into the following main activities:</p>
 </div>
@@ -1834,42 +1111,43 @@ administrative tasks if using Recipe-Based Provisioning.</p>
 <p><strong><a href="#requirements">Requirements</a></strong>: Activities and documentation required to install the Trafodion software.
 These activities include tasks such as understanding hardware and operating system requirements,
 Hadoop requirements, what software packages that need to be downloaded, configuration settings that need to be changed,
-and user ID requirements.</p>
+user IDs requirements, and so on.</p>
 </li>
 <li>
 <p><strong><a href="#prepare">Prepare</a></strong>: Activities to prepare the operating system and the Hadoop ecosystem to run
 Trafodion. These activities include tasks such as installing required software packages, configure
-the Trafodion Installation User, gather information about the Hadoop environment, and the modify configuration
-for different Hadoop services.</p>
+the Trafodion Installation User, gather information about the Hadoop environment, modify configuration
+for different Hadoop services, and so forth.</p>
 </li>
 <li>
 <p><strong><a href="#install">Install</a></strong>: Activities related to installing the Trafodion software. These activities
 include tasks such as unpacking the Trafodion tar files, creating the Trafodion Runtime User,
-creating Trafodion HDFS directories, installing the Trafodion software, and enabling security features.</p>
+creating Trafodion HDFS directories, installing the Trafodion software, and so forth.</p>
 </li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
 <li>
 <p><strong><a href="#upgrade">Upgrade</a></strong>: Activities related to the upgrading the Trafodion software. These activities
-include tasks such as shutting down Trafodion and installing a new version of the Trafodion software.
-The upgrade tasks vary depending on the differences between the current and new release of
+include tasks such as shutting down Trafodion, installing a new version of the Trafodion software,
+and so on. The upgrade tasks vary depending on the differences between the current and new release of
 Trafodion. For example, an upgrade may or may not include an upgrade of the Trafodion metadata.</p>
 </li>
 <li>
 <p><strong><a href="#activate">Activate</a></strong>: Activities related to starting the Trafodion software. These actives
-include basic management tasks such as starting and checking the status of the Trafodion components and performing basic smoke tests.</p>
+include basic management tasks such as starting and checking the status of the Trafodion components,
+performing basic smoke tests, and so forth.</p>
 </li>
 <li>
 <p><strong><a href="#remove">Remove</a></strong>: Activities related to removing Trafodion from your Hadoop cluster.</p>
-</li>
-<li>
-<p><strong><a href="#enable-security">Enable Security</a></strong>: Activities related to enabling security features on an already installed
-Trafodion installation.  These activities include tasks such as adding Kerberos principals and keytabs,
-and setting up the LDAP configuration files.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="introduction-provisioning-master-node">3.4. Provisioning Master Node</h3>
+<h3 id="introduction-provisioning-master-node">2.4. Provisioning Master Node</h3>
 <div class="paragraph">
 <p>All provisioning tasks are performed from a single node in the cluster, which must be part
 of the Hadoop environment you&#8217;re adding Trafodion to. This node is referred to as the
@@ -1881,7 +1159,7 @@ Master Node in order to perform provisioning tasks on the cluster.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="introduction-trafodion-installer">3.5. Trafodion Installer</h3>
+<h3 id="introduction-trafodion-installer">2.5. Trafodion Installer</h3>
 <div class="paragraph">
 <p>The Trafodion Installer is a set of scripts automates most of the tasks requires to install/upgrade Trafodion.
 You download the Trafodion Installer tar file from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">download</a> page.
@@ -1895,6 +1173,12 @@ Next, you unpack the tar file.</p>
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
 $ tar -zxf apache-trafodion-installer-1.3.0-incubating-bin.tar.gz -C $HOME/trafodion-installer
+$ ls $HOME/trafodion-installer/installer
+bashrc_default           tools                             traf_config_check           trafodion_apache_hadoop_install  traf_package_setup
+build-version-1.3.0.txt  traf_add_user                     traf_config_setup           trafodion_config_default         traf_setup
+dcs_installer            traf_apache_hadoop_config_setup   traf_create_systemdefaults  trafodion_install                traf_sqconfig
+rest_installer           traf_authentication_conf_default  traf_getHadoopNodes         trafodion_license                traf_start
+setup_known_hosts.exp    traf_cloudera_mods98              traf_hortonworks_mods98     trafodion_uninstaller
 $</code></pre>
 </div>
 </div>
@@ -1909,15 +1193,13 @@ $</code></pre>
 </li>
 <li>
 <p><strong>Automated Setup</strong>: Required information is provided in a pre-formatted bash-script configuration file, which is provided
-via a command argument when running the Trafodion Installer thereby suppressing all prompts. There is one exception,
-if Kerberos is enabled on the cluster, then you will always be prompted for the KDC admin password.  We do not store the
-KDC admin password as part of installation anywhere.</p>
+via a command argument when running the Trafodion Installer thereby suppressing all prompts.</p>
 <div class="paragraph">
 <p>A template of the configuration file is available here within the installer directory: <code>trafodion_config_default</code>.
 Make a copy of the file in your directory and populate the needed information.</p>
 </div>
 <div class="paragraph">
-<p>Automated Setup is recommended since it allows you to record the required provisioning information ahead of time.
+<p>Automated Setup is recommended since it allows you to record the required provisioning information information ahead of time.
 Refer to <a href="#introduction-trafodion-automated-setup">Automated Setup</a> for information about how to
 populate this file.</p>
 </div>
@@ -1925,7 +1207,7 @@ populate this file.</p>
 </ol>
 </div>
 <div class="sect3">
-<h4 id="introduction-trafodion-installer-usage">3.5.1. Usage</h4>
+<h4 id="introduction-trafodion-installer-usage">2.5.1. Usage</h4>
 <div class="paragraph">
 <p>The following shows help for the Trafodion Installer.</p>
 </div>
@@ -1951,7 +1233,7 @@ Options:
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="introduction-trafodion-installer-install-vs-upgrade">3.5.2. Install vs. Upgrade</h4>
+<h4 id="introduction-trafodion-installer-install-vs-upgrade">2.5.2. Install vs. Upgrade</h4>
 <div class="paragraph">
 <p>The Trafodion Installer automatically detects whether you&#8217;re performing an install
 or an upgrade by looking for the Trafodion Runtime User in the <code>/etc/passwd</code> file.</p>
@@ -1968,7 +1250,7 @@ or an upgrade by looking for the Trafodion Runtime User in the <code>/etc/passwd
 </div>
 </div>
 <div class="sect3">
-<h4 id="introduction-trafodion-installer-guided-setup">3.5.3. Guided Setup</h4>
+<h4 id="introduction-trafodion-installer-guided-setup">2.5.3. Guided Setup</h4>
 <div class="paragraph">
 <p>By default, the Trafodion Installer runs in Guided Setup mode, which means
 that it prompts you for information during the install/upgrade process.</p>
@@ -1988,7 +1270,7 @@ that it prompts you for information during the install/upgrade process.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="introduction-trafodion-installer-automated-setup">3.5.4. Automated Setup</h4>
+<h4 id="introduction-trafodion-installer-automated-setup">2.5.4. Automated Setup</h4>
 <div class="paragraph">
 <p>The <code>--config_file</code> option runs the Trafodion in Automated Setup mode.</p>
 </div>
@@ -2040,19 +1322,6 @@ that matches the security policies of your organization.
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you are installing Trafodion on a version of Hadoop that has been instrumented with Kerberos,
-you will be asked for a password associated with a Kerberos administrator.
-</td>
-</tr>
-</table>
-</div>
 <div class="sect4">
 <h5 id="_example_creating_a_trafodion_configuration_file">Example: Creating a Trafodion Configuration File</h5>
 <div class="paragraph">
@@ -2079,11 +1348,6 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>ADMIN_PRINCIPAL</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos principal for the KDC admin user including the realm.</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>BACKUP_DCS_NODES</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of nodes where to start the backup DCS Master components.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2102,11 +1366,6 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>CLUSTER_NAME</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the Hadoop Cluster.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cluster 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>DB_ROOT_NAME</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LDAP name used to connect as database root user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">trafodion</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>DCS_BUILD</pre></div></td>
@@ -2149,19 +1408,9 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><p class="tableblock">hbase</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>HBASE_KEYTAB</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos service keytab for HBase admin principal.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default based on distribution</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>HBASE_USER</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux user name for the HBASE administrative user.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hbase</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>HDFS_KEYTAB</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos service keytab for HDFS admin principal.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default based on distribution</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>HDFS_USER</pre></div></td>
@@ -2187,11 +1436,6 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>JAVA_HOME</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Location of Java 1.7.0_65 or higher (JDK).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">/usr/java/jdk1.7.0_67-cloudera</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>KDC_SERVER</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Location of Kerberos server for admin access</p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LDAP_CERT</pre></div></td>
@@ -2225,7 +1469,7 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LDAP_SECURITY</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to enable LDAP authentication.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to enable simple LDAP authentication.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N</p></td>
 </tr>
 <tr>
@@ -2249,11 +1493,6 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>MAX_LIFETIME</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos ticket lifetime for Trafodion principal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">24hours</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>NODE_LIST</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The FQDN names of the nodes where Trafodion will be installed.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">trafodion-1 trafodion-2</p></td>
@@ -2264,19 +1503,9 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>RENEW_LIFETIME</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos ticket renewal lifetime for Trafodion principal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7days</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>REST_BUILD</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tar file containing the REST component.</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>SECURE_HADOOP</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether Hadoop has Kerberos enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Based on whether Kerberos is enabled for your Hadoop installation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>SQ_ROOT</pre></div></td>
@@ -2297,16 +1526,6 @@ in the <a href="#prepare">Prepare</a> chapter, you record the following informat
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_PACKAGE</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The location of the Trafodion installation package tar file or core installation tar file.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">/home/centos/trafodion-download/apache-trafodion-1.3.0-incubating-bin.tar.gz</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_KEYTAB</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos keytab for <code>trafodion</code> principal.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default keytab based on distribution</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_KEYTAB_DIR</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Location of Kerberos keytab for the <code>trafodion</code> principal.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default location based on distribution</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_USER</pre></div></td>
@@ -2467,45 +1686,13 @@ export INIT_TRAFODION=&quot;Y&quot;
 # Default is to leave as is and this file will be created.
 export SQCONFIG=&quot;&quot;
 
-#-----------------  security configuration information -----------------
-#Enter in Kerberos details if Kerberos is enabled on your cluster
+export CONFIG_COMPLETE=&quot;true&quot;
 
-#Indicate Kerberos is enabled
-export SECURE_HADOOP=&quot;N&quot;
-
-#Location of Kerberos server for admin access
-export KDC_SERVER=&quot;&quot;
-
-#Kerberos Admin principal used to create Trafodion principals and keytabs
-#Please include realm, for example: trafadmin/admin@MYREALM.COM
-export ADMIN_PRINCIPAL=&quot;&quot;
-
-#Keytab for HBase admin user, used to grant Trafodion user CRWE privilege
-export HBASE_KEYTAB=&quot;&quot;
-
-#Keytab for HDFS admin user, used to create data directories for Trafodion
-export HDFS_KEYTAB=&quot;&quot;
-
-#Kerberos ticket defaults for the Trafodion user
-export MAX_LIFETIME=&quot;24hours&quot;
-export RENEW_LIFETIME=&quot;7days&quot;
-
-#Trafodion keytab information
-export TRAF_KEYTAB=&quot;&quot;
-export TRAF_KEYTAB_DIR=&quot;&quot;
-
-#Enter in LDAP configuration information
-#Turn on authentication - MUST have existing LDAP configured.
-export LDAP_SECURITY=&quot;Y&quot;
+#Turn on simple security. MUST have existing LDAP configured.
+export LDAP_SECURITY=&quot;N&quot;
 
 #Name of LDAP Config file
-export LDAP_AUTH_FILE=&quot;traf_authentication_config_`hostname -s`&quot;
-
-#LDAP name to map to database user DB__ROOT
-DB_ROOT_NAME=&quot;trafodion&quot;
-#-----------------      end security configuration     -----------------
-
-export CONFIG_COMPLETE=&quot;true&quot;</code></pre>
+export LDAP_AUTH_FILE=&quot;traf_authentication_config_${HOSTNAME}&quot;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2528,17 +1715,17 @@ export CONFIG_COMPLETE=&quot;true&quot;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="introduction-trafodion-provisioning-directories">3.6. Trafodion Provisioning Directories</h3>
+<h3 id="introduction-trafodion-provisioning-directories">2.6. Trafodion Provisioning Directories</h3>
 <div class="paragraph">
 <p>Trafodion stores its provisioning information in the following directories on each node in the cluster:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>/etc/trafodion</code>: Configuration information.</p>
+<p><code>/etc/trafodion</code>: Configurtion information.</p>
 </li>
 <li>
-<p><code>/usr/lib/trafodion</code>: Copies of the files required by the installer.</p>
+<p><code>/usr/lib/trafodion</code>: Copies of the installer files.</p>
 </li>
 </ul>
 </div>
@@ -2546,7 +1733,7 @@ export CONFIG_COMPLETE=&quot;true&quot;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="requirements">4. Requirements</h2>
+<h2 id="requirements">3. Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Trafodion requires an x86 version of Linux.</p>
@@ -2560,24 +1747,30 @@ export CONFIG_COMPLETE=&quot;true&quot;</code></pre>
 <p>64-bit Red Hat Enterprise Linux (RHEL) or CentOS 6.5, 6.6, and 6.7</p>
 </li>
 <li>
-<p>Cloudera CDH 5.4</p>
+<p>SUSE SLES 11.3</p>
 </li>
 <li>
-<p>Hortonworks HDP 2.3</p>
+<p>Cloudera CDH 5.2</p>
+</li>
+<li>
+<p>Cloudera CDH 5.3</p>
+</li>
+<li>
+<p>Hortonworks HDP 2.2</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Other OS releases may work, too. The Trafodion project is currently working on better support for more distribution and non-distribution versions of Hadoop.</p>
+<p>Other OS releases may work, too. The Trafodion project is currently working on better support for non-distribution version of Hadoop.</p>
 </div>
 <div class="sect2">
-<h3 id="requirements-general-cluster-and-os-requirements-and-recommendations">4.1. General Cluster and OS Requirements and Recommendations</h3>
+<h3 id="requirements-general-cluster-and-os-requirements-and-recommendations">3.1. General Cluster and OS Requirements and Recommendations</h3>
 <div class="paragraph">
 <p>64-bit x86 instruction set running a Linux distribution is required. Further, Trafodion assumes an environment
 based on the requirements of the tested Hadoop distributions/services.</p>
 </div>
 <div class="sect3">
-<h4 id="requirements-cluster-requirements-and-recommendations">4.1.1. Hardware Requirements and Recommendations</h4>
+<h4 id="requirements-cluster-requirements-and-recommendations">3.1.1. Hardware Requirements and Recommendations</h4>
 <div class="sect4">
 <h5 id="requirements-single-node-cluster">Single-Node Cluster</h5>
 <div class="paragraph">
@@ -2638,7 +1831,7 @@ A minimum of two cores is required regardless of whether you&#8217;re deploying 
 </div>
 </div>
 <div class="sect3">
-<h4 id="requirements-os-requirements-and-recommendations">4.1.2. OS Requirements and Recommendations</h4>
+<h4 id="requirements-os-requirements-and-recommendations">3.1.2. OS Requirements and Recommendations</h4>
 <div class="paragraph">
 <p>Please verify these requirements on each node you will install Trafodion on:</p>
 </div>
@@ -2864,7 +2057,7 @@ the port is <strong>not</strong> open.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="requirements-ip-ports">4.1.3. IP Ports</h4>
+<h4 id="requirements-ip-ports">3.1.3. IP Ports</h4>
 <div class="paragraph">
 <p>The following table lists the default ports used by the different Trafodion components plus the configuration file and configuration attribute associated with each port setting.</p>
 </div>
@@ -3019,18 +2212,15 @@ enough to cover all the servers per node that are listed in the "servers" file i
 </ul>
 </div>
 <div class="paragraph">
-<p>If you have Kerberos or LDAP enabled, then ports required by these products need to be opened as well.</p>
-</div>
-<div class="paragraph">
 <p>Although not all the ports will be used on every node of the cluster, you need to open most of them for all the nodes in the cluster that
 have Trafodion, HBase, or HDFS servers on them.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="requirements-prerequisite-software">4.2. Prerequisite Software</h3>
+<h3 id="requirements-prerequisite-software">3.2. Prerequisite Software</h3>
 <div class="sect3">
-<h4 id="requirements-hadoop-software">4.2.1. Hadoop Software</h4>
+<h4 id="requirements-hadoop-software">3.2.1. Hadoop Software</h4>
 <div class="paragraph">
 <p>Trafodion runs as an add-on service on Hadoop distributions. The following Hadoop services and their dependencies must be installed and running
 on the cluster where you intend to install Trafodion:</p>
@@ -3078,15 +2268,16 @@ on the cluster where you intend to install Trafodion:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cloudera Distribution Including Apache Hadoop (CDH)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.cloudera.com/downloads/manager/5-4-0.html">CHD 5.4 Installation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.2 or 5.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.98</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.cloudera.com/downloads/manager/5-2-0.html">CHD 5.2 Installation</a><br>
+<a href="http://www.cloudera.com/downloads/manager/5-3-0.html" class="bare">http://www.cloudera.com/downloads/manager/5-3-0.html</a><sup class="CDH 5.3 Installation">2</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hortonworks Data Platform (HDP)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://hortonworks.com/products/data-center/hdp/">HDP 2.3 Installation</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.98</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://hortonworks.com/products/releases/hdp-2-2/#install">HDP 2.2 Installation</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -3117,7 +2308,7 @@ Trafodion.
 </div>
 </div>
 <div class="sect3">
-<h4 id="requirements-software-packages">4.2.2. Software Packages</h4>
+<h4 id="requirements-software-packages">3.2.2. Software Packages</h4>
 <div class="paragraph">
 <p>In addition to the software packages required to run different Hadoop services listed above (for example, <code>Java</code>),
 Trafodion requires supplementary software to be installed on the cluster before it is installed. These are Linux
@@ -3256,15 +2447,17 @@ on your system and then install the RPM using the procedure described in <a href
 </div>
 </div>
 <div class="sect2">
-<h3 id="requirements-trafodion-user-ids-and-their-privileges">4.3. Trafodion User IDs and Their Privileges</h3>
+<h3 id="requirements-trafodion-user-ids-and-their-privileges">3.3. Trafodion User IDs and Their Privileges</h3>
 <div class="sect3">
-<h4 id="requirements-trafodion-runtime-user">4.3.1. Trafodion Runtime User</h4>
+<h4 id="requirements-trafodion-runtime-user">3.3.1. Trafodion Runtime User</h4>
 <div class="paragraph">
 <p>The <code>trafodion:trafodion</code> user ID is created as part of the installation process. The default password is: <code>traf123</code>.</p>
 </div>
 <div class="paragraph">
-<p>Trafodion requires that either HDFS ACL support or Kerberos is enabled. The Trafodion Installer will enable HDFS ACL and Kerberos support. Refer to <a href="#enable-security-kerberos">Kerberos</a> for more information about the requirements and usage of Kerberos in Trafodion.
-Refer to <a href="https://hbase.apache.org/book.html#security">Apache HBase&#8482; Reference Guide</a> for security in HBase.</p>
+<p>Trafodion requires that either HDFS ACL support or Kerberos is enabled. The Trafodion Installer will enable HDFS ACL support.
+Kerberos-based security settings are outside the scope of this guide. Please refer to the security information in
+<a href="https://hbase.apache.org/book.html#security">Apache HBase&#8482; Reference Guide</a> for information about how to set up
+HBase security with Kerberos.</p>
 </div>
 <div class="paragraph">
 <p>Also, Trafodion requires <code>sudo</code> access to <code>ip</code> and <code>arping</code> so that floating or elastic IP addresses can be moved from one node to
@@ -3285,7 +2478,7 @@ whether you&#8217;re doing an installation or upgrade.
 </div>
 </div>
 <div class="sect3">
-<h4 id="requirements-trafodion-provisioning-user">4.3.2. Trafodion Provisioning User</h4>
+<h4 id="requirements-trafodion-provisioning-user">3.3.2. Trafodion Provisioning User</h4>
 <div class="paragraph">
 <p>Typically, the Trafodion Installer is used for Trafodion installations. It requires access to the user IDs documented below.</p>
 </div>
@@ -3415,16 +2608,13 @@ The Trafodion Installer uses <code>su</code> to run commands under this user ID.
 <li>
 <p>Write access to home directory on the node where the Distribution Manager is running.</p>
 </li>
-<li>
-<p>For Kerberos enabled installations, location of the keytab for the HDFS service principal.</p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect4">
 <h5 id="requirements-hbase-administrator-user">HBase Administrator User</h5>
 <div class="paragraph">
-<p>The HBase super user. Required to change directory ownership in HDFS. For Kerberos enabled installations, the HBase super user is needed to grant the <code>trafodion</code> user create, read, write, and execute privileges.</p>
+<p>The HBase super user. Required to change directory ownership in HDFS.</p>
 </div>
 <div class="paragraph">
 <p><strong>Requirements</strong>:</p>
@@ -3437,35 +2627,13 @@ The Trafodion Installer uses <code>su</code> to run commands under this user ID.
 <li>
 <p>Read access to <code>hbase-site.xml</code>.</p>
 </li>
-<li>
-<p>For Kerberos enabled installations, location of the keytab for the HBase service principal.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="requirements-kerberos-administrator-user">Kerberos Administrator User</h5>
-<div class="paragraph">
-<p>The Kerberos adminstrator. Required to create Trafodion principals and keytabs on a cluster where Kerberos is enabled.</p>
-</div>
-<div class="paragraph">
-<p><strong>Requirements</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kerberos Administrator admin name including the realm.</p>
-</li>
-<li>
-<p>Kerberos Administrator password</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="requirements-required-configuration-changes">4.4. Required Configuration Changes</h3>
+<h3 id="requirements-required-configuration-changes">3.4. Required Configuration Changes</h3>
 <div class="paragraph">
 <p>Trafodion requires changes to a number of different areas of your system configuration: operating system, HDFS, and HBase.</p>
 </div>
@@ -3482,7 +2650,7 @@ These changes are performed by the Trafodion Installer, if used.
 </table>
 </div>
 <div class="sect3">
-<h4 id="requirements-operating-system-changes">4.4.1. Operating System Changes</h4>
+<h4 id="requirements-operating-system-changes">3.4.1. Operating System Changes</h4>
 <div class="paragraph">
 <p><code>/etc/security/limits.d/trafodion.conf</code> on each node in the cluster must contain the following settings:</p>
 </div>
@@ -3502,7 +2670,7 @@ trafodion  hard nproc   100000</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="requirements-zookeeper-changes">4.4.2. ZooKeeper Changes</h4>
+<h4 id="requirements-zookeeper-changes">3.4.2. ZooKeeper Changes</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3541,21 +2709,9 @@ These changes require a restart of ZooKeeper on all nodes in the cluster.
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If Kerberos is enabled, it is not possible to secure the Trafodion data in ZooKeeper at this time.
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect3">
-<h4 id="requirements-hdfs-changes">4.4.3. HDFS Changes</h4>
+<h4 id="requirements-hdfs-changes">3.4.3. HDFS Changes</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3655,7 +2811,7 @@ statement and as a temporary directory to create links to actual HFile for snaps
 </table>
 </div>
 <div class="sect3">
-<h4 id="requirements-hbase-changes">4.4.4. HBase Changes</h4>
+<h4 id="requirements-hbase-changes">3.4.4. HBase Changes</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3709,17 +2865,6 @@ These changes require a restart of ZooKeeper and HBase on all nodes in the clust
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>TODO: Add purpose here.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>For Kerberos enabled clusters, grant <code>trafodion</code> user privileges</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>not applicable</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>privileges: create, read, write, and execute access</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3871,7 +3016,7 @@ java.heapsize<sup>1</sup></pre></div></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="requirements-recommended-configuration-changes">4.5. Recommended Configuration Changes</h3>
+<h3 id="requirements-recommended-configuration-changes">3.5. Recommended Configuration Changes</h3>
 <div class="paragraph">
 <p>The following configuration changes are recommended but not required.</p>
 </div>
@@ -3888,7 +3033,7 @@ The Trafodion Installer does <strong>not</strong> make these changes.
 </table>
 </div>
 <div class="sect3">
-<h4 id="requirements-recommended-security-changes">4.5.1. Recommended Security Changes</h4>
+<h4 id="requirements-recommended-security-changes">3.5.1. Recommended Security Changes</h4>
 <div class="paragraph">
 <p>The <code>trafodion</code> user ID should not be given other <code>sudo</code> privileges than what&#8217;s specified in this manual. Also, we
 recommend that this user ID is locked (<code>sudo passwd -l trafodion</code>) once the installation/upgrade activity has been completed.
@@ -3896,7 +3041,7 @@ Users that need issue commands as the <code>trafodion</code> ID should do so usi
 </div>
 </div>
 <div class="sect3">
-<h4 id="requirements-recommended-hdfs-configuration-changes">4.5.2. Recommended HDFS Configuration Changes</h4>
+<h4 id="requirements-recommended-hdfs-configuration-changes">3.5.2. Recommended HDFS Configuration Changes</h4>
 <div class="paragraph">
 <p>These settings are configured in the <code>hadoop-env.sh</code> file.</p>
 </div>
@@ -3939,7 +3084,7 @@ Users that need issue commands as the <code>trafodion</code> ID should do so usi
 </table>
 </div>
 <div class="sect3">
-<h4 id="requirements-recommended-hbase-configuration-changes">4.5.3. Recommended HBase Configuration Changes</h4>
+<h4 id="requirements-recommended-hbase-configuration-changes">3.5.3. Recommended HBase Configuration Changes</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 30%;">
@@ -4014,7 +3159,7 @@ region splitting.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="prepare">5. Prepare</h2>
+<h2 id="prepare">4. Prepare</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You need to prepare your Hadoop environment before installing Trafodion.</p>
@@ -4034,9 +3179,6 @@ region splitting.</p>
 <p><a href="#prepare-verify-os-requirements-and-recommendations">Verify OS Requirements and Recommendations</a></p>
 </li>
 <li>
-<p><a href="#prepare-configure-kerberos">Configure Kerberos</a></p>
-</li>
-<li>
 <p><a href="#prepare-configure-ldap-identity-store">Configure LDAP Identity Store</a></p>
 </li>
 <li>
@@ -4051,7 +3193,7 @@ region splitting.</p>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="prepare-install-optional-workstation-software">5.1. Install Optional Workstation Software</h3>
+<h3 id="prepare-install-optional-workstation-software">4.1. Install Optional Workstation Software</h3>
 <div class="paragraph">
 <p>If you are using a Windows workstation, then the following optional software helps installation process.
 We recommended that you pre-install the software before continuing with the Trafodion installation:</p>
@@ -4074,7 +3216,7 @@ We recommended that you pre-install the software before continuing with the Traf
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-installation-user-id">5.2. Configure Installation User ID</h3>
+<h3 id="configure-installation-user-id">4.2. Configure Installation User ID</h3>
 <div class="paragraph">
 <p>Trafodion installation requires a user ID with these attributes:</p>
 </div>
@@ -4129,7 +3271,7 @@ chmod 700 $HOME/.ssh/</code></pre>
 <p>If necessary, create the <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster. Secure it with <code>chmod 600 $HOME/.ssh/authorized_keys</code>.</p>
 </li>
 <li>
-<p>Copy the content of the <code>$HOME/.ssh/id_rsa.pub</code> file on the Provisioning Master Node and append the to the
+<p>Copy the content of the <code>$HOME/.ssh/authorized_keys</code> file on the Provisioning Master Node and append the to the
 <code>$HOME/.ssh/authorized_keys</code> file on the other nodes in your cluster.</p>
 </li>
 <li>
@@ -4140,7 +3282,7 @@ This adds the node to the <code>$HOME/.ssh/known_hosts</code> file completing th
 </div>
 </div>
 <div class="sect2">
-<h3 id="prepare-disable-requiretty">5.3. Disable requiretty</h3>
+<h3 id="prepare-disable-requiretty">4.3. Disable requiretty</h3>
 <div class="paragraph">
 <p>You need to disable <code>requiretty</code> in <code>/etc/sudoers</code> on all nodes in the cluster
 to ensure that <code>sudo</code> commands can be run from inside the installation scripts.</p>
@@ -4151,7 +3293,7 @@ ensure that the <code>requiretty</code> option is NOT being used.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="prepare-verify-os-requirements-and-recommendations">5.4. Verify OS Requirements and Recommendations</h3>
+<h3 id="prepare-verify-os-requirements-and-recommendations">4.4. Verify OS Requirements and Recommendations</h3>
 <div class="paragraph">
 <p>Please ensure that the <a href="#requirements-os-requirements-and-recommendations">OS Requirements and Recommendations</a>
 are met for each node in the cluster where you intend to install Trafodion.</p>
@@ -4159,31 +3301,19 @@ are met for each node in the cluster where you intend to install Trafodion.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="prepare-configure-kerberos">5.5. Configure Kerberos</h3>
+<h3 id="prepare-configure-ldap-identity-store">4.5. Configure LDAP Identity Store</h3>
 <div class="paragraph">
-<p>If your Hadoop installation has enabled Kerberos, then Trafodion needs to have Kerberos enabled.  If not,
-then Trafodion will not run. If you plan to enable Kerberos in Trafodion, then you need to have access to a KDC (Kerberos Key Distribution
-Center) and administration credentials so you can create the necessary Trafodion principals and keytabs.</p>
-</div>
-<div class="paragraph">
-<p>If you wish to manually set up and activate Kerberos principals and keytabs, then refer to the section on
-<a href="#enable-security-kerberos">Kerberos</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="prepare-configure-ldap-identity-store">5.6. Configure LDAP Identity Store</h3>
-<div class="paragraph">
-<p>If you plan to enable security features in Trafodion, then you need to have an LDAP identity store available to perform authentication.
+<p>If you plan to enable security in Trafodion, then you need to have an LDAP identity store available to perform authentication.
 The Trafodion Installer prompts you to set up an authentication configuration file that points to an LDAP server (or servers),
 which enables security (that is, authentication and authorization) in the Trafodion database.</p>
 </div>
 <div class="paragraph">
 <p>If you wish to manually set up the authentication configuration file and enable security, then refer to the section on
-<a href="#enable-security-ldap">LDAP</a>.</p>
+<a href="#enable-security">Enable Security</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="prepare-gather-configuration-information">5.7. Gather Configuration Information</h3>
+<h3 id="prepare-gather-configuration-information">4.6. Gather Configuration Information</h3>
 <div class="paragraph">
 <p>You need to gather/decide information about your environment to aid installation Trafodion, both for the Trafodion Installer
 and for recipe-based provisioning. (Listed in alphabetical order to make it easier to find information when referenced in the install and upgrade instructions.)</p>
@@ -4212,12 +3342,6 @@ and for recipe-based provisioning. (Listed in alphabetical order to make it easi
 distribution manager&#8217;s REST API.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>ADMIN_PRINCIPAL<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos admin principal to manage principals and keytabs</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos is enabled.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>BACKUP_DCS_NODES</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of nodes where to start the backup DCS Master components.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
@@ -4240,12 +3364,6 @@ distribution manager&#8217;s REST API.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the Hadoop Cluster.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">From Apache Ambari or Cloudera Manager.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>DB_ROOT_NAME<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LDAP name used to connect as database root user</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>trafodion</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required when LDAP is enabled.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>DCS_BUILD</pre></div></td>
@@ -4298,22 +3416,10 @@ Downloaded automatically by the Trafodion Installer.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required in order to provide access to select HDFS directories to this user ID.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>HBASE_KEYTAB<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HBase credentials used to grant Trafodion CRWE privileges</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>based on distribution</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos is enabled.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>HBASE_USER</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux user name for the HBASE administrative user.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required in order to provide access to select HDFS directories to this user ID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>HDFS_KEYTAB<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HDFS credentials used to set privileges on HDFS directories. .</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>based on distribution</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos is enabled.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>HDFS_USER</pre></div></td>
@@ -4351,16 +3457,10 @@ If the home directory of the <code>trafodion</code> user is
 <code>/usr/java/jdk1.7.0_67-cloudera</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>KDC_SERVER<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Location of host where Kerberos server exists</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos enabled.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LDAP_CERT<sup>2</sup></pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Full path to TLS certificate.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if $LDAP_LEVEL = 1 or 2.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required of $LDAP_LEVEL = 1 or 2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LDAP_HOSTS<sup>2</sup></pre></div></td>
@@ -4402,7 +3502,7 @@ If the home directory of the <code>trafodion</code> user is
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LDAP_USER<sup>2</sup></pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LDAP Search user name.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if you need additional LDAP functionally such as LDAPSearch. If so, must provide LDAP_PASSWORD, too.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If required. If so, must provide LDAP_PASSWORD, too.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>LOCAL_WORKDIR</pre></div></td>
@@ -4423,12 +3523,6 @@ If the home directory of the <code>trafodion</code> user is
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provide a blank-separated list of node names.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>MAX_LIFETIME<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos ticket lifetime for Trafodion principal</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>24hours</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Can be specified when Kerberos is enabled.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>NODE_LIST</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The FQDN names of the nodes where Trafodion will be installed.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
@@ -4443,22 +3537,10 @@ Provisioning ID must have passwordless and <code>sudo</code> access to these nod
 distribution manager&#8217;s REST API.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>RENEW_LIFETIME<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number times Kerberos ticket is for the Trafodion principal</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>7days</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Can be specified when Kerberos is enabled.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>REST_BUILD</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tar file containing the REST component.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>None</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not needed if using a Trafodion package installation tar file.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>SECURE_HADOOP<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether Hadoop has enabled Kerberos</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>Y only if Kerberos enabled</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Based on whether Kerberos is enabled for your Hadoop installation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>SQ_ROOT</pre></div></td>
@@ -4477,18 +3559,6 @@ distribution manager&#8217;s REST API.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether your installing Trafodion on SUSE Linux.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>false</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Auto-detected by the Trafodion Installer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_KEYTAB<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name to use when specifying Trafodion keytab</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>based on distribution</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos is enabled.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_KEYTAB_DIR<sup>2</sup></pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Location  of {project_name} keytab</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>based on distribution</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required if Kerberos is enabled.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>TRAF_PACKAGE</pre></div></td>
@@ -4533,9 +3603,9 @@ for more information.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="prepare-install-required-software-packages">5.8. Install Required Software Packages</h3>
+<h3 id="prepare-install-required-software-packages">4.7. Install Required Software Packages</h3>
 <div class="sect3">
-<h4 id="prepare-download-and-install-packages">5.8.1. Download and Install Packages</h4>
+<h4 id="prepare-download-and-install-packages">4.7.1. Download and Install Packages</h4>
 <div class="paragraph">
 <p>This step is required if you&#8217;re:</p>
 </div>
@@ -4559,13 +3629,63 @@ for more information.</p>
 <p>You perform this step as a user with <code>root</code> or <code>sudo</code> access.</p>
 </div>
 <div class="paragraph">
-<p>Install the packages listed in <a href="#requirements-software-packages">Software Packages</a> above on all nodes in the cluster.</p>
+<p>Install the packages listed in <a href="#requirements-software-packages">Software Packages</a> above on all nodes in the cluster. Note the special
+handling for <code>log4c&#43;&#43;</code>. See <a href="#prepare-install-log4cplusplus">Install log4c++</a> below for more information.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
+<div class="sect3">
+<h4 id="prepare-install-log4cplusplus">4.7.2. Install log4c++</h4>
+<div class="paragraph">
+<p>You perform this step as a user with <code>root</code> or <code>sudo</code> access.</p>
+</div>
+<div class="paragraph">
+<p>This step is required regardless of the <a href="#introduction-provisioning-options">Provisioning Options</a> used.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the log4c&#43;&#43; RPM from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.</p>
+</li>
+<li>
+<p>Copy and Install the log4c&#43;&#43; RPM on All Nodes</p>
+<div class="paragraph">
+<p>Use either <code>rpm -U</code> or <code>yum install</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text"># Repeat for all nodes in the cluster from the Provisioning Master Node
+scp log4cxx-0.10.0-13.el6.x86_64.rpm &lt;other-node&gt;:$PWD
+
+ssh &lt;other-node&gt;
+sudo yum -y install log4cxx-0.10.0-13.el6.x86_64.rpm
+exit</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</li>
+<li>
+<p>Verify RPM Installation on Every Node</p>
+<div class="paragraph">
+<p>Use the following command to verify that <code>log4c&#43;&#43;</code> has been installed on every node in the cluster.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text"># Repeat for all nodes in the cluster
+sudo rpm -qa | grep log4cxx
+log4cxx-0.10.0-13.el6.x86_64</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="prepare-download-trafodion-binaries">5.9. Download Trafodion Binaries</h3>
+<h3 id="prepare-download-trafodion-binaries">4.8. Download Trafodion Binaries</h3>
 <div class="paragraph">
 <p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
@@ -4595,6 +3715,9 @@ You can download and install the Trafodion Clients once you&#8217;ve installed a
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p><a href="http://apache.cs.utah.edu/incubator/celix/celix-1.0.0.incubating/celix-1.0.0.incubating.tar.gz" class="bare">http://apache.cs.utah.edu/incubator/celix/celix-1.0.0.incubating/celix-1.0.0.incubating.tar.gz</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4637,7 +3760,7 @@ $</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="prepare-preparation-for-recipe-based-provisioning">5.10. Preparation for Recipe-Based Provisioning</h3>
+<h3 id="prepare-preparation-for-recipe-based-provisioning">4.9. Preparation for Recipe-Based Provisioning</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4651,14 +3774,14 @@ This step should be skipped if you plan to use the Trafodion Installer
 </table>
 </div>
 <div class="sect3">
-<h4 id="prepare-modify-os-settings">5.10.1. Modify OS Settings</h4>
+<h4 id="prepare-modify-os-settings">4.9.1. Modify OS Settings</h4>
 <div class="paragraph">
 <p>Ensure that the <code>/etc/security/limits.d/trafodion.conf</code> on each node contains the limits settings required by Trafodion.
 Refer to <a href="#requirements-operating-system-changes">Operating System Changes</a> for the required settings.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="prepare-modify-zookeeper-configuration">5.10.2. Modify ZooKeeper Configuration</h4>
+<h4 id="prepare-modify-zookeeper-configuration">4.9.2. Modify ZooKeeper Configuration</h4>
 <div class="paragraph">
 <p>Do the following:</p>
 </div>
@@ -4692,7 +3815,7 @@ Refer to <a href="#requirements-operating-system-changes">Operating System Chang
 </div>
 </div>
 <div class="sect3">
-<h4 id="prepare-modify-hdfs-configuration">5.10.3. Modify HDFS Configuration</h4>
+<h4 id="prepare-modify-hdfs-configuration">4.9.3. Modify HDFS Configuration</h4>
 <div class="paragraph">
 <p>Do the following:</p>
 </div>
@@ -4726,7 +3849,7 @@ Refer to <a href="#requirements-operating-system-changes">Operating System Chang
 </div>
 </div>
 <div class="sect3">
-<h4 id="prepare-modify-hbase-configuration">5.10.4. Modify HBase Configuration</h4>
+<h4 id="prepare-modify-hbase-configuration">4.9.4. Modify HBase Configuration</h4>
 <div class="paragraph">
 <p>Do the following:</p>
 </div>
@@ -4751,7 +3874,7 @@ Refer to <a href="#requirements-operating-system-changes">Operating System Chang
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>false</pre></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.coprocessor.region.classes<sup>b</sup></pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.coprocessor.region.classes</pre></div></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>org.apache.hadoop.hbase.coprocessor.transactional.TrxRegionObserver,org.apache.hadoop.hbase.coprocessor.transactional.TrxRegionEndpoint,
 org.apache.hadoop.hbase.coprocessor.AggregateImplementation</pre></div></td>
 </tr>
@@ -4804,9 +3927,6 @@ org.apache.hadoop.hbase.coprocessor.AggregateImplementation</pre></div></td>
 <div class="paragraph">
 <p>a) Applies to Cloudera distributions only.</p>
 </div>
-<div class="paragraph">
-<p>b) Do not overwrite any coprocessors that may already exist.</p>
-</div>
 </li>
 <li>
 <p>Restart HBase to activate the new configuration setting.</p>
@@ -4818,14 +3938,27 @@ org.apache.hadoop.hbase.coprocessor.AggregateImplementation</pre></div></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="install">6. Install</h2>
+<h2 id="install">5. Install</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This chapter describes how to use the Trafodion Installer to install Trafodion. You use the Trafodion Provisioning ID
 to run the Trafodion Installer.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Prior to version 2.0.0, you <strong>must</strong> install log4c&#43;&#43; on all nodes in the cluster prior to running the Trafodion Installer. Refer
+to <a href="#prepare-build-and-install-log4cplusplus">Build and Install log4c++</a> for instructions.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="install-unpack-installer">6.1. Unpack Installer</h3>
+<h3 id="install-unpack-installer">5.1. Unpack Installer</h3>
 <div class="paragraph">
 <p>You should already have downloaded the Trafodion Binaries per the instructions in the
 <a href="#prepare-download-trafodion-binaries">Download Trafodion Binaries</a> in the <a href="#prepare">Prepare</a>
@@ -4842,19 +3975,242 @@ chapter. If not, please do so now.</p>
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
 $ tar -zxf apache-trafodion-installer-1.3.0-incubating-bin.tar.gz -C $HOME/trafodion-installer
+$ ls $HOME/trafodion-installer/installer
+bashrc_default           tools                             traf_config_check           trafodion_apache_hadoop_install  traf_package_setup
+build-version-1.3.0.txt  traf_add_user                     traf_config_setup           trafodion_config_default         traf_setup
+dcs_installer            traf_apache_hadoop_config_setup   traf_create_systemdefaults  trafodion_install                traf_sqconfig
+rest_installer           traf_authentication_conf_default  traf_getHadoopNodes         trafodion_license                traf_start
+setup_known_hosts.exp    traf_cloudera_mods98              traf_hortonworks_mods98     trafodion_uninstaller
 $</code></pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="install-guided-install">6.2. Guided Install</h3>
+<h3 id="install-automated-install">5.2. Automated Install</h3>
+<div class="paragraph">
+<p>The <code>--config_file</code> option runs the Trafodion in Automated Setup mode. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a>
+in the <a href="#introduction">Introduction</a> chapter for instructions of how you edit your configuration file.</p>
+</div>
+<div class="paragraph">
+<p>Edit your config file using the information you collected in the <a href="#prepare-gather-configuration-information">Gather Configuration Information</a>
+step in the <a href="#prepare">Prepare</a> chapter.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows an automated install of Trafodion on a two-node Hortonworks Hadoop cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the Trafodion Installer invokes <code>sqlci</code> so that you can enter the <code>initialize trafodion;</code> command.
+This is shown in the example below.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the Trafodion Installer in Automated Setup mode.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-installer/installer
+$ ./trafodion_install --config_file my
+******************************
+ TRAFODION INSTALLATION START
+******************************
+
+***INFO: testing sudo access
+***INFO: Log file located at /var/log/trafodion/trafodion_install_2016-02-16-21-12-03.log
+***INFO: Config directory: /etc/trafodion
+***INFO: Working directory: /usr/lib/trafodion
+
+************************************
+ Trafodion Configuration File Check
+************************************
+
+
+***INFO: Testing sudo access on node trafodion-1
+***INFO: Testing sudo access on node trafodion-2
+***INFO: Testing ssh on trafodion-1
+***INFO: Testing ssh on trafodion-2
+***INFO: Getting list of all hortonworks nodes
+***INFO: Getting list of all hortonworks nodes
+***INFO: hortonworks list of nodes:  trafodion-1 trafodion-2
+***INFO: Testing ssh on trafodion-1
+***INFO: Testing ssh on trafodion-2
+***INFO: Testing sudo access on trafodion-1
+***INFO: Testing sudo access on trafodion-2
+***DEBUG: trafodionFullName=trafodion_server-1.3.0.tgz
+***INFO: Trafodion version = 1.3.0
+***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
+
+******************************
+ TRAFODION SETUP
+******************************
+
+***INFO: Starting Trafodion environment setup (2016-02-16-21-12-31)
+=== 2016-02-16-21-12-31 ===
+# @@@ START COPYRIGHT @@@
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# &quot;License&quot;); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+.
+.
+.
+9. Accepting Warranty or Additional Liability. While redistributing
+the Work or Derivative Works thereof, You may choose to offer, and
+charge a fee for, acceptance of support, warranty, indemnity, or
+other liability obligations and/or rights consistent with this
+License. However, in accepting such obligations, You may act only
+on Your own behalf and on Your sole responsibility, not on behalf
+of any other Contributor, and only if You agree to indemnify, defend,
+and hold each Contributor harmless for any liability incurred by,
+or claims asserted against, such Contributor by reason of your
+accepting any such warranty or additional liability.
+
+END OF TERMS AND CONDITIONS
+
+BY TYPING &quot;ACCEPT&quot; YOU AGREE TO THE TERMS OF THIS AGREEMENT: ***INFO: testing sudo access
+***INFO: Checking all nodes in specified node list
+trafodion-1
+trafodion-2
+***INFO: Total number of nodes = 2
+***INFO: Starting Trafodion Package Setup (2016-02-16-21-12-35)
+***INFO: Installing required packages
+***INFO: Log file located in /var/log/trafodion
+***INFO: ... EPEL rpm
+***INFO: ... pdsh on node trafodion-1
+***INFO: ... pdsh on node trafodion-2
+***INFO: Checking if log4cxx is installed ...
+***INFO: Checking if sqlite is installed ...
+***INFO: Checking if expect is installed ...
+.
+.
+.
+***INFO: trafodion user added successfully
+***INFO: Trafodion environment setup completed
+***INFO: creating sqconfig file
+***INFO: Reserving DCS ports
+
+******************************
+ TRAFODION MODS
+******************************
+
+***INFO: Hortonworks installed will run traf_hortonworks_mods98
+***INFO: Detected JAVA version 1.7
+***INFO: copying hbase-trx-hdp2_2-1.3.0.jar to all nodes
+PORT=:8080
+########## Performing 'set' hbase.master.distributed.log.splitting:false on (Site:hbase-site, Tag:version1)
+########## PUTting json into: doSet_version1455657199513777160.json
+.
+.
+.
+Starting the REST environment now
+starting rest, logging to /home/trafodion/apache-trafodion-1.3.0-incubating-bin/rest-1.3.0/bin/../logs/rest-trafodion-1-rest-trafodion-1.out
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/trafodion/apache-trafodion-1.3.0-incubating-bin/rest-1.3.0/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.9.0-3393/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+
+DcsMaster is not started. Please start DCS using 'dcsstart' command...
+
+Process         Configured      Actual          Down
+---------       ----------      ------          ----
+DcsMaster       1               0               1
+DcsServer       2               0               2
+mxosrvr         8               8
+
+
+You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-1.3.0-incubating-bin/logs/sqmon.log
+
+
+Startup time  0 hour(s) 1 minute(s) 9 second(s)
+Apache Trafodion Conversational Interface 1.3.0
+Copyright (c) 2015 Apache Software Foundation
+&gt;&gt; initialize trafodion;
+--- SQL operation complete.
+&gt;&gt;
+
+End of MXCI Session
+
+***INFO: Installation completed successfully.
+
+*********************************
+ TRAFODION INSTALLATION COMPLETE
+*********************************
+
+$</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Switch to the Trafodion Runtime User and check the status of Trafodion.</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ sudo su - trafodion
+$ sqcheck
+Checking if processes are up.
+Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
+
+The SQ environment is up!
+
+
+Process         Configured      Actual      Down
+-------         ----------      ------      ----
+DTM             2               2
+RMS             4               4
+MXOSRVR         8               8
+
+$</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Trafodion is now running on your Hadoop cluster. Please refer to the <a href="#activate">Activate</a> chapter for
+basic instructions on how to verify the Trafodion management and how to perform basic management
+operations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-guided-install">5.3. Guided Install</h3>
 <div class="paragraph">
 <p>The Trafodion Installer prompts you for the information you collected in the
 <a href="#prepare-gather-configuration-information">Gather Configuration Information</a> step in the <a href="#prepare">Prepare</a> chapter.</p>
 </div>
 <div class="paragraph">
-<p>The following example shows a guided install of Trafodion on a two-node Cloudera Hadoop cluster that does not have Kerberos nor LDAP installed.</p>
+<p>The following example shows a guided install of Trafodion on a two-node Cloudera Hadoop cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the Trafodion Installer invokes <code>sqlci</code> so that you can enter the <code>initialize trafodion;</code> command.
+This is shown in the example below.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -5127,211 +4483,18 @@ $</code></pre>
 basic instructions on how to verify the Trafodion management and how to perform basic management
 operations.</p>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="install-automated-install">6.3. Automated Install</h3>
-<div class="paragraph">
-<p>The <code>--config_file</code> option runs the Trafodion in Automated Setup mode. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a>
-in the <a href="#introduction">Introduction</a> chapter for instructions of how you edit your configuration file.</p>
-</div>
-<div class="paragraph">
-<p>Edit your config file using the information you collected in the <a href="#prepare-gather-configuration-information">Gather Configuration Information</a>
-step in the <a href="#prepare">Prepare</a> chapter.</p>
-</div>
-<div class="paragraph">
-<p>The following example shows an automated install of Trafodion on a two-node Hortonworks Hadoop cluster that does not have Kerberos nor LDAP enabled.</p>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run the Trafodion Installer in Automated Setup mode.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-installer/installer
-$ ./trafodion_install --config_file my
-******************************
- TRAFODION INSTALLATION START
-******************************
-
-***INFO: testing sudo access
-***INFO: Log file located at /var/log/trafodion/trafodion_install_2016-02-16-21-12-03.log
-***INFO: Config directory: /etc/trafodion
-***INFO: Working directory: /usr/lib/trafodion
-
-************************************
- Trafodion Configuration File Check
-************************************
-
-
-***INFO: Testing sudo access on node trafodion-1
-***INFO: Testing sudo access on node trafodion-2
-***INFO: Testing ssh on trafodion-1
-***INFO: Testing ssh on trafodion-2
-***INFO: Getting list of all hortonworks nodes
-***INFO: Getting list of all hortonworks nodes
-***INFO: hortonworks list of nodes:  trafodion-1 trafodion-2
-***INFO: Testing ssh on trafodion-1
-***INFO: Testing ssh on trafodion-2
-***INFO: Testing sudo access on trafodion-1
-***INFO: Testing sudo access on trafodion-2
-***DEBUG: trafodionFullName=trafodion_server-1.3.0.tgz
-***INFO: Trafodion version = 1.3.0
-***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
-
-******************************
- TRAFODION SETUP
-******************************
-
-***INFO: Starting Trafodion environment setup (2016-02-16-21-12-31)
-=== 2016-02-16-21-12-31 ===
-# @@@ START COPYRIGHT @@@
-#
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# &quot;License&quot;); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-.
-.
-.
-9. Accepting Warranty or Additional Liability. While redistributing
-the Work or Derivative Works thereof, You may choose to offer, and
-charge a fee for, acceptance of support, warranty, indemnity, or
-other liability obligations and/or rights consistent with this
-License. However, in accepting such obligations, You may act only
-on Your own behalf and on Your sole responsibility, not on behalf
-of any other Contributor, and only if You agree to indemnify, defend,
-and hold each Contributor harmless for any liability incurred by,
-or claims asserted against, such Contributor by reason of your
-accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
-BY TYPING &quot;ACCEPT&quot; YOU AGREE TO THE TERMS OF THIS AGREEMENT: ***INFO: testing sudo access
-***INFO: Checking all nodes in specified node list
-trafodion-1
-trafodion-2
-***INFO: Total number of nodes = 2
-***INFO: Starting Trafodion Package Setup (2016-02-16-21-12-35)
-***INFO: Installing required packages
-***INFO: Log file located in /var/log/trafodion
-***INFO: ... EPEL rpm
-***INFO: ... pdsh on node trafodion-1
-***INFO: ... pdsh on node trafodion-2
-***INFO: Checking if log4cxx is installed ...
-***INFO: Checking if sqlite is installed ...
-***INFO: Checking if expect is installed ...
-.
-.
-.
-***INFO: trafodion user added successfully
-***INFO: Trafodion environment setup completed
-***INFO: creating sqconfig file
-***INFO: Reserving DCS ports
-
-******************************
- TRAFODION MODS
-******************************
-
-***INFO: Hortonworks installed will run traf_hortonworks_mods98
-***INFO: Detected JAVA version 1.7
-***INFO: copying hbase-trx-hdp2_2-1.3.0.jar to all nodes
-PORT=:8080
-########## Performing 'set' hbase.master.distributed.log.splitting:false on (Site:hbase-site, Tag:version1)
-########## PUTting json into: doSet_version1455657199513777160.json
-.
-.
-.
-Starting the REST environment now
-starting rest, logging to /home/trafodion/apache-trafodion-1.3.0-incubating-bin/rest-1.3.0/bin/../logs/rest-trafodion-1-rest-trafodion-1.out
-SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/home/trafodion/apache-trafodion-1.3.0-incubating-bin/rest-1.3.0/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/usr/hdp/2.2.9.0-3393/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
-SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
-
-
-DcsMaster is not started. Please start DCS using 'dcsstart' command...
-
-Process         Configured      Actual          Down
----------       ----------      ------          ----
-DcsMaster       1               0               1
-DcsServer       2               0               2
-mxosrvr         8               8
-
-
-You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-1.3.0-incubating-bin/logs/sqmon.log
-
-
-Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache Trafodion Conversational Interface 1.3.0
-Copyright (c) 2015 Apache Software Foundation
-&gt;&gt; initialize trafodion;
---- SQL operation complete.
-&gt;&gt;
-
-End of MXCI Session
-
-***INFO: Installation completed successfully.
-
-*********************************
- TRAFODION INSTALLATION COMPLETE
-*********************************
-
-$</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Switch to the Trafodion Runtime User and check the status of Trafodion.</p>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ sudo su - trafodion
-$ sqcheck
-Checking if processes are up.
-Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
-
-The SQ environment is up!
-
-
-Process         Configured      Actual      Down
--------         ----------      ------      ----
-DTM             2               2
-RMS             4               4
-MXOSRVR         8               8
-
-$</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Trafodion is now running on your Hadoop cluster. Please refer to the <a href="#activate">Activate</a> chapter for
-basic instructions on how to verify the Trafodion management and how to perform basic management
-operations.</p>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrade">7. Upgrade</h2>
+<h2 id="upgrade">6. Upgrade</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This chapter describes how to use the Trafodion Installer to upgrade Trafodion. You use the Trafodion Provisioning ID
 to run the Trafodion Installer.</p>
 </div>
 <div class="sect2">
-<h3 id="upgraded-download-updated-trafodion-binaries">7.1. Download Updated Trafodion Binaries</h3>
+<h3 id="upgraded-download-updated-trafodion-binaries">6.1. Download Updated Trafodion Binaries</h3>
 <div class="paragraph">
 <p>You perform this step as the Trafodion Provisioning User.</p>
 </div>
@@ -5354,7 +4517,7 @@ Download the following packages:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="upgrade-unpack-installer">7.2. Unpack Installer</h3>
+<h3 id="upgrade-unpack-installer">6.2. Unpack Installer</h3>
 <div class="paragraph">
 <p>You perform this step as the Trafodion Provisioning User.</p>
 </div>
@@ -5369,12 +4532,18 @@ Download the following packages:</p>
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer-2.0
 $ cd $HOME/trafodion-downloads
 $ tar -zxf apache-trafodion-installer-2.0.0-incubating-bin.tar.gz -C $HOME/trafodion-installer
+$ ls $HOME/trafodion-installer/installer-2.0
+bashrc_default           tools                             traf_config_check           trafodion_apache_hadoop_install  traf_package_setup
+build-version-2.0.0.txt  traf_add_user                     traf_config_setup           trafodion_config_default         traf_setup
+dcs_installer            traf_apache_hadoop_config_setup   traf_create_systemdefaults  trafodion_install                traf_sqconfig
+rest_installer           traf_authentication_conf_default  traf_getHadoopNodes         trafodion_license                traf_start
+setup_known_hosts.exp    traf_cloudera_mods98              traf_hortonworks_mods98     trafodion_uninstaller
 $</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="upgrade-stop-tradodion">7.3. Stop Trafodion</h3>
+<h3 id="upgrade-stop-tradodion">6.3. Stop Trafodion</h3>
 <div class="paragraph">
 <p>You perform this step as the Trafodion Runtime User.</p>
 </div>
@@ -5442,7 +4611,186 @@ $</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="upgrade-guided-upgrade">7.4. Guided Upgrade</h3>
+<h3 id="upgrade-automated-upgrade">6.4. Automated Upgrade</h3>
+<div class="paragraph">
+<p>You perform this step as the Trafodion Provisioning User.</p>
+</div>
+<div class="paragraph">
+<p>The <code>--config_file</code> option runs the Trafodion in Automated Setup mode. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a>
+in the <a href="#introduction">Introduction</a> chapter for instructions of how you edit your configuration file.</p>
+</div>
+<div class="paragraph">
+<p>At a minimum, you need to change the following settings:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LOCAL_WORKDIR</code></p>
+</li>
+<li>
+<p><code>TRAF_PACKAGE</code></p>
+</li>
+<li>
+<p><code>SQ_ROOT</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-configuration
+$ cp my_config my_config_2.0
+$ # Pre edit content
+
+export LOCAL_WORKDIR=&quot;/home/centos/trafodion-installer/installer&quot;
+export TRAF_PACKAGE=&quot;/home/centos/trafodion-download/apache-trafodion-1.3.0-incubating-bin.tar.gz&quot;
+export SQ_ROOT=&quot;/home/trafodion/apache-trafodion-1.3.0-incubating-bin&quot;
+
+$ # Use your favorit editor to modify my_config_2.0
+$ emacs my_config_2.0
+$ # Post edit changes
+
+export LOCAL_WORKDIR=&quot;/home/centos/trafodion-installer-2.0/installer&quot;
+export TRAF_PACKAGE=&quot;/home/centos/trafodion-download/apache-trafodion-2.0.0-incubating-bin.tar.gz&quot;
+export SQ_ROOT=&quot;/home/trafodion/apache-trafodion-2.0.0-incubating-bin&quot;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows an upgrade of Trafodion on a two-node Hortonworks Hadoop cluster using
+Automated Setup mode.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Trafodion Installer performs the same configuration changes as it does for an installation,
+including restarting Hadoop services.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the updated Trafodion Installer using the modified my_config_2.0 file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-installer-2.0/installer
+$ ./trafodion_install --config_file $HOME/trafodion-configuration/my_config_2.0
+******************************
+ TRAFODION INSTALLATION START
+******************************
+
+***INFO: Testing sudo access on node trafodion-1
+***INFO: Testing sudo access on node trafodion-2
+***INFO: Testing ssh on trafodion-1
+***INFO: Testing ssh on trafodion-2
+***INFO: Getting list of all hortonworks nodes
+***INFO: Getting list of all hortonworks nodes
+***INFO: hortonworks list of nodes:  trafodion-1 trafodion-2
+***INFO: Testing ssh on trafodion-1
+***INFO: Testing ssh on trafodion-2
+***INFO: Testing sudo access on trafodion-1
+***INFO: Testing sudo access on trafodion-2
+***INFO: Trafodion scanner will not be run.
+***DEBUG: trafodionFullName=trafodion_server-2.0.0.tgz
+***INFO: Trafodion version = 2.0.0
+***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
+
+******************************
+ TRAFODION SETUP
+******************************
+
+***INFO: Installing required RPM packages
+***INFO: Starting Trafodion Package Setup (2016-02-17-05-33-29)
+***INFO: Installing required packages
+***INFO: Log file located in /var/log/trafodion
+***INFO: ... pdsh on node trafodion-1
+***INFO: ... pdsh on node trafodion-2
+***INFO: Checking if log4cxx is installed ...
+.
+.
+.
+DcsMaster is not started. Please start DCS using 'dcsstart' command...
+
+Process         Configured      Actual          Down
+---------       ----------      ------          ----
+DcsMaster       1               0               1
+DcsServer       2               0               2
+mxosrvr         8               8
+
+
+You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-2.0.0-incubating-bin/logs/sqmon.log
+
+
+Startup time  0 hour(s) 1 minute(s) 9 second(s)
+Apache Trafodion Conversational Interface 1.3.0
+Copyright (c) 2015 Apache Software Foundation
+&gt;&gt;Metadata Upgrade: started
+
+Version Check: started
+  Metadata is already at Version 1.1.
+Version Check: done
+
+Metadata Upgrade: done
+
+
+--- SQL operation complete.
+&gt;&gt;
+
+End of MXCI Session
+
+***INFO: Installation completed successfully.
+
+*********************************
+ TRAFODION INSTALLATION COMPLETE
+*********************************
+
+$</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Switch to the Trafodion Runtime User and check the status of Trafodion.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">$ sudo su - trafodion
+$ sqcheck
+Checking if processes are up.
+Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
+
+The SQ environment is up!
+
+
+Process         Configured      Actual      Down
+-------         ----------      ------      ----
+DTM             2               2
+RMS             4               4
+MXOSRVR         8               8
+
+$</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Trafodion is now running on your Hadoop cluster. Please refer to the <a href="#activate">Activate</a> chapter for
+basic instructions on how to verify the Trafodion management and how to perform basic management
+operations.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="upgrade-guided-upgrade">6.5. Guided Upgrade</h3>
 <div class="paragraph">
 <p>You perform this step as the Trafodion Provisioning User.</p>
 </div>
@@ -5452,7 +4800,12 @@ $</code></pre>
 Some of the prompts are populated with the current values.</p>
 </div>
 <div class="paragraph">
-<p>The following example shows a guided upgrade of Trafodion on a two-node Cloudera Hadoop cluster without Kerberos nor LDAP enabled.</p>
+<p>export LOCAL_WORKDIR="/home/centos/trafodion-installer/installer"
+export TRAF_PACKAGE="/home/centos/trafodion-download/apache-trafodion-1.3.0-incubating-bin.tar.gz"
+export SQ_ROOT="/home/trafodion/apache-trafodion-1.3.0-incubating-bin"</p>
+</div>
+<div class="paragraph">
+<p>The following example shows a guided upgrade of Trafodion on a two-node Cloudera Hadoop cluster.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
@@ -5614,193 +4967,14 @@ $</code></pre>
 basic instructions on how to verify the Trafodion management and how to perform basic management
 operations.</p>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="upgrade-automated-upgrade">7.5. Automated Upgrade</h3>
-<div class="paragraph">
-<p>You perform this step as the Trafodion Provisioning User.</p>
-</div>
-<div class="paragraph">
-<p>The <code>--config_file</code> option runs the Trafodion in Automated Setup mode. Refer to <a href="#introduction-trafodion-installer">Trafodion Installer</a>
-in the <a href="#introduction">Introduction</a> chapter for instructions of how you edit your configuration file.</p>
-</div>
-<div class="paragraph">
-<p>At a minimum, you need to change the following settings:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>LOCAL_WORKDIR</code></p>
-</li>
-<li>
-<p><code>TRAF_PACKAGE</code></p>
-</li>
-<li>
-<p><code>SQ_ROOT</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-configuration
-$ cp my_config my_config_2.0
-$ # Pre edit content
-
-export LOCAL_WORKDIR=&quot;/home/centos/trafodion-installer/installer&quot;
-export TRAF_PACKAGE=&quot;/home/centos/trafodion-download/apache-trafodion-1.3.0-incubating-bin.tar.gz&quot;
-export SQ_ROOT=&quot;/home/trafodion/apache-trafodion-1.3.0-incubating-bin&quot;
-
-$ # Use your favorite editor to modify my_config_2.0
-$ emacs my_config_2.0
-$ # Post edit changes
-
-export LOCAL_WORKDIR=&quot;/home/centos/trafodion-installer-2.0/installer&quot;
-export TRAF_PACKAGE=&quot;/home/centos/trafodion-download/apache-trafodion-2.0.0-incubating-bin.tar.gz&quot;
-export SQ_ROOT=&quot;/home/trafodion/apache-trafodion-2.0.0-incubating-bin&quot;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following example shows an upgrade of Trafodion on a two-node Hortonworks Hadoop cluster using
-Automated Setup mode without Kerberos nor LDAP enabled.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Trafodion Installer performs the same configuration changes as it does for an installation,
-including restarting Hadoop services.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>Example</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run the updated Trafodion Installer using the modified my_config_2.0 file.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ cd $HOME/trafodion-installer-2.0/installer
-$ ./trafodion_install --config_file $HOME/trafodion-configuration/my_config_2.0
-******************************
- TRAFODION INSTALLATION START
-******************************
-
-***INFO: Testing sudo access on node trafodion-1
-***INFO: Testing sudo access on node trafodion-2
-***INFO: Testing ssh on trafodion-1
-***INFO: Testing ssh on trafodion-2
-***INFO: Getting list of all hortonworks nodes
-***INFO: Getting list of all hortonworks nodes
-***INFO: hortonworks list of nodes:  trafodion-1 trafodion-2
-***INFO: Testing ssh on trafodion-1
-***INFO: Testing ssh on trafodion-2
-***INFO: Testing sudo access on trafodion-1
-***INFO: Testing sudo access on trafodion-2
-***INFO: Trafodion scanner will not be run.
-***DEBUG: trafodionFullName=trafodion_server-2.0.0.tgz
-***INFO: Trafodion version = 2.0.0
-***DEBUG: HBase's java_exec=/usr/jdk64/jdk1.7.0_67/bin/java
-
-******************************
- TRAFODION SETUP
-******************************
-
-***INFO: Installing required RPM packages
-***INFO: Starting Trafodion Package Setup (2016-02-17-05-33-29)
-***INFO: Installing required packages
-***INFO: Log file located in /var/log/trafodion
-***INFO: ... pdsh on node trafodion-1
-***INFO: ... pdsh on node trafodion-2
-***INFO: Checking if log4cxx is installed ...
-.
-.
-.
-DcsMaster is not started. Please start DCS using 'dcsstart' command...
-
-Process         Configured      Actual          Down
----------       ----------      ------          ----
-DcsMaster       1               0               1
-DcsServer       2               0               2
-mxosrvr         8               8
-
-
-You can monitor the SQ shell log file : /home/trafodion/apache-trafodion-2.0.0-incubating-bin/logs/sqmon.log
-
-
-Startup time  0 hour(s) 1 minute(s) 9 second(s)
-Apache Trafodion Conversational Interface 1.3.0
-Copyright (c) 2015 Apache Software Foundation
-&gt;&gt;Metadata Upgrade: started
-
-Version Check: started
-  Metadata is already at Version 1.1.
-Version Check: done
-
-Metadata Upgrade: done
-
-
---- SQL operation complete.
-&gt;&gt;
-
-End of MXCI Session
-
-***INFO: Installation completed successfully.
-
-*********************************
- TRAFODION INSTALLATION COMPLETE
-*********************************
-
-$</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Switch to the Trafodion Runtime User and check the status of Trafodion.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">$ sudo su - trafodion
-$ sqcheck
-Checking if processes are up.
-Checking attempt: 1; user specified max: 2. Execution time in seconds: 0.
-
-The SQ environment is up!
-
-
-Process         Configured      Actual      Down
--------         ----------      ------      ----
-DTM             2               2
-RMS             4               4
-MXOSRVR         8               8
-
-$</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Trafodion is now running on your Hadoop cluster. Please refer to the <a href="#activate">Activate</a> chapter for
-basic instructions on how to verify the Trafodion management and how to perform basic management
-operations.</p>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="activate">8. Activate</h2>
+<h2 id="activate">7. Activate</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="activate-manage-trafodion">8.1. Manage Trafodion</h3>
+<h3 id="activate-manage-trafodion">7.1. Manage Trafodion</h3>
 <div class="paragraph">
 <p>You use the Trafodion runtime user ID to perform Trafodion management operations.</p>
 </div>
@@ -5867,13 +5041,13 @@ sqcheck</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="activate-validate-trafodion-installation">8.2. Validate Trafodion Installation</h3>
+<h3 id="activate-validate-trafodion-installation">7.2. Validate Trafodion Installation</h3>
 <div class="paragraph">
 <p>You can use sqlci (part of the base product) or trafci (requires separate install; see the
 <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) to validate your installation.</p>
 </div>
 <div class="sect3">
-<h4 id="_smoke_test">8.2.1. Smoke Test</h4>
+<h4 id="_smoke_test">7.2.1. Smoke Test</h4>
 <div class="paragraph">
 <p>A simple smoke test to validate that Trafodion is functioning.</p>
 </div>
@@ -5904,7 +5078,6 @@ Schemas in Catalog TRAFODION
 
 SEABASE
 _MD_
-_LIBMGR_
 _REPOS_
 
 --- SQL operation complete.
@@ -5964,7 +5137,7 @@ $</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="activate-troubleshooting-tips">8.3. Troubleshooting Tips</h3>
+<h3 id="activate-troubleshooting-tips">7.3. Troubleshooting Tips</h3>
 <div class="paragraph">
 <p>If you are not able to start up the environment or if there are problems running sqlci or trafci, then verify that the all the processes are up and running.</p>
 </div>
@@ -6002,7 +5175,7 @@ $</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="remove">9. Remove</h2>
+<h2 id="remove">8. Remove</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You use the Trafodion Provisioning User for these instructions.</p>
@@ -6024,7 +5197,7 @@ which automatically upgrades the version of Trafodion. Please refer to the <a hr
 <p>Run the commands from the first node of the cluster. Do not run them from a machine that is not part of the Trafodion cluster.</p>
 </div>
 <div class="sect2">
-<h3 id="_stop_trafodion">9.1. Stop Trafodion</h3>
+<h3 id="_stop_trafodion">8.1. Stop Trafodion</h3>
 <div class="paragraph">
 <p>Do the following:</p>
 </div>
@@ -6081,7 +5254,7 @@ Mon Feb 15 07:49:26 UTC 2016
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_code_trafodion_uninstaller_code">9.2. Run <code>trafodion_uninstaller</code></h3>
+<h3 id="_run_code_trafodion_uninstaller_code">8.2. Run <code>trafodion_uninstaller</code></h3>
 <div class="paragraph">
 <p>The <code>trafodion_uninstaller</code> completely removes Trafodion.</p>
 </div>
@@ -6120,186 +5293,30 @@ pdsh@trafodion-1: trafodion-2: ssh exited with exit code 1
 </div>
 </div>
 <div class="sect1">
-<h2 id="enable-security">10. Enable Security</h2>
+<h2 id="enable-security">9. Enable Security</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Trafodion supports user authentication with LDAP, integrates with Hadoop&#8217;s Kerberos environment and
-supports authorization through database grant and revoke requests (privileges).</p>
+<p>If you do not enable security in Trafodion, then a client interface to Trafodion may request a user name and password,
+but Trafodion ignores the user name and password entered in the client interface, and the session runs as the database <strong>root</strong> user,
+<code>DB__ROOT</code>, without restrictions. If you want to restrict users, restrict access to certain users only, or restrict access to an
+object or operation, then you must enable security, which enforces authentication and authorization. You can enable security
+during installation by answering the Trafodion Installer&#8217;s prompts or after installation by running the <code>traf_authentication_setup</code>
+script, which enables both authentication and authorization. For more information, see
+<a href="#enable-security-authentication-setup-script">Authentication Setup Script</a> below.</p>
 </div>
 <div class="paragraph">
-<p>If this is an initial installation, both LDAP and Kerberos can be configured by running the Trafodion installer.
-If Trafodion is already installed, then both LDAP and Kerberos can be configured by running the Trafodion
-security installer.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If Hadoop has enabled Kerberos, then Trafodion must also enable Kerberos.</p>
-</li>
-<li>
-<p>If Kerberos is enabled, then LDAP must be enabled.</p>
-</li>
-<li>
-<p>If LDAP is enabled, then database authorization (privilege support) is automatically enabled.</p>
-</li>
-<li>
-<p>If Kerberos is not enabled, then enabling LDAP is optional.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="enable-security-kerberos">10.1. Configuring Trafodion for Kerberos</h3>
-<div class="paragraph">
-<p>Kerberos is a protocol for authenticating a request for a service or operation.  It uses the notion of a ticket to verify accessibility.
-The ticket is proof of identity encrypted with a secret key for the particular requested service.  Tickets exist for a short time and
-then expire. Therefore, you can use the service as long as your ticket is valid (i.e. not expired).  Hadoop uses Kerberos to provide
-security for its services, as such Trafodion needs to function properly with Hadoop that have Kerberos enabled.</p>
-</div>
-<div class="sect3">
-<h4 id="_kerberos_configuration_file">10.1.1. Kerberos configuration file</h4>
-<div class="paragraph">
-<p>It is assumed that Kerberos has already been set up on all the nodes by the time Trafodion is installed.
-This section briefly discusses the Kerberos configuration file for reference.</p>
-</div>
-<div class="paragraph">
-<p>The Kerberos configuration file defaults to /etc/krb5.conf and contains, among other attributes:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">* log location: location where Kerberos errors and other information are logged
-* KDC location: host location where the KDC (Key Distribution Center) is located
-* admin server location: host location where the Kerberos admin server is located
-* realm: the set of nodes that share a Kerberos database
-* ticket defaults: contains defaults for ticket lifetimes, encoding, and other attributes</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You need to have access to a Kerberos administrator account to enable Kerberos for Trafodion.  The following is an example request that lists principals defined in the Kerberos database that can be used to test connectivity:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">kadmin -p 'kdcadmin/admin' -w 'kdcadmin123' -s 'kdc.server' -q 'listprincs'
-* -p (principal): please replace 'kdcadmin/admin' with your admin principal
-* -w (password): please replace 'kdadmin123' with the password for the admin principal
-* -s (server location): please replace 'kdc.server' with your KDC admin server location
-* -q (command): defines the command to run, in this case principals are returned</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ticket_management">10.1.2. Ticket Management</h4>
-<div class="paragraph">
-<p>When Kerberos is enabled in Trafodion, the security installation process:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Adds a Trafodion principal in Kerberos, one per node with the name trafodion/hostname@realm.</p>
-</li>
-<li>
-<p>Creates a keytab for each principal and distributes the keytab to each node. The keytab name is the same for all nodes
-and defaults to a value based on the distribution, for example: etc/trafodion/keytabs/trafodion.service.keytab.</p>
-</li>
-<li>
-<p>Performs a "kinit" on all nodes in the cluster for the <code>trafodion</code> user.</p>
-</li>
-<li>
-<p>Adds commands to perform "kinit" and to start the ticket renewal procedure to the <code>trafodion</code> .bashrc scripts on each node.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The ticket renewal service renews tickets up until the maximum number of renewals allowed.  So if your ticket lifetime is
-one day and the number of renewals is seven days, the ticket renewal service automatically renews tickets six times.  Once
-the ticket expires, it must be initialized again to continue running Trafodion.  Connecting to each node as the <code>trafodion</code>
-user initializes the ticket if one does not exist.</p>
-</div>
-<div class="paragraph">
-<p>TBD - A future update will include details on how tickets can be managed at the cluster level.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_kerberos_installation">10.1.3. Kerberos installation</h4>
-<div class="paragraph">
-<p>The Trafodion installation scripts automatically determine if Kerberos is enabled on the node.  If it is enabled,
-then the environment variable SECURE_HADOOP is set to "Y".</p>
-</div>
-<div class="paragraph">
-<p>The following are questions that will be asked related to Kerberos:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Enter KDC server address, default is []: – no default</p>
-</li>
-<li>
-<p>Enter admin principal (include realm), default is []:  - no default</p>
-</li>
-<li>
-<p>Enter fully qualified name for HBase keytab, default is []: - Installer searches for a valid keytab based on the distribution</p>
-</li>
-<li>
-<p>Enter fully qualified name for HDFS keytab, default is []: - Installer searches for a valid keytab based on the distribution</p>
-</li>
-<li>
-<p>Enter max lifetime for Trafodion principal (valid format required), default is [24hours]:</p>
-</li>
-<li>
-<p>Enter renew lifetime for Trafodion principal (valid format required), default is [7days]:</p>
-</li>
-<li>
-<p>Enter Trafodion keytab name, default is []:  - Installer determines default name based on the distribution</p>
-</li>
-<li>
-<p>Enter keytab location, default is []:  - Installer determins default name based on the distribution</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Trafodion installer always asked for the KDC admin password when enabling Kerberos independent on whether running in Automated
-of Guided mode. It does not save this password.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="enable-security-ldap">10.2. Configuring LDAP</h3>
-<div class="paragraph">
-<p>Trafodion does not manage user names and passwords internally but supports authentication via directory servers using
+<p>Trafodion does not manage user names and passwords internally but does support authentication via directory servers that support
 the OpenLDAP protocol, also known as LDAP servers. You can configure the LDAP servers during installation by answering the Trafodion
-Installer&#8217;s prompts. To configure LDAP after installation run the Trafodion security installer directly.  Installing LDAP also enables database
-authorization (privilege support).</p>
+Installer&#8217;s prompts, or you can configure the LDAP servers manually after installation. For more information, please refer to
+<a href="#enable-security-configuring-ldap-servers">Configuring LDAP Servers</a> below.</p>
 </div>
 <div class="paragraph">
 <p>Once authentication and authorization are enabled, Trafodion allows users to be registered in the database and allows privileges
 on objects to be granted to users and roles (which are granted to users). Trafodion also supports component-level (or system-level)
 privileges, such as MANAGE_USERS, which can be granted to users and roles. Refer to <a href="#enable-security-manage-users">Manage Users</a> below.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you do not enable LDAP in Trafodion, then a client interface to Trafodion may request a user name and password,
-but Trafodion ignores the user name and password entered in the client interface, and the session runs as the database <strong>root</strong> user,
-<code>DB__ROOT</code>, without restrictions. If you want to restrict users, restrict access to certain users only, or restrict access to an
-object or operation, then you must enable security, which enforces authentication and authorization.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="enable-security-configuring-ldap-servers">10.2.1. Configuring LDAP Servers</h4>
+<div class="sect2">
+<h3 id="enable-security-configuring-ldap-servers">9.1. Configuring LDAP Servers</h3>
 <div class="paragraph">
 <p>To specify the LDAP server(s) to be used for authentication, you need to configure the text file <code>.traf_authentication_config</code>,
 located (by default) in <code>$MY_SQROOT/sql/scripts</code>. This file is a flat file, organized as a series of attribute/value pairs.
@@ -6481,11 +5498,11 @@ Authentication successful</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="enable-security-generate-trafodion-certificate">10.2.2. Generate Trafodion Certificate</h4>
+<div class="sect2">
+<h3 id="enable-security-generate-trafodion-certificate">9.2. Generate Trafodion Certificate</h3>
 <div class="paragraph">
 <p>Trafodion clients such as <code>trafci</code> encrypt the password before sending it to Trafodion. A self-signed certificate is used to encrypt the password.
-The certificate and key are generated when the <code>sqgen</code> script is invoked. By default, the files <code>server.key</code> and <code>server.crt</code> are located
+The certificate and key should be generated when the <code>sqgen</code> script is invoked. By default, the files <code>server.key</code> and <code>server.crt</code> are located
 in <code>$HOME/sqcert</code>. If those files are not present and since Trafodion clients does not send unencrypted passwords, then you need to manually generate
 those files. To do so, run the script <code>sqcertgen</code> located in <code>$MY_SQROOT/sql/scripts</code>. The script runs <code>openssl</code> to generate the certificate and key.</p>
 </div>
@@ -6567,13 +5584,140 @@ then Trafodion uses the default location (<code>$HOME/sqcert</code>) and the def
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="enable-security-traf-authentication-config">10.2.3. Creating the LDAP configuration file</h4>
+<div class="sect2">
+<h3 id="enable-security-authentication-setup-script">9.3. Authentication Setup Script</h3>
+<div class="paragraph">
+<p>The final step to enable security is to change the value of the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> from <code>NO</code> to <code>YES</code>
+and turn on authorization. This is achieved by invoking the <code>traf_authentication_setup</code> script, which is located in <code>$MY_SQROOT/sql/scripts</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Usage</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Usage: traf_authentication_setup [options]
+
+Options:
+    --file &lt;loc&gt;  Optional location of OpenLDAP configuration file
+    --help        Prints this message
+    --off         Disables authentication and authorization
+    --on          Enables authentication and authorization
+    --setup       Enables authentication
+    --status      Returns status of authentication enablement</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>filename</code> is copied to <code>$MY_SQROOT/</code>. Users working in their own private environment can refer to a
+site-specific configuration file from a central location.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>traf_authentication_setup</code> invokes <a href="#enable-security-ldapconfigcheck">ldapconfigcheck</a> to verify the configuration file is
+syntactically correct. It also invokes <a href="#enable-security-ldapcheck">ldapcheck</a> to verify that a connection can be made to an LDAP server.<br>
+<br>
+If both checks pass, the script sets the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> to <code>YES</code> in the file <code>$MY_SQROOT/sqenvcom.sh</code>,
+and propagates <code>sqenvcom.sh</code> and <code>.traf_authentication_config</code> to all nodes in the cluster.<br>
+<br>
+The last step is to enable authorization by creating privilege-related metadata tables and set up default permissions with a call to the database.
+The list of privilege-related metadata tables, users, roles, and component privileges are logged in <code>$MY_SQROOT/logs/authEnable.log</code>.<br>
+<br>
+Specifying <code>--on</code> requires that a valid <code>.traf_authentication_config</code> file exists and the Trafodion metadata initialized.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If specified, then <code>traf_authentication_setup</code> sets the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> to <code>NO</code> in
+<code>$MY_SQROOT/sqenvcom.sh</code> and propagates the file to all the nodes in the cluster.<br>
+<br>
+The last step is to disable authorization by removing any privilege-related metadata and permissions with a call to the database.
+The results of this operation is logged in <code>$MY_SQROOT/logs/authEnable.log</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--setup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use this option if the Trafodion metadata has not been initialized. This option enables authentication but does not call the database
+to create privilege-related metadata tables. Later, when Trafodion metadata is initialized, privilege-related metadata tables and default permissions
+are automatically created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reports the value of the environment variable <code>TRAFODION_ENABLE_AUTHENTICATION</code> in <code>$MY_SQROOT/sqenvcom.sh</code> on the current node and
+reports the status of security features in the database.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INFO: Start of security (authentication and authorization) script Wed Mar 25 15:12:50 PDT 2xxx.
+
+INFO:  *** Trafodion security (authentication and authorization) status ***
+   Authentication is ENABLED
+   Authorization (grant/revoke) is ENABLED
+
+INFO: End of security (authorization and authentication) script Wed Mar 25 15:12:54 PDT 2xxx.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any time the environment file (<code>sqenvcom.sh</code>) is changed (and propagated to all nodes), Database Connectivity Services (DCS) must be restarted to
+pick up the new value. If the configuration file is changed, it re-reads in 30 minutes (by default), but you can have changes take effect
+immediately by restarting DCS.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To restart DCS, run the scripts <code>stop-dcs.sh</code> and <code>start-dcs.sh</code>, located in <code>$MY_SQROOT/dcs-&lt;x&gt;.&lt;y&gt;.&lt;z&gt;/bin</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enable-security-manage-users">9.4. Manage Users</h3>
+<div class="paragraph">
+<p>Users are registered in the Trafodion database and are used to enforce authorization. If security is disabled, any user can register any user at any time.
+However, once security is enabled, user administration is considered a secure operation, and registration of users is restricted to <code>DB<em>ROOT</code> or any user
+granted the <code>MANAGE_USERS</code> component privilege. To initially register a user, connect to Trafodion with the external user mapped to <code>DB</em>ROOT</code>
+(also known as the Trafodion ID).</p>
+</div>
+<div class="paragraph">
+<p>When security is enabled, the <code>DB<em>ROOT</code> user is registered as the <code>TRAFODION</code> external user name. It is recommended that the <code>DB</em>ROOT</code> user be mapped
+to the external user name that is used to connect for root operations. To do this, start a <code>sqlci</code> session and perform the <code>ALTER USER</code> command, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">ALTER USER DB__ROOT SET EXTERNAL NAME trafodion_rootuser_in_ldap;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To learn more about how to register users, grant object and component privileges, and manage users and roles, please see the
+<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enable-security-traf-authentication-config">9.5. .traf_authentication_config</h3>
 <div class="paragraph">
 <p>The <code>.traf_authentication_config</code> file is user to enable the Trafodion security features.</p>
 </div>
-<div class="sect4">
-<h5 id="_file_location">File Location</h5>
+<div class="sect3">
+<h4 id="_file_location">9.5.1. File Location</h4>
 <div class="paragraph">
 <p>By default, the Trafodion authentication configuration file is located in <code>$MY_SQROOT/sql/scripts/.traf_authentication_config</code>.
 If you want to store the configuration file in a different location and/or use a different filename, then Trafodion supports environment
@@ -6592,13 +5736,14 @@ authentication configuration file.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect4">
-<h5 id="enable-security-template">Template</h5>
+<div class="sect3">
+<h4 id="enable-security-template">9.5.2. Template</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text"># To use authentication in Trafodion, this file must be configured
 # as described below and placed in $MY_SQROOT/sql/scripts and be named
-# .traf_authentication_config.
+# .traf_authentication_config.  You must also enable authentication by
+# running the script traf_authentication_setup in $MY_SQROOT/sql/scripts.
 #
 # NOTE: the format of this configuration file is expected to change in the
 # next release of Trafodion.  Backward compatibility is not guaranteed.
@@ -6645,8 +5790,8 @@ SECTION: local
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="enable-security-configuration-attributes">Configuration Attributes</h5>
+<div class="sect3">
+<h4 id="enable-security-configuration-attributes">9.5.3. Configuration Attributes</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -6775,10 +5920,10 @@ Legal values are <code>LOCAL</code> and <code>ENTERPRISE</code>. This syntax is 
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="enable-security-ldapcheck">9.6. ldapcheck</h3>
 <div class="sect3">
-<h4 id="enable-security-ldapcheck">10.2.4. Verifying configuration and users through ldapcheck</h4>
-<div class="sect4">
-<h5 id="_usage">Usage</h5>
+<h4 id="_usage">9.6.1. Usage</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">ldapcheck  [&lt;option&gt;]...
@@ -6796,8 +5941,8 @@ Legal values are <code>LOCAL</code> and <code>ENTERPRISE</code>. This syntax is 
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_considerations">Considerations</h5>
+<div class="sect3">
+<h4 id="_considerations">9.6.2. Considerations</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -6820,13 +5965,13 @@ to the configured LDAP server(s) without knowing a valid username or password.</
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="enable-security-ldapconfigcheck">10.2.5. Verifying contents of configuration file through ldapconfigcheck</h4>
+<div class="sect2">
+<h3 id="enable-security-ldapconfigcheck">9.7. ldapconfigcheck</h3>
 <div class="paragraph">
 <p>This page describes the <code>ldapconfigcheck</code> tool, which validates the syntactic correctness of a Trafodion authentication configuration file. Trafodion does not need to be running to run the tool.</p>
 </div>
-<div class="sect4">
-<h5 id="enable-security-ldapconfigcheck-considerations">Considerations</h5>
+<div class="sect3">
+<h4 id="enable-security-ldapconfigcheck-considerations">9.7.1. Considerations</h4>
 <div class="paragraph">
 <p>If the configuration filename is not specified, then the tool  looks for a file using environment variables. Those environment variables and the search order are:</p>
 </div>
@@ -6854,8 +5999,8 @@ to the configured LDAP server(s) without knowing a valid username or password.</
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect4">
-<h5 id="enable-security-ldapconfigcheck-errors">Errors</h5>
+<div class="sect3">
+<h4 id="enable-security-ldapconfigcheck-errors">9.7.2. Errors</h4>
 <div class="paragraph">
 <p>One of the following is output when the tool is run. Only the first error encountered is reported.</p>
 </div>
@@ -6942,59 +6087,9 @@ Each LDAP connection configuration section must provide at least one unique iden
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="enable-security-manage-users">10.3. Manage Users</h3>
-<div class="paragraph">
-<p>Kerberos is enabled for installations that require a secure Hadoop environment.  LDAP is enabled to enforce authentication for any
-user connecting to Trafodion.  The Trafodion database enforces privileges on the database, database schemas, database
-objects (table, views, etc) and database operations.  Privileges are enforced when authorization is enabled.  When LDAP or Kerberos
-is enabled, authorization is automatically enabled.</p>
-</div>
-<div class="paragraph">
-<p>To determine the status of authentication and authorization, bring up sqlci and perform "env;".</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;env;
-----------------------------------
-Current Environment
-----------------------------------
-AUTHENTICATION     enabled
-AUTHORIZATION      enabled
-CURRENT DIRECTORY  /.../incubator-trafodion/install/installer
-LIST_COUNT         4294967295
-LOG FILE
-MESSAGEFILE        /.../incubator-trafodion/core/sqf/export/ ...
-MESSAGEFILE LANG   US English
-MESSAGEFILE VRSN   {2016-06-14 22:27 LINUX:host/user}
-SQL CATALOG        TRAFODION
-SQL SCHEMA         SCH
-SQL USER CONNECTED user not connected
-SQL USER DB NAME   SQLUSER1
-SQL USER ID        33367
-TERMINAL CHARSET   ISO88591
-TRANSACTION ID
-TRANSACTION STATE  not in progress
-WARNINGS           on</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once authorization is enabled, there is one predefined database user called DB__ROOT associated with your specified LDAP username.
-Please connect to the database and this user and register users that will perform database admin management. The database
-admin can then connect and setup required users, roles, and privileges.</p>
-</div>
-<div class="paragraph">
-<p>TBD - A future update should include a pointer to the security best practices guide.</p>
-</div>
-<div class="paragraph">
-<p>To learn more about how to register users, grant object and component privileges, and manage users and roles, please see the
-<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
-<h2 id="install-recipe">11. Install Recipe</h2>
+<h2 id="install-recipe">10. Install Recipe</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To be written.</p>
@@ -7002,7 +6097,7 @@ admin can then connect and setup required users, roles, and privileges.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="upgrade-recipe">12. Upgrade Recipe</h2>
+<h2 id="upgrade-recipe">11. Upgrade Recipe</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To be written.</p>
@@ -7013,7 +6108,7 @@ admin can then connect and setup required users, roles, and privileges.</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-07-07 18:04:43 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>

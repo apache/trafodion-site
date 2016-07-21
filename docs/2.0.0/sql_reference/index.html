@@ -1961,14 +1961,7 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
-<div class="paragraph">
-<p><strong>Disclaimer:</strong> <em>Apache Trafodion is an effort undergoing incubation at the Apache Software Foundation (ASF), sponsored by
-the Apache Incubator PMC. Incubation is required of all newly accepted projects until a further review indicates that
-the infrastructure, communications, and decision making process have stabilized in a manner consistent with other
-successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code,
-it does indicate that the project has yet to be fully endorsed by the ASF.</em>
-&lt;&lt;&lt;</p>
-</div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>Acknowledgements</strong></p>
 </div>
@@ -2030,12 +2023,8 @@ with the furnishing, performance, or use of this material.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">July 7, 2016</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">June 6, 2016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To be announced.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
@@ -3851,7 +3840,8 @@ To run this statement, AUTOCOMMIT must be turned ON (the default) for the sessio
 
 alter-action is:
 
-     ADD [IF NOT EXISTS][COLUMN] column-definition
+     ADD [COLUMN] column-definition
+   | ADD IF NOT EXISTS column-definition
    | ADD [CONSTRAINT constraint-name] table-constraint
    | DROP CONSTRAINT constraint-name [RESTRICT]
    | RENAME TO new-name [CASCADE]
@@ -6871,19 +6861,13 @@ session.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE] TABLE [IF NOT EXISTS] table
-    table-spec
+<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE] TABLE IF NOT EXISTS table
+    { table-spec | like-spec }
     [SALT USING num PARTITIONS [ON (column[, column]...)]]
     [STORE BY {PRIMARY KEY | (key-column-list)}]
-    [HBASE_OPTIONS (hbase-options-list)]
+    [HBASEOPTIONS (hbase-options-list)]
     [LOAD IF EXISTS | NO LOAD]
     [AS select-query]
-
-CREATE [VOLATILE] TABLE [IF NOT EXISTS] table
-    like-spec
-    [SALT USING num PARTITIONS [ON (column[, column]...)]]
-
-Note: Support for SALT on CREATE TABLE LIKE is added in Trafodion release 2.1.
 
 table-spec is:
     (table-element [,table-element]...)
@@ -6960,7 +6944,7 @@ key-column-list is:
     [,column-name [ASC[ENDING] | DESC[ENDING]]]...
 
 like-spec is:
-    LIKE source-table [include-option]...
+    LIKE source-table [include-option]
 
 hbase-options-list is:
     hbase-option = 'value'[, hbase-option = 'value']...</code></pre>
@@ -6996,11 +6980,6 @@ unique among names of tables and views within its schema.</p>
 prefix, thus avoiding hot spots for sequential keys. The number of partitions that you specify can be a function of the
 number of region servers present in the HBase cluster. You can specify a number from 2 to 1024. If you do not specify
 columns, the default is to use all primary key columns.</p>
-</div>
-<div class="paragraph">
-<p>If SALT is specified with LIKE, then this specification overrides that of the <em>source-table</em>. Note:
-this is a new feature in Trafodion 2.1. In earlier releases, the SALT clause is ignored if specified
-with LIKE.</p>
 </div>
 </li>
 </ul>
@@ -7248,7 +7227,8 @@ See <a href="#null">Null</a>.</p>
 <p><code>UNIQUE, or, UNIQUE (<em>column-list</em>)</code></p>
 <div class="paragraph">
 <p>is a column or table constraint, respectively, that specifies that the column or set of columns cannot contain more than
-one occurrence of the same value or set of values. If you omit UNIQUE, duplicate values are allowed unless the column or set of columns is the PRIMARY KEY.</p>
+one occurrence of the same value or set of values. If you omit UNIQUE, duplicate values are allowed unless the column is
+part of the PRIMARY KEY.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7388,24 +7368,6 @@ Instead, Trafodion SQL generates new names based on the physical file location.<
 <p>If you specify the LIKE clause and the SALT USING <em>num</em> PARTITIONS clause, you cannot specify WITH PARTITIONS.</p>
 </div>
 </li>
-<li>
-<p><code>WITHOUT DIVISION</code></p>
-<div class="paragraph">
-<p>directs Trafodion SQL to not use divisioning from <em>source-table</em>. If this clause is omitted, then
-the <em>table</em> will have the same divisioning as the <em>source-table</em>.</p>
-</div>
-</li>
-<li>
-<p><code>WITHOUT SALT</code></p>
-<div class="paragraph">
-<p>directs Trafodion SQL to not use salting for <em>table</em>. If this clause is omitted,
-and no SALT clause is specified,
-the <em>table</em> will have the same divisioning as the <em>source-table</em>.</p>
-</div>
-<div class="paragraph">
-<p>This option cannot be specified if a SALT clause is also specified.</p>
-</div>
-</li>
 </ul>
 </div>
 </li>
@@ -7511,7 +7473,8 @@ The partitions will be distributed across the cluster. The default value is four
 configuration.</p>
 </li>
 <li>
-<p>UPDATE STATISTICS is not supported for volatile tables. If you need statistics, you must use a non-volatile table instead.</p>
+<p>Statistics are not automatically updated for volatile tables. If you need statistics, you must explicitly run
+UPDATE STATISTICS.</p>
 </li>
 <li>
 <p>Volatile tables can be created and accessed using one-part, two-part, or three-part names. However, you must use the
@@ -10136,7 +10099,7 @@ only trafodion.</p>
 <td class="content">
 The GET COMPONENT PRIVILEGES, GET COMPONENTS, GET ROLES FOR USER, and GET USERS FOR ROLE statements work only when
 authentication and authorization are enabled in Trafodion. For more information, see
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+<a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -10704,7 +10667,7 @@ System Version 0.9.1. Expected Version 1.0.0.
 <td class="content">
 This statement works only when authentication and
 authorization are enabled in Trafodion. For more information, see
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+<a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -10920,7 +10883,7 @@ an error.</p>
 </td>
 <td class="content">
 This statement works only when authentication and authorization are enabled in Trafodion. For more information, see
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+<a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -11216,7 +11179,7 @@ DB_ROOT is the only database user who has been granted the MANAGE_USERS componen
 </td>
 <td class="content">
 This statement works only when authentication and authorization are enabled in Trafodion. For more information,
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+see <a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -12267,7 +12230,7 @@ such name.</p>
 </td>
 <td class="content">
 This statement works only when authentication and authorization are enabled in Trafodion. For more information,
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+see <a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -12543,7 +12506,7 @@ privileges from a user or role. See <a href="#privileges">Privileges</a> and <a 
 </td>
 <td class="content">
 This statement works only when authentication and authorization are enabled in Trafodion. For more information,
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+see <a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -12684,7 +12647,7 @@ must specify the role in the [GRANTED] BY clause.</p>
 </td>
 <td class="content">
 This statement works only when authentication and authorization are enabled in Trafodion. For more information,
-<a href="http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.incubator.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
+see <a href="http://trafodion.apache.org/enable-secure-trafodion.html">Enable Secure Trafodion</a>.
 </td>
 </tr>
 </table>
@@ -41847,7 +41810,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.0.0<br>
-Last updated 2016-06-27 23:04:48 UTC
+Last updated 2016-05-18 18:03:41 UTC
 </div>
 </div>
 <script>
