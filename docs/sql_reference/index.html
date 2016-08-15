@@ -6676,7 +6676,7 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CREATE [schema-class] SCHEMA schema-clause
+<pre class="CodeRay highlight"><code data-lang="text">CREATE [schema-class] SCHEMA [IF NOT EXISTS] schema-clause
 
 schema-class is:
    [ PRIVATE | SHARED ]
@@ -6706,6 +6706,13 @@ Schemas created in Trafodion Release 0.9 or earlier are SHARED schemas.
 </td>
 </tr>
 </table>
+</div>
+</li>
+<li>
+<p><code>IF NOT EXISTS</code></p>
+<div class="paragraph">
+<p>creates the schema if it does not already exist. If omitted, then an error will be raised if the schema
+already exists.</p>
 </div>
 </li>
 <li>
@@ -9263,7 +9270,7 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DROP SCHEMA schema-name [RESTRICT|CASCADE]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">DROP SCHEMA schema-name [IF EXISTS] [RESTRICT|CASCADE]</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -9274,6 +9281,12 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 <p><code><em>schema-name</em></code></p>
 <div class="paragraph">
 <p>is the name of the schema to delete.</p>
+</div>
+</li>
+<li>
+<p><code>IF EXISTS</code></p>
+<div class="paragraph">
+<p>drops the schema if it exists. If omitted, an error is raised if the schema doesn&#8217;t exist.</p>
 </div>
 </li>
 <li>
