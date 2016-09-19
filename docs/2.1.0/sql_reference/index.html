@@ -2030,6 +2030,10 @@ with the furnishing, performance, or use of this material.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">July 7, 2016</p></td>
 </tr>
@@ -2100,39 +2104,8 @@ and create Trafodion SQL tables, which map to HBase tables, and to access native
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">On Line Analytical Process (OLAP) window functions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#olap_functions">OLAP Functions</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ability to cancel DDL, update statistics, and
-additional child query operations in addition to
-DML statements</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#control_query_cancel_statement">CONTROL QUERY CANCEL Statement</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization required to run the CONTROL QUERY
-CANCEL Statement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#control_query_cancel_statement">CONTROL QUERY CANCEL Statement</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ability to grant privileges on behalf of a role
-using the GRANTED BY clause.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#grant_component_privilege_statement">GRANT COMPONENT PRIVILEGE Statement</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization required for all SHOWDDL commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#showddl_statement">SHOWDDL Statement</a><br>
-<a href="#SHOWDDL_SCHEMA_Statement">SHOWDDL SCHEMA Statement</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ability to display the DDL syntax of a library object
-using the SHOWDDL LIBRARY command</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#showddl_statement">SHOWDDL Statement</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Listing of HBase objects using the GET HBASE OBJECTS
-command through an SQL interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#get_hbase_objects_statement">GET HBASE OBJECTS Statement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incremental UPDATE STATISTICS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#update_statistics_statement">UPDATE STATISTICS Statement</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -6994,6 +6967,19 @@ hbase-options-list is:
 <div class="paragraph">
 <p>specifies the ANSI logical name of the table. See <a href="#database_object_names">Database Object Names</a>. This name must be
 unique among names of tables and views within its schema.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Avoid using table names that begin with "TRAF_SAMPLE_", as Trafodion SQL assumes that
+such tables are persistent sample tables. See also <a href="#update_statistics_incremental_update_statistics">Incremental Update Statistics</a>.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -17258,11 +17244,12 @@ devise optimized access plans.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS FOR TABLE table [CLEAR | on-clause]
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS FOR TABLE table [CLEAR | on-clause | sample-table-clause ]
 
 on-clause is:
     ON column-group-list CLEAR
   | ON column-group-list [histogram-option]...
+  | ON column-group-list INCREMENTAL WHERE predicate
 
 column-group-list is:
     column-list [,column-list]...
@@ -17288,8 +17275,12 @@ histogram-option is:
 
 sample-option is:
     [r ROWS]
-  | RANDOM percent PERCENT
-  | PERIODIC size ROWS EVERY period ROWS</code></pre>
+  | RANDOM percent PERCENT [PERSISTENT]
+  | PERIODIC size ROWS EVERY period ROWS
+
+sample-table-clause is:
+    CREATE SAMPLE RANDOM percent PERCENT
+  | REMOVE SAMPLE</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -17511,20 +17502,6 @@ Trafodion SQL reads all rows from <em>table</em>. See <a href="#sample_clause">S
 be an integer that is greater than zero</p>
 </div>
 </li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="ulist">
-<ul>
 <li>
 <p><code>RANDOM <em>percent</em> PERCENT</code></p>
 <div class="paragraph">
@@ -17533,6 +17510,18 @@ percent must be a value between zero and 100 (0 &lt; percent &#60;= 100). In
 addition, only the first four digits to the right of the decimal point
 are significant. For example, value 0.00001 is considered to be 0.0000,
 Value 1.23456 is considered to be 1.2345.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PERSISTENT</code></p>
+<div class="paragraph">
+<p>directs Trafodion SQL to create a persistent sample table and store the
+random sample in it. This table can then be used later for updating statistics
+incrementally.</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -17544,6 +17533,42 @@ greater than zero and less than or equal to the value <em>period</em>. (0 &lt;
 <em>size</em> &#60;= <em>period</em>). The size of the <em>period</em> is defined by the number
 of rows specified for <em>period</em>. The value <em>period</em> must be an integer
 that is greater than zero (<em>period</em> &gt; 0).</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>INCREMENTAL WHERE <em>predicate</em></code></p>
+<div class="paragraph">
+<p>directs Trafodion SQL to update statistics incrementally. That is, instead
+of taking a fresh sample of the entire table, Trafodion SQL will use a previously
+created persistent sample table. Trafodion SQL will update the persistent sample
+by replacing any rows satisfying the <em>predicate</em> with a fresh sample of rows from
+the original table satisfying the <em>predicate</em>. The sampling rate used is the
+<em>percent</em> specified when the persistent sample table was created. Statistics
+are then generated from this updated sample. See also
+<a href="#update_statistics_incremental_update_statistics">Incremental Update Statistics</a>.</p>
+</div>
+</li>
+<li>
+<p><code>CREATE SAMPLE RANDOM <em>percent</em> PERCENT</code></p>
+<div class="paragraph">
+<p>Creates a persistent sample table associated with this table. The sample is
+created using a random sample of <em>percent</em> percent of the rows. The table
+can then be used for later incremental statistics update.</p>
+</div>
+</li>
+<li>
+<p><code>REMOVE SAMPLE</code></p>
+<div class="paragraph">
+<p>Drops the persistent sample table associated with this table.</p>
 </div>
 </li>
 </ul>
@@ -17779,6 +17804,39 @@ NECESSARY COLUMN[S] to generate the needed histograms:</p>
 <pre class="CodeRay highlight"><code data-lang="text">update statistics for table _table-name_ on necessary columns sample;</code></pre>
 </div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="update_statistics_incremental_update_statistics">Incremental Update Statistics</h5>
+<div class="paragraph">
+<p>UPDATE STATISTICS processing time can be lengthy for very large tables.
+One strategy for reducing the time is to create histograms only for
+columns that actually need them (for example, using the ON NECESSARY COLUMNS
+column group). Another strategy is to update statistics incrementally. These
+strategies can be used together if desired.</p>
+</div>
+<div class="paragraph">
+<p>To use the incremental update statistics feature, you must first create
+statistics for the table and create a persistent sample table. One way to
+do this is to perform a normal update statistics command, adding the
+PERSISTENT keyword to the <em>sample-option</em>. Another way to do this if you
+already have reasonably up-to-date statistics for the table, is to create
+a persistent sample table separately using the CREATE SAMPLE option.</p>
+</div>
+<div class="paragraph">
+<p>You can then perform update statistics incrementally by using the INCREMENTAL
+WHERE <em>predicate</em> syntax in the on-clause. The <em>predicate</em> should be chosen
+to describe the set of rows that have changed since the last statistics update
+was performed. For example, if your table contains a column with a timestamp
+giving the date and time of last update, this is a particularly useful column
+to use in the <em>predicate</em>.</p>
+</div>
+<div class="paragraph">
+<p>If you decide later that you wish to change the <em>percent</em> sampling rate used
+for the persistent sample table, you can do so by dropping the persistent
+sample table (using REMOVE SAMPLE) and creating a new one (by using the
+CREATE SAMPLE option). Using a higher <em>percent</em> results in more accurate
+histograms, but at the price of a longer-running operation.</p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -17857,6 +17915,31 @@ table ADDRESS:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS FOR TABLE address ON street CLEAR;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example generates statistics but also creates a persistent
+sample table for use when updating statistics incrementally:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS FOR TABLE address
+ON (street), (city), (state), (zip, type)
+SAMPLE RANDOM 5 PERCENT PERSISTENT;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example updates statistics incrementally. It assumes that
+a persistent sample table has already been created. The predicate
+in the WHERE clause describes the set of rows that have changed
+since statistics were last updated. Here we assume that rows
+with a state of California are the only rows that have changed:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS FOR TABLE address
+ON EXISTING COLUMNS
+INCREMENTAL WHERE state = 'CA';</code></pre>
 </div>
 </div>
 </li>
