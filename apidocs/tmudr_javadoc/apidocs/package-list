@@ -1,0 +1,4 @@
+org.trafodion.sql
+org.trafodion.sql.udr
+org.trafodion.sql.udr.predef
+org.trafodion.sql.ustat
