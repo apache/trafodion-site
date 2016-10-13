@@ -3827,7 +3827,7 @@ alter-action is:
      ADD [IF NOT EXISTS][COLUMN] column-definition
    | ADD [CONSTRAINT constraint-name] table-constraint
    | DROP CONSTRAINT constraint-name [RESTRICT]
-   | RENAME TO new-name [CASCADE]
+   | RENAME TO new-name
    | DROP COLUMN [IF EXISTS] column-name
 
 column-definition is:
@@ -4090,14 +4090,6 @@ see <a href="#search_condition">search condition</a>. you cannot refer to the cu
 constraint, and you cannot use subqueries in a check constraint.</p>
 </div>
 </li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="ulist">
-<ul>
 <li>
 <p><code>foreign key (<em>column-list</em>) references <em>ref-spec</em> not enforced</code></p>
 <div class="paragraph">
@@ -4110,6 +4102,13 @@ clause. however, because not enforced is specified, this relationship is not che
 the foreign key in <em>table</em> is the column being defined; with the foreign key clause, the foreign key is the column or set of columns specified in
 the foreign key clause. for information about <em>ref-spec</em>, see references <em>ref-spec</em> not enforced.</p>
 </div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
 <div class="ulist">
 <ul>
 <li>
@@ -4140,7 +4139,7 @@ a.b.c might be assigned a name such as a.b.c_123&#8230;_01&#8230;.</p>
 </div>
 </li>
 <li>
-<p><code>rename to <em>new-name</em> [cascade]</code></p>
+<p><code>rename to <em>new-name</em></code></p>
 <div class="paragraph">
 <p>changes the logical name of the object within the same schema.</p>
 </div>
@@ -4157,17 +4156,7 @@ a.b.c might be assigned a name such as a.b.c_123&#8230;_01&#8230;.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
 <div style="page-break-after: always;"></div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>cascade</code></p>
-<div class="paragraph">
-<p>specifies that indexes and constraints on the renamed object will be renamed.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -4183,9 +4172,6 @@ a.b.c might be assigned a name such as a.b.c_123&#8230;_01&#8230;.</p>
 <p><code>drop column [if exists] <em>column-name</em></code></p>
 <div class="paragraph">
 <p>drops the specified column from <em>table</em>, including the column’s data. you cannot drop a primary key column.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -41943,7 +41929,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2016-06-07 15:15:40 UTC
+Last updated 2016-07-18 16:17:03 UTC
 </div>
 </div>
 <script>

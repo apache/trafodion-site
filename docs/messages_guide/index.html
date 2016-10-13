@@ -730,6 +730,16 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-1307">3.168. SQL 1307</a></li>
 <li><a href="#SQL-1309">3.169. SQL 1309</a></li>
 <li><a href="#SQL-1310">3.170. SQL 1310</a></li>
+<li><a href="#SQL-1420">3.171. SQL 1420</a></li>
+<li><a href="#SQL-1421">3.172. SQL 1421</a></li>
+<li><a href="#SQL-1422">3.173. SQL 1422</a></li>
+<li><a href="#SQL-1423">3.174. SQL 1423</a></li>
+<li><a href="#SQL-1424">3.175. SQL 1424</a></li>
+<li><a href="#SQL-1425">3.176. SQL 1425</a></li>
+<li><a href="#SQL-1426">3.177. SQL 1426</a></li>
+<li><a href="#SQL-1427">3.178. SQL 1427</a></li>
+<li><a href="#SQL-1428">3.179. SQL 1428</a></li>
+<li><a href="#SQL-1429">3.180. SQL 1429</a></li>
 </ul>
 </li>
 <li><a href="#trafodion-compiler-messages">4. Trafodion Compiler Messages (2000 through 2999)</a>
@@ -5668,6 +5678,188 @@ statement.</p>
 <div class="paragraph">
 <p><strong>Recovery:</strong> Remove the creation of triggers from the CREATE SCHEMA
 statement and resubmit. Create triggers in separate statements.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1420">3.171. SQL 1420</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Column &lt;column-name&gt; cannot be dropped or altered as it is part of the table's primary key.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to drop a column that is a part of a primary key.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the column name or table name as appropriate and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1421">3.172. SQL 1421</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Column &lt;column-name&gt; cannot be dropped or altered as it is used in the secondary index &lt;index-name&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to drop a column, but that column is used by the secondary index named.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> If the secondary index is no longer needed, drop it and resubmit. If the column
+name or table name are incorrect, correct them and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1422">3.173. SQL 1422</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">An invalid HBase name was specified in this DDL statement. A valid name can only contain these characters: [a-zA-Z_0-9-.]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to use a name containing an invalid character for a Trafodion object that is
+stored in HBase.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the name and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1423">3.174. SQL 1423</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Insert into metadata table &lt;table-name&gt; failed.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> During an INITIALIZE TRAFODION, UPGRADE operation, a write to metadata table &lt;table-name&gt; failed. There may
+be additional messages giving details of the failure.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The upgrade operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> None. Contact the Trafodion User Distribution List. Include any additional messages.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1424">3.175. SQL 1424</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Column &lt;column-name&gt; cannot be dropped as that would leave the table with no user defined columns.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to drop the only remaining user-defined column in the table.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> If the table is no longer needed, simply drop the table.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1425">3.176. SQL 1425</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">This operation could not be performed on &lt;table-name&gt;. &lt;reason&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted an operation on table &lt;table-name&gt; but the operation could not
+be performed. &lt;reason&gt; gives more details.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct any issues indicated by &lt;reason&gt; as appropriate and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1426">3.177. SQL 1426</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">An invalid HBase column name &lt;column-name&gt; was specified. A valid name must be of the format:   &lt;ColumnFamily&gt;:&lt;ColumnName&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When accessing an external HBase table (for example, using <em>ROW</em> format), you specified
+an invalid HBase column name.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the column name and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1427">3.178. SQL 1427</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Table cannot be renamed. &lt;reason&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to perform ALTER TABLE RENAME but the rename could not be performed.
+&lt;reason&gt; gives more detail.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Perform the operations suggested by &lt;reason&gt; and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1428">3.179. SQL 1428</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Metadata definitions could not be created and preloaded in global MDdescInfo struct. Make sure that metadata table definition syntax is correct.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> This is a Trafodion internal error. It is highly unlikely that you will
+encounter this error unless you are making code changes to Trafodion yourself.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> None. Contact the Trafodion Developer Distribution List.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1429">3.180. SQL 1429</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Inserts into _ROW_ format external HBase tables can only use the VALUES clause and must use the column_create function to create values.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted an INSERT/SELECT into an external <em>ROW</em> format HBase table, or you attempted an INSERT using the VALUES
+clause but did not use a COLUMN_CREATE function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
 </div>
 </div>
 </div>
@@ -30095,7 +30287,7 @@ contact <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incu
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2016-10-11 03:58:53 UTC
+Last updated 2016-10-11 18:42:05 UTC
 </div>
 </div>
 <script>
