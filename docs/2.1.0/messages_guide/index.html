@@ -1336,18 +1336,19 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-9217">10.17. SQL 9217</a></li>
 <li><a href="#SQL-9218">10.18. SQL 9218</a></li>
 <li><a href="#SQL-9219">10.19. SQL 9219</a></li>
-<li><a href="#SQL-9221">10.20. SQL 9221</a></li>
-<li><a href="#SQL-9228">10.21. SQL 9228</a></li>
-<li><a href="#SQL-9232">10.22. SQL 9232</a></li>
-<li><a href="#SQL-9240">10.23. SQL 9240</a></li>
-<li><a href="#SQL-9241">10.24. SQL 9241</a></li>
-<li><a href="#SQL-9242">10.25. SQL 9242</a></li>
-<li><a href="#SQL-9243">10.26. SQL 9243</a></li>
-<li><a href="#SQL-9244">10.27. SQL 9244</a></li>
-<li><a href="#SQL-9245">10.28. SQL 9245</a></li>
-<li><a href="#SQL-9246">10.29. SQL 9246</a></li>
-<li><a href="#SQL-9247">10.30. SQL 9247</a></li>
-<li><a href="#SQL-9251">10.31. SQL 9251</a></li>
+<li><a href="#SQL-9220">10.20. SQL 9220</a></li>
+<li><a href="#SQL-9221">10.21. SQL 9221</a></li>
+<li><a href="#SQL-9228">10.22. SQL 9228</a></li>
+<li><a href="#SQL-9232">10.23. SQL 9232</a></li>
+<li><a href="#SQL-9240">10.24. SQL 9240</a></li>
+<li><a href="#SQL-9241">10.25. SQL 9241</a></li>
+<li><a href="#SQL-9242">10.26. SQL 9242</a></li>
+<li><a href="#SQL-9243">10.27. SQL 9243</a></li>
+<li><a href="#SQL-9244">10.28. SQL 9244</a></li>
+<li><a href="#SQL-9245">10.29. SQL 9245</a></li>
+<li><a href="#SQL-9246">10.30. SQL 9246</a></li>
+<li><a href="#SQL-9247">10.31. SQL 9247</a></li>
+<li><a href="#SQL-9251">10.32. SQL 9251</a></li>
 </ul>
 </li>
 <li><a href="#sort-messages">11. Sort Messages (10000 through 10049)</a>
@@ -17356,10 +17357,29 @@ update failed. This message is accompanied by another message giving more detail
 <p><strong>Recovery:</strong> If the WHERE clause is in error, correct and resubmit. If this does not correct the problem,
 contact <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="SQL-9220">10.20. SQL 9220</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">The table is empty, so no persistent sample table was created.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> UPDATE STATISTICS SAMPLE RANDOM PERSISTENT was specified but the table was empty. Histograms
+were created, however no persistent sample table was created.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation completes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> If you wish to create a persistent sample table, either increase the sampling rate
+or populate the table with more data, and resubmit.</p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9221">10.20. SQL 9221</h3>
+<h3 id="SQL-9221">10.21. SQL 9221</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Incremental UPDATE STATISTICS cannot be performed due to the absence of the IUS persistent sample table for &lt;table&gt;.  Use a regular UPDATE STATISTICS command with the sample clause and PERSISTENT first to create such a persistent sample table.</code></pre>
@@ -17377,7 +17397,7 @@ sample table.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9228">10.21. SQL 9228</h3>
+<h3 id="SQL-9228">10.22. SQL 9228</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">There were no sample tables to drop.</code></pre>
@@ -17397,7 +17417,7 @@ is necessary.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9232">10.22. SQL 9232</h3>
+<h3 id="SQL-9232">10.23. SQL 9232</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Incremental UPDATE STATISTICS: cannot proceed because of the on-going IUS transaction originated at &lt;details&gt;.</code></pre>
@@ -17416,7 +17436,7 @@ is necessary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9240">10.23. SQL 9240</h3>
+<h3 id="SQL-9240">10.24. SQL 9240</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">ON EVERY KEY option is not yet implemented for Update Statistics on &lt;table-type&gt; tables.</code></pre>
@@ -17436,7 +17456,7 @@ is necessary.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9241">10.24. SQL 9241</h3>
+<h3 id="SQL-9241">10.25. SQL 9241</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Insufficient privileges to perform the statistics request for table &lt;table-name&gt;.</code></pre>
@@ -17456,7 +17476,7 @@ be the super ID.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9242">10.25. SQL 9242</h3>
+<h3 id="SQL-9242">10.26. SQL 9242</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Unable to create schema for Hive statistics.</code></pre>
@@ -17476,7 +17496,7 @@ the necessary Trafodion schema to store histogram statistics.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9243">10.26. SQL 9243</h3>
+<h3 id="SQL-9243">10.27. SQL 9243</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">This UPDATE STATISTICS command may take too long. It is recommended to use the SAMPLE clause instead. If you wish to do this without a SAMPLE clause, specify NO SAMPLE explicitly.</code></pre>
@@ -17496,7 +17516,7 @@ latter case, the operation is likely to take a long time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9244">10.27. SQL 9244</h3>
+<h3 id="SQL-9244">10.28. SQL 9244</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS is not allowed in a user transaction.</code></pre>
@@ -17515,7 +17535,7 @@ a user transaction.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9245">10.28. SQL 9245</h3>
+<h3 id="SQL-9245">10.29. SQL 9245</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Unexpected out-of-order data encountered during histogram construction on column &lt;column-name&gt; this might result in later 6004 warnings.</code></pre>
@@ -17534,7 +17554,7 @@ Afterwards, resubmitting the UPDATE STATISTICS command may clear this warning.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9246">10.29. SQL 9246</h3>
+<h3 id="SQL-9246">10.30. SQL 9246</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS is not supported on LOB columns. Column &lt;column-name&gt; is a LOB column.</code></pre>
@@ -17554,7 +17574,7 @@ columns.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9247">10.30. SQL 9247</h3>
+<h3 id="SQL-9247">10.31. SQL 9247</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">UPDATE STATISTICS is not supported on volatile tables presently.</code></pre>
@@ -17571,7 +17591,7 @@ columns.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-9251">10.31. SQL 9251</h3>
+<h3 id="SQL-9251">10.32. SQL 9251</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">A persistent sample table already exists. Use UPDATE STATISTICS REMOVE SAMPLE to drop it first if desired.</code></pre>
