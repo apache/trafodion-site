@@ -56,11 +56,12 @@
 <li><a href="#trouble-resources">19. Resources</a></li>
 <li><a href="#trouble-tools">20. Tools</a></li>
 <li><a href="#trouble-zookeeper">21. ZooKeeper</a></li>
+<li><a href="#trouble-ha">22. High Availability</a></li>
 </ul>
 </li>
 <li><a href="#ops-mgt">Operational Management</a>
 <ul class="sectlevel1">
-<li><a href="#tools">22. Tools and Utilities</a></li>
+<li><a href="#tools">23. Tools and Utilities</a></li>
 </ul>
 </li>
 <li><a href="#_appendix">Appendix</a>
@@ -108,7 +109,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-10-20T23:43</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-11-03T05:53</p></td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +820,7 @@ to turn up such configurations is via a reading of the source code itself.</p>
 </div>
 <div class="paragraph">
 <div class="title">Default</div>
-<p><code>40030</code></p>
+<p><code>24410</code></p>
 </div>
 </dd>
 </dl>
@@ -1206,33 +1207,31 @@ to turn up such configurations is via a reading of the source code itself.</p>
 <p>Set DCS environment variables in this file. Examples include options to pass the JVM on start of
 an DCS daemon such as heap size and garbage collector configs. You can also set configurations for DCS configuration, log directories,
 niceness, ssh options, where to locate process pid files, etc. Open the file at <em>conf/dcs-env.sh</em> and peruse its content.
-Each option is fairly well documented.  Add your own environment variables here if you want them read by DCS daemons on startup.</p>
-</div>
-<div class="paragraph">
-<p>Changes here will require a cluster restart for DCS to notice the change.</p>
+Each option is fairly well documented.  Add your own environment variables here if you want them read by DCS daemons on startup. Changes done to this file requires restart of DCS.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="__em_log4j_properties_em">7.4. <em>log4j.properties</em></h3>
 <div class="paragraph">
-<p>Edit this file to change rate at which DCS files are rolled and to change the level at which DCS logs messages.</p>
-</div>
-<div class="paragraph">
-<p>Changes here will require a cluster restart for DCS to notice the change though log levels can be changed for
-particular daemons via the DCS UI.</p>
+<p>Edit this file to change rate at which DCS files are rolled over and, to change the level at which DCS logs messages. Changes done to this file will require restart of DCS.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="__em_master_em_2">7.5. <em>master</em></h3>
 <div class="paragraph">
-<p>A plain-text file which lists host on which the primary master process should be started. Only one host allowed to be the
-primary master</p>
+<p>A plain-text file which lists hostname or host IP address  on which the primary master process should be started. Only one host is allowed to be the primary master</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="__em_backup_masters_em_2">7.6. <em>backup-masters</em></h3>
 <div class="paragraph">
 <p>A plain-text file which lists hosts on which the backup master process should be started. Only one host per line is allowed</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__em_servers_em_2">7.7. <em>servers</em></h3>
+<div class="paragraph">
+<p>A plain-text file which lists hosts on which the DcsServer server process should be started. Only one host per line or the host name followed by the count or number of master executor servers. All servers listed in this file will be started and stopped when DCS start or stop is run.</p>
 </div>
 </div>
 </div>
@@ -1275,7 +1274,7 @@ on node <code>example4</code>. DCS Servers run on nodes <code>example1</code>-<c
 </div>
 </div>
 <div class="sect3">
-<h4 id="__em_servers_em_2">8.1.2. <em>servers</em></h4>
+<h4 id="__em_servers_em_3">8.1.2. <em>servers</em></h4>
 <div class="paragraph">
 <p>In this file, you list the nodes that will run DcsServers. In this case,
 there are two DcsServrs per node each starting a single mxosrvr:</p>
@@ -1682,7 +1681,7 @@ The DcsMaster web UI allows navigation to each DcsServer&#8217;s web UI.</p>
 <div class="sect3">
 <h4 id="trouble-tools-builtin-webserver">20.1.2. DcsServer Web Interface</h4>
 <div class="paragraph">
-<p>DcsServers starts a web-interface on port 24420 by default.</p>
+<p>DcsServers starts a web-interface on port 24410 by default.</p>
 </div>
 <div class="paragraph">
 <p>The DcsServer web UI lists its server metrics (build info, zookeeper quorum, usedHeap, maxHeap, etc.).</p>
@@ -1805,6 +1804,30 @@ and DCS are running in.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="trouble-ha">22. High Availability</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Linux cluster, if you run into issues please check dcs log files located in $DCS_INSTALL_DIR/logs folder.</p>
+</div>
+<div class="paragraph">
+<p>Validate that the interace is set up correctly. This command should only show one additional interface for HA configuration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>pdsh $MY_NODES "sudo /sbin/ip addr show |grep 23400"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Validate to get the list of  all the DcsMaster that are configured and started in the cluster</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>pdsh $MY_NODES $JAVA_HOME/bin/jps |grep -i dcsmaster</pre>
+</div>
+</div>
+</div>
+</div>
 <h1 id="ops-mgt" class="sect0">Operational Management</h1>
 <div class="openblock partintro">
 <div class="content">
@@ -1814,13 +1837,13 @@ and <a href="#configuration">configuration</a> but is a distinct topic in itself
 </div>
 </div>
 <div class="sect1">
-<h2 id="tools">22. Tools and Utilities</h2>
+<h2 id="tools">23. Tools and Utilities</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here we list tools for administration, analysis, and debugging.</p>
 </div>
 <div class="sect2">
-<h3 id="client-server-connectivity">22.1. DcsMaster and mxosrvr unable to communicate via the interface specified in <em>conf/_dcs_site.xml</em></h3>
+<h3 id="client-server-connectivity">23.1. DcsMaster and mxosrvr unable to communicate via the interface specified in <em>conf/_dcs_site.xml</em></h3>
 <div class="paragraph">
 <p>Symptoms are: When connection are viewed using DCS webUI, the server will be in "CONNECTING" state and the state does not change to "CONNECTED".</p>
 </div>
@@ -2381,7 +2404,7 @@ Some of these are preferences, but others can create mysterious build errors or 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-11 22:45:44 UTC
+Last updated 2016-11-03 05:21:35 UTC
 </div>
 </div>
 </body>

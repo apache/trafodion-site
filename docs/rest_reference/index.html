@@ -23,32 +23,29 @@
 <li><a href="#quickstart">2. Quick Start</a></li>
 </ul>
 </li>
-<li><a href="#configuration">Configuration</a>
-<ul class="sectlevel1">
-<li><a href="#zookeeper">3. ZooKeeper</a></li>
-<li><a href="#_configuration_files">4. Configuration Files</a></li>
-<li><a href="#important.configurations">5. The Important Configurations</a></li>
-</ul>
-</li>
 <li><a href="#architecture">Architecture</a>
 <ul class="sectlevel1">
-<li><a href="#arch-overview">6. Overview</a></li>
-<li><a href="#arch-client">7. Client</a></li>
-<li><a href="#arch-trafodionrest">8. TrafodionRest</a></li>
+<li><a href="#arch-overview">3. Overview</a></li>
+<li><a href="#arch-client">4. Client</a></li>
+<li><a href="#arch-trafodionrest">5. TrafodionRest</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a>
+<ul class="sectlevel1">
+<li><a href="#zookeeper">6. ZooKeeper</a></li>
+<li><a href="#_configuration_files">7. Configuration Files</a></li>
+<li><a href="#important.configurations">8. The Important Configurations</a></li>
 </ul>
 </li>
 <li><a href="#apis">APIs</a>
 <ul class="sectlevel1">
-<li><a href="#rest">9. Resource Identifiers</a></li>
-<li><a href="#_http_requests">10. HTTP Requests</a></li>
-<li><a href="#_http_responses">11. HTTP Responses</a></li>
-<li><a href="#_example_usage">12. Example Usage</a></li>
+<li><a href="#rest">9. REST APIs</a></li>
 </ul>
 </li>
 <li><a href="#troubleshooting">Troubleshooting and Debugging</a>
 <ul class="sectlevel1">
-<li><a href="#_logs">13. Logs</a></li>
-<li><a href="#trouble-tools">14. Tools</a></li>
+<li><a href="#_logs">10. Logs</a></li>
+<li><a href="#trouble-tools">11. Tools</a></li>
 </ul>
 </li>
 <li><a href="#_appendix">Appendix</a>
@@ -95,7 +92,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-10-20T23:43</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-11-03T05:53</p></td>
 </tr>
 </tbody>
 </table>
@@ -176,6 +173,115 @@ the case, the server may start but you&#8217;ll see many errors.</p>
 </div>
 </div>
 </div>
+<h1 id="architecture" class="sect0">Architecture</h1>
+<div class="sect1">
+<h2 id="arch-overview">3. Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="arch-overview-rest">3.1. REST</h3>
+<div class="paragraph">
+<p>The Trafodion REST server, see figure <a href="#img-rest">Figure 1</a>, is a process that give access to cluster, nodes,
+applications, transactions and ODBC/JDBC Type4 connection information.</p>
+</div>
+<div class="paragraph">
+<p>The REST server provides the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A lightweight standalone server.</p>
+</li>
+<li>
+<p>Simple configuration and startup.</p>
+</li>
+<li>
+<p>Well known REST API.</p>
+</li>
+<li>
+<p>Embedded Jetty server.</p>
+</li>
+<li>
+<p>Embedded JDBC Type 2/Type 4 driver.</p>
+</li>
+<li>
+<p>Embedded ZooKeeper client.</p>
+</li>
+<li>
+<p>Automatic script change detection and recompile.</p>
+</li>
+<li>
+<p>HTTPS encryption.</p>
+</li>
+<li>
+<p>100% Java implementation.</p>
+</li>
+</ul>
+</div>
+<div id="img-rest" class="imageblock">
+<div class="content">
+<img src="./images/architecture.png" alt="architecture">
+</div>
+<div class="title">Figure 1: Trafodion REST Sever Architecture</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-client">4. Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Http clients connect to the server using the default port 4200 for HTTP and 4201 if HTTPS is setup in the embedded
+Jetty server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arch-trafodionrest">5. TrafodionRest</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TrafodionRest is the implementation of the server. Using its embedded Jetty server it services Http client
+HTTP and HTTPS requests. It&#8217;s a 100% java implementation.</p>
+</div>
+<div class="sect2">
+<h3 id="server-startup">5.1. Startup Behavior</h3>
+<div class="paragraph">
+<p>The server is started/stopped via the scripts found in the <em>$REST_INSTALL_DIR/bin</em> directory. During startup it opens a connection to ZooKeeper.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-threads">5.2. Threads</h3>
+<div class="paragraph">
+<p>The server runs several background threads:</p>
+</div>
+<div class="sect3">
+<h4 id="_embedded_jetty">5.2.1. Embedded Jetty</h4>
+<div class="paragraph">
+<p>An <a href="http://docs.codehaus.org/display/JETTY/Jetty+Documentation">embedded Jetty</a> multi-threaded server services all client requests. A default port
+is configured but this may be changed in the configuration by modifying the <em>rest.port</em> and <em>rest.https.port</em> properties.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="server-processes-script-manager">5.2.2. ScriptManager</h4>
+<div class="paragraph">
+<p>The script manager thread is responsible for reading and compiling the Python scripts found in <em>$REST_INSTALL_DIR/bin/scripts</em> directory. It
+can detect a change in any script found there. If any script changes it will recompile it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jdbc_type_4">5.2.3. JDBC Type 4</h4>
+<div class="paragraph">
+<p>An embedded driver is available to execute Trafodion SQL queries by connecting to the DCS service.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jdbc_type_2">5.2.4. JDBC Type 2</h4>
+<div class="paragraph">
+<p>An embedded driver is available to execute Trafodion SQL queries.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <h1 id="configuration" class="sect0">Configuration</h1>
 <div class="openblock partintro">
 <div class="content">
@@ -186,7 +292,7 @@ requirements have been satisfied. Failure to do so will cause you grief debuggin
 </div>
 <div class="paragraph">
 <p>Trafodion REST uses the same configuration mechanism as Apache Hadoop.
-All configuration files are located in the <em>conf/</em> directory.</p>
+All configuration files are located in the <em>$REST_INSTALL_DIR/conf/</em> directory.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -212,7 +318,7 @@ ensure well-formedness of your document after an edit session.</p>
 <td class="content">
 <div class="title">Keep Configuration In Sync Across the Cluster</div>
 <div class="paragraph">
-<p>After you make an edit to any configuration file, make sure you copy the content of the <em>conf</em> directory to all nodes of the cluster.
+<p>After you make an edit to any configuration file, make sure you copy the content of the <em>$REST_INSTALL_DIR/conf</em> directory to all nodes of the cluster.
 The server will not do this for you. Use rsync, scp, or another secure mechanism for copying the configuration files to your nodes.
 A restart is needed for servers to pick up changes.</p>
 </div>
@@ -223,7 +329,7 @@ A restart is needed for servers to pick up changes.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="zookeeper">3. ZooKeeper</h2>
+<h2 id="zookeeper">6. ZooKeeper</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The server depends on a running ZooKeeper cluster to retrieve DCS server, client connection status and metrics.</p>
@@ -260,12 +366,12 @@ This <code>rest.zookeeper.quorum</code> property defaults to a single ensemble m
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration_files">4. Configuration Files</h2>
+<h2 id="_configuration_files">7. Configuration Files</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="__em_rest_site_xml_em_and_em_rest_default_xml_em">4.1. <em>rest-site.xml</em> and <em>rest-default.xml</em></h3>
+<h3 id="__em_rest_site_xml_em_and_em_rest_default_xml_em">7.1. <em>rest-site.xml</em> and <em>rest-default.xml</em></h3>
 <div class="paragraph">
-<p>You add site-specific configuration to the file <em>conf/rest-site.xml</em>. For the list of configurable properties,
+<p>You add site-specific configuration to the file <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>. For the list of configurable properties,
 see <a href="#rest_default_configurations">REST Default Configuration</a> below or view the raw <em>rest-default.xml</em> source
 file in the source code at <em>src/main/resources</em>.</p>
 </div>
@@ -279,7 +385,7 @@ to discover such configurations is via a reading of the source code itself.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rest_default_configurations">4.2. REST Default Configuration</h3>
+<h3 id="rest_default_configurations">7.2. REST Default Configuration</h3>
 <div class="paragraph">
 <p>The documentation below is generated using the default rest configuration file, <em>rest-default.xml</em>, as source.</p>
 </div>
@@ -435,11 +541,11 @@ to discover such configurations is via a reading of the source code itself.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__em_rest_env_sh_em">4.3. <em>rest-env.sh</em></h3>
+<h3 id="__em_rest_env_sh_em">7.3. <em>rest-env.sh</em></h3>
 <div class="paragraph">
 <p>Set server environment variables in this file. Examples include options to pass the JVM on start of
 the server such as heap size and garbarge collector configs. You can also set configurations for server configuration, log directories,
-niceness, ssh options, where to locate process pid files, etc. Open the file at <em>conf/rest-env.sh</em> and peruse its content.
+niceness, ssh options, where to locate process pid files, etc. Open the file at <em>$REST_INSTALL_DIR/conf/rest-env.sh</em> and peruse its content.
 Each option is fairly well documented.  Add your own environment variables here if you want them read by the server on startup.</p>
 </div>
 <div class="paragraph">
@@ -447,7 +553,7 @@ Each option is fairly well documented.  Add your own environment variables here 
 </div>
 </div>
 <div class="sect2">
-<h3 id="__em_log4j_properties_em">4.4. <em>log4j.properties</em></h3>
+<h3 id="__em_log4j_properties_em">7.4. <em>log4j.properties</em></h3>
 <div class="paragraph">
 <p>Edit this file to change rate at which the server log files are rolled and to change the level at which the server logs messages.</p>
 </div>
@@ -456,33 +562,33 @@ Each option is fairly well documented.  Add your own environment variables here 
 </div>
 </div>
 <div class="sect2">
-<h3 id="rest.keystore">4.5. <em>rest-keystore</em></h3>
+<h3 id="rest.keystore">7.5. <em>rest-keystore</em></h3>
 <div class="paragraph">
-<p>This file will only be present if the property <em>rest.https.password</em> has been set in <em>conf/rest-site.xml</em>.
+<p>This file will only be present if the property <em>rest.https.password</em> has been set in <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>.
 Please see <a href="#important.configurations">Important Configurations</a> for more detail.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="important.configurations">5. The Important Configurations</h2>
+<h2 id="important.configurations">8. The Important Configurations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Below we list the <strong>important</strong> Configurations.</p>
 </div>
 <div class="sect2">
-<h3 id="__code_rest_port_code">5.1. <code>rest.port</code></h3>
+<h3 id="__code_rest_port_code">8.1. <code>rest.port</code></h3>
 <div class="paragraph">
 <p>The default value is 4200. This is the port the embedded Jetty server binds to
 waiting for client HTTP connections. The value may need to be changed
 if this port number conflicts with other ports in use on your cluster.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__code_rest_https_port_code">5.2. <code>rest.https.port</code></h3>
+<h3 id="__code_rest_https_port_code">8.2. <code>rest.https.port</code></h3>
 <div class="paragraph">
 <p>The default value is 4201. This is the port the embedded Jetty server binds to
 waiting for client HTTPS connections. The value may need to be changed
@@ -490,16 +596,16 @@ if this port number conflicts with other ports in use on your cluster.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__code_rest_ssl_password_code">5.3. <code>rest.ssl.password</code></h3>
+<h3 id="__code_rest_ssl_password_code">8.3. <code>rest.ssl.password</code></h3>
 <div class="paragraph">
-<p>This property is not present by default in <em>conf/rest-site.xml</em>. Typically the Trafodion
+<p>This property is not present by default in <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>. Typically the Trafodion
 installer sets this property to an obfuscated password string. If this property is present then the server
 will setup HTTPS in the embedded Jetty server. To create an obfuscated password for this property use
 the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>java -classpath $REST_HOME/lib/jetty-9.2.10.v20150310.jar:$REST_HOME/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password}</pre>
+<pre>java -classpath $REST_INSTALL_DIR/lib/jetty-9.2.10.v20150310.jar:$REST_INSTALL_DIR/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -513,10 +619,10 @@ MD5:{obfuscated password string}</pre>
 </div>
 <div class="paragraph">
 <p>Copy/paste the entire string including "OBF:" into this property.
-The server will use this property when creating the <em>/conf/rest-keystore</em> directory.</p>
+The server will use this property when creating the <em>$REST_INSTALL_DIR/conf/rest-keystore</em> directory.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -530,7 +636,7 @@ The server will use this property when creating the <em>/conf/rest-keystore</em>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>java -classpath $REST_HOME/lib/jetty-9.2.10.v20150310.jar:$REST_HOME/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password {obfuscated password string}</pre>
+<pre>java -classpath $REST_INSTALL_DIR/lib/jetty-9.2.10.v20150310.jar:$REST_INSTALL_DIR/lib/jetty-util-9.2.10.v20150310.jar org.eclipse.jetty.util.security.Password {obfuscated password string}</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -550,149 +656,20 @@ CRYPT:{obfuscated password string}</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__code_dcs_master_port_code">5.4. <code>dcs.master.port</code></h3>
+<h3 id="__code_dcs_master_port_code">8.4. <code>dcs.master.port</code></h3>
 <div class="paragraph">
-<p>The default value is 37800. This is the port the embedded JDBC Type 4 driver
+<p>The default value is 23400. This is the port the embedded JDBC Type 4 driver
 uses to connect to Trafodion DCS.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
-</div>
-</div>
-</div>
-</div>
-<h1 id="architecture" class="sect0">Architecture</h1>
-<div class="sect1">
-<h2 id="arch-overview">6. Overview</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="arch-overview-rest">6.1. REST</h3>
-<div class="paragraph">
-<p>The Trafodion REST server, see figure <a href="#img-rest">Figure 1</a>, is a process that give access to cluster, nodes,
-applications, transactions and ODBC/JDBC Type4 connection information.</p>
-</div>
-<div class="paragraph">
-<p>The REST server provides the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A lightweight standalone server.</p>
-</li>
-<li>
-<p>Simple configuration and startup.</p>
-</li>
-<li>
-<p>Well known REST API.</p>
-</li>
-<li>
-<p>Embedded Jetty server.</p>
-</li>
-<li>
-<p>Embedded JDBC Type 2/Type 4 driver.</p>
-</li>
-<li>
-<p>Embedded ZooKeeper client.</p>
-</li>
-<li>
-<p>Automatic script change detection and recompile.</p>
-</li>
-<li>
-<p>HTTPS encryption.</p>
-</li>
-<li>
-<p>100% Java implementation.</p>
-</li>
-</ul>
-</div>
-<div id="img-rest" class="imageblock">
-<div class="content">
-<img src="./images/architecture.png" alt="architecture">
-</div>
-<div class="title">Figure 1: Trafodion REST Sever Architecture</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="arch-client">7. Client</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Http clients connect to the server using the default port 4200 for HTTP and 4201 if HTTPS is setup in the embedded
-Jetty server.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="arch-trafodionrest">8. TrafodionRest</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TrafodionRest is the implementation of the server. Using its embedded Jetty server it services Http client
-HTTP and HTTPS requests. It&#8217;s a 100% java implementation.</p>
-</div>
-<div class="sect2">
-<h3 id="server-startup">8.1. Startup Behavior</h3>
-<div class="paragraph">
-<p>The server is started/stopped via the scripts found in the <em>/bin</em> directory. During startup it opens a connection to ZooKeeper.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="server-threads">8.2. Threads</h3>
-<div class="paragraph">
-<p>The server runs several background threads:</p>
-</div>
-<div class="sect3">
-<h4 id="_embedded_jetty">8.2.1. Embedded Jetty</h4>
-<div class="paragraph">
-<p>An <a href="http://docs.codehaus.org/display/JETTY/Jetty+Documentation">embedded Jetty</a> multi-threaded server services all client requests. A default port
-is configured but this may be changed in the configuration by modifying the <em>rest.port</em> and <em>rest.https.port</em> properties.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="server-processes-script-manager">8.2.2. ScriptManager</h4>
-<div class="paragraph">
-<p>The script manager thread is responsible for reading and compiling the Python scripts found in <em>/bin/scripts</em> directory. It
-can detect a change in any script found there. If any script changes it will recompile it.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_jdbc_type_4">8.2.3. JDBC Type 4</h4>
-<div class="paragraph">
-<p>An embedded driver is available to execute Trafodion SQL queries by connecting to the DCS service.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_jdbc_type_2">8.2.4. JDBC Type 2</h4>
-<div class="paragraph">
-<p>An embedded driver is available to execute Trafodion SQL queries.</p>
-</div>
+<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 </div>
 </div>
 </div>
 <h1 id="apis" class="sect0">APIs</h1>
-<div class="openblock partintro">
-<div class="content">
-<div class="paragraph">
-<p>The terms "representational state transfer" and "REST" were introduced in 2000 in the doctoral dissertation of
-Roy Fielding, one of the principal authors of the Hypertext Transfer Protocol (HTTP) specification. In a nutshell</p>
-</div>
-<div class="paragraph">
-<p>A GET to an resource requests a copy of the information.</p>
-</div>
-<div class="paragraph">
-<p>A PUT to an resource replaces the resource.</p>
-</div>
-<div class="paragraph">
-<p>POST adds resources.</p>
-</div>
-<div class="paragraph">
-<p>DELETE eliminates resources.</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="rest">9. Resource Identifiers</h2>
+<h2 id="rest">9. REST APIs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The URIs for the REST-based web services have the following syntax:</p>
@@ -708,158 +685,106 @@ Roy Fielding, one of the principal authors of the Hypertext Transfer Protocol (H
 <div class="literalblock">
 <div class="content">
 <pre>{hostname} - The http address of the service to get information about.
-                               Currently supported are the Trafodion DTM, RMS and DCS components.
 {version} - The version of the APIs. In this release, the version is v1.
 {resourcepath} - A path that defines a singleton resource or a collection of resources.</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_http_requests">10. HTTP Requests</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To invoke a REST API, your application calls an HTTP operation on the URI associated with a resource.</p>
+<p>There are many ways/languages to use the REST API&#8217;s. The following examples use the curl command line interface to do the REST calls.</p>
 </div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 35%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EndPoint</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HTTP Verb</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Example</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/servers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of various Trafodion components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#server-status">Status of Trafodion components</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/dtm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Distributed Transaction Manager(DTM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dtm-status">Status of DTM</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/rms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Runtime Management Statistics(RMS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#rms-status">Status of RMS</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/dcs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Database Connectivity Servers(DCS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dcs-status">Status of DCS</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/dcs/summary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the configuration information of Database Connectivity Servers(DCS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#summary-status">DCS configuration information</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/dcs/connections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the client/server information of Database Connectivity Servers(DCS) from zookeeper</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dcs-connection-status">Client-Server information</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/nodes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Trafodion nodes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#node-status">Status of nodes</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/pstack</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the call stack for a collection of Trafodion processes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#pstack-process">Various call stack information</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/pstack/program/{program}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays call stack for a specific Trafodion process</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#pstack-per-process">Call stack of a specific process</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/jstack/program/{program}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays call stack for a specific java process</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#jstack-process">Call stack of java process</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/transactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Distributed Transaction manager(DTM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dtm-transactions">Status of transactions</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/transactions/stats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the status of Distributed Transaction manager(DTM) service statistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dtm-service-stats">Service statistics of transactions</a></p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="server-status">9.1. Displays the status of various components</h3>
 <div class="paragraph">
-<div class="title">Headers</div>
-<p>This release ignores Accept and Accept-Encoding headers.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_http_responses">11. HTTP Responses</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following sections describe the syntax of HTTP Responses.</p>
-</div>
-<div class="paragraph">
-<div class="title">Compression</div>
-<p>This release does not support compression.</p>
-</div>
-<div class="paragraph">
-<div class="title">Response Formats</div>
-<p>This release of the REST APIs supports responses in JSON format only.</p>
-</div>
-<div class="paragraph">
-<div class="title">JSON response with single resource</div>
-<p>HTTP Request:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>GET http://{hostname:4200}/v1/servers</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Status Line:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>HTTP/1.1 200 OK</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Header:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre> HTTP/1.1 200 OK
- Cache-Control: no-cache
- Content-Type: application/json
- Transfer-Encoding: chunked</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Body:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>{
-  "STATE":"UP",
-  "SUBSTATE":"OPERATIONAL",
-  "PROCESSES":
-  [
-    {
-      "PROCESS":"DTM",
-      "CONFIGURED":2,
-      "ACTUAL":2,
-      "DOWN":""},
-    {
-      "PROCESS":"RMS",
-      "CONFIGURED":4,
-      "ACTUAL":4,
-      "DOWN":""
-    },
-    {
-      "PROCESS":"DCSMASTER",
-      "CONFIGURED":2,
-      "ACTUAL":2,
-      "DOWN":""
-    },
-    {
-      "PROCESS":"MXOSRVR",
-      "CONFIGURED":4,
-      "ACTUAL":4,
-      "DOWN":""
-    }
-  ]
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<div class="title">JSON response with Error response</div>
-<p>Here we request information about DCS client connections when DCS is stopped.</p>
-</div>
-<div class="paragraph">
-<p>HTTP Request:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>GET http://{hostname:4200}/v1/servers/dcs/connections</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Status Line:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>HTTP/1.1 404 Not Found</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Header:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>  HTTP/1.1 404 Not Found
-  Content-Type: application/json
-  Transfer-Encoding: chunked</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Response Body:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>{
-   "RemoteException" : {
-      "javaClassName" : "org.trafodion.rest.NotFoundException",
-      "exception" : "NotFoundException",
-      "message" : "DCS connection resources not found"
-   }
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_example_usage">12. Example Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>There are many ways/languages to use the REST API&#8217;s. The following examples use the curl command line interface to do the REST GET calls.</p>
-</div>
-<div class="paragraph">
-<p>In this example the user wishes to know the status of all Trafodion resources.
+<p>In this example the user wishes to know the status of all Trafodion components.
 This a jsonized version of the <em>sqcheck -c all</em> command.</p>
 </div>
 <div class="listingblock">
@@ -902,6 +827,9 @@ This a jsonized version of the <em>sqcheck -c all</em> command.</p>
 }</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="dtm-status">9.2. Displays the status of Distributed Transaction Manager(DTM)</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the status of Trafodion DTM.
 This a jsonized version of the <em>sqcheck -c dtm</em> command.</p>
@@ -915,8 +843,7 @@ This a jsonized version of the <em>sqcheck -c dtm</em> command.</p>
 <div class="listingblock">
 <div class="title">Response</div>
 <div class="content">
-<pre>{
-  "STATE":"UP",
+<pre>  "STATE":"UP",
   "SUBSTATE":"OPERATIONAL",
   "PROCESSES":
   [
@@ -930,6 +857,9 @@ This a jsonized version of the <em>sqcheck -c dtm</em> command.</p>
 }</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="rms-status">9.3. Status of RMS</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the status of Trafodion RMS.
 This a jsonized version of the <em>sqcheck -c rms</em> command.</p>
@@ -958,6 +888,9 @@ This a jsonized version of the <em>sqcheck -c rms</em> command.</p>
 }</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="dcs-status">9.4. Status of Database Connectivity Service (DCS)</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the status of Trafodion DCS components.
 This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
@@ -992,6 +925,9 @@ This a jsonized version of the <em>sqcheck -c dcs</em> command.</p>
 }</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="summary-status">9.5. Summary of DCS Configuration</h3>
 <div class="paragraph">
 <p>In this example the user wishes to see a summary of the Trafodion DCS configuration.
 The server retrieves this information by executing dcscheck script.</p>
@@ -1015,6 +951,9 @@ The server retrieves this information by executing dcscheck script.</p>
 }</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="dcs-connection-status">9.6. Displays the client/server information</h3>
 <div class="paragraph">
 <p>In this example the user wishes to see the Trafodion DCS server/client connection information.
 The server retrieves this information from ZooKeeper.</p>
@@ -1064,6 +1003,9 @@ The server retrieves this information from ZooKeeper.</p>
 ]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="node-status">9.7. Displays status of Trafodion nodes</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the status of Trafodion nodes.
 This is a jsonized version of the <em>sqnodestatus</em> command.</p>
@@ -1097,6 +1039,9 @@ This is a jsonized version of the <em>sqnodestatus</em> command.</p>
 ]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="pstack-process">9.8. Gets the collection of stack for various Trafodion process</h3>
 <div class="paragraph">
 <p>In this example the user wishes to see the call stack for a collection of Trafodion processes.
 This is a jsonized version of the <em>sqpstack</em> command. Newlines are added to all lines
@@ -1266,6 +1211,9 @@ in the response so clients can recognize each end of line.</p>
   #4  0x0000000000409c9c in main ()\n"}]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="pstack-per-process">9.9. Displays call stack information for a specific process</h3>
 <div class="paragraph">
 <p>In this example the user wishes to see the call stack for Trafodion process id 20642.
 This is a jsonized version of the <em>sqpstack [&lt;program&gt;]</em> command. Newlines are added to all lines
@@ -1352,6 +1300,9 @@ in the response so clients can recognize each end of line.</p>
 ]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="jstack-process">9.10. Displays the call stack for a specific java process</h3>
 <div class="paragraph">
 <p>In this example the user wishes to see the call Java stack for Trafodion process id 20642.
 This is a jsonized version of the <em>jstack [&lt;program&gt;]</em> command. Newlines are added to all lines
@@ -1492,6 +1443,9 @@ in the response so clients can recognize each end of line.</p>
 ]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="dtm-transactions">9.11. Displays status of transactions</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the status of Trafodion DTM service.
 This is a jsonized version of the <em>dtmci status tm</em> command.</p>
@@ -1525,6 +1479,9 @@ This is a jsonized version of the <em>dtmci status tm</em> command.</p>
 ]</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="dtm-service-stats">9.12. Displays the transaction service statistics</h3>
 <div class="paragraph">
 <p>In this example the user wishes to know the Trafodion DTM service statistics.
 This is a jsonized version of the <em>dtmci stats</em> command.</p>
@@ -1562,9 +1519,10 @@ This is a jsonized version of the <em>dtmci stats</em> command.</p>
 </div>
 </div>
 </div>
+</div>
 <h1 id="troubleshooting" class="sect0">Troubleshooting and Debugging</h1>
 <div class="sect1">
-<h2 id="_logs">13. Logs</h2>
+<h2 id="_logs">10. Logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The key process logs are as follows&#8230;&#8203;(replace &lt;user&gt; with the user that started the service, &lt;instance&gt; for the server instance and &lt;hostname&gt; for the machine name)</p>
@@ -1572,10 +1530,10 @@ This is a jsonized version of the <em>dtmci stats</em> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>$REST_HOME/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.log</p>
+<p>$REST_INSTALL_DIR/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.log</p>
 </li>
 <li>
-<p>$REST_HOME/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.out</p>
+<p>$REST_INSTALL_DIR/logs/rest-&lt;user&gt;-&lt;instance&gt;-rest-&lt;hostname&gt;.out</p>
 </li>
 </ul>
 </div>
@@ -1585,10 +1543,10 @@ This is a jsonized version of the <em>dtmci stats</em> command.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="trouble-tools">14. Tools</h2>
+<h2 id="trouble-tools">11. Tools</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="trouble-tools-builtin-zkcli">14.1. zkcli</h3>
+<h3 id="trouble-tools-builtin-zkcli">11.1. zkcli</h3>
 <div class="paragraph">
 <p><em>zkcli</em> is a very useful tool for investigating ZooKeeper-related issues.  To invoke:</p>
 </div>
@@ -2112,7 +2070,7 @@ Some of these are preferences, but others can create mysterious build errors or 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-11-30 23:48:25 UTC
+Last updated 2016-11-03 05:21:34 UTC
 </div>
 </div>
 </body>

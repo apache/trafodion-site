@@ -8106,7 +8106,44 @@ parameters.</p>
 <div class="listingblock">
 <div class="title">Example 14: <a href="resources/source/supplierInfo.java"><code>supplierInfo()</code></a> Method</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in asciidoc/_chapters/sample_spjs.adoc - include::../../resources/source/supplierInfo.java[supplierInfo procedure source code]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// The SUPPLIERINFO procedure accepts a supplier number and returns the</span>
+<span class="comment">// supplier's name, street, city, state, and post code to separate output</span>
+<span class="comment">// parameters.</span>
+<span class="comment">//</span>
+<span class="comment">// See http://trafodion.incubator.apache.org/docs/spj_guide/index.html#supplierinfo-procedure</span>
+<span class="comment">// for more documentation.</span>
+<span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> supplierInfo( <span class="predefined-type">BigDecimal</span> suppNum
+                               , <span class="predefined-type">String</span><span class="type">[]</span> suppName
+                               , <span class="predefined-type">String</span><span class="type">[]</span> streetAddr
+                               , <span class="predefined-type">String</span><span class="type">[]</span> cityName
+                               , <span class="predefined-type">String</span><span class="type">[]</span> stateName
+                               , <span class="predefined-type">String</span><span class="type">[]</span> postCode
+                               ) <span class="directive">throws</span> <span class="exception">SQLException</span>
+{
+   <span class="predefined-type">Connection</span> conn =
+      <span class="predefined-type">DriverManager</span>.getConnection( <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:default:connection</span><span class="delimiter">&quot;</span></span> ) ;
+
+   <span class="predefined-type">PreparedStatement</span> getSupplier =
+      conn.prepareStatement( <span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT suppname, street, city, </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">       state, postcode </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">FROM trafodion.invent.supplier </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">WHERE suppnum = ?</span><span class="delimiter">&quot;</span></span>
+                           ) ;
+
+   getSupplier.setBigDecimal( <span class="integer">1</span>, suppNum ) ;
+   <span class="predefined-type">ResultSet</span> rs = getSupplier.executeQuery() ;
+   rs.next() ;
+
+   suppName[<span class="integer">0</span>]   = rs.getString( <span class="integer">1</span> ) ;
+   streetAddr[<span class="integer">0</span>] = rs.getString( <span class="integer">2</span> ) ;
+   cityName[<span class="integer">0</span>]   = rs.getString( <span class="integer">3</span> ) ;
+   stateName[<span class="integer">0</span>]  = rs.getString( <span class="integer">4</span> ) ;
+   postCode[<span class="integer">0</span>]   = rs.getString( <span class="integer">5</span> ) ;
+
+   rs.close() ;
+   conn.close() ;
+
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -8292,7 +8329,38 @@ parameters.</p>
 <div class="listingblock">
 <div class="title">Example 15: <a href="resources/source/supplyQuantities.java"><code>supplyQuantities()</code></a> Method</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in asciidoc/_chapters/sample_spjs.adoc - include::../../resources/source/supplyQuantities.java[supplyQuantities procedure source code]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// The SUPPLYQUANTITIES procedure returns the average, minimum, and maximum</span>
+<span class="comment">// quantities of available parts in inventory to separate output</span>
+<span class="comment">// parameters.</span>
+<span class="comment">//</span>
+<span class="comment">// See http://trafodion.incubator.apache.org/docs/spj_guide/index.html#supplyquantities-procedure</span>
+<span class="comment">// for more documentation.</span>
+<span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> supplyQuantities( <span class="type">int</span><span class="type">[]</span> avgQty
+                                   , <span class="type">int</span><span class="type">[]</span> minQty
+                                   , <span class="type">int</span><span class="type">[]</span> maxQty
+                                   ) <span class="directive">throws</span> <span class="exception">SQLException</span>
+{
+   <span class="predefined-type">Connection</span> conn =
+      <span class="predefined-type">DriverManager</span>.getConnection( <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:default:connection</span><span class="delimiter">&quot;</span></span> ) ;
+
+   <span class="predefined-type">PreparedStatement</span> getQty =
+      conn.prepareStatement( <span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT AVG(qty_on_hand), </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">       MIN(qty_on_hand), </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">       MAX(qty_on_hand) </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">FROM trafodion.invent.partloc</span><span class="delimiter">&quot;</span></span>
+                           ) ;
+
+   <span class="predefined-type">ResultSet</span> rs = getQty.executeQuery() ;
+   rs.next() ;
+
+   avgQty[<span class="integer">0</span>] = rs.getInt( <span class="integer">1</span> ) ;
+   minQty[<span class="integer">0</span>] = rs.getInt( <span class="integer">2</span> ) ;
+   maxQty[<span class="integer">0</span>] = rs.getInt( <span class="integer">3</span> ) ;
+
+   rs.close() ;
+   conn.close() ;
+
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -8458,7 +8526,48 @@ codes that have more than that quantity.</p>
 <div class="listingblock">
 <div class="title">Example 16: <a href="resources/source/partLocations.java"><code>partLocations()</code></a> Method</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in asciidoc/_chapters/sample_spjs.adoc - include::../../resources/source/partLocations.java[partLocations procedure source code]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// The PARTLOCATIONS procedure accepts a part number and quantity and returns a</span>
+<span class="comment">// set of location codes that have the exact quantity and a set of location</span>
+<span class="comment">// codes that have more than that quantity.</span>
+<span class="comment">//</span>
+<span class="comment">// See http://trafodion.incubator.apache.org/docs/spj_guide/index.html#partlocations-procedure</span>
+<span class="comment">// for more documentation.</span>
+<span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> partLocations( <span class="type">int</span> partNum
+                                , <span class="type">int</span> quantity
+                                , <span class="predefined-type">ResultSet</span> exactly<span class="type">[]</span>
+                                , <span class="predefined-type">ResultSet</span> moreThan<span class="type">[]</span>
+                                ) <span class="directive">throws</span> <span class="exception">SQLException</span>
+
+{
+   <span class="predefined-type">Connection</span> conn =
+      <span class="predefined-type">DriverManager</span>.getConnection( <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:default:connection</span><span class="delimiter">&quot;</span></span> ) ;
+
+   <span class="predefined-type">PreparedStatement</span> getLocationsExact =
+      conn.prepareStatement( <span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT L.loc_code, L.partnum, L.qty_on_hand </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">FROM trafodion.invent.partloc L </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">WHERE L.partnum = ? </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">  AND L.qty_on_hand = ? </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content"> ORDER BY L.partnum </span><span class="delimiter">&quot;</span></span>
+                           ) ;
+
+   getLocationsExact.setInt( <span class="integer">1</span>, partNum ) ;
+   getLocationsExact.setInt( <span class="integer">2</span>, quantity) ;
+
+   <span class="predefined-type">PreparedStatement</span> getLocationsMoreThan =
+      conn.prepareStatement( <span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT L.loc_code, L.partnum, L.qty_on_hand </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">FROM trafodion.invent.partloc L </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">WHERE L.partnum = ? </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">  AND L.qty_on_hand &gt; ? </span><span class="delimiter">&quot;</span></span>
+                           + <span class="string"><span class="delimiter">&quot;</span><span class="content">ORDER BY L.partnum </span><span class="delimiter">&quot;</span></span>
+                           ) ;
+
+   getLocationsMoreThan.setInt( <span class="integer">1</span>, partNum ) ;
+   getLocationsMoreThan.setInt( <span class="integer">2</span>, quantity) ;
+
+   exactly[<span class="integer">0</span>]  = getLocationsExact.executeQuery() ;
+   moreThan[<span class="integer">0</span>] = getLocationsMoreThan.executeQuery() ;
+
+}</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -9513,7 +9622,7 @@ custname
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2016-07-18 16:17:03 UTC
+Last updated 2016-11-03 05:21:36 UTC
 </div>
 </div>
 <script>
