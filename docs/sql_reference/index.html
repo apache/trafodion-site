@@ -1323,6 +1323,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#count_function">7.26.4. COUNT Function</a></li>
 <li><a href="#considerations_for_count">7.26.5. Considerations for COUNT</a></li>
 <li><a href="#examples_of_count">7.26.6. Examples of COUNT</a></li>
+<li><a href="#examples_of_crc32">7.26.7. examples of CR32</a></li>
 </ul>
 </li>
 <li><a href="#current_function">7.27. CURRENT Function</a>
@@ -1461,363 +1462,391 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#examples_of_insert">7.51.1. Examples of INSERT</a></li>
 </ul>
 </li>
-<li><a href="#isnull_function">7.52. ISNULL Function</a>
+<li><a href="#is_ipv4_function">7.52. IS_IPV4 Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_isnull">7.52.1. Examples of ISNULL</a></li>
+<li><a href="#examples_of_is_ipv4">7.52.1. Examples of IS_IPV4</a></li>
 </ul>
 </li>
-<li><a href="#juliantimestamp_function">7.53. JULIANTIMESTAMP Function</a>
+<li><a href="#is_ipv6_function">7.53. IS_IPV6 Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_juliantimestamp">7.53.1. Considerations for JULIANTIMESTAMP</a></li>
-<li><a href="#examples_of_juliantimestamp">7.53.2. Examples of JULIANTIMESTAMP</a></li>
+<li><a href="#examples_of_is_ipv6">7.53.1. Examples of IS_IPV6</a></li>
 </ul>
 </li>
-<li><a href="#lastnotnull_function">7.54. LASTNOTNULL Function</a>
+<li><a href="#isnull_function">7.54. ISNULL Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_lastnotnull">7.54.1. Examples of LASTNOTNULL</a></li>
+<li><a href="#examples_of_isnull">7.54.1. Examples of ISNULL</a></li>
 </ul>
 </li>
-<li><a href="#lcase_function">7.55. LCASE Function</a>
+<li><a href="#juliantimestamp_function">7.55. JULIANTIMESTAMP Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_lcase">7.55.1. Examples of LCASE</a></li>
-<li><a href="#left_function">7.55.2. LEFT Function</a></li>
-<li><a href="#examples_of_left">7.55.3. Examples of LEFT</a></li>
+<li><a href="#considerations_for_juliantimestamp">7.55.1. Considerations for JULIANTIMESTAMP</a></li>
+<li><a href="#examples_of_juliantimestamp">7.55.2. Examples of JULIANTIMESTAMP</a></li>
 </ul>
 </li>
-<li><a href="#locate_function">7.56. LOCATE Function</a>
+<li><a href="#lastnotnull_function">7.56. LASTNOTNULL Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_locate">7.56.1. Considerations for LOCATE</a></li>
-<li><a href="#examples_of_locate">7.56.2. Examples of LOCATE</a></li>
+<li><a href="#examples_of_lastnotnull">7.56.1. Examples of LASTNOTNULL</a></li>
 </ul>
 </li>
-<li><a href="#log_function">7.57. LOG Function</a>
+<li><a href="#lcase_function">7.57. LCASE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_log">7.57.1. Examples of LOG</a></li>
-<li><a href="#log10_function">7.57.2. LOG10 Function</a></li>
-<li><a href="#examples_of_log10">7.57.3. Examples of LOG10</a></li>
+<li><a href="#examples_of_lcase">7.57.1. Examples of LCASE</a></li>
+<li><a href="#left_function">7.57.2. LEFT Function</a></li>
+<li><a href="#examples_of_left">7.57.3. Examples of LEFT</a></li>
 </ul>
 </li>
-<li><a href="#lower_function">7.58. LOWER Function</a>
+<li><a href="#locate_function">7.58. LOCATE Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_lower">7.58.1. Considerations for LOWER</a></li>
-<li><a href="#examples_of_lower">7.58.2. Examples of LOWER</a></li>
-<li><a href="#lpad_function">7.58.3. LPAD Function</a></li>
-<li><a href="#examples_of_lpad">7.58.4. Examples of LPAD</a></li>
+<li><a href="#considerations_for_locate">7.58.1. Considerations for LOCATE</a></li>
+<li><a href="#examples_of_locate">7.58.2. Examples of LOCATE</a></li>
 </ul>
 </li>
-<li><a href="#ltrim_function">7.59. LTRIM Function</a>
+<li><a href="#log_function">7.59. LOG Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_ltrim">7.59.1. Considerations for LTRIM</a></li>
-<li><a href="#examples_of_ltrim">7.59.2. Examples of LTRIM</a></li>
-<li><a href="#max_function">7.59.3. MAX/MAXIMUM Function</a></li>
-<li><a href="#considerations_for_max">7.59.4. Considerations for MAX/MAXIMUM</a></li>
-<li><a href="#operands_of_the_expression">7.59.5. Operands of the Expression</a></li>
-<li><a href="#examples_of_max">7.59.6. Examples of MAX/MAXIMUM</a></li>
+<li><a href="#examples_of_log">7.59.1. Examples of LOG</a></li>
+<li><a href="#log10_function">7.59.2. LOG10 Function</a></li>
+<li><a href="#examples_of_log10">7.59.3. Examples of LOG10</a></li>
 </ul>
 </li>
-<li><a href="#min_function">7.60. MIN Function</a>
+<li><a href="#lower_function">7.60. LOWER Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_min">7.60.1. Considerations for MIN</a></li>
-<li><a href="#examples_of_min">7.60.2. Examples of MIN</a></li>
+<li><a href="#considerations_for_lower">7.60.1. Considerations for LOWER</a></li>
+<li><a href="#examples_of_lower">7.60.2. Examples of LOWER</a></li>
+<li><a href="#lpad_function">7.60.3. LPAD Function</a></li>
+<li><a href="#examples_of_lpad">7.60.4. Examples of LPAD</a></li>
 </ul>
 </li>
-<li><a href="#minute_function">7.61. MINUTE Function</a>
+<li><a href="#ltrim_function">7.61. LTRIM Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_minute">7.61.1. Examples of minute</a></li>
+<li><a href="#considerations_for_ltrim">7.61.1. Considerations for LTRIM</a></li>
+<li><a href="#examples_of_ltrim">7.61.2. Examples of LTRIM</a></li>
 </ul>
 </li>
-<li><a href="#mod_function">7.62. MOD Function</a>
+<li><a href="#max_function">7.62. MAX/MAXIMUM Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_mod">7.62.1. Examples of MOD</a></li>
+<li><a href="#considerations_for_max">7.62.1. Considerations for MAX/MAXIMUM</a></li>
+<li><a href="#operands_of_the_expression">7.62.2. Operands of the Expression</a></li>
+<li><a href="#examples_of_max">7.62.3. Examples of MAX/MAXIMUM</a></li>
 </ul>
 </li>
-<li><a href="#month_function">7.63. MONTH Function</a>
+<li><a href="#md5_function">7.63. MD5 Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_month">7.63.1. Examples of MONTH</a></li>
+<li><a href="#examples_of_md5">7.63.1. Examples of MD5</a></li>
 </ul>
 </li>
-<li><a href="#monthname_function">7.64. MONTHNAME Function</a>
+<li><a href="#min_function">7.64. MIN Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_monthname">7.64.1. Considerations for MONTHNAME</a></li>
-<li><a href="#examples_of_monthname">7.64.2. Examples of MONTHNAME</a></li>
+<li><a href="#considerations_for_min">7.64.1. Considerations for MIN</a></li>
+<li><a href="#examples_of_min">7.64.2. Examples of MIN</a></li>
 </ul>
 </li>
-<li><a href="#movingavg_function">7.65. MOVINGAVG Function</a>
+<li><a href="#minute_function">7.65. MINUTE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingavg">7.65.1. Examples of MOVINGAVG</a></li>
+<li><a href="#examples_of_minute">7.65.1. Examples of minute</a></li>
 </ul>
 </li>
-<li><a href="#movingcount_function">7.66. MOVINGCOUNT Function</a>
+<li><a href="#mod_function">7.66. MOD Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_movingcount">7.66.1. Considerations for MOVINGCOUNT</a></li>
-<li><a href="#examples_of_movingcount">7.66.2. Examples of MOVINGCOUNT</a></li>
+<li><a href="#examples_of_mod">7.66.1. Examples of MOD</a></li>
 </ul>
 </li>
-<li><a href="#movingmax_function">7.67. MOVINGMAX Function</a>
+<li><a href="#month_function">7.67. MONTH Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingmax">7.67.1. Examples of MOVINGMAX</a></li>
+<li><a href="#examples_of_month">7.67.1. Examples of MONTH</a></li>
 </ul>
 </li>
-<li><a href="#movingmin_function">7.68. MOVINGMIN Function</a>
+<li><a href="#monthname_function">7.68. MONTHNAME Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingmin">7.68.1. Examples of MOVINGMIN</a></li>
+<li><a href="#considerations_for_monthname">7.68.1. Considerations for MONTHNAME</a></li>
+<li><a href="#examples_of_monthname">7.68.2. Examples of MONTHNAME</a></li>
 </ul>
 </li>
-<li><a href="#movingstddev_function">7.69. MOVINGSTDDEV Function</a>
+<li><a href="#movingavg_function">7.69. MOVINGAVG Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingstddev">7.69.1. Examples of MOVINGSTDDEV</a></li>
+<li><a href="#examples_of_movingavg">7.69.1. Examples of MOVINGAVG</a></li>
 </ul>
 </li>
-<li><a href="#movingsum_function">7.70. MOVINGSUM Function</a>
+<li><a href="#movingcount_function">7.70. MOVINGCOUNT Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingsum">7.70.1. Examples of MOVINGSUM</a></li>
+<li><a href="#considerations_for_movingcount">7.70.1. Considerations for MOVINGCOUNT</a></li>
+<li><a href="#examples_of_movingcount">7.70.2. Examples of MOVINGCOUNT</a></li>
 </ul>
 </li>
-<li><a href="#movingvariance_function">7.71. MOVINGVARIANCE Function</a>
+<li><a href="#movingmax_function">7.71. MOVINGMAX Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_movingvariance">7.71.1. Examples of MOVINGVARIANCE</a></li>
-<li><a href="#nullif_function">7.71.2. NULLIF Function</a></li>
-<li><a href="#examples_of_nullif">7.71.3. Examples of NULLIF</a></li>
+<li><a href="#examples_of_movingmax">7.71.1. Examples of MOVINGMAX</a></li>
 </ul>
 </li>
-<li><a href="#nullifzero_function">7.72. NULLIFZERO Function</a>
+<li><a href="#movingmin_function">7.72. MOVINGMIN Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_nullifzero">7.72.1. Examples of NULLIFZERO</a></li>
+<li><a href="#examples_of_movingmin">7.72.1. Examples of MOVINGMIN</a></li>
 </ul>
 </li>
-<li><a href="#nvl_function">7.73. NVL Function</a>
+<li><a href="#movingstddev_function">7.73. MOVINGSTDDEV Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_nvl">7.73.1. Examples of NVL</a></li>
+<li><a href="#examples_of_movingstddev">7.73.1. Examples of MOVINGSTDDEV</a></li>
 </ul>
 </li>
-<li><a href="#octet_length_function">7.74. OCTET_LENGTH Function</a>
+<li><a href="#movingsum_function">7.74. MOVINGSUM Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_octet_length">7.74.1. Considerations for OCTET_LENGTH</a></li>
-<li><a href="#offset_function">7.74.2. OFFSET Function</a></li>
-<li><a href="#examples_of_offset">7.74.3. Examples of OFFSET</a></li>
+<li><a href="#examples_of_movingsum">7.74.1. Examples of MOVINGSUM</a></li>
 </ul>
 </li>
-<li><a href="#pi_function">7.75. PI Function</a>
+<li><a href="#movingvariance_function">7.75. MOVINGVARIANCE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_pi">7.75.1. Examples of PI</a></li>
+<li><a href="#examples_of_movingvariance">7.75.1. Examples of MOVINGVARIANCE</a></li>
+<li><a href="#nullif_function">7.75.2. NULLIF Function</a></li>
+<li><a href="#examples_of_nullif">7.75.3. Examples of NULLIF</a></li>
 </ul>
 </li>
-<li><a href="#position_function">7.76. POSITION Function</a>
+<li><a href="#nullifzero_function">7.76. NULLIFZERO Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_position">7.76.1. Considerations for POSITION</a></li>
-<li><a href="#examples_of_position">7.76.2. Examples of POSITION</a></li>
+<li><a href="#examples_of_nullifzero">7.76.1. Examples of NULLIFZERO</a></li>
 </ul>
 </li>
-<li><a href="#power_function">7.77. POWER Function</a>
+<li><a href="#nvl_function">7.77. NVL Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_power">7.77.1. Examples of POWER</a></li>
+<li><a href="#examples_of_nvl">7.77.1. Examples of NVL</a></li>
 </ul>
 </li>
-<li><a href="#quarter_function">7.78. QUARTER Function</a>
+<li><a href="#octet_length_function">7.78. OCTET_LENGTH Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_quarter">7.78.1. Examples of QUARTER</a></li>
+<li><a href="#considerations_for_octet_length">7.78.1. Considerations for OCTET_LENGTH</a></li>
+<li><a href="#offset_function">7.78.2. OFFSET Function</a></li>
+<li><a href="#examples_of_offset">7.78.3. Examples of OFFSET</a></li>
 </ul>
 </li>
-<li><a href="#radians_function">7.79. RADIANS Function</a>
+<li><a href="#pi_function">7.79. PI Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_radians">7.79.1. Examples of RADIANS</a></li>
+<li><a href="#examples_of_pi">7.79.1. Examples of PI</a></li>
 </ul>
 </li>
-<li><a href="#runningrank_function">7.80. RANK/RUNNINGRANK Function</a>
+<li><a href="#position_function">7.80. POSITION Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_runningrank">7.80.1. Considerations for RANK/RUNNINGRANK</a></li>
-<li><a href="#examples_of_runningrank">7.80.2. Examples of RANK/RUNNINGRANK</a></li>
+<li><a href="#considerations_for_position">7.80.1. Considerations for POSITION</a></li>
+<li><a href="#examples_of_position">7.80.2. Examples of POSITION</a></li>
 </ul>
 </li>
-<li><a href="#repeat_function">7.81. REPEAT Function</a>
+<li><a href="#power_function">7.81. POWER Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_repeat">7.81.1. Examples of REPEAT</a></li>
+<li><a href="#examples_of_power">7.81.1. Examples of POWER</a></li>
 </ul>
 </li>
-<li><a href="#replace_function">7.82. REPLACE Function</a>
+<li><a href="#quarter_function">7.82. QUARTER Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_replace">7.82.1. Examples of REPLACE</a></li>
+<li><a href="#examples_of_quarter">7.82.1. Examples of QUARTER</a></li>
 </ul>
 </li>
-<li><a href="#right_function">7.83. RIGHT Function</a>
+<li><a href="#radians_function">7.83. RADIANS Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_right">7.83.1. Examples of RIGHT</a></li>
+<li><a href="#examples_of_radians">7.83.1. Examples of RADIANS</a></li>
 </ul>
 </li>
-<li><a href="#round_function">7.84. ROUND Function</a>
+<li><a href="#runningrank_function">7.84. RANK/RUNNINGRANK Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_round">7.84.1. Examples of ROUND</a></li>
+<li><a href="#considerations_for_runningrank">7.84.1. Considerations for RANK/RUNNINGRANK</a></li>
+<li><a href="#examples_of_runningrank">7.84.2. Examples of RANK/RUNNINGRANK</a></li>
 </ul>
 </li>
-<li><a href="#rows_since_function">7.85. ROWS SINCE Function</a>
+<li><a href="#repeat_function">7.85. REPEAT Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_rows_since">7.85.1. Considerations for ROWS SINCE</a></li>
-<li><a href="#examples_of_rows_since">7.85.2. Examples of ROWS SINCE</a></li>
+<li><a href="#examples_of_repeat">7.85.1. Examples of REPEAT</a></li>
 </ul>
 </li>
-<li><a href="#rows_since_changed_function">7.86. ROWS SINCE CHANGED Function</a>
+<li><a href="#replace_function">7.86. REPLACE Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_rows_since_changed">7.86.1. Considerations for ROWS SINCE CHANGED</a></li>
-<li><a href="#examples_of_rows_since_changed">7.86.2. Examples of ROWS SINCE CHANGED</a></li>
+<li><a href="#examples_of_replace">7.86.1. Examples of REPLACE</a></li>
 </ul>
 </li>
-<li><a href="#rpad_function">7.87. RPAD Function</a>
+<li><a href="#right_function">7.87. RIGHT Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_rpad_function">7.87.1. Examples of RPAD Function</a></li>
+<li><a href="#examples_of_right">7.87.1. Examples of RIGHT</a></li>
 </ul>
 </li>
-<li><a href="#rtrim_function">7.88. RTRIM Function</a>
+<li><a href="#round_function">7.88. ROUND Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_rtrim">7.88.1. Considerations for RTRIM</a></li>
-<li><a href="#examples_of_rtrim">7.88.2. Examples of RTRIM</a></li>
+<li><a href="#examples_of_round">7.88.1. Examples of ROUND</a></li>
 </ul>
 </li>
-<li><a href="#runningavg_function">7.89. RUNNINGAVG Function</a>
+<li><a href="#rows_since_function">7.89. ROWS SINCE Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_runningavg">7.89.1. Considerations for RUNNINGAVG</a></li>
-<li><a href="#examples_of_runningavg">7.89.2. Examples of RUNNINGAVG</a></li>
+<li><a href="#considerations_for_rows_since">7.89.1. Considerations for ROWS SINCE</a></li>
+<li><a href="#examples_of_rows_since">7.89.2. Examples of ROWS SINCE</a></li>
 </ul>
 </li>
-<li><a href="#runningcount_function">7.90. RUNNINGCOUNT Function</a>
+<li><a href="#rows_since_changed_function">7.90. ROWS SINCE CHANGED Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_runningcount">7.90.1. Considerations for RUNNINGCOUNT</a></li>
-<li><a href="#examples_of_runningcount">7.90.2. Examples of RUNNINGCOUNT</a></li>
+<li><a href="#considerations_for_rows_since_changed">7.90.1. Considerations for ROWS SINCE CHANGED</a></li>
+<li><a href="#examples_of_rows_since_changed">7.90.2. Examples of ROWS SINCE CHANGED</a></li>
 </ul>
 </li>
-<li><a href="#runningmax_function">7.91. RUNNINGMAX Function</a>
+<li><a href="#rpad_function">7.91. RPAD Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_runningmax">7.91.1. Examples of RUNNINGMAX</a></li>
+<li><a href="#examples_of_rpad_function">7.91.1. Examples of RPAD Function</a></li>
 </ul>
 </li>
-<li><a href="#runningmin_function">7.92. RUNNINGMIN Function</a>
+<li><a href="#rtrim_function">7.92. RTRIM Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_runningmin">7.92.1. Examples of RUNNINGMIN</a></li>
-<li><a href="#runningstddev_function">7.92.2. RUNNINGSTDDEV Function</a></li>
-<li><a href="#considerations_for_runningstddev">7.92.3. Considerations for RUNNINGSTDDEV</a></li>
-<li><a href="#examples_of_runningstddev">7.92.4. Examples of RUNNINGSTDDEV</a></li>
+<li><a href="#considerations_for_rtrim">7.92.1. Considerations for RTRIM</a></li>
+<li><a href="#examples_of_rtrim">7.92.2. Examples of RTRIM</a></li>
 </ul>
 </li>
-<li><a href="#runningsum_function">7.93. RUNNINGSUM Function</a>
+<li><a href="#runningavg_function">7.93. RUNNINGAVG Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_runningsum">7.93.1. Examples of RUNNINGSUM</a></li>
+<li><a href="#considerations_for_runningavg">7.93.1. Considerations for RUNNINGAVG</a></li>
+<li><a href="#examples_of_runningavg">7.93.2. Examples of RUNNINGAVG</a></li>
 </ul>
 </li>
-<li><a href="#runningvariance_function">7.94. RUNNINGVARIANCE Function</a>
+<li><a href="#runningcount_function">7.94. RUNNINGCOUNT Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_runningvariance">7.94.1. Examples of RUNNINGVARIANCE</a></li>
+<li><a href="#considerations_for_runningcount">7.94.1. Considerations for RUNNINGCOUNT</a></li>
+<li><a href="#examples_of_runningcount">7.94.2. Examples of RUNNINGCOUNT</a></li>
 </ul>
 </li>
-<li><a href="#second_function">7.95. SECOND Function</a>
+<li><a href="#runningmax_function">7.95. RUNNINGMAX Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_second">7.95.1. Examples of SECOND</a></li>
+<li><a href="#examples_of_runningmax">7.95.1. Examples of RUNNINGMAX</a></li>
 </ul>
 </li>
-<li><a href="#sign_function">7.96. SIGN Function</a>
+<li><a href="#runningmin_function">7.96. RUNNINGMIN Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_sign">7.96.1. Examples of SIGN</a></li>
+<li><a href="#examples_of_runningmin">7.96.1. Examples of RUNNINGMIN</a></li>
+<li><a href="#runningstddev_function">7.96.2. RUNNINGSTDDEV Function</a></li>
+<li><a href="#considerations_for_runningstddev">7.96.3. Considerations for RUNNINGSTDDEV</a></li>
+<li><a href="#examples_of_runningstddev">7.96.4. Examples of RUNNINGSTDDEV</a></li>
 </ul>
 </li>
-<li><a href="#sin_function">7.97. SIN Function</a>
+<li><a href="#runningsum_function">7.97. RUNNINGSUM Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_sin">7.97.1. Examples of SIN</a></li>
+<li><a href="#examples_of_runningsum">7.97.1. Examples of RUNNINGSUM</a></li>
 </ul>
 </li>
-<li><a href="#sinh_function">7.98. SINH Function</a>
+<li><a href="#runningvariance_function">7.98. RUNNINGVARIANCE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_sinh">7.98.1. Examples of SINH</a></li>
-<li><a href="#space_function">7.98.2. SPACE Function</a></li>
-<li><a href="#examples_of_space">7.98.3. Examples of SPACE</a></li>
+<li><a href="#examples_of_runningvariance">7.98.1. Examples of RUNNINGVARIANCE</a></li>
 </ul>
 </li>
-<li><a href="#sqrt_function">7.99. SQRT Function</a>
+<li><a href="#second_function">7.99. SECOND Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_sqrt">7.99.1. Examples of SQRT</a></li>
+<li><a href="#examples_of_second">7.99.1. Examples of SECOND</a></li>
 </ul>
 </li>
-<li><a href="#stddev_function">7.100. STDDEV Function</a>
+<li><a href="#sha_function">7.100. SHA Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_stddev">7.100.1. Considerations for STDDEV</a></li>
-<li><a href="#examples_of_stddev">7.100.2. Examples of STDDEV</a></li>
+<li><a href="#examples_of_sha">7.100.1. examples of SHA</a></li>
 </ul>
 </li>
-<li><a href="#substring_function">7.101. SUBSTRING/SUBSTR Function</a>
+<li><a href="#sha2_function">7.101. SHA2 Function</a>
 <ul class="sectlevel3">
-<li><a href="#alternative_forms">7.101.1. Alternative Forms</a></li>
-<li><a href="#considerations_for_substring">7.101.2. Considerations for SUBSTRING/SUBSTR</a></li>
-<li><a href="#examples_of_substring">7.101.3. Examples of SUBSTRING/SUBSTR</a></li>
+<li><a href="#examples_of_sha2">7.101.1. examples of SHA2</a></li>
 </ul>
 </li>
-<li><a href="#sum_function">7.102. SUM Function</a>
+<li><a href="#sign_function">7.102. SIGN Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_sum">7.102.1. Considerations for SUM</a></li>
-<li><a href="#examples_of_sum">7.102.2. Examples of SUM</a></li>
+<li><a href="#examples_of_sign">7.102.1. Examples of SIGN</a></li>
 </ul>
 </li>
-<li><a href="#tan_function">7.103. TAN Function</a>
+<li><a href="#sin_function">7.103. SIN Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_tan">7.103.1. Examples of TAN</a></li>
-<li><a href="#tanh_function">7.103.2. TANH Function</a></li>
-<li><a href="#examples_of_tanh">7.103.3. Examples of TANH</a></li>
+<li><a href="#examples_of_sin">7.103.1. Examples of SIN</a></li>
 </ul>
 </li>
-<li><a href="#this_function">7.104. THIS Function</a>
+<li><a href="#sinh_function">7.104. SINH Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_this">7.104.1. Considerations for THIS</a></li>
-<li><a href="#examples_of_this">7.104.2. Examples of THIS</a></li>
+<li><a href="#examples_of_sinh">7.104.1. Examples of SINH</a></li>
+<li><a href="#space_function">7.104.2. SPACE Function</a></li>
+<li><a href="#examples_of_space">7.104.3. Examples of SPACE</a></li>
 </ul>
 </li>
-<li><a href="#timestampadd_function">7.105. TIMESTAMPADD Function</a>
+<li><a href="#sqrt_function">7.105. SQRT Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_timestampadd">7.105.1. Examples of TIMESTAMPADD</a></li>
+<li><a href="#examples_of_sqrt">7.105.1. Examples of SQRT</a></li>
 </ul>
 </li>
-<li><a href="#timestampdiff_function">7.106. TIMESTAMPDIFF Function</a>
+<li><a href="#stddev_function">7.106. STDDEV Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_timestampdiff">7.106.1. Examples of TIMESTAMPDIFF</a></li>
+<li><a href="#considerations_for_stddev">7.106.1. Considerations for STDDEV</a></li>
+<li><a href="#examples_of_stddev">7.106.2. Examples of STDDEV</a></li>
 </ul>
 </li>
-<li><a href="#translate_function">7.107. TRANSLATE Function</a></li>
-<li><a href="#trim_function">7.108. TRIM Function</a>
+<li><a href="#substring_function">7.107. SUBSTRING/SUBSTR Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_trim">7.108.1. Considerations for TRIM</a></li>
-<li><a href="#examples_of_trim">7.108.2. Examples of TRIM</a></li>
+<li><a href="#alternative_forms">7.107.1. Alternative Forms</a></li>
+<li><a href="#considerations_for_substring">7.107.2. Considerations for SUBSTRING/SUBSTR</a></li>
+<li><a href="#examples_of_substring">7.107.3. Examples of SUBSTRING/SUBSTR</a></li>
 </ul>
 </li>
-<li><a href="#ucase_function">7.109. UCASE Function</a>
+<li><a href="#sum_function">7.108. SUM Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_ucase">7.109.1. Considerations for UCASE</a></li>
-<li><a href="#examples_of_ucase">7.109.2. Examples of UCASE</a></li>
-<li><a href="#upper_function">7.109.3. UPPER Function</a></li>
-<li><a href="#examples_of_upper">7.109.4. Examples of UPPER</a></li>
-<li><a href="#upshift_function">7.109.5. UPSHIFT Function</a></li>
-<li><a href="#examples_of_upshift">7.109.6. Examples of UPSHIFT</a></li>
+<li><a href="#considerations_for_sum">7.108.1. Considerations for SUM</a></li>
+<li><a href="#examples_of_sum">7.108.2. Examples of SUM</a></li>
 </ul>
 </li>
-<li><a href="#user_function">7.110. USER Function</a>
+<li><a href="#tan_function">7.109. TAN Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_user">7.110.1. Considerations for USER</a></li>
-<li><a href="#examples_of_user">7.110.2. Examples of USER</a></li>
+<li><a href="#examples_of_tan">7.109.1. Examples of TAN</a></li>
+<li><a href="#tanh_function">7.109.2. TANH Function</a></li>
+<li><a href="#examples_of_tanh">7.109.3. Examples of TANH</a></li>
 </ul>
 </li>
-<li><a href="#variance_function">7.111. VARIANCE Function</a>
+<li><a href="#this_function">7.110. THIS Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_variance">7.111.1. Considerations for VARIANCE</a></li>
-<li><a href="#examples_of_variance">7.111.2. Examples of VARIANCE</a></li>
+<li><a href="#considerations_for_this">7.110.1. Considerations for THIS</a></li>
+<li><a href="#examples_of_this">7.110.2. Examples of THIS</a></li>
 </ul>
 </li>
-<li><a href="#week_function">7.112. WEEK Function</a>
+<li><a href="#timestampadd_function">7.111. TIMESTAMPADD Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_week">7.112.1. Examples of WEEK</a></li>
+<li><a href="#examples_of_timestampadd">7.111.1. Examples of TIMESTAMPADD</a></li>
 </ul>
 </li>
-<li><a href="#year_function">7.113. YEAR Function</a>
+<li><a href="#timestampdiff_function">7.112. TIMESTAMPDIFF Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_year">7.113.1. Examples of YEAR</a></li>
+<li><a href="#examples_of_timestampdiff">7.112.1. Examples of TIMESTAMPDIFF</a></li>
 </ul>
 </li>
-<li><a href="#zeroifnull_function">7.114. ZEROIFNULL Function</a>
+<li><a href="#translate_function">7.113. TRANSLATE Function</a></li>
+<li><a href="#trim_function">7.114. TRIM Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_zeroifnull">7.114.1. Examples of ZEROIFNULL</a></li>
+<li><a href="#considerations_for_trim">7.114.1. Considerations for TRIM</a></li>
+<li><a href="#examples_of_trim">7.114.2. Examples of TRIM</a></li>
+</ul>
+</li>
+<li><a href="#ucase_function">7.115. UCASE Function</a>
+<ul class="sectlevel3">
+<li><a href="#considerations_for_ucase">7.115.1. Considerations for UCASE</a></li>
+<li><a href="#examples_of_ucase">7.115.2. Examples of UCASE</a></li>
+<li><a href="#upper_function">7.115.3. UPPER Function</a></li>
+<li><a href="#examples_of_upper">7.115.4. Examples of UPPER</a></li>
+<li><a href="#upshift_function">7.115.5. UPSHIFT Function</a></li>
+<li><a href="#examples_of_upshift">7.115.6. Examples of UPSHIFT</a></li>
+</ul>
+</li>
+<li><a href="#user_function">7.116. USER Function</a>
+<ul class="sectlevel3">
+<li><a href="#considerations_for_user">7.116.1. Considerations for USER</a></li>
+<li><a href="#examples_of_user">7.116.2. Examples of USER</a></li>
+</ul>
+</li>
+<li><a href="#variance_function">7.117. VARIANCE Function</a>
+<ul class="sectlevel3">
+<li><a href="#considerations_for_variance">7.117.1. Considerations for VARIANCE</a></li>
+<li><a href="#examples_of_variance">7.117.2. Examples of VARIANCE</a></li>
+</ul>
+</li>
+<li><a href="#week_function">7.118. WEEK Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_week">7.118.1. Examples of WEEK</a></li>
+</ul>
+</li>
+<li><a href="#year_function">7.119. YEAR Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_year">7.119.1. Examples of YEAR</a></li>
+</ul>
+</li>
+<li><a href="#zeroifnull_function">7.120. ZEROIFNULL Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_zeroifnull">7.120.1. Examples of ZEROIFNULL</a></li>
 </ul>
 </li>
 </ul>
@@ -26836,6 +26865,10 @@ corresponding week of the year.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the cosine of a numeric value expression, where the expression is an angle expressed in radians.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#crc32_function">CRC32 Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns CRC32 checksum</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#cosh_function">COSH Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the hyperbolic cosine of a numeric value expression, where the expression is an angle expressed in radians.</p></td>
 </tr>
@@ -26916,6 +26949,22 @@ returns 0. If value is greater than zero, returns 1.</p></td>
 </table>
 <div class="paragraph">
 <p>See the individual entry for the function.</p>
+</div>
+<div id="encryption_functions" class="literalblock">
+<div class="content">
+<pre>== Encryption Functions
+Use these functions within an SQL value expression to do data encryption or hashing:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[cols="25%,75%"]
+|===
+| &lt;&lt;md5_function,MD5 Function&gt;&gt;         | Returns MD5 checksum
+| &lt;&lt;sha_function,SHA Function&gt;&gt;         | Returns SHA-1 160-bit checksum
+| &lt;&lt;sha2_function,SHA2 Function&gt;&gt;       | Returns SHA-2 checksum
+|===</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -27132,6 +27181,22 @@ the expressions have NULL values, the function returns a NULL value.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#isnull_function">ISNULL Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the first argument if it is not null, otherwise it returns the second argument.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#is_ipv4_function">IS_IPV4 Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns 1 if the argument is a valid IPv4 address specified as a string, 0 otherwise.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#is_ipv6_function">IS_IPV6 Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns 1 if the argument is a valid IPv6 address specified as a string, 0 otherwise.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#inet_aton_function">INET_ATON Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Given the dotted-quad representation of an IPv4 network address as a string, returns an integer that represents the numeric value of the address in network byte order (big endian). INET_ATON() returns NULL if it does not understand its argument.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#inet_ntoa_function">INET_NTOA Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Given a numeric IPv4 network address in network byte order, returns the dotted-quad string representation of the address as a nonbinary string in the connection character set. INET_NTOA() returns NULL if it does not understand its argument.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#nullif_function">NULLIF Function</a></p></td>
@@ -29169,6 +29234,54 @@ WHERE jobcode IS NOT NULL;
 </div>
 </li>
 </ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="crc32_function" class="literalblock">
+<div class="content">
+<pre>== CRC32 Function</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Computes a cyclic redundancy check value and returns a 32-bit unsigned value.
+The result is NULL if the argument is NULL. The argument is expected to be a
+string and (if possible) is treated as one if it is not.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CRC32{ expression)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>expression</em></code></p>
+<div class="paragraph">
+<p>specifies a value expression that determines the values to count. The
+<em>expression</em> cannot contain an aggregate function or a subquery.
+See <a href="#expressions">Expressions</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples_of_crc32">7.26.7. examples of CR32</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT CRC32('Trafodion') from dual;
+
+ (EXPR)
+ ----------
+
+ 1960931967
+
+&gt;&gt;SELECT CRC32(2016) from dual;
+
+ (EXPR)
+ ----------
+
+ 2177070256</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -31666,7 +31779,6 @@ or equal to the length of <em>char-expr-1</em>.</p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 <div class="sect3">
 <h4 id="examples_of_insert">7.51.1. Examples of INSERT</h4>
 <div class="ulist">
@@ -31702,7 +31814,157 @@ SALES REP
 </div>
 </div>
 <div class="sect2">
-<h3 id="isnull_function">7.52. ISNULL Function</h3>
+<h3 id="is_ipv4_function">7.52. IS_IPV4 Function</h3>
+<div class="paragraph">
+<p>For a given argument, if it is a valid IPV4 string, IS_IPV4() returns 1 else returns 0.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">IS_IPV4( expression )</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>expression</em></code></p>
+<div class="paragraph">
+<p>specifies an expression that determines the values to include in the
+validation of the IP address. The <em>expression</em> cannot contain an aggregate
+function or a subquery. If the input value is NULL, IS_IPV4 returns NULL.
+See <a href="#expressions">Expressions</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="examples_of_is_ipv4">7.52.1. Examples of IS_IPV4</h4>
+<div class="paragraph">
+<p>This function returns 1 for the first input argument, since it is a valid IPV4 string;
+0 for the second input argument, since it is an invalid IPV4 string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT IS_IPV4('10.0.5.9'), IS_IPV4('10.0.5.256') from dual;
+
+(EXPR)   (EXPR)
+-------  -------
+1        0</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="is_ipv6_function">7.53. IS_IPV6 Function</h3>
+<div class="paragraph">
+<p>Returns 1 if the argument is a valid IPv6 address specified as a string, 0 otherwise.
+This function does not consider IPv4 addresses to be valid IPv6 addresses.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">IS_IPV6( expression )</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>expression</em></code></p>
+<div class="paragraph">
+<p>specifies an expression that determines the values to include in the
+validation of the IP address. The <em>expression</em> cannot contain an aggregate
+function or a subquery. If the input value is NULL, IS_IPV6 returns NULL.
+See <a href="#expressions">Expressions</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="examples_of_is_ipv6">7.53.1. Examples of IS_IPV6</h4>
+<div class="paragraph">
+<p>This function returns 0 for the second input argument, since it is a valid IPV6 string;
+1 for the second input argument, since it is an invalid IPVr6 string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT IS_IPV6('10.0.5.9'), IS_IPV6('::1') from dual;
+(EXPR)   (EXPR)
+-------- -------
+1         0</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="literalblock">
+<div class="content">
+<pre>+[[inet_aton_function]]
++== INET_ATON Function
++
++Given the dotted-quad representation of an IPv4 network address as a string,
++returns an integer that represents the numeric value of the address in network
++byte order (big endian). INET_ATON() returns NULL if it does not understand its argument.
++
++```
++INET_ATON( expression )
++```
++
++* `_expression_`
+++
++specifies an expression that determines the values to include in the
++conversion of the IP address. The _expression_ cannot contain an aggregate
++function or a subquery. If the input value is NULL, INET_ATON returns NULL.
++See &lt;&lt;expressions,Expressions&gt;&gt;.
++
++[[examples_of_inet_aton]]
++=== Examples of INET_ATON
++
++
++```
++&gt;&gt;SELECT INET_ATON('10.0.5.9') from dual;
++
++(EXPR)
++-----------
++167773449
++```
++&lt;&lt;&lt;
++[[inet_ntoa_function]]
++== INET_NTOA Function
++
++Given a numeric IPv4 network address in network byte order, returns the
++dotted-quad string representation of the address as a nonbinary string in
++the connection character set. INET_NTOA() returns NULL if it does
++not understand its argument.
++
++```
++INET_NTOA( expression )
++```
++
++* `_expression_`
+++
++specifies an expression that determines the values to include in the
++conversion of the number to IP address. The _expression_ cannot contain
++an aggregate function or a subquery. If the input value is NULL, INET_NTOA
++returns NULL.
++See &lt;&lt;expressions,Expressions&gt;&gt;.
++
++[[examples_of_inet_ntoa]]
++=== Examples of INET_NTOA
++
++this function will convert an integer into  the dotted-quad string
++representation of the IP address.
++
++```
++&gt;&gt;SELECT INET_NTOA(167773449) from dual
++
++(EXPR)
++-------------
++'10.0.5.9'
++```
++&lt;&lt;&lt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="isnull_function">7.54. ISNULL Function</h3>
 <div class="paragraph">
 <p>The ISNULL function returns the value of the first argument if it is not
 null, otherwise it returns the value of the second argument. Both
@@ -31734,7 +31996,7 @@ with that of <em>ck-expr</em>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_isnull">7.52.1. Examples of ISNULL</h4>
+<h4 id="examples_of_isnull">7.54.1. Examples of ISNULL</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -31767,7 +32029,7 @@ with that of <em>ck-expr</em>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="juliantimestamp_function">7.53. JULIANTIMESTAMP Function</h3>
+<h3 id="juliantimestamp_function">7.55. JULIANTIMESTAMP Function</h3>
 <div class="paragraph">
 <p>The JULIANTIMESTAMP function converts a datetime value into a 64-bit
 Julian timestamp value that represents the number of microseconds that
@@ -31803,14 +32065,14 @@ specified datetime value are set to zero. See
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_juliantimestamp">7.53.1. Considerations for JULIANTIMESTAMP</h4>
+<h4 id="considerations_for_juliantimestamp">7.55.1. Considerations for JULIANTIMESTAMP</h4>
 <div class="paragraph">
 <p>The <em>datetime-expression</em> value must be a date or timestamp value from
 the beginning of year 0001 to the end of year 9999.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_juliantimestamp">7.53.2. Examples of JULIANTIMESTAMP</h4>
+<h4 id="examples_of_juliantimestamp">7.55.2. Examples of JULIANTIMESTAMP</h4>
 <div class="paragraph">
 <p>The project table consists of five columns using the data types NUMERIC,
 VARCHAR, DATE, TIMESTAMP, and INTERVAL.</p>
@@ -31855,7 +32117,7 @@ START_DATE (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="lastnotnull_function">7.54. LASTNOTNULL Function</h3>
+<h3 id="lastnotnull_function">7.56. LASTNOTNULL Function</h3>
 <div class="paragraph">
 <p>The LASTNOTNULL function is a sequence function that returns the last
 non-null value of a column in an intermediate result table ordered by a
@@ -31881,7 +32143,7 @@ expression. If only null values have been returned, LASTNOTNULL returns null.</p
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_lastnotnull">7.54.1. Examples of LASTNOTNULL</h4>
+<h4 id="examples_of_lastnotnull">7.56.1. Examples of LASTNOTNULL</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -31909,7 +32171,7 @@ lastnotnull
 </div>
 </div>
 <div class="sect2">
-<h3 id="lcase_function">7.55. LCASE Function</h3>
+<h3 id="lcase_function">7.57. LCASE Function</h3>
 <div class="paragraph">
 <p>The LCASE function down-shifts alphanumeric characters. For
 non-alphanumeric characters, LCASE returns the same character. LCASE can
@@ -31944,7 +32206,7 @@ characters to down-shift. See
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_lcase">7.55.1. Examples of LCASE</h4>
+<h4 id="examples_of_lcase">7.57.1. Examples of LCASE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -31972,7 +32234,7 @@ Hotel Oregon    HOTEL OREGON          hotel oregon
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="left_function">7.55.2. LEFT Function</h4>
+<h4 id="left_function">7.57.2. LEFT Function</h4>
 <div class="paragraph">
 <p>The LEFT function returns the leftmost specified number of characters
 from a character expression. Every character, including multi-byte
@@ -32009,7 +32271,7 @@ than or equal to 0 with a scale of zero.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_left">7.55.3. Examples of LEFT</h4>
+<h4 id="examples_of_left">7.57.3. Examples of LEFT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32052,7 +32314,7 @@ SECRETARY COMNET
 </div>
 </div>
 <div class="sect2">
-<h3 id="locate_function">7.56. LOCATE Function</h3>
+<h3 id="locate_function">7.58. LOCATE Function</h3>
 <div class="paragraph">
 <p>The LOCATE function searches for a given substring in a character
 string. If the substring is found, Trafodion SQL returns the character
@@ -32095,7 +32357,7 @@ of zero. If substring-expression  is not found in  source-expression , Trafodion
 SQL returns 0.</p>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_locate">7.56.1. Considerations for LOCATE</h4>
+<h4 id="considerations_for_locate">7.58.1. Considerations for LOCATE</h4>
 <div class="sect4">
 <h5 id="result_of_locate">Result of LOCATE</h5>
 <div class="ulist">
@@ -32126,7 +32388,7 @@ function) for both the <em>substring-expression</em> and the <em>source-expressi
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_locate">7.56.2. Examples of LOCATE</h4>
+<h4 id="examples_of_locate">7.58.2. Examples of LOCATE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32155,7 +32417,7 @@ WHERE LOCATE ('SMITH',UCASE(empname)) &gt; 0 ;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="log_function">7.57. LOG Function</h3>
+<h3 id="log_function">7.59. LOG Function</h3>
 <div class="paragraph">
 <p>The LOG function returns the natural logarithm of a numeric value
 expression. LOG is a Trafodion SQL extension.</p>
@@ -32178,7 +32440,7 @@ than zero. See <a href="#numeric_value_expressions">Numeric Value Expressions</a
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_log">7.57.1. Examples of LOG</h4>
+<h4 id="examples_of_log">7.59.1. Examples of LOG</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32195,7 +32457,7 @@ approximately 0.69315:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="log10_function">7.57.2. LOG10 Function</h4>
+<h4 id="log10_function">7.59.2. LOG10 Function</h4>
 <div class="paragraph">
 <p>The LOG10 function returns the base 10 logarithm of a numeric value
 expression.</p>
@@ -32223,7 +32485,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_log10">7.57.3. Examples of LOG10</h4>
+<h4 id="examples_of_log10">7.59.3. Examples of LOG10</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32241,7 +32503,7 @@ approximately 1.3979:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="lower_function">7.58. LOWER Function</h3>
+<h3 id="lower_function">7.60. LOWER Function</h3>
 <div class="paragraph">
 <p>The LOWER function down-shifts alphanumeric characters. For
 non-alphanumeric characters, LOWER returns the same character. LOWER can
@@ -32273,7 +32535,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_lower">7.58.1. Considerations for LOWER</h4>
+<h4 id="considerations_for_lower">7.60.1. Considerations for LOWER</h4>
 <div class="paragraph">
 <p>For a UTF8 character expression, the LOWER function down-shifts all the
 uppercase or title case characters in a given string to lowercase and
@@ -32291,7 +32553,7 @@ and whose Unicode name includes <em>title</em>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_lower">7.58.2. Examples of LOWER</h4>
+<h4 id="examples_of_lower">7.60.2. Examples of LOWER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32319,7 +32581,7 @@ Hotel Oregon      HOTEL OREGON        hotel oregon
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="lpad_function">7.58.3. LPAD Function</h4>
+<h4 id="lpad_function">7.60.3. LPAD Function</h4>
 <div class="paragraph">
 <p>The LPAD function pads the left side of a string with the specified
 string. Every character in the string, including multi-byte characters,
@@ -32361,7 +32623,7 @@ string size, the string is truncated.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_lpad">7.58.4. Examples of LPAD</h4>
+<h4 id="examples_of_lpad">7.60.4. Examples of LPAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32410,7 +32672,7 @@ string size, the string is truncated.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ltrim_function">7.59. LTRIM Function</h3>
+<h3 id="ltrim_function">7.61. LTRIM Function</h3>
 <div class="paragraph">
 <p>The LTRIM function removes leading spaces from a character string. If
 you must remove any leading character other than space, use the TRIM
@@ -32437,7 +32699,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_ltrim">7.59.1. Considerations for LTRIM</h4>
+<h4 id="considerations_for_ltrim">7.61.1. Considerations for LTRIM</h4>
 <div class="sect4">
 <h5 id="result_of_ltrim">Result of LTRIM</h5>
 <div class="paragraph">
@@ -32447,7 +32709,7 @@ fixed length or maximum variable length of <em>character-expression</em>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_ltrim">7.59.2. Examples of LTRIM</h4>
+<h4 id="examples_of_ltrim">7.61.2. Examples of LTRIM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32465,8 +32727,9 @@ fixed length or maximum variable length of <em>character-expression</em>.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="max_function">7.59.3. MAX/MAXIMUM Function</h4>
+</div>
+<div class="sect2">
+<h3 id="max_function">7.62. MAX/MAXIMUM Function</h3>
 <div class="paragraph">
 <p>MAX is an aggregate function that returns the maximum value within a set
 of values. MAXIMUM is the equivalent of MAX wherever the function name
@@ -32505,13 +32768,12 @@ See <a href="#expressions">Expressions</a>.</p>
 </li>
 </ul>
 </div>
-</div>
 <div class="sect3">
-<h4 id="considerations_for_max">7.59.4. Considerations for MAX/MAXIMUM</h4>
+<h4 id="considerations_for_max">7.62.1. Considerations for MAX/MAXIMUM</h4>
 
 </div>
 <div class="sect3">
-<h4 id="operands_of_the_expression">7.59.5. Operands of the Expression</h4>
+<h4 id="operands_of_the_expression">7.62.2. Operands of the Expression</h4>
 <div class="paragraph">
 <p>The expression includes columns from the rows of the SELECT result table
 but cannot include an aggregate function. These expressions are valid:</p>
@@ -32523,10 +32785,9 @@ MAX (SALARY * 1.1)
 MAX (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_max">7.59.6. Examples of MAX/MAXIMUM</h4>
+<h4 id="examples_of_max">7.62.3. Examples of MAX/MAXIMUM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32549,7 +32810,48 @@ MAX (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="min_function">7.60. MIN Function</h3>
+<h3 id="md5_function">7.63. MD5 Function</h3>
+<div class="paragraph">
+<p>Calculates an MD5 128-bit checksum for the string. The value is returned
+as a string of 32 hexadecimal digits, or NULL if the argument was NULL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">MD5( _expression_)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>expression</em></code></p>
+<div class="paragraph">
+<p>specifies an expression that determines the values to include in the
+computation of the MD5. The <em>expression</em> cannot contain an aggregate
+function or a subquery. If the input value is NULL, MD5 returns NULL.
+See <a href="#expressions">Expressions</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="examples_of_md5">7.63.1. Examples of MD5</h4>
+<div class="paragraph">
+<p>The return value is a nonbinary string in the connection character set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT MD5('testing') from dual;
+
+(EXPR)
+---------------------------------
+'ae2b1fca515949e5d54fb22b8ed95575'</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="min_function">7.64. MIN Function</h3>
 <div class="paragraph">
 <p>MIN is an aggregate function that returns the minimum value within a set
 of values. The data type of the result is the same as the data type of
@@ -32587,7 +32889,7 @@ See <a href="#expressions">Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_min">7.60.1. Considerations for MIN</h4>
+<h4 id="considerations_for_min">7.64.1. Considerations for MIN</h4>
 <div class="sect4">
 <h5 id="operands_of_the_expression_3">Operands of the Expression</h5>
 <div class="paragraph">
@@ -32606,7 +32908,7 @@ MIN (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_min">7.60.2. Examples of MIN</h4>
+<h4 id="examples_of_min">7.64.2. Examples of MIN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32629,7 +32931,7 @@ MIN (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="minute_function">7.61. MINUTE Function</h3>
+<h3 id="minute_function">7.65. MINUTE Function</h3>
 <div class="paragraph">
 <p>The MINUTE function converts a TIME or TIMESTAMP expression into an
 INTEGER value, in the range 0 through 59, that represents the
@@ -32655,7 +32957,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_minute">7.61.1. Examples of minute</h4>
+<h4 id="examples_of_minute">7.65.1. Examples of minute</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32679,7 +32981,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="mod_function">7.62. MOD Function</h3>
+<h3 id="mod_function">7.66. MOD Function</h3>
 <div class="paragraph">
 <p>The MOD function returns the remainder (modulus) of an integer value
 expression divided by an integer value expression.</p>
@@ -32714,7 +33016,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_mod">7.62.1. Examples of MOD</h4>
+<h4 id="examples_of_mod">7.66.1. Examples of MOD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32731,7 +33033,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="month_function">7.63. MONTH Function</h3>
+<h3 id="month_function">7.67. MONTH Function</h3>
 <div class="paragraph">
 <p>The MONTH function converts a DATE or TIMESTAMP expression into an
 INTEGER value in the range 1 through 12 that represents the
@@ -32757,7 +33059,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_month">7.63.1. Examples of MONTH</h4>
+<h4 id="examples_of_month">7.67.1. Examples of MONTH</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32780,7 +33082,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="monthname_function">7.64. MONTHNAME Function</h3>
+<h3 id="monthname_function">7.68. MONTHNAME Function</h3>
 <div class="paragraph">
 <p>The MONTHNAME function converts a DATE or TIMESTAMP expression into a
 character literal that is the name of the month of the year (January,
@@ -32806,13 +33108,13 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_monthname">7.64.1. Considerations for MONTHNAME</h4>
+<h4 id="considerations_for_monthname">7.68.1. Considerations for MONTHNAME</h4>
 <div class="paragraph">
 <p>The MONTHNAME function returns the name of the month in ISO8859-1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_monthname">7.64.2. Examples of MONTHNAME</h4>
+<h4 id="examples_of_monthname">7.68.2. Examples of MONTHNAME</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32836,7 +33138,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingavg_function">7.65. MOVINGAVG Function</h3>
+<h3 id="movingavg_function">7.69. MOVINGAVG Function</h3>
 <div class="paragraph">
 <p>The MOVINGAVG function is a sequence function that returns the average
 of non-null values of a column in the current window of an intermediate
@@ -32913,7 +33215,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingavg">7.65.1. Examples of MOVINGAVG</h4>
+<h4 id="examples_of_movingavg">7.69.1. Examples of MOVINGAVG</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -32951,7 +33253,7 @@ MOVINGAVG3
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingcount_function">7.66. MOVINGCOUNT Function</h3>
+<h3 id="movingcount_function">7.70. MOVINGCOUNT Function</h3>
 <div class="paragraph">
 <p>The MOVINGCOUNT function is a sequence function that returns the number
 of non-null values of a column in the current window of an intermediate
@@ -33028,7 +33330,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="considerations_for_movingcount">7.66.1. Considerations for MOVINGCOUNT</h4>
+<h4 id="considerations_for_movingcount">7.70.1. Considerations for MOVINGCOUNT</h4>
 <div class="paragraph">
 <p>The MOVINGCOUNT sequence function is defined differently from the COUNT
 aggregate function. If you specify DISTINCT for the COUNT aggregate
@@ -33038,7 +33340,7 @@ values are counted.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_movingcount">7.66.2. Examples of MOVINGCOUNT</h4>
+<h4 id="examples_of_movingcount">7.70.2. Examples of MOVINGCOUNT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33067,7 +33369,7 @@ MOVINGCOUNT3
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingmax_function">7.67. MOVINGMAX Function</h3>
+<h3 id="movingmax_function">7.71. MOVINGMAX Function</h3>
 <div class="paragraph">
 <p>The MOVINGMAX function is a sequence function that returns the maximum
 of non-null values of a column in the current window of an intermediate
@@ -33144,7 +33446,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingmax">7.67.1. Examples of MOVINGMAX</h4>
+<h4 id="examples_of_movingmax">7.71.1. Examples of MOVINGMAX</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33173,7 +33475,7 @@ MOVINGMAX3
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingmin_function">7.68. MOVINGMIN Function</h3>
+<h3 id="movingmin_function">7.72. MOVINGMIN Function</h3>
 <div class="paragraph">
 <p>The MOVINGMIN function is a sequence function that returns the minimum
 of non-null values of a column in the current window of an intermediate
@@ -33250,7 +33552,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingmin">7.68.1. Examples of MOVINGMIN</h4>
+<h4 id="examples_of_movingmin">7.72.1. Examples of MOVINGMIN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33279,7 +33581,7 @@ MOVINGMIN3
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingstddev_function">7.69. MOVINGSTDDEV Function</h3>
+<h3 id="movingstddev_function">7.73. MOVINGSTDDEV Function</h3>
 <div class="paragraph">
 <p>The MOVINGSTDDEV function is a sequence function that returns the
 standard deviation of non-null values of a column in the current window
@@ -33356,7 +33658,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingstddev">7.69.1. Examples of MOVINGSTDDEV</h4>
+<h4 id="examples_of_movingstddev">7.73.1. Examples of MOVINGSTDDEV</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33404,7 +33706,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingsum_function">7.70. MOVINGSUM Function</h3>
+<h3 id="movingsum_function">7.74. MOVINGSUM Function</h3>
 <div class="paragraph">
 <p>The MOVINGSUM function is a sequence function that returns the sum of
 non-null values of a column in the current window of an intermediate
@@ -33481,7 +33783,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingsum">7.70.1. Examples of MOVINGSUM</h4>
+<h4 id="examples_of_movingsum">7.74.1. Examples of MOVINGSUM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33510,7 +33812,7 @@ MOVINGSUM3
 </div>
 </div>
 <div class="sect2">
-<h3 id="movingvariance_function">7.71. MOVINGVARIANCE Function</h3>
+<h3 id="movingvariance_function">7.75. MOVINGVARIANCE Function</h3>
 <div class="paragraph">
 <p>The MOVINGVARIANCE function is a sequence function that returns the
 variance of non-null values of a column in the current window of an
@@ -33587,7 +33889,7 @@ the result table, negative, or NULL.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_movingvariance">7.71.1. Examples of MOVINGVARIANCE</h4>
+<h4 id="examples_of_movingvariance">7.75.1. Examples of MOVINGVARIANCE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33634,7 +33936,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="nullif_function">7.71.2. NULLIF Function</h4>
+<h4 id="nullif_function">7.75.2. NULLIF Function</h4>
 <div class="paragraph">
 <p>The NULLIF function compares the value of two expressions. Both
 expressions must be of comparable types. The return value is NULL when
@@ -33679,7 +33981,7 @@ the value of the first argument when the two expressions are not equal.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_nullif">7.71.3. Examples of NULLIF</h4>
+<h4 id="examples_of_nullif">7.75.3. Examples of NULLIF</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33697,7 +33999,7 @@ value is the value of the first argument when that value is not 7.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="nullifzero_function">7.72. NULLIFZERO Function</h3>
+<h3 id="nullifzero_function">7.76. NULLIFZERO Function</h3>
 <div class="paragraph">
 <p>The NULLIFZERO function returns the value of the expression if that
 value is not zero. It returns NULL if the value of the expression is
@@ -33720,7 +34022,7 @@ zero.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_nullifzero">7.72.1. Examples of NULLIFZERO</h4>
+<h4 id="examples_of_nullifzero">7.76.1. Examples of NULLIFZERO</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33755,7 +34057,7 @@ where the column&#8217;s value is zero.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="nvl_function">7.73. NVL Function</h3>
+<h3 id="nvl_function">7.77. NVL Function</h3>
 <div class="paragraph">
 <p>The NVL function determines if the selected column has a null value and
 then returns the new-operand value; otherwise the operand value is
@@ -33792,7 +34094,7 @@ is not a null value, NVL returns <em>operand</em>.</p>
 Trafodion SQL string functions, math functions, or constant values.</p>
 </div>
 <div class="sect3">
-<h4 id="examples_of_nvl">7.73.1. Examples of NVL</h4>
+<h4 id="examples_of_nvl">7.77.1. Examples of NVL</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33856,7 +34158,7 @@ A1
 </div>
 </div>
 <div class="sect2">
-<h3 id="octet_length_function">7.74. OCTET_LENGTH Function</h3>
+<h3 id="octet_length_function">7.78. OCTET_LENGTH Function</h3>
 <div class="paragraph">
 <p>The OCTET_LENGTH function returns the length of a character string in
 bytes.</p>
@@ -33881,7 +34183,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_octet_length">7.74.1. Considerations for OCTET_LENGTH</h4>
+<h4 id="considerations_for_octet_length">7.78.1. Considerations for OCTET_LENGTH</h4>
 <div class="sect4">
 <h5 id="char_and_varchar_operands_1">CHAR and VARCHAR Operands</h5>
 <div class="paragraph">
@@ -33920,7 +34222,7 @@ function returns the value 12. Otherwise, the function returns 6:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="offset_function">7.74.2. OFFSET Function</h4>
+<h4 id="offset_function">7.78.2. OFFSET Function</h4>
 <div class="paragraph">
 <p>The OFFSET function is a sequence function that retrieves columns from
 previous rows of an intermediate result table ordered by a SEQUENCE BY
@@ -33965,7 +34267,7 @@ INTEGER that specifies the maximum number of rows of the offset.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_offset">7.74.3. Examples of OFFSET</h4>
+<h4 id="examples_of_offset">7.78.3. Examples of OFFSET</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -33997,7 +34299,7 @@ current row does not fall within the result table.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pi_function">7.75. PI Function</h3>
+<h3 id="pi_function">7.79. PI Function</h3>
 <div class="paragraph">
 <p>The PI function returns the constant value of pi as a floating-point
 value.</p>
@@ -34011,7 +34313,7 @@ value.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_pi">7.75.1. Examples of PI</h4>
+<h4 id="examples_of_pi">7.79.1. Examples of PI</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34028,7 +34330,7 @@ value.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="position_function">7.76. POSITION Function</h3>
+<h3 id="position_function">7.80. POSITION Function</h3>
 <div class="paragraph">
 <p>The POSITION function searches for a given substring in a character
 string. If the substring is found, Trafodion SQL returns the character
@@ -34068,7 +34370,7 @@ of zero. If <em>substring-expression</em> is not found in <em>source-expression<
 Trafodion SQL returns zero.</p>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_position">7.76.1. Considerations for POSITION</h4>
+<h4 id="considerations_for_position">7.80.1. Considerations for POSITION</h4>
 <div class="sect4">
 <h5 id="result_of_position">Result of POSITION</h5>
 <div class="paragraph">
@@ -34091,7 +34393,7 @@ function) for both the <em>substring-expression</em> and the <em>source-expressi
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_position">7.76.2. Examples of POSITION</h4>
+<h4 id="examples_of_position">7.80.2. Examples of POSITION</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34121,7 +34423,7 @@ WHERE POSITION ('SMITH' IN UPSHIFT(empname)) &gt; 0 ;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="power_function">7.77. POWER Function</h3>
+<h3 id="power_function">7.81. POWER Function</h3>
 <div class="paragraph">
 <p>The POWER function returns the value of a numeric value expression
 raised to the power of an integer value expression. You can also use the
@@ -34154,7 +34456,7 @@ exponent must be a value with an exact numeric data type and a scale of zero.</p
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_power">7.77.1. Examples of POWER</h4>
+<h4 id="examples_of_power">7.81.1. Examples of POWER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34180,7 +34482,7 @@ the inverse of the function SQRT:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="quarter_function">7.78. QUARTER Function</h3>
+<h3 id="quarter_function">7.82. QUARTER Function</h3>
 <div class="paragraph">
 <p>The QUARTER function converts a DATE or TIMESTAMP expression into an
 INTEGER value in the range 1 through 4 that represents the corresponding
@@ -34207,7 +34509,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_quarter">7.78.1. Examples of QUARTER</h4>
+<h4 id="examples_of_quarter">7.82.1. Examples of QUARTER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34231,7 +34533,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="radians_function">7.79. RADIANS Function</h3>
+<h3 id="radians_function">7.83. RADIANS Function</h3>
 <div class="paragraph">
 <p>The RADIANS function converts a numeric value expression (expressed in
 degrees) to the number of radians.</p>
@@ -34257,7 +34559,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_radians">7.79.1. Examples of RADIANS</h4>
+<h4 id="examples_of_radians">7.83.1. Examples of RADIANS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34283,7 +34585,7 @@ the function RADIANS.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningrank_function">7.80. RANK/RUNNINGRANK Function</h3>
+<h3 id="runningrank_function">7.84. RANK/RUNNINGRANK Function</h3>
 <div class="paragraph">
 <p>The RANK/RUNNINGRANK function is a sequence function that returns the
 rank of the given value of an intermediate result table ordered by a
@@ -34328,7 +34630,7 @@ rank. The value of RANK advances to the relative position of the row in
 the intermediate result when the value changes.</p>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_runningrank">7.80.1. Considerations for RANK/RUNNINGRANK</h4>
+<h4 id="considerations_for_runningrank">7.84.1. Considerations for RANK/RUNNINGRANK</h4>
 <div class="sect4">
 <h5 id="sequence_order_dependency">Sequence Order Dependency</h5>
 <div class="paragraph">
@@ -34351,7 +34653,7 @@ expression.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningrank">7.80.2. Examples of RANK/RUNNINGRANK</h4>
+<h4 id="examples_of_runningrank">7.84.2. Examples of RANK/RUNNINGRANK</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34530,7 +34832,7 @@ i2          rank
 </div>
 </div>
 <div class="sect2">
-<h3 id="repeat_function">7.81. REPEAT Function</h3>
+<h3 id="repeat_function">7.85. REPEAT Function</h3>
 <div class="paragraph">
 <p>The REPEAT function returns a character string composed of the
 evaluation of a character expression repeated a specified number of
@@ -34566,7 +34868,7 @@ be repeated. The number  count  must be a value greater than or equal
 to zero of exact numeric data type and with a scale of zero.</p>
 </div>
 <div class="sect3">
-<h4 id="examples_of_repeat">7.81.1. Examples of REPEAT</h4>
+<h4 id="examples_of_repeat">7.85.1. Examples of REPEAT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34585,7 +34887,7 @@ Never,Never,Never,Never,Never,</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="replace_function">7.82. REPLACE Function</h3>
+<h3 id="replace_function">7.86. REPLACE Function</h3>
 <div class="paragraph">
 <p>The REPLACE function returns a character string where all occurrences of
 a specified character string in the original string are replaced with
@@ -34614,7 +34916,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_replace">7.82.1. Examples of REPLACE</h4>
+<h4 id="examples_of_replace">7.86.1. Examples of REPLACE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34657,7 +34959,7 @@ SYSTEM ANAL TDMNET
 </div>
 </div>
 <div class="sect2">
-<h3 id="right_function">7.83. RIGHT Function</h3>
+<h3 id="right_function">7.87. RIGHT Function</h3>
 <div class="paragraph">
 <p>The RIGHT function returns the rightmost specified number of characters
 from a character expression. Every character, including multi-byte
@@ -34693,7 +34995,7 @@ of zero.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_right">7.83.1. Examples of RIGHT</h4>
+<h4 id="examples_of_right">7.87.1. Examples of RIGHT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34722,7 +35024,7 @@ SET jobdesc = RIGHT (jobdesc, 12);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="round_function">7.84. ROUND Function</h3>
+<h3 id="round_function">7.88. ROUND Function</h3>
 <div class="paragraph">
 <p>The ROUND function returns the value of <em>numeric_expr</em> rounded to <em>num</em>
 places to the right of the decimal point.</p>
@@ -34763,7 +35065,7 @@ value <em>numeric_expr</em> is rounded toward the nearest even number.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_round">7.84.1. Examples of ROUND</h4>
+<h4 id="examples_of_round">7.88.1. Examples of ROUND</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34836,7 +35138,7 @@ value <em>numeric_expr</em> is rounded toward the nearest even number.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rows_since_function">7.85. ROWS SINCE Function</h3>
+<h3 id="rows_since_function">7.89. ROWS SINCE Function</h3>
 <div class="paragraph">
 <p>The ROWS SINCE function is a sequence function that returns the number
 of rows counted since the specified condition was last true in the
@@ -34884,7 +35186,7 @@ returns null.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_rows_since">7.85.1. Considerations for ROWS SINCE</h4>
+<h4 id="considerations_for_rows_since">7.89.1. Considerations for ROWS SINCE</h4>
 <div class="sect4">
 <h5 id="counting_the_rows">Counting the Rows</h5>
 <div class="paragraph">
@@ -34902,7 +35204,7 @@ Trafodion SQL then goes to the next row as the new current row.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_rows_since">7.85.2. Examples of ROWS SINCE</h4>
+<h4 id="examples_of_rows_since">7.89.2. Examples of ROWS SINCE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -34949,7 +35251,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 </div>
 </div>
 <div class="sect2">
-<h3 id="rows_since_changed_function">7.86. ROWS SINCE CHANGED Function</h3>
+<h3 id="rows_since_changed_function">7.90. ROWS SINCE CHANGED Function</h3>
 <div class="paragraph">
 <p>The ROWS SINCE CHANGED function is a sequence function that returns the
 number of rows counted since the specified set of values last changed in
@@ -34978,7 +35280,7 @@ values of <em>column-expression-list</em> changed.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_rows_since_changed">7.86.1. Considerations for ROWS SINCE CHANGED</h4>
+<h4 id="considerations_for_rows_since_changed">7.90.1. Considerations for ROWS SINCE CHANGED</h4>
 <div class="sect4">
 <h5 id="counting_the_rows">Counting the Rows</h5>
 <div class="paragraph">
@@ -34992,7 +35294,7 @@ than the previous row, the count is 1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_rows_since_changed">7.86.2. Examples of ROWS SINCE CHANGED</h4>
+<h4 id="examples_of_rows_since_changed">7.90.2. Examples of ROWS SINCE CHANGED</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35019,7 +35321,7 @@ FROM mining.seqfcn SEQUENCE BY ts;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rpad_function">7.87. RPAD Function</h3>
+<h3 id="rpad_function">7.91. RPAD Function</h3>
 <div class="paragraph">
 <p>The RPAD function pads the right side of a string with the specified
 string. Every character in the string, including multi-byte characters,
@@ -35061,7 +35363,7 @@ string size, the string is truncated.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_rpad_function">7.87.1. Examples of RPAD Function</h4>
+<h4 id="examples_of_rpad_function">7.91.1. Examples of RPAD Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35118,7 +35420,7 @@ string size, the string is truncated.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rtrim_function">7.88. RTRIM Function</h3>
+<h3 id="rtrim_function">7.92. RTRIM Function</h3>
 <div class="paragraph">
 <p>The RTRIM function removes trailing spaces from a character string. If
 you must remove any leading character other than space, use the TRIM
@@ -35148,7 +35450,7 @@ to trim trailing spaces.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_rtrim">7.88.1. Considerations for RTRIM</h4>
+<h4 id="considerations_for_rtrim">7.92.1. Considerations for RTRIM</h4>
 <div class="sect4">
 <h5 id="result_of_rtrim">Result of RTRIM</h5>
 <div class="paragraph">
@@ -35158,7 +35460,7 @@ fixed length or maximum variable length of <em>character-expression</em>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_rtrim">7.88.2. Examples of RTRIM</h4>
+<h4 id="examples_of_rtrim">7.92.2. Examples of RTRIM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35178,7 +35480,7 @@ fixed length or maximum variable length of <em>character-expression</em>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningavg_function">7.89. RUNNINGAVG Function</h3>
+<h3 id="runningavg_function">7.93. RUNNINGAVG Function</h3>
 <div class="paragraph">
 <p>The RUNNINGAVG function is a sequence function that returns the average
 of non-null values of a column up to and including the current row of an
@@ -35209,7 +35511,7 @@ up to and including the current row.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_runningavg">7.89.1. Considerations for RUNNINGAVG</h4>
+<h4 id="considerations_for_runningavg">7.93.1. Considerations for RUNNINGAVG</h4>
 <div class="sect4">
 <h5 id="equivalent_result">Equivalent Result</h5>
 <div class="paragraph">
@@ -35223,7 +35525,7 @@ up to and including the current row.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningavg">7.89.2. Examples of RUNNINGAVG</h4>
+<h4 id="examples_of_runningavg">7.93.2. Examples of RUNNINGAVG</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35252,7 +35554,7 @@ avg_i1
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningcount_function">7.90. RUNNINGCOUNT Function</h3>
+<h3 id="runningcount_function">7.94. RUNNINGCOUNT Function</h3>
 <div class="paragraph">
 <p>The RUNNINGCOUNT function is a sequence function that returns the number
 of rows up to and including the current row of an intermediate result
@@ -35288,7 +35590,7 @@ intermediate result table up to and including the current row.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_runningcount">7.90.1. Considerations for RUNNINGCOUNT</h4>
+<h4 id="considerations_for_runningcount">7.94.1. Considerations for RUNNINGCOUNT</h4>
 <div class="sect4">
 <h5 id="no_distinct_clause">No DISTINCT Clause</h5>
 <div class="paragraph">
@@ -35302,7 +35604,7 @@ duplicate values are counted.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningcount">7.90.2. Examples of RUNNINGCOUNT</h4>
+<h4 id="examples_of_runningcount">7.94.2. Examples of RUNNINGCOUNT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35331,7 +35633,7 @@ count_i1
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningmax_function">7.91. RUNNINGMAX Function</h3>
+<h3 id="runningmax_function">7.95. RUNNINGMAX Function</h3>
 <div class="paragraph">
 <p>The RUNNINGMAX function is a sequence function that returns the maximum
 of values of a column up to and including the current row of an
@@ -35362,7 +35664,7 @@ and including the current row.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningmax">7.91.1. Examples of RUNNINGMAX</h4>
+<h4 id="examples_of_runningmax">7.95.1. Examples of RUNNINGMAX</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35390,7 +35692,7 @@ max_i1
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningmin_function">7.92. RUNNINGMIN Function</h3>
+<h3 id="runningmin_function">7.96. RUNNINGMIN Function</h3>
 <div class="paragraph">
 <p>The RUNNINGMIN function is a sequence function that returns the minimum
 of values of a column up to and including the current row of an
@@ -35421,7 +35723,7 @@ and including the current row.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningmin">7.92.1. Examples of RUNNINGMIN</h4>
+<h4 id="examples_of_runningmin">7.96.1. Examples of RUNNINGMIN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35448,7 +35750,7 @@ min_i1
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="runningstddev_function">7.92.2. RUNNINGSTDDEV Function</h4>
+<h4 id="runningstddev_function">7.96.2. RUNNINGSTDDEV Function</h4>
 <div class="paragraph">
 <p>The RUNNINGSTDDEV function is a sequence function that returns the
 standard deviation of non-null values of a column up to and including the
@@ -35481,7 +35783,7 @@ expression.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_runningstddev">7.92.3. Considerations for RUNNINGSTDDEV</h4>
+<h4 id="considerations_for_runningstddev">7.96.3. Considerations for RUNNINGSTDDEV</h4>
 <div class="sect4">
 <h5 id="equivalent_result">Equivalent Result</h5>
 <div class="paragraph">
@@ -35496,7 +35798,7 @@ expression.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningstddev">7.92.4. Examples of RUNNINGSTDDEV</h4>
+<h4 id="examples_of_runningstddev">7.96.4. Examples of RUNNINGSTDDEV</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35544,7 +35846,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningsum_function">7.93. RUNNINGSUM Function</h3>
+<h3 id="runningsum_function">7.97. RUNNINGSUM Function</h3>
 <div class="paragraph">
 <p>The RUNNINGSUM function is a sequence function that returns the sum of
 non-null values of a column up to and including the current row of an
@@ -35575,7 +35877,7 @@ to and including the current row.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningsum">7.93.1. Examples of RUNNINGSUM</h4>
+<h4 id="examples_of_runningsum">7.97.1. Examples of RUNNINGSUM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35604,7 +35906,7 @@ sum_i1
 </div>
 </div>
 <div class="sect2">
-<h3 id="runningvariance_function">7.94. RUNNINGVARIANCE Function</h3>
+<h3 id="runningvariance_function">7.98. RUNNINGVARIANCE Function</h3>
 <div class="paragraph">
 <p>The RUNNINGVARIANCE function is a sequence function that returns the
 variance of non-null values of a column up to and including the current
@@ -35635,7 +35937,7 @@ expression.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_runningvariance">7.94.1. Examples of RUNNINGVARIANCE</h4>
+<h4 id="examples_of_runningvariance">7.98.1. Examples of RUNNINGVARIANCE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35688,7 +35990,7 @@ FROM mining.seqfcn SEQUENCE BY ts;
 </div>
 </div>
 <div class="sect2">
-<h3 id="second_function">7.95. SECOND Function</h3>
+<h3 id="second_function">7.99. SECOND Function</h3>
 <div class="paragraph">
 <p>The SECOND function converts a TIME or TIMESTAMP expression into an
 INTEGER value in the range 0 through 59 that represents the
@@ -35714,12 +36016,15 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_second">7.95.1. Examples of SECOND</h4>
+<h4 id="examples_of_second">7.99.1. Examples of SECOND</h4>
 <div class="ulist">
 <ul>
 <li>
 <p>Return a numeric value that represents the second of the hour from the
 <em>ship_timestamp</em> column:</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT start_date, ship_timestamp, SECOND(ship_timestamp)
@@ -35731,14 +36036,58 @@ Start/Date Time/Shipped               (EXPR)
 2008-04-10 2008-04-21 08:15:00.000000     .000000</code></pre>
 </div>
 </div>
-</li>
-</ul>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sha_function">7.100. SHA Function</h3>
+<div class="paragraph">
+<p>Calculates an SHA-1 160-bit checksum for the string, as described in
+RFC 3174 (Secure Hash Algorithm). The value is returned as a string of
+40 hexadecimal digits, or NULL if the argument was NULL.</p>
+</div>
+<div class="sect3">
+<h4 id="examples_of_sha">7.100.1. examples of SHA</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT SHA1('abc') from dual;
+
+(EXPR)
+-----------------------------------------
+'a9993e364706816aba3e25717850c26c9cd0d89d'</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sign_function">7.96. SIGN Function</h3>
+<h3 id="sha2_function">7.101. SHA2 Function</h3>
+<div class="paragraph">
+<p>Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384,
+and SHA-512). The first argument is the cleartext string to be hashed.
+The second argument indicates the desired bit length of the result, which
+must have a value of 224, 256, 384, 512.
+If either argument is NULL or the hash length is not one of the permitted values,
+the return value is NULL. Otherwise, the function result is a hash value containing
+the desired number of bits. See the notes at the beginning of this section
+about storing hash values efficiently.</p>
+</div>
+<div class="sect3">
+<h4 id="examples_of_sha2">7.101.1. examples of SHA2</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SELECT SHA2('abc', 224) from dual;
+
+(EXPR)
+--------------------------------------------------------
+'23097d223405d8228642a477bda255b32aadbce4bda0b3f7e36c9da7'</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sign_function">7.102. SIGN Function</h3>
 <div class="paragraph">
 <p>The SIGN function returns an indicator of the sign of a numeric value
 expression. If the value is less than zero, the function returns -1 as
@@ -35766,7 +36115,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_sign">7.96.1. Examples of SIGN</h4>
+<h4 id="examples_of_sign">7.102.1. Examples of SIGN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35799,7 +36148,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sin_function">7.97. SIN Function</h3>
+<h3 id="sin_function">7.103. SIN Function</h3>
 <div class="paragraph">
 <p>The SIN function returns the SINE of a numeric value expression, where
 the expression is an angle expressed in radians.</p>
@@ -35825,7 +36174,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_sin">7.97.1. Examples of SIN</h4>
+<h4 id="examples_of_sin">7.103.1. Examples of SIN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35843,7 +36192,7 @@ approximately 0.3420, the sine of 0.3491 (which is 20 degrees):</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sinh_function">7.98. SINH Function</h3>
+<h3 id="sinh_function">7.104. SINH Function</h3>
 <div class="paragraph">
 <p>The SINH function returns the hyperbolic sine of a numeric value
 expression, where the expression is an angle expressed in radians.</p>
@@ -35869,7 +36218,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_sinh">7.98.1. Examples of SINH</h4>
+<h4 id="examples_of_sinh">7.104.1. Examples of SINH</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35886,7 +36235,7 @@ approximately 1.6019, the hyperbolic sine of 1.25:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="space_function">7.98.2. SPACE Function</h4>
+<h4 id="space_function">7.104.2. SPACE Function</h4>
 <div class="paragraph">
 <p>The SPACE function returns a character string consisting of a specified
 number of spaces, each of which is 0x20 or 0x0020, depending on the
@@ -35926,7 +36275,7 @@ with the character set specified by <em>char-set-name</em>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_space">7.98.3. Examples of SPACE</h4>
+<h4 id="examples_of_space">7.104.3. Examples of SPACE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35943,7 +36292,7 @@ with the character set specified by <em>char-set-name</em>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sqrt_function">7.99. SQRT Function</h3>
+<h3 id="sqrt_function">7.105. SQRT Function</h3>
 <div class="paragraph">
 <p>The SQRT function returns the square root of a numeric value expression.
 SQRT is a Trafodion SQL extension.</p>
@@ -35966,7 +36315,7 @@ negative number. See <a href="#numeric_value_expressions">Numeric Value Expressi
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_sqrt">7.99.1. Examples of SQRT</h4>
+<h4 id="examples_of_sqrt">7.105.1. Examples of SQRT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -35984,7 +36333,7 @@ approximately 5.196:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="stddev_function">7.100. STDDEV Function</h3>
+<h3 id="stddev_function">7.106. STDDEV Function</h3>
 <div class="paragraph">
 <p>STDDEV is an aggregate function that returns the standard deviation of a
 set of numbers. STDDEV is a Trafodion SQL extension.</p>
@@ -36030,7 +36379,7 @@ evaluation of <em>weight</em> must have the same cardinality.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_stddev">7.100.1. Considerations for STDDEV</h4>
+<h4 id="considerations_for_stddev">7.106.1. Considerations for STDDEV</h4>
 <div class="sect4">
 <h5 id="definition_of_stddev">Definition of STDDEV</h5>
 <div class="paragraph">
@@ -36082,7 +36431,7 @@ of STDDEV(x), a numeric overflow occurs.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_stddev">7.100.2. Examples of STDDEV</h4>
+<h4 id="examples_of_stddev">7.106.2. Examples of STDDEV</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36120,7 +36469,7 @@ inventory:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="substring_function">7.101. SUBSTRING/SUBSTR Function</h3>
+<h3 id="substring_function">7.107. SUBSTRING/SUBSTR Function</h3>
 <div class="paragraph">
 <p>The SUBSTRING function extracts a substring out of a given character
 expression. It returns a character string of data type VARCHAR, with a
@@ -36194,7 +36543,7 @@ and continuing until the end of the <em>character-expr</em> are returned.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="alternative_forms">7.101.1. Alternative Forms</h4>
+<h4 id="alternative_forms">7.107.1. Alternative Forms</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36222,7 +36571,7 @@ database software already supports SUBSTRING (<em>string</em>, <em>Fromint</em>,
 </div>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_substring">7.101.2. Considerations for SUBSTRING/SUBSTR</h4>
+<h4 id="considerations_for_substring">7.107.2. Considerations for SUBSTRING/SUBSTR</h4>
 <div class="sect4">
 <h5 id="requirements_for_the_expression_length_and_start_position">Requirements for the Expression, Length, and Start Position</h5>
 <div class="ulist">
@@ -36251,7 +36600,7 @@ an up-shifted VARCHAR type.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_substring">7.101.3. Examples of SUBSTRING/SUBSTR</h4>
+<h4 id="examples_of_substring">7.107.3. Examples of SUBSTRING/SUBSTR</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36323,7 +36672,7 @@ SUBSTR ('Robert John Smith' FROM 8 FOR 0)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sum_function">7.102. SUM Function</h3>
+<h3 id="sum_function">7.108. SUM Function</h3>
 <div class="paragraph">
 <p>SUM is an aggregate function that returns the sum of a set of numbers.</p>
 </div>
@@ -36358,7 +36707,7 @@ NULL. See <a href="#expressions">Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_sum">7.102.1. Considerations for SUM</h4>
+<h4 id="considerations_for_sum">7.108.1. Considerations for SUM</h4>
 <div class="sect4">
 <h5 id="data_type_and_scale_of_the_result">Data Type and Scale of the Result</h5>
 <div class="paragraph">
@@ -36388,7 +36737,7 @@ SUM (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_sum">7.102.2. Examples of SUM</h4>
+<h4 id="examples_of_sum">7.108.2. Examples of SUM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36411,7 +36760,7 @@ SUM (PARTCOST * QTY_ORDERED)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tan_function">7.103. TAN Function</h3>
+<h3 id="tan_function">7.109. TAN Function</h3>
 <div class="paragraph">
 <p>The TAN function returns the tangent of a numeric value expression,
 where the expression is an angle expressed in radians.</p>
@@ -36437,7 +36786,7 @@ See <a href="#numeric_value_expressions">Numeric Value Expressions</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_tan">7.103.1. Examples of TAN</h4>
+<h4 id="examples_of_tan">7.109.1. Examples of TAN</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36454,7 +36803,7 @@ approximately 0.3640, the tangent of 0.3491 (which is 20 degrees):</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="tanh_function">7.103.2. TANH Function</h4>
+<h4 id="tanh_function">7.109.2. TANH Function</h4>
 <div class="paragraph">
 <p>The TANH function returns the hyperbolic tangent of a numeric value
 expression, where the expression is an angle expressed in radians.</p>
@@ -36481,7 +36830,7 @@ function. See <a href="#numeric_value_expressions">Numeric Value Expressions</a>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_tanh">7.103.3. Examples of TANH</h4>
+<h4 id="examples_of_tanh">7.109.3. Examples of TANH</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36499,7 +36848,7 @@ approximately 0.8483, the hyperbolic tangent of 1.25:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="this_function">7.104. THIS Function</h3>
+<h3 id="this_function">7.110. THIS Function</h3>
 <div class="paragraph">
 <p>The THIS function is a sequence function that is used in the ROWS SINCE
 function to distinguish between the value of the column in the current
@@ -36527,7 +36876,7 @@ expression. If the value of the expression is null, THIS returns null.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_this">7.104.1. Considerations for THIS</h4>
+<h4 id="considerations_for_this">7.110.1. Considerations for THIS</h4>
 <div class="sect4">
 <h5 id="counting_the_rows">Counting the Rows</h5>
 <div class="paragraph">
@@ -36559,7 +36908,7 @@ THIS constant is reevaluated.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_this">7.104.2. Examples of THIS</h4>
+<h4 id="examples_of_this">7.110.2. Examples of THIS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36588,7 +36937,7 @@ rows_since_this
 </div>
 </div>
 <div class="sect2">
-<h3 id="timestampadd_function">7.105. TIMESTAMPADD Function</h3>
+<h3 id="timestampadd_function">7.111. TIMESTAMPADD Function</h3>
 <div class="paragraph">
 <p>The TIMESTAMPADD function adds the interval of time specified by
 <em>interval-ind</em> and <em>num_expr</em> to <em>datetime_expr</em>. If the specified
@@ -36638,7 +36987,7 @@ returned.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_timestampadd">7.105.1. Examples of TIMESTAMPADD</h4>
+<h4 id="examples_of_timestampadd">7.111.1. Examples of TIMESTAMPADD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36703,7 +37052,7 @@ returned.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="timestampdiff_function">7.106. TIMESTAMPDIFF Function</h3>
+<h3 id="timestampdiff_function">7.112. TIMESTAMPDIFF Function</h3>
 <div class="paragraph">
 <p>The TIMESTAMPDIFF function returns the integer value for the number of
 <em>interval-ind</em> units of time between <em>startdate</em> and <em>enddate</em>. If
@@ -36768,7 +37117,7 @@ January 7 of the year 0001.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_timestampdiff">7.106.1. Examples of TIMESTAMPDIFF</h4>
+<h4 id="examples_of_timestampdiff">7.112.1. Examples of TIMESTAMPDIFF</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -36832,7 +37181,7 @@ crossed:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="translate_function">7.107. TRANSLATE Function</h3>
+<h3 id="translate_function">7.113. TRANSLATE Function</h3>
 <div class="paragraph">
 <p>The TRANSLATE function translates a character string from a source
 character set to a target character set. The TRANSLATE function changes
@@ -36917,7 +37266,7 @@ Trafodion SQL returns an error.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trim_function">7.108. TRIM Function</h3>
+<h3 id="trim_function">7.114. TRIM Function</h3>
 <div class="paragraph">
 <p>The TRIM function removes leading and trailing characters from a
 character string. Every character, including multi-byte characters, is
@@ -36964,7 +37313,7 @@ to trim characters. See <a href="#character_value_expressions">Character Value E
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_trim">7.108.1. Considerations for TRIM</h4>
+<h4 id="considerations_for_trim">7.114.1. Considerations for TRIM</h4>
 <div class="sect4">
 <h5 id="result_of_trim">Result of TRIM</h5>
 <div class="paragraph">
@@ -36977,7 +37326,7 @@ result is an up-shifts VARCHAR type.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_trim">7.108.2. Examples of TRIM</h4>
+<h4 id="examples_of_trim">7.114.2. Examples of TRIM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37004,7 +37353,7 @@ CHAR(20). This expression uses the TRIM function to return the value
 </div>
 </div>
 <div class="sect2">
-<h3 id="ucase_function">7.109. UCASE Function</h3>
+<h3 id="ucase_function">7.115. UCASE Function</h3>
 <div class="paragraph">
 <p>The UCASE function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UCASE can
@@ -37039,7 +37388,7 @@ characters to upshift. See <a href="#character_value_expressions">Character Valu
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_ucase">7.109.1. Considerations for UCASE</h4>
+<h4 id="considerations_for_ucase">7.115.1. Considerations for UCASE</h4>
 <div class="paragraph">
 <p>For a UTF8 character_expression, the UCASE function up-shifts all
 lowercase or title case characters to uppercase and returns a character
@@ -37058,7 +37407,7 @@ name includes <em>title</em>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_ucase">7.109.2. Examples of UCASE</h4>
+<h4 id="examples_of_ucase">7.115.2. Examples of UCASE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37086,7 +37435,7 @@ Hotel Oregon      HOTEL OREGON        hotel oregon
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="upper_function">7.109.3. UPPER Function</h4>
+<h4 id="upper_function">7.115.3. UPPER Function</h4>
 <div class="paragraph">
 <p>The UPPER function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPPER can
@@ -37119,7 +37468,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_upper">7.109.4. Examples of UPPER</h4>
+<h4 id="examples_of_upper">7.115.4. Examples of UPPER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37151,7 +37500,7 @@ see <a href="#upshift_function">UPSHIFT Function</a>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="upshift_function">7.109.5. UPSHIFT Function</h4>
+<h4 id="upshift_function">7.115.5. UPSHIFT Function</h4>
 <div class="paragraph">
 <p>The UPSHIFT function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPSHIFT
@@ -37188,7 +37537,7 @@ characters to upshift. See
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_upshift">7.109.6. Examples of UPSHIFT</h4>
+<h4 id="examples_of_upshift">7.115.6. Examples of UPSHIFT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37251,7 +37600,7 @@ WHERE UPSHIFT(D1.deptname) = UPSHIFT(D2.deptname);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user_function">7.110. USER Function</h3>
+<h3 id="user_function">7.116. USER Function</h3>
 <div class="paragraph">
 <p>The USER function returns either the database user name associated with
 the specified user ID number or the database user name of the current
@@ -37282,7 +37631,7 @@ and the <a href="#current_user_function">CURRENT USER Function</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_user">7.110.1. Considerations for USER</h4>
+<h4 id="considerations_for_user">7.116.1. Considerations for USER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37295,7 +37644,7 @@ and the <a href="#current_user_function">CURRENT USER Function</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_user">7.110.2. Examples of USER</h4>
+<h4 id="examples_of_user">7.116.2. Examples of USER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37338,7 +37687,7 @@ DB ROOT
 </div>
 </div>
 <div class="sect2">
-<h3 id="variance_function">7.111. VARIANCE Function</h3>
+<h3 id="variance_function">7.117. VARIANCE Function</h3>
 <div class="paragraph">
 <p>VARIANCE is an aggregate function that returns the statistical variance
 of a set of numbers. VARIANCE is a Trafodion SQL extension.</p>
@@ -37384,7 +37733,7 @@ as <em>expression</em>. The one-column table derived from the evaluation of
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_variance">7.111.1. Considerations for VARIANCE</h4>
+<h4 id="considerations_for_variance">7.117.1. Considerations for VARIANCE</h4>
 <div class="sect4">
 <h5 id="definition_of_variance">Definition of VARIANCE</h5>
 <div class="paragraph">
@@ -37478,7 +37827,7 @@ the computation of VARIANCE(x), then a numeric overflow occurs.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_variance">7.111.2. Examples of VARIANCE</h4>
+<h4 id="examples_of_variance">7.117.2. Examples of VARIANCE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37515,7 +37864,7 @@ VARIANCE_SALARY
 </div>
 </div>
 <div class="sect2">
-<h3 id="week_function">7.112. WEEK Function</h3>
+<h3 id="week_function">7.118. WEEK Function</h3>
 <div class="paragraph">
 <p>The WEEK function converts a DATE or TIMESTAMP expression into an
 INTEGER value in the range 1 through 54 that represents the
@@ -37547,7 +37896,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_week">7.112.1. Examples of WEEK</h4>
+<h4 id="examples_of_week">7.118.1. Examples of WEEK</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37571,7 +37920,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="year_function">7.113. YEAR Function</h3>
+<h3 id="year_function">7.119. YEAR Function</h3>
 <div class="paragraph">
 <p>The YEAR function converts a DATE or TIMESTAMP expression into an
 INTEGER value that represents the year.</p>
@@ -37596,7 +37945,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_year">7.113.1. Examples of YEAR</h4>
+<h4 id="examples_of_year">7.119.1. Examples of YEAR</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37620,7 +37969,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="zeroifnull_function">7.114. ZEROIFNULL Function</h3>
+<h3 id="zeroifnull_function">7.120. ZEROIFNULL Function</h3>
 <div class="paragraph">
 <p>The ZEROIFNULL function returns a value of zero if the expression if
 NULL. Otherwise, it returns the value of the expression.</p>
@@ -37641,7 +37990,7 @@ NULL. Otherwise, it returns the value of the expression.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_zeroifnull">7.114.1. Examples of ZEROIFNULL</h4>
+<h4 id="examples_of_zeroifnull">7.120.1. Examples of ZEROIFNULL</h4>
 <div class="ulist">
 <ul>
 <li>
