@@ -109,7 +109,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-12-15T00:21</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2016-12-19T19:49</p></td>
 </tr>
 </tbody>
 </table>
@@ -179,7 +179,7 @@ Install <em>java</em>, edit <em>conf/dcs-env.sh</em>, uncommenting the <code>JAV
 </div>
 <div class="paragraph">
 <p>DCS presumes a <em>Trafodion</em> instance is installed and running on your machine and available on your path; i.e. the
-<code>MY_SQROOT</code> is set and when you type <em>sqcheck</em>, you see output that confirms <em>Trafodion</em> is running. If this is not
+<code>TRAF_HOME</code> is set and when you type <em>sqcheck</em>, you see output that confirms <em>Trafodion</em> is running. If this is not
 the case, DCS may start but you&#8217;ll see many errors in the DcsServer logs related to user program startup.</p>
 </div>
 <div class="paragraph">
@@ -421,7 +421,7 @@ and stopped when DCS start or stop is run.</p>
 <h3 id="running.and.confirming.your.installation">5.3. Running and Confirming Your Installation</h3>
 <div class="paragraph">
 <p>Make sure Trafodion is running first. Start and stop the Trafodion instance by running <em>sqstart.sh</em> over in the
-<code>MY_SQROOT/sql/scripts</code> directory. You can ensure it started properly by testing with <em>sqcheck</em>.
+<code>TRAF_HOME/sql/scripts</code> directory. You can ensure it started properly by testing with <em>sqcheck</em>.
 If you are managing your own ZooKeeper, start it and confirm its running else, DCS will start up ZooKeeper
 for you as part of its start process.</p>
 </div>
