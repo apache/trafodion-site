@@ -1115,7 +1115,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#exists_predicate">5.15.3. EXISTS Predicate</a></li>
 <li><a href="#in_predicate">5.15.4. IN Predicate</a></li>
 <li><a href="#like_predicate">5.15.5. LIKE Predicate</a></li>
-<li><a href="#like_examples">5.15.6. Examples</a></li>
+<li><a href="#regexp_predicate">5.15.6. REGEXP Predicate</a></li>
 <li><a href="#null_predicate">5.15.7. NULL Predicate</a></li>
 <li><a href="#quantified_comparison_predicates">5.15.8. Quantified Comparison Predicates</a></li>
 </ul>
@@ -1810,64 +1810,70 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#examples_of_timestampdiff">7.113.1. Examples of TIMESTAMPDIFF</a></li>
 </ul>
 </li>
-<li><a href="#to_date_function">7.114. TO_DATE Function</a>
+<li><a href="#to_char_function">7.114. TO_CHAR Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_to_date">7.114.1. Considerations for TO_DATE</a></li>
-<li><a href="#examples_of_to_date">7.114.2. Examples of TO_DATE</a></li>
+<li><a href="#considerations_for_to_char">7.114.1. Considerations for TO_CHAR</a></li>
+<li><a href="#examples_of_to_char">7.114.2. Examples of TO_CHAR</a></li>
 </ul>
 </li>
-<li><a href="#to_time_function">7.115. TO_TIME Function</a>
+<li><a href="#to_date_function">7.115. TO_DATE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_to_time">7.115.1. Examples of TO_TIME</a></li>
+<li><a href="#considerations_for_to_date">7.115.1. Considerations for TO_DATE</a></li>
+<li><a href="#examples_of_to_date">7.115.2. Examples of TO_DATE</a></li>
 </ul>
 </li>
-<li><a href="#to_timestamp_function">7.116. TO_TIMESTAMP Function</a>
+<li><a href="#to_time_function">7.116. TO_TIME Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_to_timestamp">7.116.1. Example of TO_TIMESTAMP</a></li>
+<li><a href="#examples_of_to_time">7.116.1. Examples of TO_TIME</a></li>
 </ul>
 </li>
-<li><a href="#translate_function">7.117. TRANSLATE Function</a></li>
-<li><a href="#trim_function">7.118. TRIM Function</a>
+<li><a href="#to_timestamp_function">7.117. TO_TIMESTAMP Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_trim">7.118.1. Considerations for TRIM</a></li>
-<li><a href="#examples_of_trim">7.118.2. Examples of TRIM</a></li>
+<li><a href="#examples_of_to_timestamp">7.117.1. Example of TO_TIMESTAMP</a></li>
 </ul>
 </li>
-<li><a href="#ucase_function">7.119. UCASE Function</a>
+<li><a href="#translate_function">7.118. TRANSLATE Function</a></li>
+<li><a href="#trim_function">7.119. TRIM Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_ucase">7.119.1. Considerations for UCASE</a></li>
-<li><a href="#examples_of_ucase">7.119.2. Examples of UCASE</a></li>
-<li><a href="#upper_function">7.119.3. UPPER Function</a></li>
-<li><a href="#examples_of_upper">7.119.4. Examples of UPPER</a></li>
-<li><a href="#upshift_function">7.119.5. UPSHIFT Function</a></li>
-<li><a href="#examples_of_upshift">7.119.6. Examples of UPSHIFT</a></li>
+<li><a href="#considerations_for_trim">7.119.1. Considerations for TRIM</a></li>
+<li><a href="#examples_of_trim">7.119.2. Examples of TRIM</a></li>
 </ul>
 </li>
-<li><a href="#user_function">7.120. USER Function</a>
+<li><a href="#ucase_function">7.120. UCASE Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_user">7.120.1. Considerations for USER</a></li>
-<li><a href="#examples_of_user">7.120.2. Examples of USER</a></li>
+<li><a href="#considerations_for_ucase">7.120.1. Considerations for UCASE</a></li>
+<li><a href="#examples_of_ucase">7.120.2. Examples of UCASE</a></li>
+<li><a href="#upper_function">7.120.3. UPPER Function</a></li>
+<li><a href="#examples_of_upper">7.120.4. Examples of UPPER</a></li>
+<li><a href="#upshift_function">7.120.5. UPSHIFT Function</a></li>
+<li><a href="#examples_of_upshift">7.120.6. Examples of UPSHIFT</a></li>
 </ul>
 </li>
-<li><a href="#variance_function">7.121. VARIANCE Function</a>
+<li><a href="#user_function">7.121. USER Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_variance">7.121.1. Considerations for VARIANCE</a></li>
-<li><a href="#examples_of_variance">7.121.2. Examples of VARIANCE</a></li>
+<li><a href="#considerations_for_user">7.121.1. Considerations for USER</a></li>
+<li><a href="#examples_of_user">7.121.2. Examples of USER</a></li>
 </ul>
 </li>
-<li><a href="#week_function">7.122. WEEK Function</a>
+<li><a href="#variance_function">7.122. VARIANCE Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_week">7.122.1. Examples of WEEK</a></li>
+<li><a href="#considerations_for_variance">7.122.1. Considerations for VARIANCE</a></li>
+<li><a href="#examples_of_variance">7.122.2. Examples of VARIANCE</a></li>
 </ul>
 </li>
-<li><a href="#year_function">7.123. YEAR Function</a>
+<li><a href="#week_function">7.123. WEEK Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_year">7.123.1. Examples of YEAR</a></li>
+<li><a href="#examples_of_week">7.123.1. Examples of WEEK</a></li>
 </ul>
 </li>
-<li><a href="#zeroifnull_function">7.124. ZEROIFNULL Function</a>
+<li><a href="#year_function">7.124. YEAR Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_zeroifnull">7.124.1. Examples of ZEROIFNULL</a></li>
+<li><a href="#examples_of_year">7.124.1. Examples of YEAR</a></li>
+</ul>
+</li>
+<li><a href="#zeroifnull_function">7.125. ZEROIFNULL Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_zeroifnull">7.125.1. Examples of ZEROIFNULL</a></li>
 </ul>
 </li>
 </ul>
@@ -21984,6 +21990,10 @@ values in a list of sequences.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Searches for character strings that match a pattern.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#regexp_predicate">REGEXP Predicate</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches for character strings that match an extended regular expression.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#null_predicate">NULL Predicate</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether all the values in a sequence of values are null.</p></td>
 </tr>
@@ -23020,9 +23030,8 @@ LIKE '%MB%'.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="like_examples">5.15.6. Examples</h4>
+<div class="sect4">
+<h5 id="like_examples">Examples</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -23048,6 +23057,81 @@ part of the string to search for, not a wild-card character.</p>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="regexp_predicate">5.15.6. REGEXP Predicate</h4>
+<div class="paragraph">
+<p>Performs a pattern match of a string expression against a pattern .
+The pattern can be an extended regular expression.
+Returns 1 if expression matches pattern; otherwise it returns 0.
+If either expression or pattern is NULL, the result is NULL.</p>
+</div>
+<div class="sect4">
+<h5 id="regexp_syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">match-value [NOT] REGEXP regular-expression</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>match-value</em></code></p>
+<div class="paragraph">
+<p>is a character value expression that specifies a set of strings to
+search for that match the <em>regular-expression</em>.</p>
+</div>
+</li>
+<li>
+<p><code><em>regular-expression</em></code></p>
+<div class="paragraph">
+<p>is a character value expression that specifies a regular expression.
+Trafodion regular expressions follow POSIX regular expression rules.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect5">
+<h6 id="using_not">Using NOT</h6>
+<div class="paragraph">
+<p>If you specify NOT, the predicate is true if the <em>regular-expression</em> does not
+match any string in the <em>match-value</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="regexp_examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Find valid numbers</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">col REGEXP '^[0-9]*\s*$'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find valid words, no numbers</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">col REGEXP '^.[A-Za-z]+\s*$'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find valid email address</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">col REGEXP '\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*\s*'</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="null_predicate">5.15.7. NULL Predicate</h4>
@@ -26837,12 +26921,16 @@ corresponding second of the minute.</p></td>
 units of time between <em>startdate</em> and <em>enddate</em>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_char_function">TO_CHAR Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converts a datetime value to a character value.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_date_function">TO_DATE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a date value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a date or timestamp value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_time_function">TO_TIME Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a time or timestamp value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a time value.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_timestamp_function">TO_TIMESTAMP Function</a></p></td>
@@ -37265,7 +37353,179 @@ crossed:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="to_date_function">7.114. TO_DATE Function</h3>
+<h3 id="to_char_function">7.114. TO_CHAR Function</h3>
+<div class="paragraph">
+<p>The TO_CHAR function converts a datetime value to a character value. The optional
+second argument describes the format of the character value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">TO_CHAR(character-expression [,format-string])</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>character-expression</em></code></p>
+<div class="paragraph">
+<p>is an expression that gives a datetime value.</p>
+</div>
+</li>
+<li>
+<p><code><em>format-string</em></code></p>
+<div class="paragraph">
+<p>is one of the following character string literals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>'YYYY-MM-DD'</p>
+</li>
+<li>
+<p>'MM/DD/YYYY'</p>
+</li>
+<li>
+<p>'DD.MM.YYYY'</p>
+</li>
+<li>
+<p>'YYYY-MM'</p>
+</li>
+<li>
+<p>'MM/DD/YYYY'</p>
+</li>
+<li>
+<p>'YYYY/MM/DD'</p>
+</li>
+<li>
+<p>'YYYYMMDD'</p>
+</li>
+<li>
+<p>'YY/MM/DD'</p>
+</li>
+<li>
+<p>'MM/DD/YY'</p>
+</li>
+<li>
+<p>'MM-DD-YYYY'</p>
+</li>
+<li>
+<p>'YYYYMM'</p>
+</li>
+<li>
+<p>'DD-MM-YYYY'</p>
+</li>
+<li>
+<p>'DD-MON-YYYY'</p>
+</li>
+<li>
+<p>'DDMONYYYY'</p>
+</li>
+<li>
+<p>'HH:MI:SS'</p>
+</li>
+<li>
+<p>'HH24:MI:SS'</p>
+</li>
+<li>
+<p>'YYYYMMDDHH24MISS'</p>
+</li>
+<li>
+<p>'DD.MM.YYYY:HH24.MI.SS'</p>
+</li>
+<li>
+<p>'YYYY-MM-DD HH24:MI:SS'</p>
+</li>
+<li>
+<p>'YYYYMMDD:HH24:MI:SS'</p>
+</li>
+<li>
+<p>'MMDDYYYY HH24:MI:SS'</p>
+</li>
+<li>
+<p>'MM/DD/YYYY HH24:MI:SS'</p>
+</li>
+<li>
+<p>'DD-MON-YYYY HH:MI:SS'</p>
+</li>
+<li>
+<p>'MONTH DD, YYYY, HH:MI'</p>
+</li>
+<li>
+<p>'DD.MM.YYYY HH24.MI.SS'</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here, YYYY refers to a 4-digit year. YY refers to a two-digit year. MM refers to a two-digit month. MON refers to
+a three-letter abbreviation for month ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
+'OCT', 'NOV' or 'DEC'). MONTH refers to the month spelled out. In the output value, the month abbreviation or month
+will appear in upper case.</p>
+</div>
+<div class="paragraph">
+<p>HH and HH24 refer to a 2-digit hour field. MI refers to a two-digit minutes field. SS refers to a 2-digit seconds field.</p>
+</div>
+<div class="paragraph">
+<p>If the <em>format-string</em> argument is omitted, 'YYYY-MM-DD' is used as the
+default for date and timestamp values, and 'HH:MI:SS' is used for time values.</p>
+</div>
+<div class="sect3">
+<h4 id="considerations_for_to_char">7.114.1. Considerations for TO_CHAR</h4>
+<div class="paragraph">
+<p>If the <em>format-string</em> contains only hour, minute or seconds fields, the input data type must be time or timestamp.</p>
+</div>
+<div class="paragraph">
+<p>If the <em>format-string</em> contains only year, month or day fields, the input data type must be date or timestamp.</p>
+</div>
+<div class="paragraph">
+<p>If the <em>format-string</em> contains all fields, and the input data type is date, the hour, minute and second fields in the result will be filled with zeroes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples_of_to_char">7.114.2. Examples of TO_CHAR</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the character value '01MAR2016':</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">TO_CHAR (DATE '2016-03-01', 'DDMONYYYY')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This function returns the character value '01.03.2016 00:00:00':</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">TO_CHAR (DATE '2016-03-01', 'DD.MM.YYYY HH24.MI.SS')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This function returns the character value '12:05:10':</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">TO_CHAR (TIME '12:05:10')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This function returns the character value '20160301120510':</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">TO_CHAR (TIMESTAMP '2016-03-01 12:05:10','YYYYMMDDHH24MISS')</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="to_date_function">7.115. TO_DATE Function</h3>
 <div class="paragraph">
 <p>The TO_DATE function converts a character value to a date. The optional
 second argument describes the format of the character value.</p>
@@ -37377,14 +37637,14 @@ a three-letter abbreviation for month ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
 default.</p>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_to_date">7.114.1. Considerations for TO_DATE</h4>
+<h4 id="considerations_for_to_date">7.115.1. Considerations for TO_DATE</h4>
 <div class="paragraph">
 <p>If the <em>format-string</em> contains hour, minute or seconds fields, the output data type is timestamp. Otherwise,
 the output data type is date.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_to_date">7.114.2. Examples of TO_DATE</h4>
+<h4 id="examples_of_to_date">7.115.2. Examples of TO_DATE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37425,7 +37685,7 @@ the output data type is date.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="to_time_function">7.115. TO_TIME Function</h3>
+<h3 id="to_time_function">7.116. TO_TIME Function</h3>
 <div class="paragraph">
 <p>The TO_TIME function converts a character value to a time. The
 second argument describes the format of the character value.</p>
@@ -37465,7 +37725,7 @@ second argument describes the format of the character value.</p>
 <p>Here, HH and HH24 refer to a 2-digit hour field. MI refers to a two-digit minutes field. SS refers to a 2-digit seconds field.</p>
 </div>
 <div class="sect3">
-<h4 id="examples_of_to_time">7.115.1. Examples of TO_TIME</h4>
+<h4 id="examples_of_to_time">7.116.1. Examples of TO_TIME</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37482,7 +37742,7 @@ second argument describes the format of the character value.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="to_timestamp_function">7.116. TO_TIMESTAMP Function</h3>
+<h3 id="to_timestamp_function">7.117. TO_TIMESTAMP Function</h3>
 <div class="paragraph">
 <p>The TO_TIMESTAMP function converts a character value to a timestamp.</p>
 </div>
@@ -37504,7 +37764,7 @@ minutes field, SS is a two-digit seconds field and FFFFFF is an optional microse
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_to_timestamp">7.116.1. Example of TO_TIMESTAMP</h4>
+<h4 id="examples_of_to_timestamp">7.117.1. Example of TO_TIMESTAMP</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37521,7 +37781,7 @@ minutes field, SS is a two-digit seconds field and FFFFFF is an optional microse
 </div>
 </div>
 <div class="sect2">
-<h3 id="translate_function">7.117. TRANSLATE Function</h3>
+<h3 id="translate_function">7.118. TRANSLATE Function</h3>
 <div class="paragraph">
 <p>The TRANSLATE function translates a character string from a source
 character set to a target character set. The TRANSLATE function changes
@@ -37606,7 +37866,7 @@ Trafodion SQL returns an error.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="trim_function">7.118. TRIM Function</h3>
+<h3 id="trim_function">7.119. TRIM Function</h3>
 <div class="paragraph">
 <p>The TRIM function removes leading and trailing characters from a
 character string. Every character, including multi-byte characters, is
@@ -37653,7 +37913,7 @@ to trim characters. See <a href="#character_value_expressions">Character Value E
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_trim">7.118.1. Considerations for TRIM</h4>
+<h4 id="considerations_for_trim">7.119.1. Considerations for TRIM</h4>
 <div class="sect4">
 <h5 id="result_of_trim">Result of TRIM</h5>
 <div class="paragraph">
@@ -37666,7 +37926,7 @@ result is an up-shifts VARCHAR type.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_trim">7.118.2. Examples of TRIM</h4>
+<h4 id="examples_of_trim">7.119.2. Examples of TRIM</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37693,7 +37953,7 @@ CHAR(20). This expression uses the TRIM function to return the value
 </div>
 </div>
 <div class="sect2">
-<h3 id="ucase_function">7.119. UCASE Function</h3>
+<h3 id="ucase_function">7.120. UCASE Function</h3>
 <div class="paragraph">
 <p>The UCASE function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UCASE can
@@ -37728,7 +37988,7 @@ characters to upshift. See <a href="#character_value_expressions">Character Valu
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_ucase">7.119.1. Considerations for UCASE</h4>
+<h4 id="considerations_for_ucase">7.120.1. Considerations for UCASE</h4>
 <div class="paragraph">
 <p>For a UTF8 character_expression, the UCASE function up-shifts all
 lowercase or title case characters to uppercase and returns a character
@@ -37747,7 +38007,7 @@ name includes <em>title</em>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_ucase">7.119.2. Examples of UCASE</h4>
+<h4 id="examples_of_ucase">7.120.2. Examples of UCASE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37775,7 +38035,7 @@ Hotel Oregon      HOTEL OREGON        hotel oregon
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="upper_function">7.119.3. UPPER Function</h4>
+<h4 id="upper_function">7.120.3. UPPER Function</h4>
 <div class="paragraph">
 <p>The UPPER function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPPER can
@@ -37808,7 +38068,7 @@ See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_upper">7.119.4. Examples of UPPER</h4>
+<h4 id="examples_of_upper">7.120.4. Examples of UPPER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37840,7 +38100,7 @@ see <a href="#upshift_function">UPSHIFT Function</a>.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="upshift_function">7.119.5. UPSHIFT Function</h4>
+<h4 id="upshift_function">7.120.5. UPSHIFT Function</h4>
 <div class="paragraph">
 <p>The UPSHIFT function up-shifts alphanumeric characters. For
 non-alphanumeric characters, UCASE returns the same character. UPSHIFT
@@ -37877,7 +38137,7 @@ characters to upshift. See
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_upshift">7.119.6. Examples of UPSHIFT</h4>
+<h4 id="examples_of_upshift">7.120.6. Examples of UPSHIFT</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37940,7 +38200,7 @@ WHERE UPSHIFT(D1.deptname) = UPSHIFT(D2.deptname);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user_function">7.120. USER Function</h3>
+<h3 id="user_function">7.121. USER Function</h3>
 <div class="paragraph">
 <p>The USER function returns either the database user name associated with
 the specified user ID number or the database user name of the current
@@ -37971,7 +38231,7 @@ and the <a href="#current_user_function">CURRENT USER Function</a>.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_user">7.120.1. Considerations for USER</h4>
+<h4 id="considerations_for_user">7.121.1. Considerations for USER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -37984,7 +38244,7 @@ and the <a href="#current_user_function">CURRENT USER Function</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_user">7.120.2. Examples of USER</h4>
+<h4 id="examples_of_user">7.121.2. Examples of USER</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38027,7 +38287,7 @@ DB ROOT
 </div>
 </div>
 <div class="sect2">
-<h3 id="variance_function">7.121. VARIANCE Function</h3>
+<h3 id="variance_function">7.122. VARIANCE Function</h3>
 <div class="paragraph">
 <p>VARIANCE is an aggregate function that returns the statistical variance
 of a set of numbers. VARIANCE is a Trafodion SQL extension.</p>
@@ -38073,7 +38333,7 @@ as <em>expression</em>. The one-column table derived from the evaluation of
 </ul>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_variance">7.121.1. Considerations for VARIANCE</h4>
+<h4 id="considerations_for_variance">7.122.1. Considerations for VARIANCE</h4>
 <div class="sect4">
 <h5 id="definition_of_variance">Definition of VARIANCE</h5>
 <div class="paragraph">
@@ -38167,7 +38427,7 @@ the computation of VARIANCE(x), then a numeric overflow occurs.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_variance">7.121.2. Examples of VARIANCE</h4>
+<h4 id="examples_of_variance">7.122.2. Examples of VARIANCE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38204,7 +38464,7 @@ VARIANCE_SALARY
 </div>
 </div>
 <div class="sect2">
-<h3 id="week_function">7.122. WEEK Function</h3>
+<h3 id="week_function">7.123. WEEK Function</h3>
 <div class="paragraph">
 <p>The WEEK function converts a DATE or TIMESTAMP expression into an
 INTEGER value in the range 1 through 54 that represents the
@@ -38236,7 +38496,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_week">7.122.1. Examples of WEEK</h4>
+<h4 id="examples_of_week">7.123.1. Examples of WEEK</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38260,7 +38520,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="year_function">7.123. YEAR Function</h3>
+<h3 id="year_function">7.124. YEAR Function</h3>
 <div class="paragraph">
 <p>The YEAR function converts a DATE or TIMESTAMP expression into an
 INTEGER value that represents the year.</p>
@@ -38285,7 +38545,7 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_year">7.123.1. Examples of YEAR</h4>
+<h4 id="examples_of_year">7.124.1. Examples of YEAR</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -38309,7 +38569,7 @@ Start/Date Time/Shipped               (EXPR)
 </div>
 </div>
 <div class="sect2">
-<h3 id="zeroifnull_function">7.124. ZEROIFNULL Function</h3>
+<h3 id="zeroifnull_function">7.125. ZEROIFNULL Function</h3>
 <div class="paragraph">
 <p>The ZEROIFNULL function returns a value of zero if the expression if
 NULL. Otherwise, it returns the value of the expression.</p>
@@ -38330,7 +38590,7 @@ NULL. Otherwise, it returns the value of the expression.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_zeroifnull">7.124.1. Examples of ZEROIFNULL</h4>
+<h4 id="examples_of_zeroifnull">7.125.1. Examples of ZEROIFNULL</h4>
 <div class="ulist">
 <ul>
 <li>
