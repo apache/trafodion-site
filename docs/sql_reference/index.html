@@ -13030,6 +13030,8 @@ query-expr-and-order is:
 query-expr is:
     query-primary
   | query-expr UNION [ALL] query-primary
+  | query-expr INTERSECT query-primary
+  | query-expr EXCEPT query-primary
 
 query-primary is:
     simple-table | (query-expr)
@@ -13766,6 +13768,37 @@ corresponding positions within the lists must have compatible data types. The se
 The column names in the result table of the union are the same as the corresponding names in the select list of the left
 SELECT statement. A column resulting from the union of expressions or constants has the name (EXPR).
 See <a href="#considerations_for_union">Considerations for UNION</a>.</p>
+</div>
+</li>
+<li>
+<p><code><em>select-stmt</em> INTERSECT <em>select-stmt</em></code></p>
+<div class="paragraph">
+<p>specifies a set intersect operation between the result table of a SELECT statement and the result table of another SELECT statement.
+The result of the intersect operation is a table that consists of rows appear in both result sets.</p>
+</div>
+<div class="paragraph">
+<p>The result of INTERSECT does not contain any duplicate rows.</p>
+</div>
+<div class="paragraph">
+<p>The select lists in the two SELECT statements of an intersect operation must have the same number of columns, and columns in
+corresponding positions within the lists must have compatible data types. The select lists must not be preceded by
+[ANY <em>N</em>] or [FIRST N].</p>
+</div>
+</li>
+<li>
+<p><code><em>select-stmt</em> EXCEPT <em>select-stmt</em></code></p>
+<div class="paragraph">
+<p>specifies a set except operation between the result table of a SELECT statement and the result table of another SELECT statement.
+The result of the except operation is a table that consists of rows that are in the result of the left SELECT statement but not in
+the result of the right one.</p>
+</div>
+<div class="paragraph">
+<p>The result of EXCEPT does not contain any duplicate rows.</p>
+</div>
+<div class="paragraph">
+<p>The select lists in the two SELECT statements of an except operation must have the same number of columns, and columns in
+corresponding positions within the lists must have compatible data types. The select lists must not be preceded by
+[ANY <em>N</em>] or [FIRST N].</p>
 </div>
 </li>
 <li>
