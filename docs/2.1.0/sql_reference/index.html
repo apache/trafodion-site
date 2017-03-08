@@ -1927,32 +1927,51 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#dense_rank_window_function">8.6. DENSE_RANK Window Function</a>
 <ul class="sectlevel3">
 <li><a href="#examples_of_dense_rank_window_function">8.6.1. Examples of DENSE_RANK Window Function</a></li>
-<li><a href="#max_window_function">8.6.2. MAX Window Function</a></li>
-<li><a href="#examples_of_max_window_function">8.6.3. Examples of MAX Window Function</a></li>
 </ul>
 </li>
-<li><a href="#min_window_function">8.7. MIN Window Function</a>
+<li><a href="#first_value_window_function">8.7. FIRST_VALUE Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_min_window_function">8.7.1. Examples of MIN Window Function</a></li>
+<li><a href="#examples_of_first_value_window_function">8.7.1. Examples of FIRST_VALUE Window Function</a></li>
 </ul>
 </li>
-<li><a href="#rank_window_function">8.8. RANK Window Function</a>
+<li><a href="#lag_window_function">8.8. LAG Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_rank_window_function">8.8.1. Examples of RANK Window Function</a></li>
-<li><a href="#row_number_window_function">8.8.2. ROW_NUMBER Window Function</a></li>
-<li><a href="#examples_of_row_number_window_function">8.8.3. Examples of ROW_NUMBER Window Function</a></li>
-<li><a href="#stddev_window_function">8.8.4. STDDEV Window Function</a></li>
-<li><a href="#examples_of_stddev">8.8.5. Examples of STDDEV</a></li>
+<li><a href="#examples_of_lag_window_function">8.8.1. Examples of LAG Window Function</a></li>
 </ul>
 </li>
-<li><a href="#sum_window_function">8.9. SUM Window Function</a>
+<li><a href="#last_value_window_function">8.9. LAST_VALUE Window Function</a></li>
+<li><a href="#lead_window_function">8.10. LEAD Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_sum_window_function">8.9.1. Examples of SUM Window Function</a></li>
+<li><a href="#examples_of_lead_window_function">8.10.1. Examples of LEAD Window Function</a></li>
 </ul>
 </li>
-<li><a href="#variance_window_function">8.10. VARIANCE Window Function</a>
+<li><a href="#max_window_function">8.11. MAX Window Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_variance_window_function">8.10.1. Examples of VARIANCE Window Function</a></li>
+<li><a href="#examples_of_max_window_function">8.11.1. Examples of MAX Window Function</a></li>
+</ul>
+</li>
+<li><a href="#min_window_function">8.12. MIN Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_min_window_function">8.12.1. Examples of MIN Window Function</a></li>
+</ul>
+</li>
+<li><a href="#rank_window_function">8.13. RANK Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_rank_window_function">8.13.1. Examples of RANK Window Function</a></li>
+<li><a href="#row_number_window_function">8.13.2. ROW_NUMBER Window Function</a></li>
+<li><a href="#examples_of_row_number_window_function">8.13.3. Examples of ROW_NUMBER Window Function</a></li>
+<li><a href="#stddev_window_function">8.13.4. STDDEV Window Function</a></li>
+<li><a href="#examples_of_stddev">8.13.5. Examples of STDDEV</a></li>
+</ul>
+</li>
+<li><a href="#sum_window_function">8.14. SUM Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_sum_window_function">8.14.1. Examples of SUM Window Function</a></li>
+</ul>
+</li>
+<li><a href="#variance_window_function">8.15. VARIANCE Window Function</a>
+<ul class="sectlevel3">
+<li><a href="#examples_of_variance_window_function">8.15.1. Examples of VARIANCE Window Function</a></li>
 </ul>
 </li>
 </ul>
@@ -39350,9 +39369,17 @@ NULL.</p>
 <h2 id="olap_functions">8. OLAP Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes the syntax and semantics of the On Line
-Analytical Process (OLAP) window functions. The OLAP window functions
+<p>On-line Analytical Process (OLAP) functions provide the capability to partition source data into groups of rows, order the rows in each group and compute aggregates within a window frame for a row.</p>
+</div>
+<div class="paragraph">
+<p>Typically, an OLAP function in SQL is expressed in two components &lt;FUNCTION&gt; and &lt;OVER&gt;: &lt;FUNCTION&gt; specifies the function and the arguments, and &lt;OVER&gt; specifies the partitioning, the ordering and the window frames. &lt;OVER&gt; is sometimes called the window. OLAP functions are used to perform analytic tasks against data sets stored in or computed from a set of tables, such as moving average and ranks.</p>
+</div>
+<div class="paragraph">
+<p>This section describes the syntax and semantics of the OLAP window functions. The OLAP window functions
 are ANSI compliant.</p>
+</div>
+<div class="paragraph">
+<p>Trafodion OLAP functions have very similar semantics as Trafodion sequence functions which are SQL extensions and have to be used together with a SEQUENCE BY clause. For more information, see <a href="#sequence_functions">Sequence Functions</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="considerations_for_window_functions">8.1. Considerations for Window Functions</h3>
@@ -39481,7 +39508,7 @@ GROUP BY num, workgroupnum, annualsalary;</code></pre>
 <div class="sect2">
 <h3 id="limitations_for_window_functions">8.3. Limitations for Window Functions</h3>
 <div class="paragraph">
-<p>These limitations apply to all window functions.</p>
+<p>Trafodion supports many ANSI compliant OLAP window functions. These functions include AVG, COUNT, DENSE_RANK, FIRST_VALUE, LAG, LAST_VALUE, LEAD, MAX, MIN, RANK, ROW_NUMBER, STDDEV, SUM, and VARIANCE. However, Trafodion imposes certain limitations on all window functions.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -39490,6 +39517,31 @@ GROUP BY num, workgroupnum, annualsalary;</code></pre>
 <em>inline-window-specification</em> is supported. An attempt to use an ANSI
 <em>window-clause</em> will result in a syntax error.</p>
 </li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A window clause provides a mechanism to define and to refer to a window in a SQL query, as illustrated in the following example.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT EmployeeID, Surname, Salary, State,
+  AVG( Salary ) OVER Salary_Window
+FROM Employees
+WINDOW Salary_Window AS ( PARTITION BY State )
+ORDER BY State, Surname;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>The <em>window-frame-clause</em> cannot contain a FOLLOWING term, either
 explicitly or implicitly. Because the default window frame clause
@@ -39502,11 +39554,17 @@ message.</p>
 <li>
 <p>The window frame units can only be ROWS. RANGE is not supported by
 Trafodion. An attempt to use RANGE will result in a syntax error.</p>
+<div class="paragraph">
+<p>The difference between the two is that the frame with ROWS unit includes all rows regardless of the values in the ORDER BY clause. The frame with RANGE unit will include rows that are identical in value in the ORDER BY clause.</p>
+</div>
 </li>
 <li>
 <p>The ANSI <em>window-frame-exclusion-specification</em> is not supported by
 Trafodion. An attempt to use a <em>window-frame-exclusion-specification</em>
 will result in a syntax error.</p>
+<div class="paragraph">
+<p>The <em>window-frame-exclusion-specification</em> can exclude rows, such as the current one, the current group, or current ties, from the window is not supported. This specification is not widely implementation by other vendors.</p>
+</div>
 </li>
 <li>
 <p>Multiple <em>inline-window-specifications</em> in a single SELECT clause are
@@ -39917,8 +39975,158 @@ FROM persnl.employee;</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="first_value_window_function">8.7. FIRST_VALUE Window Function</h3>
+<div class="paragraph">
+<p>The FIRST_VLAUE window function returns the first value from a sorted partition.</p>
+</div>
+<div class="paragraph">
+<p><code>FIRST_VALUE (expression)</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>expression</em></p>
+<div class="paragraph">
+<p>Specifies a scalar expression or a column whose value from the first row in the partition is to be returned.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Trafodion only supports the function to return first value including null, and it is the default behavior.
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="max_window_function">8.6.2. MAX Window Function</h4>
+<h4 id="examples_of_first_value_window_function">8.7.1. Examples of FIRST_VALUE Window Function</h4>
+<div class="paragraph">
+<p>Each row returned by the following query contains the employee name, the department number, the salary and the pay difference over the lowest salary in the department.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT ename, deptno, sal,
+       sal - FIRST_VALUE( sal ) OVER ( PARTITION BY  deptno
+  ORDER BY sal ) diff
+  FROM emp
+ORDER BY deptno, sal;</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lag_window_function">8.8. LAG Window Function</h3>
+<div class="paragraph">
+<p>The LAG window function can be used to access the previous rows from the same result set without using self-joins. The LAG function takes the same three parameters as the LEAD function with the exception that <code><em>offset</em></code> specifies the offset to access a row that comes before the current row. The return type of LAG is that of <code><em>expression</em></code>.</p>
+</div>
+<div class="paragraph">
+<p><code>LAG (expression, offset, default-value)</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>expression</em></p>
+<div class="paragraph">
+<p>Specifies a scalar expression or a column whose value from the previous row is to be returned. If the previous row does not exist in the current group, <code><em>expression</em></code> returns NULL.</p>
+</div>
+</li>
+<li>
+<p><em>offset</em></p>
+<div class="paragraph">
+<p>Specifies an expression that can be evaluated to a positive integer indicating the offset before the current row. For example, a value of 1 accesses the previous row and a value of 3 accesses the third row before the current row.</p>
+</div>
+</li>
+<li>
+<p><em>default-value</em></p>
+<div class="paragraph">
+<p>Specifies the value if the value returned by <code><em>expression</em></code> is NULL.</p>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect3">
+<h4 id="examples_of_lag_window_function">8.8.1. Examples of LAG Window Function</h4>
+<div class="paragraph">
+<p>The LAG function in the following query returns the plan code of a previous plan and ’N/A’ for the first plan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT  CustomerCode, PlanCode AS CurrentPlanCode,
+              LAG(PlanCode, 1, 'NA')
+              OVER (PARTITION BY   CustomerCode ORDER BY StartDate ASC)   AS LastPlan
+FROM   CustomerPlan;</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="last_value_window_function">8.9. LAST_VALUE Window Function</h3>
+<div class="paragraph">
+<p>The LAST_VALUE window function is similar to the FIRST_VALUE function with the exception that the value from the last row in a sorted partition is returned.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="lead_window_function">8.10. LEAD Window Function</h3>
+<div class="paragraph">
+<p>The LEAD window function can be used to access the subsequent rows (or columns from the subsequence rows) from the current rows, without using self-joins. The return type of LEAD is that of <code><em>expression</em></code>.</p>
+</div>
+<div class="paragraph">
+<p><code>LEAD (expression, offset, default-value)</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>expression</em></code></p>
+<div class="paragraph">
+<p>Specifies a scalar expression or a column whose value from the subsequent row is to be returned. If the subsequent row does not exist in the current group, <code><em>expression</em></code> returns NULL.</p>
+</div>
+</li>
+<li>
+<p><code><em>offset</em></code></p>
+<div class="paragraph">
+<p>Specifies an expression that can be evaluated to a positive integer indicating the offset after the current row. For example, a value of 1 accesses the next row and a value of 3 accesses the third row from the current row.</p>
+</div>
+</li>
+<li>
+<p><code><em>default-value</em></code></p>
+<div class="paragraph">
+<p>Specifies the value if the value returned by <em>expression</em> is NULL.</p>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect3">
+<h4 id="examples_of_lead_window_function">8.10.1. Examples of LEAD Window Function</h4>
+<div class="paragraph">
+<p>The LEAD function in the following query returns the start date of next plan and DATEADD function subtracts one day from that date as the end date of the current plan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT *,
+DATEADD(DAY, -1, LEAD(StartDate, 1,'01-Jan-2100')
+     OVER (PARTITION BY CustomerCode ORDER BY StartDate ASC)) AS EndDate
+FROM CustomerPlan</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="max_window_function">8.11. MAX Window Function</h3>
 <div class="paragraph">
 <p>MAX is a window function that returns the maximum value of all non null
 values of the given expression for the current window specified by the
@@ -40016,9 +40224,8 @@ computed.</p>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
-</div>
 <div class="sect3">
-<h4 id="examples_of_max_window_function">8.6.3. Examples of MAX Window Function</h4>
+<h4 id="examples_of_max_window_function">8.11.1. Examples of MAX Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40061,7 +40268,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="min_window_function">8.7. MIN Window Function</h3>
+<h3 id="min_window_function">8.12. MIN Window Function</h3>
 <div class="paragraph">
 <p>MIN is a window function that returns the minimum value of all non null
 values of the given expression for the current window specified by the
@@ -40160,7 +40367,7 @@ computed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_min_window_function">8.7.1. Examples of MIN Window Function</h4>
+<h4 id="examples_of_min_window_function">8.12.1. Examples of MIN Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40204,7 +40411,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rank_window_function">8.8. RANK Window Function</h3>
+<h3 id="rank_window_function">8.13. RANK Window Function</h3>
 <div class="paragraph">
 <p>RANK is a window function that returns the ranking of each row of the
 current partition specified by the inline-window-specification. The
@@ -40244,7 +40451,7 @@ clause specifies how the rows are ordered within each partition.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_rank_window_function">8.8.1. Examples of RANK Window Function</h4>
+<h4 id="examples_of_rank_window_function">8.13.1. Examples of RANK Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40274,7 +40481,7 @@ FROM persnl.employee;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="row_number_window_function">8.8.2. ROW_NUMBER Window Function</h4>
+<h4 id="row_number_window_function">8.13.2. ROW_NUMBER Window Function</h4>
 <div class="paragraph">
 <p>ROW_NUMBER is a window function that returns the row number of each row
 of the current window specified by the inline-window-specification.</p>
@@ -40317,7 +40524,7 @@ computed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_row_number_window_function">8.8.3. Examples of ROW_NUMBER Window Function</h4>
+<h4 id="examples_of_row_number_window_function">8.13.3. Examples of ROW_NUMBER Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40347,7 +40554,7 @@ FROM persnl.employee;</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="stddev_window_function">8.8.4. STDDEV Window Function</h4>
+<h4 id="stddev_window_function">8.13.4. STDDEV Window Function</h4>
 <div class="paragraph">
 <p>STDDEV is a window function that returns the standard deviation of non
 null values of the given expression for the current window specified by
@@ -40446,7 +40653,7 @@ computed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_stddev">8.8.5. Examples of STDDEV</h4>
+<h4 id="examples_of_stddev">8.13.5. Examples of STDDEV</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40478,7 +40685,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sum_window_function">8.9. SUM Window Function</h3>
+<h3 id="sum_window_function">8.14. SUM Window Function</h3>
 <div class="paragraph">
 <p>SUM is a window function that returns the sum of non null values of the
 given expression for the current window specified by the
@@ -40576,7 +40783,7 @@ within each partition.</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_sum_window_function">8.9.1. Examples of SUM Window Function</h4>
+<h4 id="examples_of_sum_window_function">8.14.1. Examples of SUM Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -40619,7 +40826,7 @@ FROM persnl.employee;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="variance_window_function">8.10. VARIANCE Window Function</h3>
+<h3 id="variance_window_function">8.15. VARIANCE Window Function</h3>
 <div class="paragraph">
 <p>VARIANCE is a window function that returns the variance of non null
 values of the given expression for the current window specified by the
@@ -40718,7 +40925,7 @@ computed.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="examples_of_variance_window_function">8.10.1. Examples of VARIANCE Window Function</h4>
+<h4 id="examples_of_variance_window_function">8.15.1. Examples of VARIANCE Window Function</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -43711,7 +43918,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.1.0<br>
-Last updated 2017-02-17 19:31:57 UTC
+Last updated 2017-03-07 20:31:35 UTC
 </div>
 </div>
 <script>
