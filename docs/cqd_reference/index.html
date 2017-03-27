@@ -537,7 +537,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <h1>Control Query Default (CQD) Reference Guide</h1>
 <div class="details">
-<span id="revnumber">version 2.2.0</span>
+<span id="revnumber">version 2.1.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -592,7 +592,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#hbase-rowset-vsbb-opt">4.6. HBASE_ROWSET_VSBB_OPT</a></li>
 <li><a href="#hbase-rowset-vsbb-size">4.7. HBASE_ROWSET_VSBB_SIZE</a></li>
 <li><a href="#hbase-small-scanner">4.8. HBASE_SMALL_SCANNER</a></li>
-<li><a href="#scratch-dirs">4.9. SCRATCH_DIRS</a></li>
 </ul>
 </li>
 <li><a href="#manage-histograms">5. Manage Histograms</a>
@@ -3021,97 +3020,6 @@ If you enable small scanner on large size scan incorrectly, then you are likely 
 </tr>
 </tbody>
 </table>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="scratch-dirs">4.9. SCRATCH_DIRS</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows a CQD specification to override the environment variable settings for scatch and temporary file locations, which gives the user more flexibility to change scratch directory locations.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Values</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Scratch disk locations for overflow (linux path names).
-</p><p class="tableblock">Multiple locations can be specified, separated by a colon. For example, /tmp/scratch1:/tmp/scratch2.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Usage</strong></p></th>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><strong>Two ways to change scratch directory location permanently</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Specify this location at installation time.</p>
-<div class="paragraph">
-<p>Currently the scratch directory locations are set at installation time. The code that manages scratch and temporary files reads environment variables in $TRAF_HOME/etc/ms.env to determine where to create scratch files.</p>
-</div>
-<div class="paragraph">
-<p>The CQD overrides the STFS_HDD_LOCATION (disk) and STFS_SSD_LOCATION (SSD disk) environment variables.</p>
-</div>
-<div class="paragraph">
-<p>If the CQD is not set, the environment variable settings will be used.</p>
-</div>
-<div class="paragraph">
-<p>The directories MUST exist on every node and the Trafodion user must have permission to write to those directories. If not, an error will be returned when a query involving sort/hash overflow is executed.</p>
-</div>
-</li>
-<li>
-<p>Set it in sqconfig.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>One way to change scratch directory location temporarily</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If the scratch directory location is not set at installation time, this CQD is valid only for the duration of the session.</p>
-<div class="paragraph">
-<p>These settings will not be stored in $TRAF_HOME/etc/ms.env and will override the environment variables settings as long as the CQD is in effect.</p>
-</div>
-</li>
-</ul>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Production Usage</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Please contact <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Impact</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">More volume of data can be processed. For example, large data set.
-</p><p class="tableblock">More disk space can process larger data sets.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Level</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">System.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Conflicts/Synergies</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Real Problem Addressed</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Introduced In Release</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion 2.1.</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Deprecated In Release</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -4983,8 +4891,8 @@ Default: <strong>'0'</strong>.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.2.0<br>
-Last updated 2016-07-18 16:17:02 UTC
+Version 2.1.0<br>
+Last updated 2017-03-07 20:31:35 UTC
 </div>
 </div>
 <script>
