@@ -537,7 +537,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="header">
 <h1>Provisioning Guide</h1>
 <div class="details">
-<span id="revnumber">version 2.1.0</span>
+<span id="revnumber">version 2.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -638,7 +638,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_existing_cluster">6.3.2. Existing Cluster</a></li>
 </ul>
 </li>
-<li><a href="#_initialize_meta_data">6.4. Initialize Meta-Data</a></li>
 </ul>
 </li>
 <li><a href="#install">7. Install</a>
@@ -3232,9 +3231,6 @@ You can download and install the Trafodion Clients once you&#8217;ve installed a
 <p>You can either set up a local yum repository (requires a web server) or install the RPMs
 manually on each node.</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="images/amb4.PNG" alt="Ambari Services" width="400" height="400"></span></p>
-</div>
 <div class="sect2">
 <h3 id="_local_repository">6.1. Local Repository</h3>
 <div class="paragraph">
@@ -3312,24 +3308,13 @@ $ sudo ambari-server start</pre>
 <h4 id="_initial_cluster_creation">6.3.1. Initial Cluster Creation</h4>
 <div class="paragraph">
 <p>If you are creating a new cluster and you have the Trafodion server RPM hosted on a local yum repository, then
-create the cluster as normal, and select a stack version that includs the Trafodion service.</p>
+create the cluster as normal, and select Trafodion on the service selection screen.
+When Ambari prompts for the repository URLs, be sure to update the Trafodion URL
+to the URL for your local repository.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="images/amb1.PNG" alt="Ambari Stack Versions" width="600" height="400"></span></p>
-</div>
-<div class="paragraph">
-<p>When selecting HDP stack version, Ambari prompts for the repository URLs, be <strong>sure to update the Trafodion URL
-to the URL for your local repository</strong>.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="images/amb2.PNG" alt="Repo URL" width="600" height="120"></span></p>
-</div>
-<div class="paragraph">
-<p>If you plan to install the server RPM manually, set the Trafodion URL to some other valid repository, otherwise the
-the invalid URL will cause errors later.
-Any valid repo URL will do. You may copy the HDP URL and paste it into the Trafodion URL.
-In this case, do not select the Trafodion service on the "Choose Services" step. First, create a cluster
-without the Trafodion service and follow instructions below for an existing cluster.</p>
+<p>If you plan to install the server RPM manually, do not select the Trafodion service. First, create a cluster
+without Trafodion service and follow instructions for an existing cluster.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3339,29 +3324,8 @@ without the Trafodion service and follow instructions below for an existing clus
 install it using yum install.</p>
 </div>
 <div class="paragraph">
-<p>Using Ambari, select the cluster and then from the Actions menu choose "Add Service" and select Trafodion.</p>
+<p>Using Ambari, select the cluster and then choose "Add a Service" and select Trafodion.</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="images/amb3.PNG" alt="Add Service" width="300" height="300"></span></p>
-</div>
-<div class="paragraph">
-<p>You may get a configuration warning regarding a hbase-site setting. In this case, follow the warning message
-instructions to go to the HBase advanced configuration, hbase-site section and use the button to revert to
-the recommended value for "hbase.coprocessor.region.classes".</p>
-</div>
-<div class="paragraph">
-<p>Several services will need to be restarted before the Trafodion service can be started.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_initialize_meta_data">6.4. Initialize Meta-Data</h3>
-<div class="paragraph">
-<p>After Trafodion is installed and started, it must be initialized before use. Select the Trafodion service
-and then from the Service Actions menu choose "Initialize" and confirm the action.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="images/amb5.PNG" alt="Initialize" width="300" height="250"></span></p>
 </div>
 </div>
 </div>
@@ -5108,7 +5072,7 @@ admin can then connect and setup required users, roles, and privileges.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.1.0<br>
+Version 2.2.0<br>
 Last updated 2017-03-07 20:31:35 UTC
 </div>
 </div>
