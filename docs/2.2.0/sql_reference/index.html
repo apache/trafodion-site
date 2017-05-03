@@ -1005,39 +1005,46 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#sql_utilities">4. SQL Utilities</a>
 <ul class="sectlevel2">
-<li><a href="#load_statement">4.1. LOAD Statement</a>
+<li><a href="#cleanup_statement">4.1. CLEANUP Statement</a>
 <ul class="sectlevel3">
-<li><a href="#load_syntax">4.1.1. Syntax Description of LOAD</a></li>
-<li><a href="#load_considerations">4.1.2. Considerations for LOAD</a></li>
-<li><a href="#load_examples">4.1.3. Examples of LOAD</a></li>
+<li><a href="#cleanup_syntax">4.1.1. Syntax Description of CLEANUP Statement</a></li>
+<li><a href="#cleanup_considerations">4.1.2. Considerations for CLEANUP Statement</a></li>
+<li><a href="#cleanup_examples">4.1.3. Examples of CLEANUP Statement</a></li>
 </ul>
 </li>
-<li><a href="#populate_index_utility">4.2. POPULATE INDEX Utility</a>
+<li><a href="#load_statement">4.2. LOAD Statement</a>
 <ul class="sectlevel3">
-<li><a href="#populate_index_syntax">4.2.1. Syntax Description of POPULATE INDEX</a></li>
-<li><a href="#populate_index_considerations">4.2.2. Considerations for POPULATE INDEX</a></li>
-<li><a href="#populate_index_examples">4.2.3. Examples of POPULATE INDEX</a></li>
+<li><a href="#load_syntax">4.2.1. Syntax Description of LOAD</a></li>
+<li><a href="#load_considerations">4.2.2. Considerations for LOAD</a></li>
+<li><a href="#load_examples">4.2.3. Examples of LOAD</a></li>
 </ul>
 </li>
-<li><a href="#purgedata_utility">4.3. PURGEDATA Utility</a>
+<li><a href="#populate_index_utility">4.3. POPULATE INDEX Utility</a>
 <ul class="sectlevel3">
-<li><a href="#purgedata_syntax">4.3.1. Syntax Description of PURGEDATA</a></li>
-<li><a href="#purgedata_considerations">4.3.2. Considerations for PURGEDATA</a></li>
-<li><a href="#purgedata_examples">4.3.3. Examples of PURGEDATA</a></li>
+<li><a href="#populate_index_syntax">4.3.1. Syntax Description of POPULATE INDEX</a></li>
+<li><a href="#populate_index_considerations">4.3.2. Considerations for POPULATE INDEX</a></li>
+<li><a href="#populate_index_examples">4.3.3. Examples of POPULATE INDEX</a></li>
 </ul>
 </li>
-<li><a href="#unload_statement">4.4. UNLOAD Statement</a>
+<li><a href="#purgedata_utility">4.4. PURGEDATA Utility</a>
 <ul class="sectlevel3">
-<li><a href="#unload_syntax">4.4.1. Syntax Description of UNLOAD</a></li>
-<li><a href="#unload_considerations">4.4.2. Considerations for UNLOAD</a></li>
-<li><a href="#unload_examples">4.4.3. Examples of UNLOAD</a></li>
+<li><a href="#purgedata_syntax">4.4.1. Syntax Description of PURGEDATA</a></li>
+<li><a href="#purgedata_considerations">4.4.2. Considerations for PURGEDATA</a></li>
+<li><a href="#purgedata_examples">4.4.3. Examples of PURGEDATA</a></li>
 </ul>
 </li>
-<li><a href="#update_statistics_statement">4.5. UPDATE STATISTICS Statement</a>
+<li><a href="#unload_statement">4.5. UNLOAD Statement</a>
 <ul class="sectlevel3">
-<li><a href="#update_statistics_syntax">4.5.1. Syntax Description of UPDATE STATISTICS</a></li>
-<li><a href="#update_statistics_considerations">4.5.2. Considerations for UPDATE STATISTICS</a></li>
-<li><a href="#update_statistics_examples">4.5.3. Examples of UPDATE STATISTICS</a></li>
+<li><a href="#unload_syntax">4.5.1. Syntax Description of UNLOAD</a></li>
+<li><a href="#unload_considerations">4.5.2. Considerations for UNLOAD</a></li>
+<li><a href="#unload_examples">4.5.3. Examples of UNLOAD</a></li>
+</ul>
+</li>
+<li><a href="#update_statistics_statement">4.6. UPDATE STATISTICS Statement</a>
+<ul class="sectlevel3">
+<li><a href="#update_statistics_syntax">4.6.1. Syntax Description of UPDATE STATISTICS</a></li>
+<li><a href="#update_statistics_considerations">4.6.2. Considerations for UPDATE STATISTICS</a></li>
+<li><a href="#update_statistics_examples">4.6.3. Examples of UPDATE STATISTICS</a></li>
 </ul>
 </li>
 </ul>
@@ -11413,7 +11420,7 @@ authorization are enabled in Trafodion. For more information, see
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">GRANT {privilege [,privilege]... |ALL [PRIVILEGES]}
   ON [object-type] [schema.]object
-  TO {grantee}
+  TO grantee
   [WITH GRANT OPTION]
   [[GRANTED] BY grantor]
 
@@ -17181,6 +17188,10 @@ This section describes the Trafodion SQL utilities:</p>
 </colgroup>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#cleanup_statement">CLEANUP Statement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cleans up objects whose information is inconsistent in the metadata.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#load_statement">LOAD Statement</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Uses the Trafodion Bulk Loader to load data from a source table, either
 a Trafodion table or a Hive table, into a target Trafodion table.</p></td>
@@ -17223,7 +17234,396 @@ to connect to and issue SQL utilities, see the
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">
-<h3 id="load_statement">4.1. LOAD Statement</h3>
+<h3 id="cleanup_statement">4.1. CLEANUP Statement</h3>
+<div class="paragraph">
+<p>The CLEANUP Statement cleans up objects whose information is inconsistent in the metadata. This command can be used to clean up individual objects or all objects in a schema. This command can also be used to locate all inconsistent objects in the Trafodion metadata and then clean them up.</p>
+</div>
+<div class="paragraph">
+<p>Inconsistent objects can be cleaned up and removed from the metadata and HBase by using one of the following options.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CLEANUP object-type object-name [ ,UID {object-uid} ]
+
+CLEANUP [ PRIVATE | SHARED ] SCHEMA {schema-name}
+
+CLEANUP UID {object-uid}
+
+CLEANUP METADATA [ , CHECK ] [ , RETURN DETAILS ]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">object-type is: TABLE | INDEX | SEQUENCE | OBJECT
+
+object-name is: Name of the object that needs to be cleaned up
+
+object-uid is: UID (Unique ID) of the object that is stored in metadata
+
+schema-name is: Name of the schema whose contents need to be cleaned up</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cleanup_syntax">4.1.1. Syntax Description of CLEANUP Statement</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CLEANUP object-type object-name [ , UID {object-uid} ]</code></p>
+<div class="paragraph">
+<p>This command will clean up the specified object from all Trafodion metadata tables
+and HBase. If an object cannot be found in the metadata but exists in HBase,
+then it will be removed from HBase. All dependent objects, such as indexes,
+views, LOBs, internal sequences, and constraints, are also removed from the
+metadata and HBase.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>object-type</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>If an object type is specified as TABLE, INDEX, or SEQUENCE and that object exists
+in the metadata, then a check will be done to make sure that the specified <code>object-name</code> is of the specified type. An error is returned if they are not the same.</p>
+</li>
+<li>
+<p>If an object type is specified as OBJECT, then any object that matches the
+specified name is removed from the metadata and HBase.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>object-name</code></p>
+<div class="paragraph">
+<p>Specifies the name of the object to be removed.</p>
+</div>
+</li>
+<li>
+<p><code>object-uid</code></p>
+<div class="paragraph">
+<p>If an object exists in the OBJECTS metadata table, then the stored object UID is compared with the specified object UID. If they do not match, then cleanup is not done. If an object does not exist in the OBJECTS metadata table, then all entries matching the specified object UID are removed from the metadata tables.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>CLEANUP [ PRIVATE | SHARED ] SCHEMA {schema-name}</code></p>
+<div class="paragraph">
+<p>This command will clean up all objects that are created in the specified schema.</p>
+</div>
+</li>
+<li>
+<p><code>CLEANUP UID {object-uid}</code></p>
+<div class="paragraph">
+<p>This command will remove all entries from all metadata tables that match the specified object UID. If the specified object UID exists in the OBJECTS metadata table and the object name associated with that UID can be retrieved, then that object is also removed from HBase.</p>
+</div>
+</li>
+<li>
+<p><code>CLEANUP METADATA [ , CHECK ] [ , RETURN DETAILS ]</code></p>
+<div class="paragraph">
+<p>This command will look for inconsistent entries in the metadata, return information about them, and clean them up. Multiple checks are done to validate metadata consistency.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CHECK</code></p>
+<div class="paragraph">
+<p>One can check for inconsistent metadata entries without actually cleaning them up.
+This can be done by specifying the <code>CHECK</code> option. If <code>CHECK</code> is specified, the following checks will be performed simultaneously, and a summary of inconsistent objects belonging to the categories listed below will be returned.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Orphan Metadata Objects</p>
+<div class="paragraph">
+<p>This check is done to validate that objects that exist in metadata also exist in HBase. If the object does not exist in HBase, then it is marked as an orphan metadata object.</p>
+</div>
+</li>
+<li>
+<p>Orphan HBase Objects</p>
+<div class="paragraph">
+<p>This check is done to validate that objects that exist in HBase also exist in metadata. If the object does not exist in metadata, then it is marked as an orphan HBase object.</p>
+</div>
+</li>
+<li>
+<p>Inconsistent Object Entries</p>
+<div class="paragraph">
+<p>This check is done to make sure that all entries in the OBJECTS table also exist in
+the OBJECTS unique index (OBJECTS_UNIQ_IDX) and that all entries in OBJECTS_UNIQ_IDX also exist in the OBJECTS table. It also checks to make sure that all entries in the COLUMNS table have a corresponding entry in the OBJECTS table. If any of the previous checks fail, then that entry is marked as inconsistent.</p>
+</div>
+</li>
+<li>
+<p>Inconsistent View Entries</p>
+<div class="paragraph">
+<p>This check is done to make sure that all view entries are consistent among the views and the OBJECTS table.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>RETURN DETAILS</code></p>
+<div class="paragraph">
+<p>If <code>RETURN DETAILS</code> is specified, then details on which objects are inconsistent is also returned.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="cleanup_considerations">4.1.2. Considerations for CLEANUP Statement</h4>
+<div class="sect4">
+<h5 id="security_and_privileges">Security and Privileges</h5>
+<div class="paragraph">
+<p>To clean up an object, one needs to have DROP privileges. If object privileges cannot be retrieved from the metadata or if metadata cleanup is being done, then one needs to be DB_ROOT to perform the cleanup.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="consistency_checks_during_access">Consistency Checks During Access</h5>
+<div class="paragraph">
+<p>If an object exists in the metadata but does not exist in HBase, then error 4254 will be returned if that object is accessed during any DML or DDL operation.</p>
+</div>
+<div class="paragraph">
+<p>An object is also marked as inconsistent during any complex DDL operation. For example, if a CREATE TABLE also creates implicit indexes or constraints, then the object will be marked as inconsistent until the complex DDL operation is completed. If an abnormal error happens (such as a process crash or a node failure), then that object remains inconsistent. Any attempt to access that object will return error 4254.</p>
+</div>
+<div class="paragraph">
+<p>An inconsistent object will need to be cleaned up before it can be accessed.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cleanup_examples">4.1.3. Examples of CLEANUP Statement</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Accessing Inconsistent Objects</p>
+<div class="paragraph">
+<p>Table T026T1 has been marked as inconsistent from a previous session. Any operation on it will return error 4254. For this test case, a metadata update was done, and the table was marked as invalid in the OBJECTS table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;invoke t026t1;
+
+*** ERROR[4254] Object TRAFODION.SCH026.T026T1 has invalid state and cannot be accessed. Use cleanup command to drop it.
+
+*** ERROR[4082] Object TRAFODION.SCH026.T026T1 does not exist or is inaccessible.
+
+--- SQL operation failed with errors.
+&gt;&gt;drop table t026t1;
+
+*** ERROR[4254] Object TRAFODION.SCH026.T026T1 has invalid state and cannot be accessed. Use cleanup command to drop it.
+
+--- SQL operation failed with errors.
+&gt;&gt;select * from t026t1;
+
+*** ERROR[4254] Object TRAFODION.SCH026.T026T1 has invalid state and cannot be accessed. Use cleanup command to drop it.
+
+*** ERROR[4082] Object TRAFODION.SCH026.T026T1 does not exist or is inaccessible.
+
+*** ERROR[8822] The statement was not prepared.
+
+&gt;&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Accessing Incorrect Objects</p>
+<div class="paragraph">
+<p>If an object type is specified, then the object stored in the metadata must match it. In this example, object ‘TI’ is an index that cannot be cleaned up as a table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;create index ti on t(b);
+
+--- SQL operation complete.
+&gt;&gt;cleanup table ti;
+
+*** ERROR[1389] Object TI does not exist in Trafodion.
+
+*** ERROR[4256] Object type specified for this object does not match the object type stored in metadata.
+
+--- SQL operation failed with errors.
+&gt;&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Cleaning Up an Inconsistent Object</p>
+<div class="paragraph">
+<p>A CLEANUP command will need to be used to clean up an object in invalid state.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;drop table t026t1;
+
+*** ERROR[4254] Object TRAFODION.SCH026.T026T1 has invalid state and cannot be accessed. Use cleanup command to drop it.
+
+--- SQL operation failed with errors.
+&gt;&gt;cleanup  table t026t1;
+
+--- SQL operation complete.
+&gt;&gt;invoke t026t1;
+
+*** ERROR[4082] Object TRAFODION.SCH026.T026T1 does not exist or is inaccessible.
+
+--- SQL operation failed with errors.
+&gt;&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>DROP TABLE, CREATE TABLE, DROP INDEX, and CREATE INDEX failures will call cleanup.</p>
+</div>
+</li>
+<li>
+<p>Cleaning Up an Object by Specifying its UID</p>
+<div class="paragraph">
+<p>Specify object T by its object UID and clean it up.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;select object_uid from &quot;_MD_&quot;.objects where schema_name = 'SCH026' and object_name = 'T';
+
+OBJECT_UID
+--------------------
+
+  127287511636506969
+
+--- 1 row(s) selected.
+&gt;&gt;cleanup uid 127287511636506969;
+
+--- SQL operation complete.
+&gt;&gt;invoke t;
+
+*** ERROR[4082] Object TRAFODION.SCH026.T does not exist or is inaccessible.
+
+--- SQL operation failed with errors.
+&gt;&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Metadata Cleanup</p>
+<div class="paragraph">
+<p>This example shows that the metadata is consistent and that there are no issues with it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;cleanup metadata, check, return details;
+Metadata Cleanup: started, check only
+
+  Start: Cleanup Orphan Objects Entries
+  End:   Cleanup Orphan Objects Entries (0 entries found)
+
+  Start: Cleanup Orphan Hbase Entries
+  End:   Cleanup Orphan Hbase Entries (0 entries found)
+
+  Start: Cleanup Inconsistent Objects Entries
+  End:   Cleanup Inconsistent Objects Entries (0 entries found)
+
+  Start: Cleanup Inconsistent Views Entries
+  End:   Cleanup Inconsistent Views Entries (0 entries found)
+
+Metadata Cleanup: done
+
+--- SQL operation complete.
+&gt;&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example shows inconsistencies in the metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;cleanup metadata, check, return details;
+Metadata Cleanup: started, check only
+
+  Start: Cleanup Orphan Objects Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T10
+  End:   Cleanup Orphan Objects Entries (1 entry found)
+
+  Start: Cleanup Orphan Hbase Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T11
+  End:   Cleanup Orphan Hbase Entries (1 entry found)
+
+  Start: Cleanup Inconsistent Objects Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T12
+    Entry #2(UID):    29899934458095403
+  End:   Cleanup Inconsistent Objects Entries (2 entries found)
+
+  Start: Cleanup Inconsistent Views Entries
+  End:   Cleanup Inconsistent Views Entries (0 entries found)
+
+Metadata Cleanup: done
+
+--- SQL operation complete.
+&gt;&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running the CLEANUP METADATA command cleans up the inconsistent metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;cleanup metadata, return details;
+Metadata Cleanup: started
+
+  Start: Cleanup Orphan Objects Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T10
+  End:   Cleanup Orphan Objects Entries (1 entry cleaned up)
+
+  Start: Cleanup Orphan Hbase Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T11
+  End:   Cleanup Orphan Hbase Entries (1 entry cleaned up)
+
+  Start: Cleanup Inconsistent Objects Entries
+    Entry #1(OBJECT): TRAFODION.SCH026.T026T12
+    Entry #2(UID):    29899934458095403
+  End:   Cleanup Inconsistent Objects Entries (2 entries cleaned up)
+
+  Start: Cleanup Inconsistent Views Entries
+  End:   Cleanup Inconsistent Views Entries (0 entries cleaned up)
+
+Metadata Cleanup: done
+
+
+--- SQL operation complete.
+&gt;&gt;
+&gt;&gt;cleanup metadata, check, return details;
+Metadata Cleanup: started, check only
+
+  Start: Cleanup Orphan Objects Entries
+  End:   Cleanup Orphan Objects Entries (0 entries found)
+
+  Start: Cleanup Orphan Hbase Entries
+  End:   Cleanup Orphan Hbase Entries (0 entries found)
+
+  Start: Cleanup Inconsistent Objects Entries
+  End:   Cleanup Inconsistent Objects Entries (0 entries found)
+
+  Start: Cleanup Inconsistent Views Entries
+  End:   Cleanup Inconsistent Views Entries (0 entries found)
+
+Metadata Cleanup: done
+
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="load_statement">4.2. LOAD Statement</h3>
 <div class="paragraph">
 <p>The LOAD statement uses the Trafodion Bulk Loader to load data from a
 source table, either a Trafodion table or a Hive table, into a target
@@ -17312,7 +17712,7 @@ option is:
 </div>
 </div>
 <div class="sect3">
-<h4 id="load_syntax">4.1.1. Syntax Description of LOAD</h4>
+<h4 id="load_syntax">4.2.1. Syntax Description of LOAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17415,7 +17815,7 @@ inserts without a transaction.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="load_considerations">4.1.2. Considerations for LOAD</h4>
+<h4 id="load_considerations">4.2.2. Considerations for LOAD</h4>
 <div class="sect4">
 <h5 id="load_required_privileges">Required Privileges</h5>
 <div class="paragraph">
@@ -17624,7 +18024,7 @@ lower compaction activity after completion than Trickle Load.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="load_examples">4.1.3. Examples of LOAD</h4>
+<h4 id="load_examples">4.2.3. Examples of LOAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17700,7 +18100,7 @@ Task: POPULATE INDEX Status: Ended ET: 00:00:05.262</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="populate_index_utility">4.2. POPULATE INDEX Utility</h3>
+<h3 id="populate_index_utility">4.3. POPULATE INDEX Utility</h3>
 <div class="paragraph">
 <p>The POPULATE INDEX utility performs a fast INSERT of data into an index
 from the parent table. You can execute this utility in a client-based
@@ -17715,7 +18115,7 @@ index-option is:
 </div>
 </div>
 <div class="sect3">
-<h4 id="populate_index_syntax">4.2.1. Syntax Description of POPULATE INDEX</h4>
+<h4 id="populate_index_syntax">4.3.1. Syntax Description of POPULATE INDEX</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17761,7 +18161,7 @@ SELECT is allowed.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="populate_index_considerations">4.2.2. Considerations for POPULATE INDEX</h4>
+<h4 id="populate_index_considerations">4.3.2. Considerations for POPULATE INDEX</h4>
 <div class="paragraph">
 <p>When POPULATE INDEX is executed, the following steps occur:</p>
 </div>
@@ -17828,7 +18228,7 @@ true:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="populate_index_examples">4.2.3. Examples of POPULATE INDEX</h4>
+<h4 id="populate_index_examples">4.3.3. Examples of POPULATE INDEX</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17854,7 +18254,7 @@ uses the default schema:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="purgedata_utility">4.3. PURGEDATA Utility</h3>
+<h3 id="purgedata_utility">4.4. PURGEDATA Utility</h3>
 <div class="paragraph">
 <p>The PURGEDATA utility performs a fast DELETE of data from a table and
 its related indexes. You can execute this utility in a client-based tool
@@ -17866,7 +18266,7 @@ like TrafCI.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="purgedata_syntax">4.3.1. Syntax Description of PURGEDATA</h4>
+<h4 id="purgedata_syntax">4.4.1. Syntax Description of PURGEDATA</h4>
 <div class="paragraph">
 <p><em>object</em></p>
 </div>
@@ -17876,7 +18276,7 @@ like TrafCI.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="purgedata_considerations">4.3.2. Considerations for PURGEDATA</h4>
+<h4 id="purgedata_considerations">4.4.2. Considerations for PURGEDATA</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17924,7 +18324,7 @@ case.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="purgedata_examples">4.3.3. Examples of PURGEDATA</h4>
+<h4 id="purgedata_examples">4.4.3. Examples of PURGEDATA</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -17942,7 +18342,7 @@ indexes, their data is also purged.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unload_statement">4.4. UNLOAD Statement</h3>
+<h3 id="unload_statement">4.5. UNLOAD Statement</h3>
 <div class="paragraph">
 <p>The UNLOAD statement unloads data from Trafodion tables into an HDFS
 location that you specify. Extracted data can be either compressed or
@@ -17967,7 +18367,7 @@ option is:
 </div>
 </div>
 <div class="sect3">
-<h4 id="unload_syntax">4.4.1. Syntax Description of UNLOAD</h4>
+<h4 id="unload_syntax">4.5.1. Syntax Description of UNLOAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -18102,7 +18502,7 @@ each table name.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="unload_considerations">4.4.2. Considerations for UNLOAD</h4>
+<h4 id="unload_considerations">4.5.2. Considerations for UNLOAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -18139,7 +18539,7 @@ component.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="unload_examples">4.4.3. Examples of UNLOAD</h4>
+<h4 id="unload_examples">4.5.3. Examples of UNLOAD</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -18173,7 +18573,7 @@ Task: MERGE FILES Status: Ended ET: 00:00:00.063
 </div>
 </div>
 <div class="sect2">
-<h3 id="update_statistics_statement">4.5. UPDATE STATISTICS Statement</h3>
+<h3 id="update_statistics_statement">4.6. UPDATE STATISTICS Statement</h3>
 <div class="paragraph">
 <p>The UPDATE STATISTICS statement updates the histogram statistics for one
 or more groups of columns within a table. These statistics are used to
@@ -18224,7 +18624,7 @@ sample-table-clause is:
 </div>
 </div>
 <div class="sect3">
-<h4 id="update_statistics_syntax">4.5.1. Syntax Description of UPDATE STATISTICS</h4>
+<h4 id="update_statistics_syntax">4.6.1. Syntax Description of UPDATE STATISTICS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -18515,7 +18915,7 @@ can then be used for later incremental statistics update.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="update_statistics_considerations">4.5.2. Considerations for UPDATE STATISTICS</h4>
+<h4 id="update_statistics_considerations">4.6.2. Considerations for UPDATE STATISTICS</h4>
 <div class="sect4">
 <h5 id="update_statistics_using_statistics">Using Statistics</h5>
 <div class="paragraph">
@@ -18781,7 +19181,7 @@ histograms, but at the price of a longer-running operation.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="update_statistics_examples">4.5.3. Examples of UPDATE STATISTICS</h4>
+<h4 id="update_statistics_examples">4.6.3. Examples of UPDATE STATISTICS</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -44065,7 +44465,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.2.0<br>
-Last updated 2017-03-07 20:31:35 UTC
+Last updated 2016-11-03 22:36:05 UTC
 </div>
 </div>
 <script>
