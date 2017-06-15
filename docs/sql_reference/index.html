@@ -2139,8 +2139,12 @@ with the furnishing, performance, or use of this material.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May  1, 2017</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
@@ -2903,8 +2907,21 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar(<em>n</em> bytes) character set utf8</code><sup>1</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>real</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>decimal (precision, scale)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>decimal (precision, scale)</code><sup>2</sup><br>
+<code>numeric (precision, scale)</code><sup>3</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>double</code></p></td>
@@ -2912,7 +2929,11 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp(6)</code><sup>2</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp(6)</code><sup>4</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2921,6 +2942,12 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <li>
 <p>The value <code><em>n</em></code> is determined by <code>CQD HIVE_MAX_STRING_LENGTH</code>. See the
 <a href="http://trafodion.incubator.apache.org/docs/cqd_reference/index.hmtl">Trafodion Control Query Default (CQD) Reference Guide</a>.</p>
+</li>
+<li>
+<p>If p is less than or equal to 18, decimal (precision, scale) is mapped to decimal (precision, scale).</p>
+</li>
+<li>
+<p>If p is greater than 18, decimal (precision, scale) is mapped to numeric (precision, scale).</p>
 </li>
 <li>
 <p>Hive supports timestamps with nanosecond resolution (precision of 9). Trafodion SQL supports only microsecond resolution (precision 6).</p>
@@ -28220,8 +28247,7 @@ corresponding second of the minute.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#timestampdiff_function">TIMESTAMPDIFF Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>interval-ind</em>
-units of time between <em>startdate</em> and <em>enddate</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>interval-ind_units of time between _startdate</em> and <em>enddate</em>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_char_function">TO_CHAR Function</a></p></td>
@@ -44465,7 +44491,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.2.0<br>
-Last updated 2016-11-03 22:36:05 UTC
+Last updated 2017-04-17 20:22:50 UTC
 </div>
 </div>
 <script>
