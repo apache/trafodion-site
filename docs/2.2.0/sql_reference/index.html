@@ -2139,12 +2139,8 @@ with the furnishing, performance, or use of this material.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">May  1, 2017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
@@ -2888,10 +2884,6 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tinyint</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tinyint</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tinyint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>smallint</code></p></td>
 </tr>
 <tr>
@@ -2911,21 +2903,8 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar(<em>n</em> bytes) character set utf8</code><sup>1</sup></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>varchar</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>real</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>decimal (precision, scale)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>decimal (precision, scale)</code><sup>2</sup><br>
-<code>numeric (precision, scale)</code><sup>3</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>double</code></p></td>
@@ -2933,11 +2912,7 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp(6)</code><sup>4</sup></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp(6)</code><sup>2</sup></p></td>
 </tr>
 </tbody>
 </table>
@@ -2946,12 +2921,6 @@ select * from hive.hive.t; -- explicit table name</code></pre>
 <li>
 <p>The value <code><em>n</em></code> is determined by <code>CQD HIVE_MAX_STRING_LENGTH</code>. See the
 <a href="http://trafodion.incubator.apache.org/docs/cqd_reference/index.hmtl">Trafodion Control Query Default (CQD) Reference Guide</a>.</p>
-</li>
-<li>
-<p>If p is less than or equal to 18, decimal (precision, scale) is mapped to decimal (precision, scale).</p>
-</li>
-<li>
-<p>If p is greater than 18, decimal (precision, scale) is mapped to numeric (precision, scale).</p>
 </li>
 <li>
 <p>Hive supports timestamps with nanosecond resolution (precision of 9). Trafodion SQL supports only microsecond resolution (precision 6).</p>
@@ -18792,7 +18761,7 @@ establish existing columns.</p>
 <p>The NECESSARY COLUMN[S] keyword generates statistics for histograms that
 the optimizer has requested but do not exist. Update statistics
 automation must be enabled for NECESSARY COLUMN[S] to generate
-statistics.</p>
+statistics. To enable automation, see <a href="#update_statistics_automating_update_statistics">Automating Update Statistics</a>.</p>
 </div>
 </li>
 </ul>
@@ -19130,6 +19099,50 @@ columns in the GROUP BY clause) to generate histogram statistics that
 enable the optimizer to choose a better plan. Similarly, when a query
 joins two tables by two or more columns, multi-column lists (consisting
 of the columns being joined) help the optimizer choose a better plan.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="update_statistics_automating_update_statistics">Automating Update Statistics</h5>
+<div class="paragraph">
+<p>To enable update statistics automation, set the Control Query Default
+(CQD) attribute, USTAT_AUTOMATION_INTERVAL, in a session where you will
+run update statistics operations. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">control query default USTAT_AUTOMATION_INTERVAL '1440';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of USTAT_AUTOMATION_INTERVAL is intended to be an automation
+interval (in minutes), but, in Trafodion Release 1.0, this value does
+not act as a timing interval. Instead, any value greater than zero
+enables update statistics automation.</p>
+</div>
+<div class="paragraph">
+<p>After enabling update statistics automation, prepare each of the queries
+that you want to optimize. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">prepare s from select...;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The PREPARE statement causes the Trafodion SQL compiler to compile and
+optimize a query without executing it. When preparing queries with
+update statistic automation enabled, any histograms needed by the
+optimizer that are not present will cause those columns to be marked as
+needing histograms.</p>
+</div>
+<div class="paragraph">
+<p>Next, run this UPDATE STATISTICS statement against each table, using ON
+NECESSARY COLUMN[S] to generate the needed histograms:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">update statistics for table _table-name_ on necessary columns sample;</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -19700,15 +19713,13 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 14%;">
-<col style="width: 14%;">
-<col style="width: 24%;">
-<col style="width: 24%;">
-<col style="width: 24%;">
+<col style="width: 13%;">
+<col style="width: 28.9999%;">
+<col style="width: 28.9999%;">
+<col style="width: 29.0002%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Category</th>
 <th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">SQL Designation</th>
 <th class="tableblock halign-left valign-top">Description</th>
@@ -19717,140 +19728,76 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock">Character String Data Type</p></td>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Fixed-length character</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CHAR[ACTER]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>2</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32707 characters<sup>2</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NCHAR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data in predefined national character set</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>3</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32707 bytes<sup>3</sup> <sup>7</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NATIONAL CHAR[ACTER]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data in predefined national character set</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>3</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32707 bytes<sup>3</sup> <sup>7</sup></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Variable-length character</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32703 characters<sup>4</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CHAR[ACTER] VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32703 characters<sup>4</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NCHAR VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>4</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32703 bytes<sup>4</sup> <sup>8</sup></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NATIONAL CHAR[ACTER] VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>7</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 32703 characters<sup>4</sup> <sup>8</sup></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Datetime Data Types</p></td>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Date-Time</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point in time, using the Gregorian calendar and a 24 hour clock system. The five supported designations are listed below.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">YEAR 0001-9999<br>
-MONTH 1-12<br>
-DAY 1-31<br>
-DAY constrained by MONTH and YEAR<br>
-<br>
-HOUR 0-23<br>
-MINUTE 0-59<br>
-SECOND 0-59<br>
-FRACTION(n) 0-999999<br>
-in which n is the number of significant digits, from 1 to 6
-(default is 6; minimum is 1; maximum is 6).<br>
-<br>
-Actual database storage is incremental, as follows:
-YEAR in 2 bytes<br>
-MONTH in 1 byte<br>
-DAY in 1 byte<br>
-HOUR in 1 byte<br>
-MINUTE in 1
-byte SECOND in 1 byte<br>
-FRACTION in 4 bytes<br></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD; actual database storage size is 4 bytes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIME</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time of day, 24 hour clock, no time precision.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as HH:MM:SS; actual database storage size is 3 bytes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIME (with time precision)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time of day, 24 hour clock, with time precision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as HH:MM:SS.FFFFFF; actual database storage size is 7 bytes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point in time, no time precision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS.FFFFFF; actual database storage size is 11 bytes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP (with time precision)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point in time, with time precision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS.FFFFFF; actual database storage size is 1 byte</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interval Data Types</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interval</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INTERVAL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Duration of time; value is in the YEAR/MONTH range or the DAY/HOUR/MINUTE/YEAR/SECOND/FRACTION range</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">YEAR no constraint<sup>5</sup><br>
-MONTH 0-11<br>
-DAY no constraint<br>
-HOUR 0-23<br>
-MINUTE 0-59<br>
-SECOND 0-59<br>
-FRACTION(n) 0-999999<br>
-in which n is the number of significant digits (default is 6; minimum is 1; maximum is 6);<br>
-stored in 2, 4, or 8 bytes depending on number of digits<sup>2</sup></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" rowspan="10"><p class="tableblock">Numeric Data Types</p></td>
-<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Numeric</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC (1,<em>scale</em>) to + NUMERIC (128,<em>scale</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC (1,<em>scale</em>) to<br>
+NUMERIC (128,<em>scale</em>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary number with optional scale; signed or unsigned for 1 to 9 digits</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 128 digits;<br>
-stored:<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 128 digits; stored:<br>
 1 to 4 digits in 2 bytes<br>
+<br>
 5 to 9 digits in 4 bytes<br>
-10 to 128 digits in 8-64 bytes<br>
-depending on precision</p></td>
+<br>
+10 to 128 digits in 8-64 bytes, depending on precision</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TINYINT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Binary integer; signed or unsigned</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0 to 255 unsigned, -128 to +127 signed; stored in 1 byte</p></td>
-</tr>
-<tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SMALLINT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary integer; signed or unsigned</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0 to 65535 unsigned, -32768 to +32767 signed; stored in 2 bytes</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary integer; signed or unsigned</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0 to 4294967295 unsigned, -2147483648 to +2147483647 signed; stored in 4 bytes</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LARGEINT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary integer; signed only</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-2<sup>63</sup> to +(2<sup>63</sup>)-1; stored in 8 bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-2<strong>63 to +(2</strong>63)-1; stored in 8 bytes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Numeric (extended numeric precision)</p></td>
@@ -19860,26 +19807,85 @@ depending on precision</p></td>
 length of 8 bytes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Floating point number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FLOAT[(<em>precision</em>)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number; precision designates from 1 through 52 bits of precision</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 bytes</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REAL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number (32 bits)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/- 1.17549435e-38 through +/ 3.40282347e+38; stored in 4 bytes</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE PRECISION</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Floating-point numbers (64 bits) with 1 through 52 bits of precision (52 bits of binary precision and 1 bits of exponent)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 byte</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Decimal number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DECIMAL (1,<em>scale</em>) to DECIMAL (18,<em>scale</em>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Decimal number with optional scale; stored as ASCII characters; signed or unsigned for 1 to 9 digits; signed required for 10 or more digits</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 to 18 digits. Byte length equals the number of digits. Sign is stored as the first bit of the leftmost byte.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date-Time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point in time, using the Gregorian calendar and a 24 hour clock system. The five supported designations are listed below.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YEAR 0001-9999<br>
+MONTH 1-12<br>
+DAY 1-31<br>
+<br>
+DAY constrained by MONTH and YEAR<br>
+<br>
+HOUR 0-23<br>
+MINUTE 0-59<br>
+SECOND 0-59<br>
+FRACTION(n) 0-999999<br>
+<br>
+in which n is the number of significant digits, from 1 to 6
+(default is 6; minimum is 1; maximum is 6). Actual database storage is
+incremental, as follows:
+<br>
+YEAR in 2 bytes<br>
+MONTH in 1 byte<br>
+DAY in 1 byte<br>
+HOUR in 1 byte<br>
+MINUTE in 1
+byte SECOND in 1 byte<br>
+FRACTION in 4 bytes<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD; actual database storage size is 4 bytes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of day, 24 hour clock, no time precision. Format as HH:MM:SS; actual database storage size is 3 bytes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIME (with time precision)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of day, 24 hour clock, with time precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format as HH:MM:SS.FFFFFF; actual database storage size is 7 bytes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point in time, no time precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS; actual database storage size is 7 bytes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP (with time precision) Point in time, with time precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format as YYYY-MM-DD HH:MM:SS.FFFFFF; actual database storage size is 1 byte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTERVAL</p></td>
 </tr>
 </tbody>
 </table>
@@ -19917,12 +19923,6 @@ The maximum is 16353 if the national character set was specified at installation
 <li>
 <p>The maximum is 32703 if the national character set was specified at installation time to be ISO88591.
 The maximum is 16351 if the national character set was specified at installation time as UTF8.</p>
-</li>
-<li>
-<p>It defaults to 200000 characters and can be declared explicitly by using the TRAF_MAX_CHARACTER_COL_LENGTH CQD.</p>
-</li>
-<li>
-<p>It defaults to 200000 bytes and can be declared explicitly by using the TRAF_MAX_CHARACTER_COL_LENGTH CQD.</p>
 </li>
 </ol>
 </div>
@@ -20208,35 +20208,14 @@ numeric, datetime, or interval data.</p>
 <p><code><em>character-type</em></code> is:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CHAR[ACTER] [(length [unit])] [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
-| CHAR[ACTER] VARYING(length [unit]) [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
-| VARCHAR(length [unit]) [CHARACTERS] [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
-| NCHAR [(length)] [UPSHIFT] [[NOT]CASESPECIFIC]
-| NCHAR VARYING (length) [UPSHIFT] [[NOT]CASESPECIFIC]
-| NATIONAL CHAR[ACTER] [(length)] [UPSHIFT] [[NOT]CASESPECIFIC]
-| NATIONAL CHAR[ACTER] VARYING (length) [UPSHIFT] [[NOT]CASESPECIFIC]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">CHAR[ACTER] [(_length_ [CHARACTERS])] [_char-set_] [UPSHIFT] [[NOT]CASESPECIFIC]
+| CHAR[ACTER] VARYING(_length_) [CHARACTERS][_char-set_] [UPSHIFT] [[NOT]CASESPECIFIC]
+| VARCHAR(_length_) [CHARACTERS] [_char-set_] [UPSHIFT] [[NOT]CASESPECIFIC]
+| NCHAR [(_length_)] [CHARACTERS] [UPSHIFT] [[NOT]CASESPECIFIC]
+| NCHAR VARYING (_length_) [CHARACTERS] [UPSHIFT] [[NOT]CASESPECIFIC]
+| NATIONAL CHAR[ACTER] [(_length_)] [CHARACTERS] [UPSHIFT] [[NOT]CASESPECIFIC]
+| NATIONAL CHAR[ACTER] VARYING (_length_) [CHARACTERS] [UPSHIFT] [[NOT]CASESPECIFIC]</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>CHAR, NCHAR, and NATIONAL CHAR are fixed-length character types. CHAR
-VARYING, VARCHAR, NCHAR VARYING and NATIONAL CHAR VARYING are
-varying-length character types.</p>
-</div>
-</li>
-<li>
-<p><code><em>length</em></code></p>
-<div class="paragraph">
-<p>is a positive integer that specifies the number of characters (or bytes, see below) allowed in
-the column. You must specify a value for <em>length</em>.</p>
-</div>
-</li>
-<li>
-<p><code><em>unit</em></code></p>
-<div class="paragraph">
-<p>is an optional unit of either CHAR[ACTER[S]] or BYTE[S]. The default is CHAR[ACTER[S]]. This unit is meaningful only for UTF8 characters.
-A UTF8 character is one to four bytes in length, therefore the storage length of a CHAR column that can hold <em>n</em> UTF8 characters is 4*<em>n</em> bytes.
-The same applies to the maximum length of a VARCHAR column.
-Specifying the length of UTF8 columns in bytes can lead to significant savings in space and resources.</p>
 </div>
 </li>
 <li>
@@ -20246,39 +20225,37 @@ Specifying the length of UTF8 columns in bytes can lead to significant savings i
 <pre class="CodeRay highlight"><code data-lang="text">CHARACTER SET char-set-name</code></pre>
 </div>
 </div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>CHAR, NCHAR, and NATIONAL CHAR are fixed-length character types. CHAR
+VARYING, VARCHAR, NCHAR VARYING and NATIONAL CHAR VARYING are
+varying-length character types.</p>
+</div>
 <div class="ulist">
 <ul>
+<li>
+<p><code><em>length</em></code></p>
+<div class="paragraph">
+<p>is a positive integer that specifies the number of characters allowed in
+the column. You must specify a value for <em>length</em>.</p>
+</div>
+</li>
 <li>
 <p><code><em>char-set-name</em></code></p>
 <div class="paragraph">
-<p>is the character set name, which can be ISO88591, UTF8 or UCS2.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ISO88591 (ISO 8859-1) is a single-byte character set for US ASCII and Western European language characters.</p>
-</li>
-<li>
-<p>UTF8 (UTF-8) is a variable-length (1 to 4 bytes) encoding of Unicode characters including those in supplementary planes. It is compatible with the US-ASCII character set.</p>
-</li>
-<li>
-<p>UCS2 (UCS-2) is a fixed-length, 2 byte encoding of Unicode characters of the Basic Multilingual Plane (BMP).
-Note that, while not strictly part of UCS2, Trafodion also tolerates UTF-16 surrogate pairs in UCS2 columns, but such surrogate pairs are interpreted as two separate characters.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>is the character set name, which can be ISO88591 or UTF8.</p>
 </div>
 </li>
 <li>
-<p><code>CHAR[ACTER] [(<em>length</em> [<em>unit</em>])] [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
+<p><code>CHAR[ACTER] [(<em>length</em> [CHARACTERS])] [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
 <p>specifies a column with fixed-length character data.</p>
 </div>
 </li>
 <li>
-<p><code>CHAR[ACTER] VARYING (<em>length</em> [<em>unit</em>]) [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
+<p><code>CHAR[ACTER] VARYING (<em>length</em>) [CHARACTERS] [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
 <p>specifies a column with varying-length character data. VARYING specifies
 that the number of characters stored in the column can be fewer than the
@@ -20293,7 +20270,7 @@ an equivalent column that is not VARYING.</p>
 </div>
 </li>
 <li>
-<p><code>VARCHAR (<em>length</em> [<em>unit</em>]) [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
+<p><code>VARCHAR (<em>length</em>) [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
 <p>specifies a column with varying-length character data. VARCHAR is
 equivalent to data type CHAR[ACTER] VARYING.</p>
@@ -20302,13 +20279,13 @@ equivalent to data type CHAR[ACTER] VARYING.</p>
 <li>
 <p><code>NCHAR [(<em>length</em>)] [UPSHIFT] [[NOT]CASESPECIFIC], NATIONAL CHAR[ACTER] [(<em>length</em>)] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
-<p>specifies a column with data in the predefined national character set (UCS2).</p>
+<p>specifies a column with data in the predefined national character set.</p>
 </div>
 </li>
 <li>
 <p><code>NCHAR VARYING [(<em>length</em>)] [UPSHIFT] [[NOT]CASESPECIFIC], NATIONAL CHAR[ACTER] VARYING (<em>length</em>) [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
-<p>specifies a column with varying-length data in the predefined national character set (UCS2).</p>
+<p>specifies a column with varying-length data in the predefined national character set.</p>
 </div>
 </li>
 </ul>
@@ -20399,8 +20376,8 @@ SQL extension.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">  DATE
-| TIME [(time-precision)]
-| TIMESTAMP [(timestamp-precision)]</code></pre>
+| TIME [(_time-precision_)]
+| TIMESTAMP [(_timestamp-precision_)]</code></pre>
 </div>
 </div>
 </li>
@@ -20513,7 +20490,7 @@ seconds, and fractions of a second).</p>
 </div>
 </li>
 <li>
-<p><code><em>end-field</em> is:</code></p>
+<p>`<em>end-field</em> is:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">YEAR | MONTH | DAY | HOUR | MINUTE | SECOND [(_fractional-precision_)]</code></pre>
@@ -20687,12 +20664,11 @@ datetime, or interval data types.</p>
 <p><code><em>exact-numeric-type</em></code> is:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">   NUMERIC [(precision [,scale])] [SIGNED|UNSIGNED]
-| TINYINT [SIGNED|UNSIGNED]
+<pre class="CodeRay highlight"><code data-lang="text">   NUMERIC [(_precision_ [,_scale_])] [SIGNED|UNSIGNED]
 | SMALLINT [SIGNED|UNSIGNED]
 | INT[EGER] [SIGNED|UNSIGNED]
 | LARGEINT
-| DEC[IMAL] [(precision [,scale])] [SIGNED|UNSIGNED]</code></pre>
+| DEC[IMAL] [(_precision_ [,_scale_])] [SIGNED|UNSIGNED]</code></pre>
 </div>
 </div>
 </li>
@@ -20700,7 +20676,7 @@ datetime, or interval data types.</p>
 <p><code><em>approximate-numeric-type</em></code> is:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">   FLOAT [(precision)]
+<pre class="CodeRay highlight"><code data-lang="text">   FLOAT [(_precision_)]
 | REAL
 | DOUBLE PRECISION</code></pre>
 </div>
@@ -20734,14 +20710,6 @@ number of digits to the right of the decimal point.</p>
 </div>
 <div class="paragraph">
 <p>The default is NUMERIC (9,0) SIGNED.</p>
-</div>
-</li>
-<li>
-<p><code>TINYINT [SIGNED|UNSIGNED]</code></p>
-<div class="paragraph">
-<p>specifies an exact numeric column—a one-byte binary integer, SIGNED or
-UNSIGNED. The column stores integers in the range unsigned 0 to 255 or signed
--128 to +127. The default is SIGNED.</p>
 </div>
 </li>
 <li>
@@ -28252,7 +28220,8 @@ corresponding second of the minute.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#timestampdiff_function">TIMESTAMPDIFF Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>interval-ind_units of time between _startdate</em> and <em>enddate</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>interval-ind</em>
+units of time between <em>startdate</em> and <em>enddate</em>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_char_function">TO_CHAR Function</a></p></td>
@@ -44496,7 +44465,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.2.0<br>
-Last updated 2017-03-07 20:31:35 UTC
+Last updated 2016-11-03 22:36:05 UTC
 </div>
 </div>
 <script>
