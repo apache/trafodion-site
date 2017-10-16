@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<title>LOB Guide</title>
+<style>
+/**
+* @@@ START COPYRIGHT @@@  
+*
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*
+* @@@ END COPYRIGHT @@@ 
+  */
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove the comments around the @import statement below when using this as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif,serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+#map_canvas img,#map_canvas embed,#map_canvas object,.map_canvas img,.map_canvas embed,.map_canvas object{max-width:none!important}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+.antialiased,body{-webkit-font-smoothing:antialiased}
+img{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#3188ac;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+/* Defines headings */
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:bold;font-style:normal;color:#3188ac;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+/* Defines the `text` (passthru) format */
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:bold;color:#3188ac}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:1.0em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+/**:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}*/
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{display:inline-block;color:rgba(0,0,0,.8);font-size:.75em;line-height:1.4;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:-.15em .15em 0 .15em;padding:.2em .6em .2em .5em;vertical-align:middle;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+/* #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0} */
+#header>h1:first-child{color:#3188ac;margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#3188ac;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+/* Controls width of panel */
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text,#footer_nav{color:rgba(255,255,255,.8);line-height:1.44}
+#footer a{color: #990000}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#990000;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif,serif;font-size:1rem;font-weight:bold}
+/* Here */
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.05em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.spread{width:100%}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1{padding-right:.75em;font-weight:bold}
+td.hdlist1,td.hdlist2{vertical-align:top}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none}
+span.footnote,span.footnoteref{vertical-align:super;font-size:.875em}
+span.footnote a,span.footnoteref a{text-decoration:none}
+span.footnote a:active,span.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em;line-height:1.3;font-size:.875em;margin-left:1.2em;text-indent:-1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+h1,h2{letter-spacing:-.01em}
+dt,th.tableblock,td.content{text-rendering:optimizeLegibility}
+p,td.content{letter-spacing:-.01em}
+p strong,td.content strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img{page-break-inside:avoid}
+thead{display:table-header-group}
+img{max-width:100%!important}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+div.paragraph.indented p {padding-left: 3em;}
+div.paragraph.indented2 p {padding-left: 6em;}
+div.paragraph.indented3 p {padding-left: 9em;}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>LOB Guide</h1>
+<div class="details">
+<span id="revnumber">version 2.3.0</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#About_This_Document">1. About This Document</a>
+<ul class="sectlevel2">
+<li><a href="#Intended_Audience">1.1. Intended Audience</a></li>
+<li><a href="#New_and_Changed_Information">1.2. New and Changed Information</a></li>
+<li><a href="#Document_Organization">1.3. Document Organization</a></li>
+<li><a href="#_notation_conventions">1.4. Notation Conventions</a></li>
+<li><a href="#_comments_encouraged">1.5. Comments Encouraged</a></li>
+</ul>
+</li>
+<li><a href="#introduction">2. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_what_is_a_lob">2.1. What is a LOB</a></li>
+<li><a href="#_lob_data_types">2.2. LOB Data Types</a></li>
+<li><a href="#_lob_storage">2.3. LOB Storage</a></li>
+<li><a href="#_lob_handle">2.4. LOB Handle</a>
+<ul class="sectlevel3">
+<li><a href="#_external_structure">2.4.1. External Structure</a></li>
+</ul>
+</li>
+<li><a href="#_lob_restrictions">2.5. LOB Restrictions</a></li>
+<li><a href="#_lob_related_sql_statements_and_functions">2.6. LOB Related SQL Statements and Functions</a>
+<ul class="sectlevel3">
+<li><a href="#_supported_sql_statements">2.6.1. Supported SQL Statements</a></li>
+<li><a href="#_unsupported_sql_statements">2.6.2. Unsupported SQL Statements</a></li>
+<li><a href="#_supported_lob_conversion_sql_functions">2.6.3. Supported LOB Conversion SQL Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_working_with_lobs">3. Working with LOBs</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_a_sql_table_with_lob_columns">3.1. Creating a SQL Table with LOB Columns</a></li>
+<li><a href="#syntax">3.2. Syntax</a>
+<ul class="sectlevel3">
+<li><a href="#semantics">3.2.1. Semantics</a></li>
+<li><a href="#examples">3.2.2. Examples</a></li>
+<li><a href="#_hdfs_location_of_lob_data">3.2.3. HDFS Location of LOB Data</a></li>
+</ul>
+</li>
+<li><a href="#_inserting_into_a_sql_table_containing_lob_columns">3.3. Inserting into a SQL Table Containing LOB Columns</a>
+<ul class="sectlevel3">
+<li><a href="#syntax">3.3.1. Syntax</a></li>
+<li><a href="#semantics">3.3.2. Semantics</a></li>
+<li><a href="#considerations">3.3.3. Considerations</a></li>
+<li><a href="#examples">3.3.4. Examples</a></li>
+</ul>
+</li>
+<li><a href="#_inserting_into_a_sql_table_containing_lob_columns_using_select_clause">3.4. Inserting into a SQL Table Containing LOB Columns Using Select Clause</a>
+<ul class="sectlevel3">
+<li><a href="#syntax">3.4.1. Syntax</a></li>
+<li><a href="#semantics">3.4.2. semantics</a></li>
+<li><a href="#considerations">3.4.3. Considerations</a></li>
+<li><a href="#examples">3.4.4. Examples</a></li>
+</ul>
+</li>
+<li><a href="#_updating_a_sql_table_containing_lob_columns">3.5. Updating a SQL Table Containing LOB Columns</a>
+<ul class="sectlevel3">
+<li><a href="#_updating_using_parameters_functions">3.5.1. Updating Using Parameters/Functions</a></li>
+<li><a href="#_updating_using_lob_handle">3.5.2. Updating Using Lob Handle</a></li>
+<li><a href="#considerations">3.5.3. Considerations</a></li>
+</ul>
+</li>
+<li><a href="#_selecting_column_from_a_sql_table_containing_lob_columns">3.6. Selecting Column from a SQL Table Containing LOB Columns</a>
+<ul class="sectlevel3">
+<li><a href="#syntax">3.6.1. Syntax</a></li>
+<li><a href="#examples">3.6.2. Examples</a></li>
+</ul>
+</li>
+<li><a href="#_extracting_lob_data_from_a_sql_table_containing_lob_columns">3.7. Extracting LOB Data from a SQL Table Containing LOB Columns</a>
+<ul class="sectlevel3">
+<li><a href="#_extracting_lob_data_into_a_file_for_a_given_lob_handle">3.7.1. Extracting Lob Data into a File for a Given Lob Handle</a></li>
+<li><a href="#_extracting_lob_data_into_a_user_specified_buffer">3.7.2. Extracting Lob Data into a User Specified Buffer</a></li>
+<li><a href="#_extracting_lob_length_for_a_given_lob_handle">3.7.3. Extracting Lob Length for a Given Lob Handle</a></li>
+<li><a href="#considerations">3.7.4. Considerations</a></li>
+</ul>
+</li>
+<li><a href="#_deleting_column_from_a_sql_table_containing_lob_columns">3.8. Deleting Column from a SQL Table Containing LOB columns</a>
+<ul class="sectlevel3">
+<li><a href="#syntax">3.8.1. Syntax</a></li>
+<li><a href="#considerations">3.8.2. Considerations</a></li>
+</ul>
+</li>
+<li><a href="#_dropping_a_sql_table_containing_lob_columns">3.9. Dropping a SQL Table Containing LOB Columns</a></li>
+<li><a href="#_garbage_collection">3.10. Garbage Collection</a></li>
+<li><a href="#_cleanup_of_a_sql_table_containing_lob_columns">3.11. Cleanup of a SQL Table Containing LOB Columns</a></li>
+<li><a href="#_showddl_for_lob">3.12. SHOWDDL for LOB</a>
+<ul class="sectlevel3">
+<li><a href="#syntax">3.12.1. Syntax</a></li>
+<li><a href="#examples">3.12.2. Examples</a></li>
+</ul>
+</li>
+<li><a href="#_get_lob_statistics_for_a_lob_table">3.13. Get Lob Statistics for a LOB Table</a>
+<ul class="sectlevel3">
+<li><a href="#_get_statement">3.13.1. Get Statement</a></li>
+<li><a href="#_select_statement">3.13.2. Select Statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>License Statement</strong></p>
+</div>
+<div class="paragraph">
+<p>Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0" class="bare">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div>
+<div class="paragraph">
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations under the License.</p>
+</div>
+<div class="paragraph">
+<p><strong>Disclaimer:</strong> <em>Apache Trafodion is an effort undergoing incubation at the Apache Software Foundation (ASF), sponsored by
+the Apache Incubator PMC. Incubation is required of all newly accepted projects until a further review indicates that
+the infrastructure, communications, and decision making process have stabilized in a manner consistent with other
+successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code,
+it does indicate that the project has yet to be fully endorsed by the ASF.</em>
+&lt;&lt;&lt;</p>
+</div>
+<div class="paragraph">
+<p><strong>Acknowledgements</strong></p>
+</div>
+<div class="paragraph">
+<p>Microsoft®, Windows®, Windows NT®, Windows® XP, and Windows Vista® are
+U.S. registered trademarks of Microsoft Corporation. Intel® and Intel®
+Itanium® are trademarks of Intel Corporation in the U.S. and other
+countries. Java® is a registered trademark of Oracle and/or its
+affiliates. Motif, OSF/1, UNIX®, X/Open®, and the X device is a
+trademark of X/Open Company Ltd. in the UK and other countries.</p>
+</div>
+<div class="paragraph">
+<p>OSF, OSF/1, OSF/Motif, Motif, and Open Software Foundation are trademarks of
+the Open Software Foundation in the U.S. and other countries.
+© 1990, 1991, 1992, 1993 Open Software Foundation, Inc.</p>
+</div>
+<div class="paragraph">
+<p>The OSF documentation and the OSF software to which it relates are derived in
+part from materials supplied by the following: © 1987, 1988, 1989
+Carnegie-Mellon University. © 1989, 1990, 1991 Digital Equipment
+Corporation. © 1985, 1988, 1989, 1990 Encore Computer Corporation. © 1988 Free
+Software Foundation, Inc. © 1987, 1988, 1989, 1990, 1991 Hewlett-Packard
+Company. © 1985, 1987, 1988, 1989, 1990, 1991, 1992 International
+Business Machines Corporation. © 1988, 1989 Massachusetts Institute of
+Technology. © 1988, 1989, 1990 Mentat Inc. © 1988 Microsoft Corporation.
+© 1987, 1988, 1989, 1990, 1991,
+1992 SecureWare, Inc. © 1990, 1991 Siemens Nixdorf Informations systeme
+AG. © 1986, 1989, 1996, 1997 Sun Microsystems, Inc. © 1989, 1990, 1991
+Transarc Corporation.</p>
+</div>
+<div class="paragraph">
+<p>OSF software and documentation are based in part
+on the Fourth Berkeley Software Distribution under license from The
+Regents of the University of California. OSF acknowledges the following
+individuals and institutions for their role in its development: Kenneth
+C.R.C. Arnold, Gregory S. Couch, Conrad C. Huang, Ed James, Symmetric
+Computer Systems, Robert Elz. © 1980, 1981, 1982, 1983, 1985, 1986,
+1987, 1988, 1989 Regents of the University of California. OSF MAKES NO
+WARRANTY OF ANY KIND WITH REGARD TO THE OSF MATERIAL PROVIDED HEREIN,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE. OSF shall not be liable for errors
+contained herein or for incidental consequential damages in connection
+with the furnishing, performance, or use of this material.
+&lt;&lt;&lt;</p>
+</div>
+<div class="paragraph">
+<p><strong>Revision History</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May  1, 2017</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">July 7, 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">June 6, 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">January, 2016</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="About_This_Document">1. About This Document</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide describes how to use Large Object (LOB) datatypes in Trafodion SQL.</p>
+</div>
+<div class="sect2">
+<h3 id="Intended_Audience">1.1. Intended Audience</h3>
+<div class="paragraph">
+<p>This manual is intended for programmers who use LOB datatypes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="New_and_Changed_Information">1.2. New and Changed Information</h3>
+<div class="paragraph">
+<p>This is a new guide.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Document_Organization">1.3. Document Organization</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Chapter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#introduction">Introduction</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduces LOBs and covers following topics:<br>
+&#8226; 1.1 <a href="#what is a lob">What is a LOB</a><br>
+&#8226; 1.2 <a href="#lob data types">LOB Data Types</a><br>
+&#8226; 1.3 <a href="#lob storage">LOB Storage</a><br>
+&#8226; 1.4 <a href="#lob handle">LOB Handle</a><br>
+&#8226; 1.5 <a href="#lob restrictions">LOB Restrictions</a><br>
+&#8226; 1.6 <a href="#lob related sql statements and functions">LOB Related SQL Statements and Functions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#working with LOBs">Working With LOBs</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explains how to use a LOB with SQL statement and covers following topics:<br>
+&#8226; 2.1  <a href="#creating a sql table with lob columns">Creating a SQL Table with LOB Columns</a><br>
+&#8226; 2.2  <a href="#inserting into a sql table containing lob columns">Inserting into a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.3  <a href="#inserting into a sql table containing lob columns using select clause">Inserting into a SQL Table Containing LOB Columns Using Select Clause</a><br>
+&#8226; 2.4  <a href="#updating a sql table containing lob columns">Updating a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.5  <a href="#selecting column from a sql table containing lob columns">Selecting Column from a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.6  <a href="#extracting lob data from a sql table containing lob columns">Extracting LOB Data from a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.7  <a href="#deleting column from a sql table containing lob columns">Deleting Column from a SQL Table Containing LOB columns</a><br>
+&#8226; 2.8  <a href="#dropping a sql table containing lob columns">Dropping a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.9  <a href="#garbage collection">Garbage Collection</a><br>
+&#8226; 2.10 <a href="#cleanup of a sql table containing lob columns">Cleanup of a SQL Table Containing LOB Columns</a><br>
+&#8226; 2.11 <a href="#showddl for lobs">SHOWDDL for LOBs</a><br>
+&#8226; 2.12 <a href="#getting statement for lob tables">Getting Statement for LOB Tables</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_notation_conventions">1.4. Notation Conventions</h3>
+<div class="paragraph">
+<p>This list summarizes the notation conventions for syntax presentation in this manual.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UPPERCASE LETTERS</p>
+<div class="paragraph">
+<p>Uppercase letters indicate keywords and reserved words. Type these items exactly as shown. Items not enclosed in brackets are required.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>lowercase letters</p>
+<div class="paragraph">
+<p>Lowercase letters, regardless of font, indicate variable items that you supply. Items not enclosed in brackets are required.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">file-name</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>&#91; &#93; Brackets</p>
+<div class="paragraph">
+<p>Brackets enclose optional syntax items.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DATETIME [start-field TO] end-field</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A group of items enclosed in brackets is a list from which you can choose one item or none.</p>
+</div>
+<div class="paragraph">
+<p>The items in the list can be arranged either vertically, with aligned brackets on each side of the list, or horizontally, enclosed in a pair of brackets and separated by vertical lines.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DROP SCHEMA schema [CASCADE]
+DROP SCHEMA schema [ CASCADE | RESTRICT ]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
+<li>
+<p>{ } Braces</p>
+<div class="paragraph">
+<p>Braces enclose required syntax items.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">FROM { grantee [, grantee ] ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A group of items enclosed in braces is a list from which you are required to choose one item.</p>
+</div>
+<div class="paragraph">
+<p>The items in the list can be arranged either vertically, with aligned braces on each side of the list, or horizontally, enclosed in a pair of braces and separated by vertical lines.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INTERVAL { start-field TO end-field }
+{ single-field }
+INTERVAL { start-field TO end-field | single-field }</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>| Vertical Line</p>
+<div class="paragraph">
+<p>A vertical line separates alternatives in a horizontal list that is enclosed in brackets or braces.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">{expression | NULL}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>&#8230; Ellipsis</p>
+<div class="paragraph">
+<p>An ellipsis immediately following a pair of brackets or braces indicates that you can repeat the enclosed sequence of syntax items any number of times.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">ATTRIBUTE[S] attribute [, attribute] ...
+{, sql-expression } ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An ellipsis immediately following a single syntax item indicates that you can repeat that syntax item any number of times.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">expression-n ...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Punctuation</p>
+<div class="paragraph">
+<p>Parentheses, commas, semicolons, and other symbols not previously described must be typed as shown.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DAY (datetime-expression)
+@script-file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quotation marks around a symbol such as a bracket or brace indicate the symbol is a required character that you must type as shown.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&quot;{&quot; module-name [, module-name] ... &quot;}&quot;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Item Spacing</p>
+<div class="paragraph">
+<p>Spaces shown between items are required unless one of the items is a punctuation symbol such as a parenthesis or a comma.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DAY (datetime-expression) DAY(datetime-expression)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there is no space between two items, spaces are not permitted. In this example, no spaces are permitted between the period and any other items:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">myfile.sh</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Line Spacing</p>
+<div class="paragraph">
+<p>If the syntax of a command is too long to fit on a single line, each continuation line is indented three spaces and is separated from the preceding line by a blank line.</p>
+</div>
+<div class="paragraph">
+<p>This spacing distinguishes items in a continuation line from items in a vertical list of selections.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">match-value [NOT] LIKE _pattern
+   [ESCAPE esc-char-expression]</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comments_encouraged">1.5. Comments Encouraged</h3>
+<div class="paragraph">
+<p>We encourage your comments concerning this document. We are committed to providing documentation that meets your
+needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
+</div>
+<div class="paragraph">
+<p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction">2. Introduction</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_is_a_lob">2.1. What is a LOB</h3>
+<div class="paragraph">
+<p>LOB (Large Object), a set of large object data types used to store large volumes of data, provides random and piece-wise access to the data.</p>
+</div>
+<div class="paragraph">
+<p>Database support for LOB is not universal.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lob_data_types">2.2. LOB Data Types</h3>
+<div class="paragraph">
+<p>The following are the data types supported by Trafodion.<br></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1-1 Descriptions for BLOB and CLOB</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Data Type</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Desciprtion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BLOB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Binary Large Object.<br>
+</p><p class="tableblock">Holds large blocks of unstructured data in binary format.<br>
+</p><p class="tableblock">BLOB is ideal for storing and handling unstructured data, such as images, audio, video and other multimedia objects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Character Large Object.<br>
+</p><p class="tableblock">Stores unusually large amounts of string data in character set format.<br>
+</p><p class="tableblock">CLOB is ideal for storing and processing semi-structured data, such as a large document or string.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_lob_storage">2.3. LOB Storage</h3>
+<div class="paragraph">
+<p>The basic design idea is to allow a database row to have multiple LOB columns and a table to have multiple such rows. The design takes a combination approach of row store and column store.</p>
+</div>
+<div class="paragraph">
+<p>When a SQL table with a LOB column is created, there are several dependent objects that are created to hold metadata information on the LOB as well as the data.</p>
+</div>
+<div class="paragraph">
+<p>The LOB data itself is stored in an HDFS file while the Trafodion table contains a unique LOB handle for each LOB value. The LOB handle provides the identifier that is used to query the LOB metadata tables to find the location of the LOB data files.</p>
+</div>
+<div class="paragraph">
+<p>The naming conventions for the LOB tables are as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1-2 Naming Conventions for LOB Tables</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" colspan="2"><strong>Naming Conventions</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL Table</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TLOB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOB MD table<br>
+(one per SQL table containing LOB columns)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOBMD_{object UID}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOB Descriptor Handle Table<br>
+(one per LOB column)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOBDescHandle_{object UID}_{LOB number}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOB Descriptor Chunks Table<br>
+(one per LOB column)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOBDescChunks_{object UID}_{LOB number}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOB Data Table<br>
+(in HDFS one per LOB column)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOBP_{object UID}_{LOB number}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_lob_handle">2.4. LOB Handle</h3>
+<div class="paragraph">
+<p>The LOB handle is used to describe a LOB value. A SQL table that contains a LOB column will contain this handle structure in each row for each LOB value inserted.</p>
+</div>
+<div class="paragraph">
+<p>The actual LOB data will be stored in unstructured HDFS files as column store whereas the LOB handle—that describes the location, offset information, descriptor information and so on can be thought of as a unique identifier to the lob data, is stored in the database row of the table as a traditional row store.</p>
+</div>
+<div class="paragraph">
+<p>The handle can be thought of as a file locator as is more commonly referred to in LOB related terminology.</p>
+</div>
+<div class="sect3">
+<h4 id="_external_structure">2.4.1. External Structure</h4>
+<div class="paragraph">
+<p>The following is an example of an external structure that is stored in the row of a SQL table:</p>
+</div>
+<div class="paragraph">
+<p>LOBH00000002000100047335557604604880171074381106028370118212279894381354363017"TRAFODION"."SCH"</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lob_restrictions">2.5. LOB Restrictions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>LOB columns cannot appear in FROM clauses as join predicates.</p>
+</li>
+<li>
+<p>LOB columns cannot appear in STORE BY, ORDER BY or GROUP BY clauses.</p>
+</li>
+<li>
+<p>LOB columns cannot appear in WHERE clauses as predicates other than LIKE (meaning that no comparison is allowed).</p>
+</li>
+<li>
+<p>LOB columns cannot appear in SELECT clauses as aggregate function arguments.</p>
+</li>
+<li>
+<p>LOB columns cannot appear in SELECT DISTINCT clauses.</p>
+</li>
+<li>
+<p>LOB columns cannot be used as primary keys.</p>
+</li>
+<li>
+<p>LOB columns cannot be used in CREATE INDEX statements.</p>
+</li>
+<li>
+<p>LOB columns cannot be used in statistics update statements.</p>
+</li>
+<li>
+<p>The file that contains data to insert from or to extract to needs to be on platform as a Linux or HDFS files.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lob_related_sql_statements_and_functions">2.6. LOB Related SQL Statements and Functions</h3>
+<div class="sect3">
+<h4 id="_supported_sql_statements">2.6.1. Supported SQL Statements</h4>
+<div class="paragraph">
+<p>The following SQL statements are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CREATE TABLE</p>
+</li>
+<li>
+<p>SELECT</p>
+</li>
+<li>
+<p>INSERT</p>
+</li>
+<li>
+<p>UPDATE</p>
+</li>
+<li>
+<p>UPDATE with APPEND option</p>
+</li>
+<li>
+<p>EXTRACT</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_unsupported_sql_statements">2.6.2. Unsupported SQL Statements</h4>
+<div class="paragraph">
+<p>The following SQL statements are not supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ALTER TABLE</p>
+</li>
+<li>
+<p>MERGE</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_supported_lob_conversion_sql_functions">2.6.3. Supported LOB Conversion SQL Functions</h4>
+<div class="paragraph">
+<p>The following LOB conversion SQL functions are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>LOBTOSTRING</p>
+</li>
+<li>
+<p>LOBTOFILE</p>
+</li>
+<li>
+<p>LOBTOBUFFER</p>
+</li>
+<li>
+<p>STRINGTOLOB</p>
+</li>
+<li>
+<p>FILETOLOB</p>
+</li>
+<li>
+<p>BUFFERTOLOB</p>
+</li>
+<li>
+<p>EXTERNALTOLOB</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_lobs">3. Working with LOBs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_a_sql_table_with_lob_columns">3.1. Creating a SQL Table with LOB Columns</h3>
+<div class="paragraph">
+<p>When creating a SQL table with LOB columns, following relevant tables and files are created as well:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>One LOB MD table.</p>
+</li>
+<li>
+<p>Two dependent descriptor tables.</p>
+</li>
+<li>
+<p>HDFS data file (locates at /user/trafodion/lobs) for each column.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="syntax">3.2. Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE table-name (column-spec[, column-spec]…)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">column-spec is:
+lob-column-spec     |
+other-column-spec
+
+lob-column-spec is:
+column-name {lob-data-type}[column-constraint]
+
+other-column-spec is:
+column-name {data-type}[column-constraint]
+
+lob-data-type is:
+BLOB | CLOB [({numeric literal} [unit])] [STORAGE 'storage literal']
+
+unit is:
+empty |
+K     |
+M     |
+G</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="semantics">3.2.1. Semantics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>storage literal</em></code></p>
+<div class="paragraph">
+<p>Currently Trafodion only supports <code>'EXTERNAL'</code> here.</p>
+</div>
+<div class="paragraph">
+<p>External LOB object that are not managed by Trafodion.</p>
+</div>
+</li>
+<li>
+<p><code><em>empty</em></code></p>
+<div class="paragraph">
+<p>Number of bytes specified by the numeric literal.</p>
+</div>
+</li>
+<li>
+<p><code><em>K</em></code></p>
+<div class="paragraph">
+<p>Numeric literal value * 1024.</p>
+</div>
+</li>
+<li>
+<p><code><em>M</em></code></p>
+<div class="paragraph">
+<p>Numeric literal value * 1024 * 1024.</p>
+</div>
+</li>
+<li>
+<p><code><em>G</em></code></p>
+<div class="paragraph">
+<p>Numeric literal value * 1024 * 1024 * 1024.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples">3.2.2. Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This example creates a table tlob1 with 2 columns and primary key on the c1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE tlob1 (c1 INT NOT NULL, c2 BLOB, PRIMARY KEY (c1));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example creates a table tlob2 with 3 columns and primary key on the c1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE tlob2 (c1 INT NOT NULL, c2 BLOB, c3 CLOB, PRIMARY KEY (c1));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example creates a table tlob130txt_limit50 with 2 columns and primary key on the c1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE tlob130txt_limit50 (c1 INT NOT NULL, c2 CLOB(50), PRIMARY KEY (c1));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example creates a table tlob130bin_limit1K with 2 columns and primary key on the c1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE tlob130bin_limit1K (c1 INT NOT NULL, c2 BLOB(1 K), PRIMARY KEY (c1));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example creates a table tlob130ext with 4 columns and primary key on the c1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE tlob130ext (c1 INT NOT NULL, c2 BLOB, c3 CLOB, c4 BLOB STORAGE 'EXTERNAL', PRIMARY KEY (c1));</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hdfs_location_of_lob_data">3.2.3. HDFS Location of LOB Data</h4>
+<div class="paragraph">
+<p>When a LOB table is created, the underlying LOB data needs to be stored in HDFS. It is in the /user/trafodion/lobs by default.</p>
+</div>
+<div class="paragraph">
+<p>All columns of a table that are declared as LOB types will have all their data in one file derived from the table&#8217;s Object UID and the LOB number of that column which gets assigned during creation.</p>
+</div>
+<div class="paragraph">
+<p>The following is a LOB file with 2 columns you will see 2 files in HDFS:</p>
+</div>
+<div class="paragraph">
+<p>/user/trafodion/lobs/LOBP_03683514167332904796_0001</p>
+</div>
+<div class="paragraph">
+<p>/user/trafodion/lobs/LOBP_03683514167332904796_0002</p>
+</div>
+<div class="paragraph">
+<p>As rows are added to this table, the LOB data for each row gets appended to the corresponding column’s LOB data file.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inserting_into_a_sql_table_containing_lob_columns">3.3. Inserting into a SQL Table Containing LOB Columns</h3>
+<div class="sect3">
+<h4 id="syntax">3.3.1. Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO table-name [(target-col-list)] insert-source</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">target-col-list is:
+colname[, colname]...
+
+insert-source is:
+VALUES(column-expr[, column-expr]...)
+
+column-expr is:
+lob-query-expr           |
+other-query-expr
+
+lob-query-expr is:
+NULL | ?                                                                     |
+EMPTY_BLOB()                                                                 |
+EMPTY_CLOB()                                                                 |
+STRINGTOLOB('string literal expression')                                     |
+FILETOLOB('lob source file name')                                            |
+BUFFERTOLOB(LOCATION lob source buffer address, LENGTH lob length value)     |
+EXTERNALTOLOB('external lob source file name')
+
+lob source file name is:
+hdfs:///{local hdfs file name}     |
+{local linux file name}            |
+{file:///linux file name}
+
+external lob source file name is:
+hdfs:///{local hdfs file name}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="semantics">3.3.2. Semantics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>other-query-expr</em></code></p>
+<div class="paragraph">
+<p>For the syntax and description of <code><em>other-query-expr</em></code>, see the <code><em>query-expr</em></code> in the <a href="#select_statement">SELECT Statement</a>.</p>
+</div>
+</li>
+<li>
+<p><code><em>EMPTY_BLOB(), EMPTY_CLOB()</em></code></p>
+<div class="paragraph">
+<p>Returns an empty LOB handle.</p>
+</div>
+</li>
+<li>
+<p><code><em>STRINGTOLOB</em></code></p>
+<div class="paragraph">
+<p>Converts a simple string literal into LOB format.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>string literal expression</em></code></p>
+<div class="paragraph">
+<p>is a series of characters enclosed in single quotes.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>FILETOLOB</em></code></p>
+<div class="paragraph">
+<p>Converts data from a local linux/hdfs file into LOB format.</p>
+</div>
+</li>
+<li>
+<p><code><em>BUFFERTOLOB</em></code></p>
+<div class="paragraph">
+<p>Takes an address and a size of an input buffer, and converts the data pointed to by that buffer into LOB.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>lob source buffer address</em></code></p>
+<div class="paragraph">
+<p>The long value of the user buffer address in int64.</p>
+</div>
+</li>
+<li>
+<p><code><em>lob length value</em></code></p>
+<div class="paragraph">
+<p>The length of the user specified lob buffer in int64.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="considerations">3.3.3. Considerations</h4>
+<div class="paragraph">
+<p>The source for inserting into a LOB can be any of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A parameter.</p>
+<div class="paragraph">
+<p>An unnamed parameter can be used to prepare a statement and then during an execution, either a function or a simple string parameter can be passed in which will be converted to LOB data.</p>
+</div>
+</li>
+<li>
+<p><code>EMPTY_BLOB()</code> or <code>EMPTY_CLOB()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>EMPTY_BLOB()</code> or <code>EMPTY_CLOB()</code> is specified, then a dummy lob handle is created.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No data is associated with the empty LOBs yet, but these dummy LOB handles can later be used to populate with new LOB data. If the LOB had data previously associated with it, it will be erased.</p>
+</li>
+<li>
+<p>The dummy LOB handle will get the same datatype as the underlying column.</p>
+<div class="paragraph">
+<p>For example, if the LOB column was defined as <code>'EXTERNAL'</code> during table creation, then the LOB column gets that type. If it’s not defined, then it is considered as a regular LOB.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>An empty LOB is distinct from a LOB containing a string of length zero or a null LOB.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>An in-memory LOB which is simple string data.</p>
+<div class="paragraph">
+<p>To insert a string literal, you need to provide <code>STRINGTOLOB('string literal expression')</code>.</p>
+</div>
+</li>
+<li>
+<p>An on-platform file (linux/hdfs file) containing binary or text data.</p>
+<div class="paragraph">
+<p>To insert an on-platform file, you need to provide <code>FILETOLOB('lob source file name')</code>.</p>
+</div>
+</li>
+<li>
+<p>A user buffer of a specified length allocated in user space.</p>
+<div class="paragraph">
+<p>To insert a buffer, you need to provide the address and size of the buffer.</p>
+</div>
+</li>
+<li>
+<p>An external LOB.</p>
+<div class="paragraph">
+<p>When an external LOB is specified via <code>EXTERNALTOLOB('external lob source file name')</code>, the data associated with the external HDFS file is not transferred into the Trafodion LOB. Instead, Trafodion stores the file path/handle of the external file.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you have a directory of pictures, you can specify the full hdfs path to each picture file to this function and the path will get stored in the Trafodion table. Later during retrieval, the file name will be used to go to the actual file to retrieve the data.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples">3.3.4. Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This example uses the <code>STRINGTOLOB</code> function that converts a simple string literal into LOB format before inserting.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO tlob1 VALUES(1,stringtolob('inserted row'));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example uses the <code>FILETOLOB</code> function that converts data from a local file into LOB format, and stores all data into HDFS associated with that value.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO tlob130txt1 VALUES(1,filetolob('lob_input_a1.txt'));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example takes an int64 value as an input which is an address to a buffer and a size parameter. The buffer contents are converted to LOB format and stored in HDFS.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO tlob1 VALUES (1, buffertolob(LOCATION 124647474, SIZE 2048));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example uses different functions to convert strings, files, external lob into LOB data. The EXTERNALTOLOB function takes an external file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO tlob130ext VALUES(1, STRINGTOLOB('first lob'),
+FILETOLOB('hdfs:///lobs/lob_input_a1.txt'),
+EXTERNALTOLOB('hdfs:///lobs/lob_input_a1.txt'));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example uses a parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">PREPARE S FROM INSERT INTO t130lob2 VALUES (1, ?);
+EXECUTE S USING 'fgfgfhfhfhfhhfhfhfhjfkkfkffllflflfll';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example uses the <code>EMPTY_BLOB</code> function to insert an empty lob and creates a dummy lob handle.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob2 VALUES (1, empty_blob());</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inserting_into_a_sql_table_containing_lob_columns_using_select_clause">3.4. Inserting into a SQL Table Containing LOB Columns Using Select Clause</h3>
+<div class="sect3">
+<h4 id="syntax">3.4.1. Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO target-table [(target-col-list-expr)] SELECT [source-col-list-expr] FROM source-table</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">target-col-list-expr is:
+target-colname[, target-colname]...
+
+target-colname is:
+lob-column-name                   |
+other-column-name
+
+source-col-list-expr is:
+source-colname[, source-colname]...
+
+source-colname is:
+hive varchar column name          |
+trafodion varchar column name     |
+trafodion char column name        |
+trafodion lob column name
+
+source-table is:
+hive table                        |
+trafodion table</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="semantics">3.4.2. semantics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>target-col-list-expr</em></code></p>
+<div class="paragraph">
+<p>names a single column or multiple columns enclosed in parentheses in the target table in which to insert values.</p>
+</div>
+<div class="paragraph">
+<p>The data type of each target column must be compatible with the data type of its corresponding source value.</p>
+</div>
+<div class="paragraph">
+<p>Within the list, each target column must have the same position as its associated source value.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>target-colname</em></code></p>
+<div class="paragraph">
+<p>is a SQL identifier that specifies a target column name.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>source-col-list-expr</em></code></p>
+<div class="paragraph">
+<p>names a single column or multiple columns enclosed in parentheses in the source table from which to get values.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>source-colname</em></code></p>
+<div class="paragraph">
+<p>is a SQL identifier that specifies a source column name.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="considerations">3.4.3. Considerations</h4>
+<div class="paragraph">
+<p>When inserting from a source Trafodion table column into a target table, the source column subtype of the LOB column needs to match the target table column. That is, you cannot insert from an external LOB column into a regular LOB column in the target. They both need to be the same type.</p>
+</div>
+<div class="paragraph">
+<p>The source for the <strong>select clause</strong> can be any of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A source hive table column that is a hive varchar column</p>
+</li>
+<li>
+<p>A source table column that is a Trafodion varchar, char and LOB column</p>
+</li>
+<li>
+<p>A source table column that is also a LOB datatype.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples">3.4.4. Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This example inserts the first 10 rows of d_date_sk and d_date_id selected from the source hive table hive.hive.date_dim into the target table t130lob2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob2 SELECT [first 10] d_date_sk,d_date_id FROM hive.hive.date_dim;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example inserts the c1 and c2 selected from the source Trafodion table t130var into the c1 and c2 of the target table t130lob2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob2(c1,c2) SELECT c1,c2 FROM t130var;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example inserts the c1 and c2 selected from the source Trafodion table t130char into the c1 and c2 of the target table t130lob2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob2(c1,c2) SELECT c1,c2 FROM t130char;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example inserts the c1, c2 and c3 selected from the source Trafodion table t130lob2 into the target table t130lob3, and then shows the result.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob3 SELECT c1,c2,c3 FROM t130lob2;
+SELECT c1,lobtostring(c2,100),lobtostring(c3,100) FROM t130lob3;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating_a_sql_table_containing_lob_columns">3.5. Updating a SQL Table Containing LOB Columns</h3>
+<div class="paragraph">
+<p>The source for updating a LOB can be divided into 2 groups:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Update using parameters/functions</p>
+</li>
+<li>
+<p>Update using LOB handle</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_updating_using_parameters_functions">3.5.1. Updating Using Parameters/Functions</h4>
+<div class="paragraph">
+<p>The following parameters/functions can be used to update.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A parameter</p>
+</li>
+<li>
+<p><code>EMPTY_BLOB</code> or <code>EMPTY_CLOB</code></p>
+</li>
+<li>
+<p>An in-memory lob which is a simple string data</p>
+<div class="paragraph">
+<p>To insert this string, a literal needs to be provided</p>
+</div>
+</li>
+<li>
+<p>An on-platform file (linux/hdfs file) containing text or binary data</p>
+</li>
+<li>
+<p>A user buffer of a specified length allocated in user space</p>
+</li>
+<li>
+<p>An external LOB file in HDFS</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE table-name {set-clause-type1 | set-clause-type2}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">set-clause-type1 is:
+SET set-clause[, set-clause ]..
+
+set-clause is:
+lob_column-name = {lob_query-expr}
+
+lob_query-expr is:
+NULL | ?                                                                                |
+EMPTY_BLOB()                                                                            |
+EMPTY_CLOB()                                                                            |
+STRINGTOLOB('string literal expression'[, APPEND])                                      |
+FILETOLOB('lob source file name'[, APPEND])                                             |
+BUFFERTOLOB(LOCATION lob source buffer address, LENGTH lob length value[, APPEND])      |
+EXTERNALTOLOB('external lob source file name'[, APPEND])
+
+lob source file name is:
+hdfs:///{local hdfs file name}      |
+{local linux file name}             |
+{file:///linux file name}
+
+external lob source file name is:
+hdfs:///{local hdfs file name}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="semantics">Semantics</h5>
+<div class="paragraph">
+<p>For more information, see Semantics in <a href="#inserting into a sql table containing lob columns">Inserting into a SQL Table Containing LOB Columns</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>In the table tlob1where c1 is 3, updates (appends) the value of c2 to lob_update.txt.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE tlob1 SET c2=filetolob('lob_update.txt', append) WHERE c1 = 3;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the table tlob1, updates (overwrites) the value of c2 to anoush.jpg.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE tlob1 SET c2=filetolob('anoush.jpg');</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the table tlob1 where c1 is 3, updates (appends) the value of c2 to lob_update.txt stored in hdfs:///lobs/.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE tlob1 SET c2=filetolob('hdfs:///lobs/lob_update.txt', append) WHERE c1 = 3;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the table tlob1, updates (overwrites) the value of c2 to the buffer location at 1254674 with 4000-byte length.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE tlob1 SET c2=buffertolob(LOCATION 12546474, SIZE 4000);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the table tlob130ext where c1 is 2, updates (overwrites) the value of c4 to lob_input_d1.txt stored in hdfs:///lobs/.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE tlob130ext SET c4=externaltolob('hdfs:///lobs/lob_input_d1.txt') WHERE c1=2;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the table t130lob2 where c1 is 1, updates (overwrites) value of the c2 to xyxyxyxyxyxyx.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">PREPARE S FROM UPDATE t130lob2 SET c2=? WHERE c1 =1;
+EXECUTE S USING 'xyxyxyxyxyxyx';</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_updating_using_lob_handle">3.5.2. Updating Using Lob Handle</h4>
+<div class="paragraph">
+<p>A LOB handle is specified to the update (similar to extract).</p>
+</div>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">UPDATE LOB (LOB 'lob handle', lob update expression)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">lob update expression is:
+LOCATION lob source buffer address, LENGTH lob length value [, APPEND])      |
+EMPTY_BLOB()                                                                 |
+EMPTY_CLOB()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information about examples, see <a href="http://trafodion.incubator.apache.org/docs/jdbct4ref_guide/index.html"><strong>Trafodion JDBC Type 4 Programmer’s Reference Guide</strong></a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="considerations">3.5.3. Considerations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The keyword <code>APPEND</code> can be used to append to lob data that may already exist in a LOB column. If it is not specified, the data is overwritten.</p>
+</li>
+<li>
+<p>When a LOB column is updated or overwritten, a new section is written into the LOB data file. The old section remains in HDFS but won’t have any pointer or reference to it.</p>
+</li>
+<li>
+<p>When a LOB column is appended, a new chunk is inserted into HDFS and a new row is added in the LOB Descriptor Chunks table to keep track of this new chunk, belonging to the existing row/LOB data.</p>
+<div class="paragraph">
+<p>So a LOB column that contains data that has been appended several times can contain multiple descriptor rows in the Descriptor Chunks table to describe where each chunk belonging to this LOB begins/ends.</p>
+</div>
+</li>
+<li>
+<p><code>APPEND</code> cannot be used on function <code>EXTERNALTOLOB</code>.</p>
+</li>
+<li>
+<p>When an external LOB is updated outside of Trafodion, an update needs to be done to update the descriptor files in Trafodion.</p>
+<div class="paragraph">
+<p>For example, if the external file changes in size, the descriptor file needs to be updated to reflect that. Since this is outside the control of Trafodion, the user needs to do this. If not, when extracting data, only partial data may be returned.</p>
+</div>
+</li>
+<li>
+<p>If a column is declared with the <code>STORAGE 'External'</code> attribute, the <code>STRINGTOLOB</code> or <code>FILETOLOB</code> functions cannot be used to insert data into that column.</p>
+<div class="paragraph">
+<p>Similarly, if a column is declared without the <code>STORAGE 'External'</code> attribute, the <code>EXTERNALTOLOB</code> function cannot be used to insert/update data into that column.</p>
+</div>
+<div class="paragraph">
+<p>That is, once the storage for a LOB column is declared at CREATE time, the attribute is set and cannot be modified.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_selecting_column_from_a_sql_table_containing_lob_columns">3.6. Selecting Column from a SQL Table Containing LOB Columns</h3>
+<div class="paragraph">
+<p>Selecting a row from a table will give back the lob handle for the lob column.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The entry in each lob column in the SQL table only contains the LOB handle.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the LOB handle has been retrieved, it can be used to retrieve the actual lob data from HDFS.</p>
+</div>
+<div class="sect3">
+<h4 id="syntax">3.6.1. Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT lob_query-expr[, lob_query-expr] FROM table-name</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">lob_query_expr is:
+lobtostring(lob column)      |
+lob column</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples">3.6.2. Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This example selects c2 from table tlob1 and returns the lob handle of c2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT c2 FROM tlob1;
+C2
+----------------------------------------------------------------------------------------------------
+
+LOBH00000200010423909193650389683319694857010382259683718212310961182290216021&quot;TRAFODION&quot;.&quot;SEABASE&quot;
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extracting_lob_data_from_a_sql_table_containing_lob_columns">3.7. Extracting LOB Data from a SQL Table Containing LOB Columns</h3>
+<div class="paragraph">
+<p>Extract lob data can be done in two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extract lob data into a file for a given lob handle</p>
+<div class="paragraph">
+<p>Extract from a LOB column straight into an on-platform linux or HDFS file in one shot.</p>
+</div>
+<div class="paragraph">
+<p>Trafodion engine will take care of buffering the data and retrieve the lob data into the target file.</p>
+</div>
+</li>
+<li>
+<p>Extract lob data into a user specified buffer</p>
+<div class="paragraph">
+<p>Extract from a LOB column into a target user buffer of a specified size.</p>
+</div>
+<div class="paragraph">
+<p>Trafodion engine will retrieve exactly the amount of requested data.</p>
+</div>
+<div class="paragraph">
+<p>The user/application will be responsible for redriving the extract until end of data.</p>
+</div>
+<div class="paragraph">
+<p>The extracted buffer data can then be written to files or another location as the application chooses.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_extracting_lob_data_into_a_file_for_a_given_lob_handle">3.7.1. Extracting Lob Data into a File for a Given Lob Handle</h4>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBTOFILE (LOB 'lob handle as quoted string', 'filename URI format' [OPTION])</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">OPTION is:
+[, TRUNCATE]
+[, CREATE, TRUNCATE]
+[, APPEND]
+[, CREATE, APPEND]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="semantics">Semantics</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TRUNCATE</code></p>
+<div class="paragraph">
+<p>If the target file exists, Trafodion will truncate and write to it.</p>
+</div>
+<div class="paragraph">
+<p>If the target file does not exist, an error will be raised.</p>
+</div>
+</li>
+<li>
+<p><code>CREATE, TRUNCATE</code></p>
+<div class="paragraph">
+<p>If the target file exists, Trafodion will truncate and write to it.</p>
+</div>
+<div class="paragraph">
+<p>If the target file does not exist, Trafodion will create a file and write to it.</p>
+</div>
+</li>
+<li>
+<p><code>APPEND</code></p>
+<div class="paragraph">
+<p>If the target file exists, Trafodion will append to it.</p>
+</div>
+<div class="paragraph">
+<p>If the target file does not exist, an error will be raised.</p>
+</div>
+</li>
+<li>
+<p><code>CREATE, APPEND</code></p>
+<div class="paragraph">
+<p>If the target file exists, Trafodion will append to it.</p>
+</div>
+<div class="paragraph">
+<p>If the target file does not exist, Trafodion will create a file and append to it.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="considerations">Considerations</h5>
+<div class="paragraph">
+<p>If the target file exists, the <code>OPTION</code> must be specified, or else an error will be raised. This is the default behavior.</p>
+</div>
+<div class="paragraph">
+<p>If the target file does not exist, you can create a target file by specifying the <code>OPTION</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts LOB to the tlob130_txt1.txt:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBTOFILE (LOB 'LOBH00000200010520117997292583625519884121437206093184618212317486018305654020&quot;TRAFODION&quot;.&quot;LOB130&quot;', 'tlob130_txt1.txt');
+Success. Targetfile:tlob130_txt1.txt  Length: 19</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts LOB to the tlob130_deep.jpg:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBTOFILE (LOB 'LOBH00000200010520117997292583681719884121437210516812518212317486062586654020&quot;TRAFODION&quot;.&quot;LOB130&quot;',
+Success. Targetfile:tlob130_deep.jpg  Length: 159018</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extracting_lob_data_into_a_user_specified_buffer">3.7.2. Extracting Lob Data into a User Specified Buffer</h4>
+<div class="paragraph">
+<p>Extract from a LOB column into a target user buffer of a specified size. The Trafodion engine will retrieve exactly the amount of requested data. The user/application will be responsible for redriving the extract until end of data. Then the extracted buffer data can be written to files or another location as the application chooses.</p>
+</div>
+<div class="paragraph">
+<p>Extract LOB data into a user specified buffer like a cursor until EOD is returned. For this method, the user specifies an input buffer and specifies the input length in an in/out variable.</p>
+</div>
+<div class="paragraph">
+<p>For each execution of the extract, Trafodion will return SUCCESS, ERROR or EOD.
+For the cases of SUCCESS or EOD, a length will also be returned to the user, so the user knows exactly how much data was actually extracted and returned.</p>
+</div>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBTOBUFFER (LOB 'lob handle as quoted string', LOCATION lob output buffer address as long, SIZE input/output address of length container as long)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extracting_lob_length_for_a_given_lob_handle">3.7.3. Extracting Lob Length for a Given Lob Handle</h4>
+<div class="paragraph">
+<p>Extract from a LOB column straight into an on-platform linux or HDFS file in one shot.</p>
+</div>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBLENGTH (LOB 'lob handle as quoted string'[, LOCATION address of length container for lob length])</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="semantics">Semantics</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>LOCATION address of length container for lob length</em></code></p>
+<div class="paragraph">
+<p>This is used by programs/applications that will use this syntax to retrieve the LOB length prior to extracting data. The address should be an address of a 64-bit container that will hold the LOB length.</p>
+</div>
+<div class="paragraph">
+<p>If the length is omitted or 0, only the status message is returned that displays the length.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts LOB length and returns 30.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBLENGTH (LOB 'LOBH0000000800030554121478481170502119554121478546064413218212330526373762019024&quot;TRAFODION&quot;.&quot;TESTEXTLOB&quot;');
+LOB Length: 30
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts LOB length and returns 4.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">EXTRACT LOBLENGTH (LOB 'LOBH00000200010423909193650389683319694857010382259683718212310961182290216021&quot;TRAFODION&quot;.&quot;SEABASE&quot;');
+LOB Length: 4
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="considerations">3.7.4. Considerations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>LOB Max Extract Data Length</p>
+<div class="paragraph">
+<p>CQD <code>LOB_OUTPUT_SIZE</code> (default 32000) controls the maximum data length that can be extracted.</p>
+</div>
+</li>
+<li>
+<p>LOB Max Extract Chunk Length</p>
+<div class="paragraph">
+<p>CQD <code>LOB_MAX_CHUNK_MEM_SIZE</code> (512 MB expressed in bytes [536870912]) controls the maximum chunk of data that can be read from HDFS into memory and written to the target file location.</p>
+</div>
+</li>
+<li>
+<p>LOB Max Size</p>
+<div class="paragraph">
+<p>CQD <code>LOB_MAX_SIZE</code> (default 10G expressed in M [10000M]).</p>
+</div>
+</li>
+<li>
+<p>Extract Target Locations</p>
+<div class="paragraph">
+<p>The file to extract to can be a local linux file or a local HDFS file.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_column_from_a_sql_table_containing_lob_columns">3.8. Deleting Column from a SQL Table Containing LOB columns</h3>
+<div class="sect3">
+<h4 id="syntax">3.8.1. Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DELETE lob-column-name FROM table-name [WHERE CLAUSE]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="considerations">3.8.2. Considerations</h4>
+<div class="paragraph">
+<p>When one or more rows containing LOB columns are deleted from LOB table, only the metadata information is dropped and the hdfs data remains as it is. The references to the lob data are removed from the lob descriptor file.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism has not been implemented yet as a separate utility but it is triggered as a part of insert, update and append operations. For more information, see <a href="#garbage collection">Garbage Collection</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dropping_a_sql_table_containing_lob_columns">3.9. Dropping a SQL Table Containing LOB Columns</h3>
+<div class="paragraph">
+<p>Drop works like any other drop table. All dependent tables are deleted. All files in hdfs (data and descriptor) files are also deleted.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="#drop_table_statement">DROP TABLE Statement</a> in <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_garbage_collection">3.10. Garbage Collection</h3>
+<div class="paragraph">
+<p>When a lob datafile for a column has reached a certain limit, defined by a CQD <code>LOB_GC_LIMIT_SIZE</code>, then a compaction is triggered automatically.<br>
+The default Garbage Collection (GC) Limit is 10GB and can be changed if needed.</p>
+</div>
+<div class="paragraph">
+<p>The need for GC arises because when a delete operation or an update operation is performed, the old data black in the hdfs file will be left as unused.<br>
+In the case of update, the old data will be left as unused and the new data will be written into a new section, so all these “holes” in the LOB data file are needlessly occupying space.</p>
+</div>
+<div class="paragraph">
+<p>The LOB descriptor chunks file is looked at to see which ranges and offsets are actually used. The LOB datafile is temporarily saved. The compaction is done into a new tempfile. When the sections have all been copied into the tempfile, Trafodion will delete the existing lob data file and rename the tempfile.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the saved copy of the LOB datafile is dropped. The saved copy is there just in case you need to fall back to it in case of an error. Since this operation is triggered as part of an IUD operation, a definite slowdown will occur for that insert/update operation compared to subsequent inserts/updates.</p>
+</div>
+<div class="paragraph">
+<p>Also, each lob column of a table can be compacted separately as needed. GC does not have to be done to all columns of the LOB table all at once.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Currently the GC is done in the same transaction as the transaction being used for the insert or update operation. If any part of the GC fails, then the entire transaction is aborted.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When Trafodion has support for local transactions, Trafodion will do the GC in a separate transaction or in a separate process, so you can fail the GC with a warning and allow the insert to go through.</p>
+</div>
+<div class="paragraph">
+<p>Setting the CQD <code>LOB_GC_LIMIT_SIZE</code> to 0 would prevent GC from occurring.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cleanup_of_a_sql_table_containing_lob_columns">3.11. Cleanup of a SQL Table Containing LOB Columns</h3>
+<div class="paragraph">
+<p>Cleanup works like cleanup of any other table. The command ensures all dependent SQL LOB tables and hdfs files are dropped ignoring errors if any.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="#cleanup_statement">CLEANUP Statement</a> in <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_showddl_for_lob">3.12. SHOWDDL for LOB</h3>
+<div class="paragraph">
+<p>SHOWDDL for LOB with a special option will show all the dependent objects, names and details about the table.</p>
+</div>
+<div class="sect3">
+<h4 id="syntax">3.12.1. Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SHOWDDL table-name, LOB DETAILS</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples">3.12.2. Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>This example displays the details of the table t1ob1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;SHOWDDL tlob1, LOB DETAILS;
+CREATE TABLE TRAFODION.SEABASE.TLOB1
+  (
+    C1                               INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , C2                               BLOB DEFAULT NULL NOT SERIALIZED
+  , PRIMARY KEY (C1 ASC)
+  )
+;
+
+LOB Metadata
+============
+
+CREATE TABLE TRAFODION.SEABASE.LOBMD_04239091936503896833
+  (
+    LOBNUM                           SMALLINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , STORAGETYPE                      SMALLINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOCATION                         VARCHAR(4096) CHARACTER SET ISO88591 COLLATE DEFAULT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , PRIMARY KEY (LOBNUM ASC)
+  )
+;
+
+************************************************
+LobNum: 1
+
+Data Storage
+============
+
+Location: /user/trafodion/lobs
+DataFile: LOBP_04239091936503896833_0001
+
+LOB Descriptor Handle
+=====================
+
+CREATE TABLE TRAFODION.SEABASE.&quot;LOBDescHandle_04239091936503896833_0001&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , NUMCHUNKS                        INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOBLEN                           LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  )
+  STORE BY (DESCPARTNKEY ASC)
+  SALT USING 8 PARTITIONS
+;
+
+LOB Descriptor Chunks
+=====================
+
+CREATE TABLE TRAFODION.SEABASE.&quot;LOBDescChunks_04239091936503896833_0001&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DESCSYSKEY                       LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKNUM                         INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKLEN                         LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , INTPARAM                         LARGEINT DEFAULT NULL SERIALIZED
+  , STRINGPARAM                      VARCHAR(400) CHARACTER SET ISO88591 COLLATE DEFAULT DEFAULT NULL SERIALIZED
+  , PRIMARY KEY (DESCPARTNKEY ASC, DESCSYSKEY ASC, CHUNKNUM ASC)
+  )
+  SALT USING 8 PARTITIONS
+;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example displays the details of the table tlob130ext.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CREATE TABLE tlob130ext (c1 INT NOT NULL, c2 BLOB, c3 CLOB, c4 BLOB STORAGE 'EXTERNAL', primary key (c1));
+
+--- SQL operation complete.
+
+&gt;&gt;SHOWDDL tlob130ext, LOB DETAILS;
+
+CREATE TABLE TRAFODION.SCH.TLOB130EXT
+  (
+    C1                               INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , C2                               BLOB DEFAULT NULL NOT SERIALIZED
+  , C3                               CLOB DEFAULT NULL NOT SERIALIZED
+  , C4                               BLOB DEFAULT NULL NOT SERIALIZED
+  , PRIMARY KEY (C1 ASC)
+  )
+;
+
+LOB Metadata
+============
+
+CREATE TABLE TRAFODION.SCH.LOBMD__04474425229029907479
+  (
+    LOBNUM                           SMALLINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , STORAGETYPE                      SMALLINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOCATION                         VARCHAR(4096) CHARACTER SET ISO88591 COLLATE DEFAULT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , PRIMARY KEY (LOBNUM ASC)
+  )
+;
+
+************************************************
+LobNum: 1
+
+Data Storage
+============
+
+Location: /user/trafodion/lobs
+DataFile: LOBP_04474425229029907479_0001
+
+LOB Descriptor Handle
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescHandle__04474425229029907479_0001&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , NUMCHUNKS                        INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOBLEN                           LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  )
+  STORE BY (DESCPARTNKEY ASC)
+  SALT USING 8 PARTITIONS
+;
+
+LOB Descriptor Chunks
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescChunks__04474425229029907479_0001&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DESCSYSKEY                       LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKNUM                         INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKLEN                         LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DATAOFFSET                       LARGEINT DEFAULT NULL SERIALIZED
+  , STRINGPARAM                      VARCHAR(400) CHARACTER SET ISO88591 COLLATE DEFAULT DEFAULT NULL SERIALIZED
+  , PRIMARY KEY (DESCPARTNKEY ASC, DESCSYSKEY ASC, CHUNKNUM ASC)
+  )
+  SALT USING 8 PARTITIONS
+;
+
+************************************************
+LobNum: 2
+
+Data Storage
+============
+
+Location: /user/trafodion/lobs
+DataFile: LOBP_04474425229029907479_0002
+
+LOB Descriptor Handle
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescHandle__04474425229029907479_0002&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , NUMCHUNKS                        INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOBLEN                           LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  )
+  STORE BY (DESCPARTNKEY ASC)
+  SALT USING 8 PARTITIONS
+;
+
+LOB Descriptor Chunks
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescChunks__04474425229029907479_0002&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DESCSYSKEY                       LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKNUM                         INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKLEN                         LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DATAOFFSET                       LARGEINT DEFAULT NULL SERIALIZED
+  , STRINGPARAM                      VARCHAR(400) CHARACTER SET ISO88591 COLLATE DEFAULT DEFAULT NULL SERIALIZED
+  , PRIMARY KEY (DESCPARTNKEY ASC, DESCSYSKEY ASC, CHUNKNUM ASC)
+  )
+  SALT USING 8 PARTITIONS
+;
+
+************************************************
+LobNum: 3
+
+Data Storage
+============
+
+&lt;External HDFS location&gt;
+&lt;External HDFS file&gt;
+
+LOB Descriptor Handle
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescHandle__04474425229029907479_0003&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , NUMCHUNKS                        INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , LOBLEN                           LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  )
+  STORE BY (DESCPARTNKEY ASC)
+  SALT USING 8 PARTITIONS
+;
+
+LOB Descriptor Chunks
+=====================
+
+CREATE TABLE TRAFODION.SCH.&quot;LOBDescChunks__04474425229029907479_0003&quot;
+  (
+    DESCPARTNKEY                     LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DESCSYSKEY                       LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKNUM                         INT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , CHUNKLEN                         LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE SERIALIZED
+  , DATAOFFSET                       LARGEINT DEFAULT NULL SERIALIZED
+  , STRINGPARAM                      VARCHAR(400) CHARACTER SET ISO88591 COLLATE DEFAULT DEFAULT NULL SERIALIZED
+  , PRIMARY KEY (DESCPARTNKEY ASC, DESCSYSKEY ASC, CHUNKNUM ASC)
+  )
+  SALT USING 8 PARTITIONS
+;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_lob_statistics_for_a_lob_table">3.13. Get Lob Statistics for a LOB Table</h3>
+<div class="paragraph">
+<p>There are two ways to get lob statistics for a lob table:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get Statement: the lob information is formatted for human readability.</p>
+</li>
+<li>
+<p>Select Statement: the lob information is formatted for machine readability.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_get_statement">3.13.1. Get Statement</h4>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">GET LOB STATS FOR TABLE table-name;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This Get Statement displays statistics for the table tlob130gt2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CREATE TABLE tlob130gt2 (c1 INT NOT NULL, c2 BLOB, c3 CLOB, c4 BLOB STORAGE 'EXTERNAL', PRIMARY KEY (c1));
+
+--- SQL operation complete.
+
+&gt;&gt;GET LOB STATS FOR TABLE tlob130gt2;
+
+Lob Information for table: &quot;TRAFODION&quot;.LOB130.TLOB130GT2
+=========================
+
+ColumnName:  C2
+Lob Location:  /user/trafodion/lobs
+LOB Data File:  LOBP_07468755986685501835_0001
+LOB EOD:  0
+LOB Used Len:  0
+ColumnName:  C3
+Lob Location:  /user/trafodion/lobs
+LOB Data File:  LOBP_07468755986685501835_0002
+LOB EOD:  0
+LOB UsedLen:  0
+ColumnName:  C4
+Lob Location:  External HDFS Location
+LOB Data File:  External HDFS File
+LOB EOD:  0
+LOB Used Len:  0
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_select_statement">3.13.2. Select Statement</h4>
+<div class="sect4">
+<h5 id="syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT * FROM TABLE(LOB STATS table-name);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples">Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This Select Statement displays statistics for the table tlob130gt.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CREATE TABLE tlob130gt (c1 INT NOT NULL, c2 BLOB, c3 CLOB, c4 BLOB, PRIMARY KEY (c1));
+
+--- SQL operation complete.
+
+&gt;&gt;SELECT left(trim(catalog_name) || '.' || trim(schema_name) || '.' || trim(object_name) , 20),
+left(trim(column_name),5),
+left(trim(lob_location),5),
+left(trim(lob_data_file),20),
+LOB_DATA_FILE_SIZE_EOD,
+LOB_DATA_FILE_SIZE_USED
+FROM TABLE(lob stats(tlob130gt));
+
+(EXPR)      (EXPR)     (EXPR)     (EXPR)     LOB_DATA_FILE_SIZE_EOD    LOB_DATA_FILE_SIZE_USED
+------      ------     ------     ------     ----------------------    ----------------------
+
+TRAFODION.SCH.TLOB13   C2   /user/trafodion/lobs   LOBP_044744252290302   15   10
+TRAFODION.SCH.TLOB13   C3   /user/trafodion/lobs   LOBP_044744252290302   15   10
+TRAFODION.SCH.TLOB13   C4   /user/trafodion/lobs   LOBP_044744252290302   45   30
+
+--- 3 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This Select Statement displays statistics for the table tlob130gt2.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CREATE TABLE tlob130gt2 (c1 INT NOT NULL, c2 BLOB, c3 CLOB, c4 BLOB STORAGE 'EXTERNAL', PRIMARY KEY (c1));
+
+--- SQL operation complete.
+
+&gt;&gt;SELECT left(trim(catalog_name) || '.' || trim(schema_name) || '.' || trim(object_name), 20),
+left(trim(column_name),5),
+left(trim(lob_location),15),
+left(trim(lob_data_file),20),
+LOB_DATA_FILE_SIZE_EOD,
+LOB_DATA_FILE_SIZE_USED
+FROM TABLE(lob stats(tlob130gt2));
+
+(EXPR)      (EXPR)     (EXPR)     (EXPR)     LOB_DATA_FILE_SIZE_EOD    LOB_DATA_FILE_SIZE_USED
+------      ------     ------     ------     ----------------------    ----------------------
+
+TRAFODION.SCH.TLOB13   C2   /user/trafodion/lobs   LOBP_044744252290300   0   0
+TRAFODION.SCH.TLOB13   C3   /user/trafodion/lobs   LOBP_044744252290300   0   0
+TRAFODION.SCH.TLOB13   C4   External HDFS Location External HDFS File     0   0
+
+--- 3 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 2.3.0<br>
+Last updated 2017-10-11 20:03:10 UTC
+</div>
+</div>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-72491210-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script');
+  ga.type = 'text/javascript';
+  ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>
