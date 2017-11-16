@@ -7569,6 +7569,7 @@ session.
     [HBASE_OPTIONS (hbase-options-list)]
     [LOAD IF EXISTS | NO LOAD]
     [AS select-query]
+    [DIVISION BY (division-expr-list)]
 
 CREATE [VOLATILE] TABLE [IF NOT EXISTS] table
     like-spec
@@ -7883,6 +7884,87 @@ See <a href="#create_table_considerations_for_load_if_exists_and_no_load_options
 <p><code>AS <em>select-query</em></code></p>
 <div class="paragraph">
 <p>specifies a select query which is used to populate the created table. A select query can be any SQL select statement.</p>
+</div>
+</li>
+<li>
+<p><code><em>division-expr-list</em></code></p>
+<div class="paragraph">
+<p>is a list of expressions that can only refer to primary key or STORE BY columns.</p>
+</div>
+<div class="paragraph">
+<p>The following are allowed expressions in the DIVISON BY clause, they are monotonically increasing expressions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>cast((exact_numeric_column[ + const1 ]) / const2 as numeric_data_type)</p>
+</li>
+<li>
+<p>DATE_PART('YEAR', date_part_arg )</p>
+</li>
+<li>
+<p>DATE_PART('YEARQUARTER', date_part_arg )</p>
+</li>
+<li>
+<p>DATE_PART('YEARMONTH', date_part_arg )</p>
+</li>
+<li>
+<p>DATE_PART('YEARWEEK', date_part_arg )</p>
+<div class="ulist">
+<ul>
+<li>
+<p>date_part_arg is one of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>datetime_col</p>
+</li>
+<li>
+<p>datetime_col + const</p>
+</li>
+<li>
+<p>datetime_col - const</p>
+</li>
+<li>
+<p>ADD_MONTHS(datetime_col, const [, 0])</p>
+</li>
+<li>
+<p>DATE_ADD(datetime_col, const)</p>
+</li>
+<li>
+<p>DATE_SUB(datetime_col, const)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>DATE_TRUNC(const, datetime_col)</p>
+</li>
+<li>
+<p>DATEDIFF(YEAR, const, datetime_col)</p>
+</li>
+<li>
+<p>DATEDIFF(QUARTER, const, datetime_col)</p>
+</li>
+<li>
+<p>DATEDIFF(MONTH, const, datetime_col)</p>
+</li>
+<li>
+<p>DATEDIFF(WEEK, const, datetime_col)</p>
+</li>
+<li>
+<p>LEFT(character_col, const)</p>
+</li>
+<li>
+<p>SUBSTR[ING](character_col, 1, const)</p>
+</li>
+<li>
+<p>SUBSTR[ING](character_col FROM 1 FOR const)</p>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -8617,6 +8699,8 @@ statement are ASCENDING, DESCENDING, and PARTITION clauses. CREATE TABLE LIKE is
 </div>
 <div class="sect3">
 <h4 id="create_table_examples">3.17.4. Examples of CREATE TABLE</h4>
+<div class="sect4">
+<h5 id="_examples_of_create_table">Examples of CREATE TABLE</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -8680,9 +8764,53 @@ INSERT INTO T values ('a', 'A');</code></pre>
 </div>
 </div>
 </li>
+<li>
+<p>This is the first example of DIVISION BY usage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE call_home_data
+(id LARGEINT NOT NULL,
+ts TIMESTAMP(6) NOT NULL,
+device_status VARCHAR(200),
+PRIMARY KEY (id, ts))
+SALT USING 16 PARTITIONS ON (id)
+DIVISION BY (date_trunc('day', ts));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This is the second example of DIVISION BY usage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE sales1
+(store_id INT NOT NULL,
+item_id  INT NOT NULL,
+sale_date DATE DEFAULT DATE '2000-01-01' NOT NULL,
+sale_amt NUMERIC(10,2),
+PRIMARY KEY (store_id, item_id, sale_date))
+DIVISION BY (DATEDIFF(YEAR, '2017-11-02', sale_date));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This is the third example of DIVISION BY usage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE sales2
+(store_id INT NOT NULL,
+item_id  INT NOT NULL,
+sale_date DATE DEFAULT DATE '2000-01-01' NOT NULL,
+sale_amt NUMERIC(10,2),
+chcol CHAR(20) NOT NULL,
+PRIMARY KEY (store_id, item_id, sale_date, chcol))
+DIVISION BY (SUBSTR(chcol, 1, 5));</code></pre>
+</div>
+</div>
+</li>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 <div class="sect4">
 <h5 id="create_table_examples_create_table_as">Examples of CREATE TABLE AS</h5>
 <div class="paragraph">
@@ -8782,17 +8910,17 @@ columns. You cannot specify some columns with just the name and others with name
 <p>An error is returned.</p>
 </div>
 </li>
-</ul>
-</div>
-<div class="paragraph">
+<li>
 <p>In the following example, table t1 is created. Table t2 is created using the CREATE TABLE AS syntax without table attributes:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE t1 (c1 int not null primary key, c2 char(50));
 
 CREATE TABLE t2 (c1 int, c2 char (50) UPSHIFT NOT NULL) AS SELECT * FROM t1;</code></pre>
 </div>
+</div>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -28874,7 +29002,7 @@ extension.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ADDMONTHS (datetimeexpr, intexpr [, int2 ])</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">ADD_MONTHS (datetimeexpr, intexpr [, int2 ])</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -31824,7 +31952,7 @@ and YEARWEEK text specification with EXTRACT.</p>
 </div>
 </li>
 <li>
-<p>This function returns the value 201 07.</p>
+<p>This function returns the value 201107.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">DATE_PART('YEARMONTH', date '2011-07-25')</code></pre>
