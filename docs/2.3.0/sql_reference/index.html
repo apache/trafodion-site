@@ -1404,10 +1404,13 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#datediff_function">7.36. DATEDIFF Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_datediff">7.36.1. Examples of DATEDIFF</a></li>
-<li><a href="#dateformat_function">7.36.2. DATEFORMAT Function</a></li>
-<li><a href="#considerations_for_dateformat">7.36.3. Considerations for DATEFORMAT</a></li>
-<li><a href="#examples_of_dateformat">7.36.4. Examples of DATEFORMAT</a></li>
+<li><a href="#syntax_description_of_datediff">7.36.1. Syntax Description of DATEDIFF</a></li>
+<li><a href="#considerations_for_datediff">7.36.2. Considerations for DATEDIFF</a></li>
+<li><a href="#examples_of_datediff">7.36.3. Examples of DATEDIFF</a></li>
+<li><a href="#date_difference_in_year">7.36.4. Date Difference in YEAR</a></li>
+<li><a href="#dateformat_function">7.36.5. DATEFORMAT Function</a></li>
+<li><a href="#considerations_for_dateformat">7.36.6. Considerations for DATEFORMAT</a></li>
+<li><a href="#examples_of_dateformat">7.36.7. Examples of DATEFORMAT</a></li>
 </ul>
 </li>
 <li><a href="#date_part_function_of_an_interval">7.37. DATE_PART Function (of an Interval)</a>
@@ -31545,8 +31548,7 @@ returned. See <a href="#datetime_value_expressions">Datetime Value Expressions</
 <h3 id="datediff_function">7.36. DATEDIFF Function</h3>
 <div class="paragraph">
 <p>The DATEDIFF function returns the integer value for the number of
-<em>datepart</em> units of time between <em>startdate</em> and <em>enddate</em>. If
-<em>enddate</em> precedes <em>startdate</em>, the return value is negative or zero.</p>
+<em>datepart</em> units of time between <em>startdate</em> and <em>enddate</em>.</p>
 </div>
 <div class="paragraph">
 <p>DATEDIFF is a Trafodion SQL extension.</p>
@@ -31556,6 +31558,9 @@ returned. See <a href="#datetime_value_expressions">Datetime Value Expressions</
 <pre class="CodeRay highlight"><code data-lang="text">DATEDIFF (datepart, startdate, enddate)</code></pre>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
+<div class="sect3">
+<h4 id="syntax_description_of_datediff">7.36.1. Syntax Description of DATEDIFF</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -31608,72 +31613,271 @@ following abbreviations:</p>
 <li>
 <p><code>startdate</code></p>
 <div class="paragraph">
-<p>may be of type DATE or TIMESTAMP.
+<p>may be of type DATE or TIMESTAMP, should be enclosed in quotation marks.
 See <a href="#datetime_value_expressions">Datetime Value Expressions</a>.</p>
 </div>
 </li>
 <li>
 <p><code>enddate</code></p>
 <div class="paragraph">
-<p>may be of type DATE or TIMESTAMP.
+<p>may be of type DATE or TIMESTAMP, should be enclosed in quotation marks.
 See <a href="#datetime_value_expressions">Datetime Value Expressions</a>.</p>
 </div>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>The method of counting crossed boundaries such as days, minutes, and
-seconds makes the result given by DATEDIFF consistent across all data
-types. The result is a signed integer value equal to the number of
-datepart boundaries crossed between the first and second date.</p>
 </div>
-<div class="paragraph">
-<p>For example, the number of weeks between Sunday, January 4, and Sunday,
-January 1 , is 1. The number of months between March 31 and April 1
-would be 1 because the month boundary is crossed from March to April.
-The DATEDIFF function generates an error if the result is out of range
-for integer values. For seconds, the maximum number is equivalent to
-approximately 68 years. The DATEDIFF function generates an error if a
-difference in weeks is requested and one of the two dates precedes
-January 7 of the year 0001.</p>
-</div>
-<div style="page-break-after: always;"></div>
 <div class="sect3">
-<h4 id="examples_of_datediff">7.36.1. Examples of DATEDIFF</h4>
+<h4 id="considerations_for_datediff">7.36.2. Considerations for DATEDIFF</h4>
+<div class="sect4">
+<h5 id="boundary">Boundary</h5>
+<div class="paragraph">
+<p>The method of counting crossed boundaries such as days, minutes, and seconds makes the result given by DATEDIFF consistent across all data types.</p>
+</div>
+<div class="paragraph">
+<p>The result is a signed integer value equal to the number of <em>datepart</em> boundaries crossed between <em>startdate</em> and <em>enddate</em>, because the DATEDIFF function does not calculate the full <em>datepart</em>, it counts the difference between <em>startdate</em>  and <em>enddate</em>.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>This function returns the value of 0 because no one-second boundaries
-are crossed.</p>
+<p>The difference between 2017-12-31 23:59:59 and 2018-01-01 00:00:00 is only a single second.</p>
+<div class="paragraph">
+<p>However, the DATEDIFF difference is 1 minute, 1 hour, 1 day, 0 week<sup>1</sup>, 1 month, 1 quarter or 1 month depending on the specified <em>datepart</em>.</p>
+</div>
+<div class="paragraph">
+<p><sup>1</sup> NOTE: 2017-12-31 (<em>startdate</em>) falls on a Sunday, which is in the same week as 2018-01-01. For more information, see <a href="#the_first_day_of_week">The first day of week</a>.</p>
+</div>
+</li>
+<li>
+<p>Likewise, the difference between 2017-01-01 and 2018-12-31 is almost two years.</p>
+<div class="paragraph">
+<p>However, the DATEDIFF difference is 1 year if the specified <em>datepart</em> is YEAR.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="the_first_day_of_week">The first day of week</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The first day of the week is Sunday. Changing the first day of the week is not supported.</p>
+</li>
+<li>
+<p>The DATEDIFF function returns the number of Sundays between <em>startdate</em> and <em>enddate</em>. This function counts <em>enddate</em> if it falls on a Sunday, but doesn&#8217;t count <em>startdate</em> even if it does fall on a Sunday.</p>
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The DATEDIFF difference is 1 between 2017-11-19 and 2017-11-26 if the specified <em>datepart</em> is WEEK.</p>
+</li>
+<li>
+<p>The DATEDIFF difference is 0 between 2017-11-19 and 2017-11-25 if the specified <em>datepart</em> is WEEK.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="the_first_week_of_year">The first week of year</h5>
+<div class="paragraph">
+<p>The first week of the year is the week in which January 1 occurs. Changing the first week of the year is not supported.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="negative_or_zero">Negative or zero</h5>
+<div class="paragraph">
+<p>If <em>enddate</em> precedes <em>startdate</em>, the return value is negative or zero.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="error">Error</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The DATEDIFF function generates an error if the result is out of range for integer values.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For seconds, the maximum number is equivalent to approximately 68 years.</p>
+</li>
+<li>
+<p>For weeks, the dates must be later than 0001-01-07.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples_of_datediff">7.36.3. Examples of DATEDIFF</h4>
+<div class="sect4">
+<h5 id="date_difference_in_second">Date Difference in SECOND</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the value of 0 because no one-second boundary
+is crossed.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF( SECOND
-        , TIMESTAMP '2006-09-12 11:59:58.999998'
-        , TIMESTAMP '2006-09-12 11:59:58.999999'
-        )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( SECOND
+                 , TIMESTAMP '2006-09-12 11:59:58.999998'
+                 , TIMESTAMP '2006-09-12 11:59:58.999999'
+               )
+FROM DUAL;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>This function returns the value 1 because a one-second boundary is
+<p>This function returns the value of 1 because a one-second boundary is
 crossed even though the two timestamps differ by only one microsecond.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF( SECOND
-        , TIMESTAMP '2006-09-12 11:59:58.999999'
-        , TIMESTAMP '2006-09-12 11:59:59.000000'
-        )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( SECOND
+                 , TIMESTAMP '2006-09-12 11:59:58.999999'
+                 , TIMESTAMP '2006-09-12 11:59:59.000000'
+               )
+FROM DUAL;</code></pre>
 </div>
 </div>
 </li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="date_difference_in_minute">Date Difference in MINUTE</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the value of 2 because two minute boundaries are crossed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( MINUTE
+                 , TIMESTAMP '2011-12-30 08:54:55'
+                 , TIMESTAMP '2011-12-30 08:56:01'
+               )
+FROM DUAL;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="date_difference_in_day">Date Difference in DAY</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the value of -29.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( DAY
+                 , DATE '2008-03-01'
+                 , DATE '2008-02-01'
+               )
+FROM DUAL;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This statement calculates how long buyers have to wait.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT id, DATEDIFF( DAY, order_date, delivery_date ), price
+FROM orders
+ORDER BY price DESC;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">ID           (EXPR)       PRICE
+-----------  -----------  ------
+
+     700300          145     926
+     312203          147     621
+     800660           23     568
+     100350          160     543
+     500450          148     324
+     700510          141     229
+     100210            3     228
+     600480          151     197
+     300380          154     183
+     200490          227     123
+     200320          153      91
+     400410          158      65
+     600250          143      32
+
+--- 13 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="date_difference_in_week">Date Difference in WEEK</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the value of 1 because only a one-week boundary is
+crossed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( WEEK
+                 , DATE '2006-01-01'
+                 , DATE '2006-01-09'
+               )
+FROM DUAL;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="date_difference_in_quarter">Date Difference in QUARTER</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This function returns the value of 3 because three quarter boundaries are crossed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( QUARTER
+                 , DATE '2017-03-05'
+                 , DATE '2017-11-17'
+               )
+FROM DUAL;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="date_difference_in_year">7.36.4. Date Difference in YEAR</h4>
+<div class="ulist">
+<ul>
 <li>
 <p>This function returns the value of 0.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF( YEAR
-        , TIMESTAMP '2006-12-31 23:59:59.999998'
-        , TIMESTAMP '2006-12-31 23:59:59.999999'
-        )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( YEAR
+                 , TIMESTAMP '2006-12-31 23:59:59.999998'
+                 , TIMESTAMP '2006-12-31 23:59:59.999999'
+               )
+FROM DUAL;</code></pre>
 </div>
 </div>
 </li>
@@ -31682,27 +31886,11 @@ crossed even though the two timestamps differ by only one microsecond.</p>
 crossed.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF( YEAR
-        , TIMESTAMP '2006-12-31 23:59:59.999999'
-        , TIMESTAMP '2007-01-01 00:00:00.000000'
-        )</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>This function returns the value of 2 because two WEEK boundaries are
-crossed.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF(WEEK, DATE '2006-01-01', DATE '2006-01-09')</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>This function returns the value of -29.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DATEDIFF(DAY, DATE '2008-03-01', DATE '2008-02-01')</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SELECT DATEDIFF( YEAR
+                 , TIMESTAMP '2006-12-31 23:59:59.999999'
+                 , TIMESTAMP '2007-01-01 00:00:00.000000'
+               )
+FROM DUAL;</code></pre>
 </div>
 </div>
 </li>
@@ -31711,7 +31899,7 @@ crossed.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="dateformat_function">7.36.2. DATEFORMAT Function</h4>
+<h4 id="dateformat_function">7.36.5. DATEFORMAT Function</h4>
 <div class="paragraph">
 <p>The DATEFORMAT function returns a datetime value as a character string
 literal in the DEFAULT, USA, or EUROPEAN format. The data type of the
@@ -31744,14 +31932,14 @@ or TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressio
 </div>
 </div>
 <div class="sect3">
-<h4 id="considerations_for_dateformat">7.36.3. Considerations for DATEFORMAT</h4>
+<h4 id="considerations_for_dateformat">7.36.6. Considerations for DATEFORMAT</h4>
 <div class="paragraph">
 <p>The DATEFORMAT function returns the datetime value in ISO88591
 encoding.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_dateformat">7.36.4. Examples of DATEFORMAT</h4>
+<h4 id="examples_of_dateformat">7.36.7. Examples of DATEFORMAT</h4>
 <div class="ulist">
 <ul>
 <li>
