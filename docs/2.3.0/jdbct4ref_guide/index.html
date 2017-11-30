@@ -1245,8 +1245,8 @@ methods for obtaining a JDBC connection to the underlying database.</p>
 <div class="paragraph">
 <p>All JDBC data source classes implement either the <code>javax.sql.DataSource</code>
 interface or the <code>javax.sql.ConnectionPoolDataSource</code> interface. The Type
-4 driver data source classes are <code>org.trafodion.jdbc.t4.HPT4DataSource</code> and
-<code>org.trafodion.jdbc.t4.HPT4ConnectionPoolDataSource</code>. (These classes are
+4 driver data source classes are <code>org.trafodion.jdbc.t4.TrafT4DataSource</code> and
+<code>org.trafodion.jdbc.t4.TrafT4ConnectionPoolDataSource</code>. (These classes are
 defined by the JDBC 3.0 specification.)</p>
 </div>
 <div class="paragraph">
@@ -1364,15 +1364,15 @@ the name of the database, and so forth.</p>
 <div class="paragraph">
 <p>A JDBC application can set <code>DataSource</code> properties programmatically and
 register with a DataSource object. To get or set <code>DataSource</code> object properties programmatically, use the
-appropriate getter or setter methods on the <code>HPT4DataSource</code> object or
-the <code>HPT4ConnectionPoolDataSource</code> object.</p>
+appropriate getter or setter methods on the <code>TrafT4DataSource</code> object or
+the <code>TrafT4ConnectionPoolDataSource</code> object.</p>
 </div>
 <div class="paragraph">
 <p><strong>Example</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">HPT4DataSource temp = <span class="keyword">new</span> HPT4DataSource() ;
+<pre class="CodeRay highlight"><code data-lang="java">TrafT4DataSource temp = <span class="keyword">new</span> TrafT4DataSource() ;
 temp.setCatalog( <span class="string"><span class="delimiter">&quot;</span><span class="content">TRAFODION</span><span class="delimiter">&quot;</span></span> ) ;</code></pre>
 </div>
 </div>
@@ -1380,23 +1380,22 @@ temp.setCatalog( <span class="string"><span class="delimiter">&quot;</span><span
 <p>In the following example, the code fragment illustrates the methods that a
 <code>DataSource</code> object <code>ds</code> needs to include if the object supports the
 <code>serverDataSource</code> property <code>ds.setServerDataSource( "my_server_datasource" )</code>.
-In this example, the code shows setting properties for the <code>HPT4DataSource</code> object
+In this example, the code shows setting properties for the <code>TrafT4DataSource</code> object
 to use the Type 4 driver to access a Trafodion database:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">HPT4DataSource ds = <span class="keyword">new</span> HPT4DataSource() ;
+<pre class="CodeRay highlight"><code data-lang="java">TrafT4DataSource ds = <span class="keyword">new</span> TrafT4DataSource() ;
 
-ds.setUrl( <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:t4jdbc://&lt;primary IP addr or host name&gt;:2300/</span><span class="delimiter">&quot;</span></span> );
-ds.setCatalog( <span class="string"><span class="delimiter">&quot;</span><span class="content">TRAFODION</span><span class="delimiter">&quot;</span></span> ) ;
+ds.setUrl( <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:t4jdbc://&lt;primary IP addr or host name&gt;:23400/</span><span class="delimiter">&quot;</span></span> );
 ds.setSchema( <span class="string"><span class="delimiter">&quot;</span><span class="content">myschema</span><span class="delimiter">&quot;</span></span> ) ;
 ds.setUser( <span class="string"><span class="delimiter">&quot;</span><span class="content">gunnar</span><span class="delimiter">&quot;</span></span> ) ;
 ds.setPassword( <span class="string"><span class="delimiter">&quot;</span><span class="content">my_userpassword</span><span class="delimiter">&quot;</span></span> ) ;
 
 <span class="comment">// Properties relevant for Type 4 connection pooling.</span>
 <span class="comment">// Set ds.setMaxPoolSize(-1) for turning OFF connection pooling</span>
-ds.setMaxPoolSize( <span class="string"><span class="delimiter">&quot;</span><span class="content">10000</span><span class="delimiter">&quot;</span></span> ) ;
-ds.setMinPoolSize( <span class="string"><span class="delimiter">&quot;</span><span class="content">1000</span><span class="delimiter">&quot;</span></span> ) ;
+ds.setMaxPoolSize( <span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> ) ;
+ds.setMinPoolSize( <span class="string"><span class="delimiter">&quot;</span><span class="content">10</span><span class="delimiter">&quot;</span></span> ) ;
 
 <span class="comment">// Properties relevant for Type 4 statement pooling.</span>
 <span class="comment">// Set ds.setMaxStatement(0) for turning statement pooling OFF</span>
@@ -1414,7 +1413,7 @@ see <a href="#creating-and-using-a-properties-file">Creating and Using a Propert
 <h4 id="programmatically-registering-the-datasource-object">3.3.4. Programmatically Registering the DataSource Object</h4>
 <div class="paragraph">
 <p>In the following example, the code shows how to register, programmatically,
-the <code>HPT4DataSource</code> object <code>ds</code> that was created using the preceding code with JNDI.</p>
+the <code>TrafT4DataSource</code> object <code>ds</code> that was created using the preceding code with JNDI.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1516,7 +1515,7 @@ pass the properties file as a command-line parameter:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">java -Dhpt4jdbc.properties=&lt;path of properties file on disk&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">java -Dt4jdbc.properties=&lt;path of properties file on disk&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1624,7 +1623,7 @@ semicolon (<code>;</code>). For example, <code>T4LogLevel=ALL;T4LogFile=temp1.lo
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">Class</span>.forName( <span class="string"><span class="delimiter">&quot;</span><span class="content">org.trafodion.jdbc.t4.T4Driver</span><span class="delimiter">&quot;</span></span> ) ; <span class="comment">//loads the driver</span>
 
-<span class="predefined-type">String</span> url = <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:hpt4jdbc://&lt;database primary IP address&gt;:23400/</span><span class="delimiter">&quot;</span></span>
+<span class="predefined-type">String</span> url = <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:t4jdbc://&lt;database primary IP address&gt;:23400/</span><span class="delimiter">&quot;</span></span>
 
 <span class="predefined-type">Connection</span> con = <span class="predefined-type">DriverManager</span>.getConnection( url, <span class="string"><span class="delimiter">&quot;</span><span class="content">userID</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Passwd</span><span class="delimiter">&quot;</span></span> ) ;</code></pre>
 </div>
@@ -1903,7 +1902,7 @@ instance-specific objects to ensure thread safety:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>HPT4DataSource.getConnection()</code> is implemented as a synchronized method
+<p><code>TrafT4DataSource.getConnection()</code> is implemented as a synchronized method
 to ensure thread safety in getting a connection.</p>
 </li>
 <li>
@@ -2077,8 +2076,8 @@ java.sql.Statement.execute(<span class="predefined-type">String</span> sql)</cod
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">Statement</span> s = conn.createStatement( ) ;
 
-HPT4PreparedStatement p =
-   (HPT4PreparedStatement)conn.prepareStatement(
+TrafT4PreparedStatement p =
+   (TrafT4PreparedStatement)conn.prepareStatement(
       <span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT * FROM t WHERE i = ?</span><span class="delimiter">&quot;</span></span> ) ;
 
 <span class="type">boolean</span> results = s.execute( <span class="string"><span class="delimiter">&quot;</span><span class="content">INFOSTATS </span><span class="delimiter">&quot;</span></span> + p.getStatementLabel() ) ;
@@ -2257,7 +2256,7 @@ property and issues the <code>getString()</code> method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">java -Dhpt4jdbc.ISO88591=SJIS test1.java
+<pre class="CodeRay highlight"><code data-lang="java">java -Dt4jdbc.ISO88591=SJIS test1.java
 
 <span class="comment">// The following method invocation returns a String object, which</span>
 <span class="comment">// was created using the &quot;SJIS&quot; Java canonical name as the charset</span>
@@ -3296,7 +3295,7 @@ applies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">java -Dhpt4jdbc.maxIdleTime=300</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">java -Dt4jdbc.maxIdleTime=300</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3646,7 +3645,7 @@ locators for program class <code>myProgramClass</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">java -Dhpt4jdbc.reserveDataLocators=150 myProgramClass</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">java -Dt4jdbc.reserveDataLocators=150 myProgramClass</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3910,7 +3909,7 @@ to the level of tracing provided when calling the <code>setLogWriter()</code> me
 <p><strong>Example</strong></p>
 </div>
 <div class="paragraph">
-<p>To enable tracing, use the <code>hpt4jdbc.T4LogLevel</code> property specified in the command line:</p>
+<p>To enable tracing, use the <code>t4jdbc.T4LogLevel</code> property specified in the command line:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5191,7 +5190,7 @@ ODBC server is connected to a different client now</code></pre>
 <p><strong>Cause</strong>: An attempt was made to set the transaction isolation level to an invalid value.</p>
 </div>
 <div class="paragraph">
-<p><strong>Effect</strong>: <code>HPT4Connection.setTransactionIsolation</code> does not set the transaction isolation value.</p>
+<p><strong>Effect</strong>: <code>TrafT4Connection.setTransactionIsolation</code> does not set the transaction isolation value.</p>
 </div>
 <div class="paragraph">
 <p><strong>Recovery</strong>: Valid isolation values are:
@@ -5233,7 +5232,7 @@ If no isolation value is specified, the default is <code>SQL_TXN_READ_COMMITTED<
 <p><strong>Cause</strong>: An attempt was made to set an invalid result-set concurrency value.</p>
 </div>
 <div class="paragraph">
-<p><strong>Effect</strong>: The <code>HPT4Statement</code> call with <code>resultSetConcurrency</code> fails.</p>
+<p><strong>Effect</strong>: The <code>TrafT4Statement</code> call with <code>resultSetConcurrency</code> fails.</p>
 </div>
 <div class="paragraph">
 <p><strong>Recovery</strong>: Valid resultSetConcurrency values are: CONCUR_READ_ONLY and
@@ -6020,13 +6019,13 @@ the <code>getPooledConnection()</code> method.</p>
 </div>
 <div class="paragraph">
 <p><strong>Cause</strong>: Attempted to access a BLOB column without setting the property
-<code>hpt4jdbc.blobTableName</code>, or the property is set to an invalid value.</p>
+<code>t4jdbc.blobTableName</code>, or the property is set to an invalid value.</p>
 </div>
 <div class="paragraph">
 <p><strong>Effect</strong>:  The application cannot access BLOB columns.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery</strong>: Set the <code>hpt4jdbc.blobTableName</code> property to a valid LOB table
+<p><strong>Recovery</strong>: Set the <code>t4jdbc.blobTableName</code> property to a valid LOB table
 name. The LOB table name is of format <code>catalog.schema.lobTableName</code>.</p>
 </div>
 </div>
@@ -6034,19 +6033,19 @@ name. The LOB table name is of format <code>catalog.schema.lobTableName</code>.<
 <h4 id="_29060_hy000">8.3.55. 29060 HY000</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">29060 HY000 'hpt4jdbc.clobTableName' property is not set or set to null value or set to invalid value.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">29060 HY000 't4jdbc.clobTableName' property is not set or set to null value or set to invalid value.</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Cause</strong>: Attempted to access a CLOB column without setting the
-<code>propertyhpt4jdbc.clobTableName</code> property, or the property is set to null
+property <code>t4jdbc.clobTableName</code>, or the property is set to null
 value or set to an invalid value.</p>
 </div>
 <div class="paragraph">
 <p><strong>Effect</strong>:  The application cannot access CLOB columns.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery</strong>: Set the <code>hpt4jdbc.clobTableName</code> property to a valid LOB table
+<p><strong>Recovery</strong>: Set the <code>t4jdbc.clobTableName</code> property to a valid LOB table
 name. The LOB table name is of format <code>catalog.schema.lobTableName</code>.</p>
 </div>
 </div>
@@ -7220,7 +7219,7 @@ Expected: &lt;expected_version&gt; Actual: &lt;actual_version&gt;.</code></pre>
 </div>
 <div class="paragraph">
 <p><strong>Recovery</strong>: Evaluate any error or error detail information accompanying the
-message. Install compatible versions of the driver and HP connectivity
+message. Install compatible versions of the driver and Trafodion connectivity
 server.</p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -7241,7 +7240,7 @@ Expected: &lt;expected_signature&gt; Actual: &lt;actual_signature&gt;.</code></p
 </div>
 <div class="paragraph">
 <p><strong>Recovery</strong>: Evaluate any error or error detail information accompanying the
-message. Install compatible versions of the driver and HP connectivity
+message. Install compatible versions of the driver and Trafodion connectivity
 server.</p>
 </div>
 </div>
