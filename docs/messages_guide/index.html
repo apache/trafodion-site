@@ -13411,7 +13411,7 @@ T2(x,y) where y &gt; 10;
 &gt;&gt;select a from T1 where runningcount(b) &gt; 10 sequence by a;
 
 *** ERROR[4109] Sequence functions placed incorrectly:
-RUNNINGCOUNT(CAT.SCH.HPPARTEST1.B).
+RUNNINGCOUNT(CAT.SCH.TrafodionPARTEST1.B).
 
 *** ERROR[8822] Unable to prepare the statement.</code></pre>
 </div>
@@ -15083,7 +15083,7 @@ type.</p>
 </div>
 <div class="paragraph">
 <p><strong>Recovery:</strong> This error should never occur. Drop the stored procedure and
-re-create it with an appropriate data type. Report this problem to HP
+re-create it with an appropriate data type. Report this problem to Trafodion
 support.</p>
 </div>
 </div>
