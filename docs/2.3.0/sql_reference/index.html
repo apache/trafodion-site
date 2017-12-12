@@ -4078,6 +4078,8 @@ data-type is:
          [upshift] [[not] casespecific]
    | varchar (length) [character set char-set-name]
          [upshift] [[not] casespecific]
+   | varchar2 (length) [character set char-set-name]
+         [upshift] [[not] casespecific]
    | numeric [(precision [,scale])] [signed|unsigned]
    | nchar [(length) [character set char-set-name]
          [upshift] [[not] casespecific]
@@ -6385,6 +6387,7 @@ once with different underlying SPJ methods.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">char[acter]<br>
 char[acter] varying<br>
 varchar<br>
+varchar2<br>
 pic[ture] x<sup>1</sup><br>
 nchar<br>
 nchar varying<br>
@@ -7605,6 +7608,8 @@ column-definition is:
           [upshift] [[not]casespecific]
   | varchar (length) [character set char-set-name]
           [upshift] [[not]casespecific]
+  | varchar2 (length) [character set char-set-name]
+          [upshift] [[not]casespecific]
   | nchar (length) [characters] [upshift] [[not]casespecific]
   | nchar varying(length [characters]) [upshift] [[not] casespecific]
   | numeric [(precision [,scale])] [signed|unsigned]
@@ -8807,6 +8812,31 @@ sale_amt NUMERIC(10,2),
 chcol CHAR(20) NOT NULL,
 PRIMARY KEY (store_id, item_id, sale_date, chcol))
 DIVISION BY (SUBSTR(chcol, 1, 5));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example creates a table using varchar2 data type which is same as varchar.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE testvarchar2(c1 varchar(32), c2 varchar2(32) upshift not casespecific);
+
+--- SQL operation complete.
+
+
+SHOWDDL testvarchar2;
+
+CREATE TABLE TRAFODION.SEABASE.TESTVARCHAR2
+  (
+    C1                               VARCHAR(32) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  , C2                               VARCHAR(32) CHARACTER SET ISO88591 COLLATE
+      DEFAULT UPSHIFT DEFAULT NULL NOT SERIALIZED
+  )
+ATTRIBUTES ALIGNED FORMAT
+;
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
@@ -19931,7 +19961,7 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock">Character String Data Type</p></td>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock">Character String Data Type</p></td>
 <td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Fixed-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CHAR[ACTER]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data</p></td>
@@ -19948,8 +19978,13 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>3</sup> <sup>7</sup> <sup>9</sup></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Variable-length character</p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Variable-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
 </tr>
@@ -20425,6 +20460,7 @@ numeric, datetime, or interval data.</p>
 <pre class="CodeRay highlight"><code data-lang="text">CHAR[ACTER] [(length [unit])] [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
 | CHAR[ACTER] VARYING(length [unit]) [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
 | VARCHAR(length [unit]) [CHARACTERS] [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
+| VARCHAR2(length [unit]) [CHARACTERS] [char-set] [UPSHIFT] [[NOT]CASESPECIFIC]
 | NCHAR [(length)] [UPSHIFT] [[NOT]CASESPECIFIC]
 | NCHAR VARYING (length) [UPSHIFT] [[NOT]CASESPECIFIC]
 | NATIONAL CHAR[ACTER] [(length)] [UPSHIFT] [[NOT]CASESPECIFIC]
@@ -20432,8 +20468,10 @@ numeric, datetime, or interval data.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>CHAR, NCHAR, and NATIONAL CHAR are fixed-length character types. CHAR
-VARYING, VARCHAR, NCHAR VARYING and NATIONAL CHAR VARYING are
+<p>CHAR, NCHAR, and NATIONAL CHAR are fixed-length character types.</p>
+</div>
+<div class="paragraph">
+<p>CHAR VARYING, VARCHAR, VARCHAR2, NCHAR VARYING and NATIONAL CHAR VARYING are
 varying-length character types.</p>
 </div>
 </li>
@@ -20513,6 +20551,30 @@ an equivalent column that is not VARYING.</p>
 equivalent to data type CHAR[ACTER] VARYING.</p>
 </div>
 </li>
+<li>
+<p><code>VARCHAR2 (<em>length</em> [<em>unit</em>]) [<em>char-set</em>] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
+<div class="paragraph">
+<p>specifies a column with varying-length character data. VARCHAR2 is
+equivalent to data type CHAR[ACTER] VARYING.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Trafodion supports VARCHAR2 as a synonym for VARCHAR. This improves portability from some popular databases.
+VARCHAR2 in Trafodion, however, has the standard semantics of VARCHAR. That is, an empty string is a non-null value.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p><code>NCHAR [(<em>length</em>)] [UPSHIFT] [[NOT]CASESPECIFIC], NATIONAL CHAR[ACTER] [(<em>length</em>)] [UPSHIFT] [[NOT]CASESPECIFIC]</code></p>
 <div class="paragraph">
@@ -44919,7 +44981,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2016-11-03 22:36:05 UTC
+Last updated 2017-05-29 17:37:12 UTC
 </div>
 </div>
 <script>
