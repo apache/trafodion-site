@@ -7673,7 +7673,7 @@ hbase-options-list is:
 <li>
 <p><code>VOLATILE</code></p>
 <div class="paragraph">
-<p>specifies a volatile table, which is a table limited to the session that creates the table. After the session ends, the</p>
+<p>specifies a volatile table, which is a table limited to the session that creates the table. After the session ends, the volatile table will be automatically dropped.</p>
 </div>
 </li>
 <li>
@@ -17977,13 +17977,14 @@ called an HFile.</p>
 <pre class="CodeRay highlight"><code data-lang="text">LOAD [WITH option[[,] option]...] INTO target-table SELECT ... FROM source-table
 
 option is:
-    TRUNCATE TABLE
-  | NO RECOVERY
+    CONTINUE ON ERROR
+  | LOG ERROR ROWS [TO error-location-name]
+  | STOP AFTER num ERROR ROWS
+  | TRUNCATE TABLE
   | NO POPULATE INDEXES
   | NO DUPLICATE CHECK
   | NO OUTPUT
-  | INDEX TABLE ONLY
-  | UPSERT USING LOAD</code></pre>
+  | INDEX TABLE ONLY</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -18019,6 +18020,60 @@ specify one or more of these options:</p>
 <div class="ulist">
 <ul>
 <li>
+<p><code>CONTINUE ON ERROR</code></p>
+<div class="paragraph">
+<p>LOAD statement will continue after errors encountered while scanning rows from source table.</p>
+</div>
+<div class="paragraph">
+<p>Errors during the load or sort phase will cause the LOAD statement to abort.</p>
+</div>
+<div class="paragraph">
+<p>Error rows will be logged by default in HDFS files in the directory <code>/user/trafodion/bulkload/logs</code>. The default name of the error files will be of the form <code>ERR_&lt;three-part-target-table-name&gt;_&lt;date&gt;_&lt;id&gt;</code>, where <code>&lt;id&gt;</code> is a numeric identifier unique to the process where the error was seen.</p>
+</div>
+<div class="paragraph">
+<p>This option is implied if <code>LOG ERROR ROWS [TO <em>error-location-name</em>]</code> or <code>STOP AFTER <em>num</em> ERROR ROWS</code> is specified and it is not enabled by default.</p>
+</div>
+</li>
+<li>
+<p><code>LOG ERROR ROWS [TO <em>error-location-name</em>]</code></p>
+<div class="paragraph">
+<p>If error rows must be written to a specified location, then specify TO <em>error-location-name</em>, otherwise they will be written to the default location.</p>
+</div>
+<div class="paragraph">
+<p>Error logs are written in separate files by the processes involved in the load command under sub-directory representing the load command in the given location.
+The actual log file location is displayed in the load command output.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>error-location-name</em></code></p>
+<div class="paragraph">
+<p>must be a HDFS directory name to which trafodion has write access.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>STOP AFTER <em>num</em> ERROR ROWS</code></p>
+<div class="paragraph">
+<p>Use this option to stop the LOAD statement from progressing after num errors have been encountered during this statement.</p>
+</div>
+<div class="paragraph">
+<p>Duplicate check errors and errors which we have continued from using previous options are included in the count.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>num</em></p>
+<div class="paragraph">
+<p>specifies the number of error rows.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><code>TRUNCATE TABLE</code></p>
 <div class="paragraph">
 <p>causes the Bulk Loader to truncate the target table before starting the
@@ -18026,22 +18081,6 @@ load operation. By default, the Bulk Loader does not truncate the target
 table before loading data.</p>
 </div>
 </li>
-<li>
-<p><code>NO RECOVERY</code></p>
-<div class="paragraph">
-<p>specifies that the Bulk Loader not use HBase snapshots for recovery. By
-default, the Bulk Loader handles recovery using the HBase snapshots
-mechanism.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="ulist">
-<ul>
 <li>
 <p><code>NO POPULATE INDEXES</code></p>
 <div class="paragraph">
@@ -18066,20 +18105,12 @@ data and generates an error when it detects duplicates.</p>
 the LOAD statement prints status messages listing the steps that the
 Bulk Loader is executing.</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><code>INDEX TABLE ONLY</code></p>
 <div class="paragraph">
 <p>specifies that the target table, which is an index, be populated with
 data from the parent table.</p>
-</div>
-</li>
-<li>
-<p><code>UPSERT USING LOAD</code></p>
-<div class="paragraph">
-<p>specifies that the data be inserted into the target table using row set
-inserts without a transaction.</p>
 </div>
 </li>
 </ul>
@@ -44981,7 +45012,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2017-05-29 17:37:12 UTC
+Last updated 2016-11-03 22:36:05 UTC
 </div>
 </div>
 <script>
