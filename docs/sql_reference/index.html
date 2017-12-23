@@ -18067,33 +18067,61 @@ specify one or more of these options:</p>
 <li>
 <p><code>CONTINUE ON ERROR</code></p>
 <div class="paragraph">
-<p>LOAD statement will continue after errors encountered while scanning rows from source table.</p>
+<p>LOAD statement will continue after ignorable errors while scanning rows from source table or loading into the target table. The ignorable errors are usually data conversion errors.</p>
 </div>
 <div class="paragraph">
 <p>Errors during the load or sort phase will cause the LOAD statement to abort.</p>
 </div>
 <div class="paragraph">
-<p>Error rows will be logged by default in HDFS files in the directory <code>/user/trafodion/bulkload/logs</code>. The default name of the error files will be of the form <code>ERR_&lt;three-part-target-table-name&gt;_&lt;date&gt;_&lt;id&gt;</code>, where <code>&lt;id&gt;</code> is a numeric identifier unique to the process where the error was seen.</p>
-</div>
-<div class="paragraph">
-<p>This option is implied if <code>LOG ERROR ROWS [TO <em>error-location-name</em>]</code> or <code>STOP AFTER <em>num</em> ERROR ROWS</code> is specified and it is not enabled by default.</p>
+<p>This option is implied if <code>LOG ERROR ROWS [TO <em>error-location-name</em>]</code> or <code>STOP AFTER <em>num</em> ERROR ROWS</code> is specified.</p>
 </div>
 </li>
 <li>
 <p><code>LOG ERROR ROWS [TO <em>error-location-name</em>]</code></p>
-<div class="paragraph">
-<p>If error rows must be written to a specified location, then specify TO <em>error-location-name</em>, otherwise they will be written to the default location.</p>
-</div>
-<div class="paragraph">
-<p>Error logs are written in separate files by the processes involved in the load command under sub-directory representing the load command in the given location.
-The actual log file location is displayed in the load command output.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>error-location-name</em></code></p>
+<p>Error rows</p>
 <div class="paragraph">
-<p>must be a HDFS directory name to which trafodion has write access.</p>
+<p>If error rows must be written to a specified location, then specify TO <em>error-location-name</em>, otherwise they will be written to the default location.
+<code><em>error-location-name</em></code> must be a HDFS directory name to which trafodion has write access.</p>
+</div>
+<div class="paragraph">
+<p>Error rows will be logged in HDFS files in the <strong>directory</strong> <code>/user/trafodion/bulkload/logs</code> if the error log location is not specified.</p>
+</div>
+<div class="paragraph">
+<p>The default name of the <strong>subdirectory</strong> is <code><em>ERR_catalog.schema.target_table_date_id</em></code>, where <code><em>id</em></code> is a numeric identifier timestamp (YYYYMMDD_HHMMSS) unique to the process where the error was seen.</p>
+</div>
+<div class="paragraph">
+<p>The default name of the <strong>error file</strong> is <code><em>loggingFileNamePrefix_catalog.schema.target_table_instanceID</em></code>, where <code><em>loggingFileNamePrefix</em></code> is hive_scan_err or traf_upsert_err depending on the data source table, and <code><em>instanceID</em></code> is the instance ID starting from 0, generally there is only one instance.</p>
+</div>
+<div class="paragraph">
+<p>For example, the full path of the table test_load_log is <code>/user/trafodion/bulkload/logs/test/ERR_TRAFODION.SEABASE.TEST_LOAD_LOG_20171218_035918/traf_upsert_err_TRAFODION.SEABASE.TEST_LOAD_LOG_0</code>,</p>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>/user/trafodion/bulkload/logs/test</code> is the default name of <strong>directory</strong>.</p>
+</li>
+<li>
+<p><code>ERR_TRAFODION.SEABASE.TEST_LOAD_LOG_20171218_035918</code> is the default name of <strong>subdirectory</strong>.</p>
+</li>
+<li>
+<p><code>traf_upsert_err_TRAFODION.SEABASE.TEST_LOAD_LOG_0</code> is the default name of <strong>error file</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Error logs</p>
+<div class="paragraph">
+<p>Error logs are written in separate files by the processes involved in the load command under sub-directory representing the load command in the given location.</p>
+</div>
+<div class="paragraph">
+<p>The actual log file location is displayed in the load command output. It is recommended that you use the same location for load as it’s easier to find the error logs.</p>
 </div>
 </li>
 </ul>

@@ -1518,6 +1518,18 @@ hdfs:///{local hdfs file name}</code></pre>
 </li>
 <li>
 <p><code>EMPTY_BLOB()</code> or <code>EMPTY_CLOB()</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to insert <code>EMPTY_BLOB()</code> or <code>EMPTY_CLOB()</code> into a lob column, the CQD <code>TRAF_BLOB_AS_VARCHAR</code> or <code>TRAF_CLOB_AS_VARCHAR</code> which is <strong>ON</strong> by default must be turned <strong>OFF</strong> before creating the table, otherwise an error will be raised and the column definition of the lob column is VARCHAR.
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1577,6 +1589,66 @@ hdfs:///{local hdfs file name}</code></pre>
 <div class="ulist">
 <ul>
 <li>
+<p>This example uses a parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">PREPARE S FROM INSERT INTO t130lob2 VALUES (1, ?);
+EXECUTE S USING 'fgfgfhfhfhfhhfhfhfhjfkkfkffllflflfll';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example does not turn the CQD <code>TRAF_BLOB_AS_VARCHAR</code> OFF before creating the table test1, thus it fails to insert <code>EMPTY_BLOB()</code> into c2 whose column definition is VARCHAR.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CREATE TABLE test1(C1 INT, C2 BLOB);
+--- SQL operation complete.
+
+&gt;&gt;CQD TRAF_BLOB_AS_VARCHAR 'OFF';
+--- SQL operation complete.
+
+&gt;&gt;INSERT INTO test1 VALUES(1, EMPTY_BLOB());
+*** ERROR[4035] Type LOB cannot be cast to type VARCHAR(100000).
+*** ERROR[8822] The statement was not prepared.
+
+&gt;&gt;SHOWDDL TABLE test1;
+CREATE TABLE TRAFODION.SEABASE.TEST1
+  (
+    C1   INT DEFAULT NULL NOT SERIALIZED
+  , C2   VARCHAR(100000) CHARACTER SET ISO88591 COLLATE DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example turns the CQD <code>TRAF_CLOB_AS_VARCHAR</code> OFF before creating the table test2 and inserting <code>EMPTY_CLOB()</code> into c2 whose column definition is CLOB.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&gt;&gt;CQD TRAF_CLOB_AS_VARCHAR 'OFF';
+--- SQL operation complete.
+
+&gt;&gt;CREATE TABLE test2 (C1 INT, C2 CLOB);
+--- SQL operation complete.
+
+&gt;&gt;INSERT INTO test2 VALUES(1, EMPTY_CLOB());
+--- 1 row(s) inserted.
+
+&gt;&gt;SHOWDDL TABLE test2;
+CREATE TABLE TRAFODION.SEABASE.TEST2
+  (
+    C1                               INT DEFAULT NULL NOT SERIALIZED
+  , C2                               CLOB DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
 <p>This example uses the <code>STRINGTOLOB</code> function that converts a simple string literal into LOB format before inserting.</p>
 <div class="listingblock">
 <div class="content">
@@ -1607,23 +1679,6 @@ hdfs:///{local hdfs file name}</code></pre>
 <pre class="CodeRay highlight"><code data-lang="text">INSERT INTO tlob130ext VALUES(1, STRINGTOLOB('first lob'),
 FILETOLOB('hdfs:///lobs/lob_input_a1.txt'),
 EXTERNALTOLOB('hdfs:///lobs/lob_input_a1.txt'));</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>This example uses a parameter.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">PREPARE S FROM INSERT INTO t130lob2 VALUES (1, ?);
-EXECUTE S USING 'fgfgfhfhfhfhhfhfhfhjfkkfkffllflflfll';</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>This example uses the <code>EMPTY_BLOB</code> function to insert an empty lob and creates a dummy lob handle.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO t130lob2 VALUES (1, empty_blob());</code></pre>
 </div>
 </div>
 </li>
