@@ -721,14 +721,7 @@ the License.  You may obtain a copy of the License at <a href="http://www.apache
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations under the License.</p>
 </div>
-<div class="paragraph">
-<p><strong>Disclaimer:</strong> <em>Apache Trafodion is an effort undergoing incubation at the Apache Software Foundation (ASF), sponsored by
-the Apache Incubator PMC. Incubation is required of all newly accepted projects until a further review indicates that
-the infrastructure, communications, and decision making process have stabilized in a manner consistent with other
-successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code,
-it does indicate that the project has yet to be fully endorsed by the ASF.</em>
-&lt;&lt;&lt;</p>
-</div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>Revision History</strong></p>
 </div>
@@ -773,11 +766,11 @@ it does indicate that the project has yet to be fully endorsed by the ASF.</em>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This guide describes how to provision the end-user Trafodion binaries on top of an existing Hadoop environment. This install allows you to store and query data using Trafodion, either via Trafodion clients
-(see <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) or via application code you write.</p>
+(see <a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) or via application code you write.</p>
 </div>
 <div class="paragraph">
 <p>If you want to install a Trafodion developer-build environment, then please refer to the
-<a href="http://trafodion.incubator.apache.org/contributing-redirect.html">Trafodion Contributor Guide</a> for instructions.</p>
+<a href="http://trafodion.apache.org/contributing-redirect.html">Trafodion Contributor Guide</a> for instructions.</p>
 </div>
 <div class="sect2">
 <h3 id="_intended_audience">1.1. Intended Audience</h3>
@@ -1034,7 +1027,7 @@ INTERVAL { start-field TO end-field | single-field }</code></pre>
 <h3 id="_comments_encouraged">1.4. Comments Encouraged</h3>
 <div class="paragraph">
 <p>We encourage your comments concerning this document. We are committed to providing documentation that meets your
-needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.incubator.apache.org">user@trafodion.incubator.apache.org</a>.</p>
+needs. Send any errors found, suggestions for improvement, or compliments to <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>.</p>
 </div>
 <div class="paragraph">
 <p>Include the document title and any comment, error found, or suggestion for improvement you have concerning this document.</p>
@@ -1078,7 +1071,7 @@ The Trafodion Installer modifies and restarts your Hadoop environment.
 <div class="sect2">
 <h3 id="_download_binaries">2.1. Download Binaries</h3>
 <div class="paragraph">
-<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
+<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
 </div>
 <div class="ulist">
@@ -1099,7 +1092,7 @@ Download the following packages:</p>
 </td>
 <td class="content">
 You can download and install the Trafodion Clients once you&#8217;ve installed and activated Trafodion. Refer to the
-<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
+<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
 </td>
 </tr>
 </table>
@@ -1115,31 +1108,31 @@ You can download and install the Trafodion Clients once you&#8217;ve installed a
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-download
 $ cd $HOME/trafodion-download
 $ # Download the Trafodion Installer binaries
-$ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-2.1.0.incubating/apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz
+$ wget http://apache.cs.utah.edu/trafodion/trafodion-2.2.0/apache-trafodion-pyinstaller-2.2.0.tar.gz
 Resolving http://apache.cs.utah.edu... 192.168.1.56
 Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 68813 (67K) [application/x-gzip]
-Saving to: &quot;apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz&quot;
+Saving to: &quot;apache-trafodion-pyinstaller-2.2.0.tar.gz&quot;
 
 100%[=====================================================================================================================&gt;] 68,813       124K/s   in 0.5s
 
-2016-02-14 04:19:42 (124 KB/s) - &quot;apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz&quot; saved [68813/68813]
+2016-02-14 04:19:42 (124 KB/s) - &quot;apache-trafodion-pyinstaller-2.2.0.tar.gz&quot; saved [68813/68813]
 
-$ wget http://apache.cs.utah.edu/incubator/trafodion/trafodion-2.1.0.incubating/apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz
+$ wget http://apache.cs.utah.edu/trafodion/trafodion-2.2.0/apache-trafodion_server-2.2.0-RH-x86_64.tar.gz
 Resolving http://apache.cs.utah.edu... 192.168.1.56
 Connecting to http://apache.cs.utah.edu|192.168.1.56|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 214508243 (205M) [application/x-gzip]
-Saving to: &quot;apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz&quot;
+Saving to: &quot;apache-trafodion_server-2.2.0-RH-x86_64.tar.gz&quot;
 
 100%[=====================================================================================================================&gt;] 214,508,243 3.90M/s   in 55s
 
-2016-02-14 04:22:14 (3.72 MB/s) - &quot;apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz&quot; saved [214508243/214508243]
+2016-02-14 04:22:14 (3.72 MB/s) - &quot;apache-trafodion_server-2.2.0-RH-x86_64.tar.gz&quot; saved [214508243/214508243]
 
 $ ls -l
--rw-rw-r--. 1 centos centos     74237 Feb 13 14:53 apache-trafodion_pyinstaller-2.1.0-incubating.tar.gz
--rw-rw-r--. 1 centos centos 183114066 Feb 10 22:34 apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz
+-rw-rw-r--. 1 centos centos     74237 Feb 13 14:53 apache-trafodion_pyinstaller-2.2.0.tar.gz
+-rw-rw-r--. 1 centos centos 183114066 Feb 10 22:34 apache-trafodion_server-2.2.0-RH-x86_64.tar.gz
 $</code></pre>
 </div>
 </div>
@@ -1157,10 +1150,10 @@ Trafodion server package tar file can be auto detected by installer if put it in
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
-$ tar -zxf apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz -C $HOME/trafodion-installer
-$ cp -f apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz $HOME/trafodion-installer
+$ tar -zxf apache-trafodion-pyinstaller-2.2.0.tar.gz -C $HOME/trafodion-installer
+$ cp -f apache-trafodion_server-2.2.0-RH-x86_64.tar.gz $HOME/trafodion-installer
 $ ls $HOME/trafodion-installer/python-installer
-apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz  db_install.py    DISCLAIMER    LICENSE  prettytable.py  scripts
+apache-trafodion_server-2.2.0-RH-x86_64.tar.gz  db_install.py    DISCLAIMER    LICENSE  prettytable.py  scripts
 configs                                                    db_uninstall.py  discovery.py  NOTICE   README.md
 $</code></pre>
 </div>
@@ -1305,9 +1298,9 @@ Refer to <a href="#requirements-trafodion-runtime-user">Trafodion Runtime User</
 which can be integrated with LDAP if so desired. These users are referred to as <strong>database users</strong> and
 do not have direct access to the operating system. Refer to <a href="#enable-security-ldap">LDAP</a> for
 details on enabling LDAP for authenticating database users.
-Refer to <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
-<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html#grant_statement">Grant</a>, and other SQL statements
-in the <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a> for
+Refer to <a href="http://trafodion.apache.org/docs/sql_reference/index.html#register_user_statement">Register User</a>,
+<a href="http://trafodion.apache.org/docs/sql_reference/index.html#grant_statement">Grant</a>, and other SQL statements
+in the <a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a> for
 more information about managing Trafodion Database Users.
 <br>
 <br>
@@ -1421,7 +1414,7 @@ Master Node in order to perform provisioning tasks on the cluster.</p>
 <h3 id="introduction-trafodion-installer">3.5. Trafodion Installer</h3>
 <div class="paragraph">
 <p>The Trafodion Installer is a set of scripts automates most of the tasks requires to install/upgrade Trafodion.
-You download the Trafodion Installer tar file from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">download</a> page.
+You download the Trafodion Installer tar file from the Trafodion <a href="http://trafodion.apache.org/download.html">download</a> page.
 Next, you unpack the tar file.</p>
 </div>
 <div class="paragraph">
@@ -1431,7 +1424,7 @@ Next, you unpack the tar file.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
-$ tar -zxf apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz -C $HOME/trafodion-installer
+$ tar -zxf apache-trafodion-pyinstaller-2.2.0.tar.gz -C $HOME/trafodion-installer
 $</code></pre>
 </div>
 </div>
@@ -1597,7 +1590,7 @@ that matches the security policies of your organization.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">cp /path/to/apache-trafodion_server-2.1.0-RH-x86_64-incubating.tar.gz python-installer/</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">cp /path/to/apache-trafodion_server-2.2.0-RH-x86_64.tar.gz python-installer/</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -2883,7 +2876,7 @@ which enables security (that is, authentication and authorization) in the Trafod
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of concurrent client sessions per node.</p></td>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>4</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This number specifies the concurrent sessions per node to be supported. Each session could require up to 1GB of physical memory. The number can be changed post-installation. For more information,
-refer to the <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p></td>
+refer to the <a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre>dcs_ha</pre></div></td>
@@ -3106,7 +3099,7 @@ distribution manager&#8217;s REST API.</p></td>
 <div class="sect2">
 <h3 id="prepare-download-trafodion-binaries">5.9. Download Trafodion Binaries</h3>
 <div class="paragraph">
-<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
+<p>You download the Trafodion binaries from the Trafodion <a href="http://trafodion.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
 </div>
 <div class="paragraph">
@@ -3143,7 +3136,7 @@ Download the following packages:</p>
 </td>
 <td class="content">
 You can download and install the Trafodion Clients once you&#8217;ve installed and activated Trafodion. Refer to the
-<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
+<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Install Guide</a> for instructions.
 </td>
 </tr>
 </table>
@@ -3374,7 +3367,7 @@ chapter. If not, please do so now.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
-$ tar -zxf apache-trafodion_pyinstaller-x.x.x-incubating.tar.gz -C $HOME/trafodion-installer
+$ tar -zxf apache-trafodion_pyinstaller-x.x.x.tar.gz -C $HOME/trafodion-installer
 $</code></pre>
 </div>
 </div>
@@ -3411,7 +3404,7 @@ Confirm Enter HDP/CDH web manager user password:
 TASK: Environment Discover ***************************************************************
 
 Time Cost: 0 hour(s) 0 minute(s) 4 second(s)
-Enter full path to Trafodion tar file [/data/python-installer/apache-trafodion_server-x.x.x-RH-x86_64-incubating.tar.gz]:
+Enter full path to Trafodion tar file [/data/python-installer/apache-trafodion_server-x.x.x-RH-x86_64.tar.gz]:
 Enter directory name to install trafodion to [apache-trafodion-x.x.x]:
 Enter trafodion user password:
 Confirm Enter trafodion user password:
@@ -3440,7 +3433,7 @@ Enable DCS High Avalability (Y/N)  [N]:
 | node_list        | node-1,node-2                                                                     |
 | scratch_locs     | $TRAF_VAR                                                                         |
 | traf_dirname     | apache-trafodion-x.x.x                                                            |
-| traf_package     | /data/python-installer/apache-trafodion_server-x.x.x-RH-x86_64-incubating.tar.gz  |
+| traf_package     | /data/python-installer/apache-trafodion_server-x.x.x-RH-x86_64.tar.gz             |
 | traf_start       | Y                                                                                 |
 | traf_user        | trafodion                                                                         |
 +------------------+-----------------------------------------------------------------------------------+
@@ -3749,7 +3742,7 @@ to run the Trafodion Installer.</p>
 <p>You perform this step as the Trafodion Provisioning User.</p>
 </div>
 <div class="paragraph">
-<p>You download the updated Trafodion binaries from the Trafodion <a href="http://trafodion.incubator.apache.org/download.html">Download</a> page.
+<p>You download the updated Trafodion binaries from the Trafodion <a href="http://trafodion.apache.org/download.html">Download</a> page.
 Download the following packages:</p>
 </div>
 <div class="ulist">
@@ -3781,7 +3774,7 @@ Download the following packages:</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">$ mkdir $HOME/trafodion-installer
 $ cd $HOME/trafodion-downloads
-$ tar -zxf apache-trafodion-pyinstaller-2.1.0-incubating.tar.gz -C $HOME/trafodion-installer
+$ tar -zxf apache-trafodion-pyinstaller-2.2.0.tar.gz -C $HOME/trafodion-installer
 $</code></pre>
 </div>
 </div>
@@ -3891,13 +3884,13 @@ in the <a href="#introduction">Introduction</a> chapter for instructions of how 
 $ cp my_config my_config_2.0
 $ # Pre edit content
 
-traf_package = &quot;/home/centos/trafodion-download/apache-trafodion-2.0.0-incubating.tar.gz&quot;
+traf_package = &quot;/home/centos/trafodion-download/apache-trafodion-2.2.0.tar.gz&quot;
 
 $ # Use your favorite editor to modify my_config_2.0
 $ emacs my_config_2.0
 $ # Post edit changes
 
-traf_package = &quot;/home/centos/trafodion-download/apache-trafodion-2.1.0-incubating.tar.gz&quot;</code></pre>
+traf_package = &quot;/home/centos/trafodion-download/apache-trafodion-2.2.0.tar.gz&quot;</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -3993,7 +3986,7 @@ sqcheck</code></pre>
 <h3 id="activate-validate-trafodion-installation">9.2. Validate Trafodion Installation</h3>
 <div class="paragraph">
 <p>You can use sqlci (part of the base product) or trafci (requires separate install; see the
-<a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) to validate your installation.</p>
+<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>) to validate your installation.</p>
 </div>
 <div class="sect3">
 <h4 id="_smoke_test">9.2.1. Smoke Test</h4>
@@ -4074,10 +4067,10 @@ $</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Install the Trafodion client software. Refer to the <a href="http://trafodion.incubator.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p>
+<p>Install the Trafodion client software. Refer to the <a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.</p>
 </li>
 <li>
-<p>Use Trafodion. Refer to the <a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual.</a></p>
+<p>Use Trafodion. Refer to the <a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual.</a></p>
 </li>
 <li>
 <p>Review other Trafodion documentation. Refer to the <a href="http://trafodion.apache.org/documentation.html">Trafodion documentation</a>.</p>
@@ -4192,7 +4185,7 @@ Issued a 'shutdown normal' request
 Shutdown in progress
 
 # of SQ processes: 0
-SQ Shutdown (normal) from /home/trafodion/apache-trafodion-1.3.0-incubating-bin/sql/scripts Successful
+SQ Shutdown (normal) from /home/trafodion/apache-trafodion-2.2.0-bin/sql/scripts Successful
 Mon Feb 15 07:49:26 UTC 2016
 [trafodion@trafodion-1 scripts]$ exit
 [admin@trafodion-1 ~]$</code></pre>
@@ -5057,10 +5050,10 @@ Current Environment
 ----------------------------------
 AUTHENTICATION     enabled
 AUTHORIZATION      enabled
-CURRENT DIRECTORY  /.../incubator-trafodion/install/installer
+CURRENT DIRECTORY  /.../trafodion/install/installer
 LIST_COUNT         4294967295
 LOG FILE
-MESSAGEFILE        /.../incubator-trafodion/core/sqf/export/ ...
+MESSAGEFILE        /.../trafodion/core/sqf/export/ ...
 MESSAGEFILE LANG   US English
 MESSAGEFILE VRSN   {2016-06-14 22:27 LINUX:host/user}
 SQL CATALOG        TRAFODION
@@ -5084,7 +5077,7 @@ admin can then connect and setup required users, roles, and privileges.</p>
 </div>
 <div class="paragraph">
 <p>To learn more about how to register users, grant object and component privileges, and manage users and roles, please see the
-<a href="http://trafodion.incubator.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
+<a href="http://trafodion.apache.org/docs/sql_reference/index.html">Trafodion SQL Reference Manual</a>.</p>
 </div>
 </div>
 </div>
@@ -5093,7 +5086,7 @@ admin can then connect and setup required users, roles, and privileges.</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2017-03-08 19:14:32 UTC
+Last updated 2018-01-03 21:27:09 UTC
 </div>
 </div>
 <script>
