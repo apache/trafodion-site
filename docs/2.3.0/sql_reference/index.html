@@ -5754,108 +5754,127 @@ underlying table. For ordering (but not for other purposes), nulls are greater t
 <p>a list of HBase options to set for the index. These options are applied independently of any HBase options set for
 the index’s table.</p>
 </div>
-</li>
-</ul>
-</div>
 <div class="ulist">
 <ul>
 <li>
 <p><code><em>hbase-option</em> = '<em>value</em>'</code></p>
 <div class="paragraph">
-<p>is one of the these HBase options and its assigned value:</p>
+<p>is one of these HBase options and its assigned value:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 35%;">
-<col style="width: 65%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">HBase Option</th>
-<th class="tableblock halign-left valign-top">Accepted Values<sup>1</sup></th>
+<th class="tableblock halign-left valign-top">Accepted Values</th>
+<th class="tableblock halign-left valign-top">Default Values</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOCKCACHE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOCKSIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*'65536'( | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1024' - '64*1024*1024'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'64*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOOMFILTER</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'NONE' | 'ROW' | 'ROWCOL'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'ROW'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_BLOOMS_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_DATA_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_INDEXES_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPACT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPACT_COMPRESSION</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'GZ' | 'LZ4' | 'LZO' | 'NONE' | 'SNAPPY'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPRESSION</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'GZ' | 'LZ4' | 'LZO' | 'NONE' | 'SNAPPY'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DATA_BLOCK_ENCODING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'DIFF' | 'FAST_DIFF' | 'NONE' | 'PREFIX'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DURABILITY</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'USE_DEFAULT' | 'SKIP_WAL' | 'ASYNC_WAL' | 'SYNC_WAL' | 'FSYNC_WAL'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'SYNC_WAL'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EVICT_BLOCKS_ON_CLOSE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IN_MEMORY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEEP_DELETED_CELLS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAX_FILESIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2*1024*1024' - '2<sup>63</sup>-1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'10*1024*1024*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAX_VERSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'1' | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MEMSTORE_FLUSH_SIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1024*1024' - '2<sup>63</sup>-1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'128*1024*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MIN_VERSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'0' | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'0'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PREFIX_LENGTH_KEY</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>', which should be less than maximum length of the key for the table.
 It applies only if the SPLIT_POLICY is <code>KeyPrefixRegionSplitPolicy</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REPLICATION_SCOPE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'0' | <strong>'1'</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'0' | '1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SPLIT_POLICY</p></td>
@@ -5865,26 +5884,25 @@ ConstantSizeRegionSplitPolicy' |<br>
 IncreasingToUpperBoundRegionSplitPolicy' |<br>
 'org.apache.hadoop.hbase.regionserver.<br>
 KeyPrefixRegionSplitPolicy'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'org.apache.hadoop.hbase.regionserver.<br>
+IncreasingToUpperBoundRegionSplitPolicy'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TTL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'-1' (forever) | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'-1'</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><sup>1</sup> Values in boldface are default values.</p>
+</li>
+</ul>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><code>SALT LIKE TABLE</code></p>
 <div class="paragraph">
 <p>causes the index to use the same salting scheme (that is,
 <code>SALT USING <em>num</em> PARTITIONS [ON (<em>column</em>[, <em>column</em>]&#8230;)])</code> as its base table.</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -7794,120 +7812,141 @@ then the clustering key is the PRIMARY KEY.</p>
 <li>
 <p><code><em>hbase-option</em> = '<em>value</em>'</code></p>
 <div class="paragraph">
-<p>is one of the these HBase options and its assigned value:</p>
+<p>is one of these HBase options and its assigned value:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 35%;">
-<col style="width: 65%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">HBase Option</th>
-<th class="tableblock halign-left valign-top">Accepted Values<sup>1</sup></th>
+<th class="tableblock halign-left valign-top">Accepted Values</th>
+<th class="tableblock halign-left valign-top">Default Values</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOCKCACHE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOCKSIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'65536' | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1024' - '64*1024*1024'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'64*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BLOOMFILTER</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'NONE' | 'ROW' | 'ROWCOL'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'ROW'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_BLOOMS_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_DATA_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_INDEXES_ON_WRITE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPACT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPACT_COMPRESSION</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'GZ' | 'LZ4' | 'LZO' | 'NONE' | 'SNAPPY'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">COMPRESSION</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'GZ' | 'LZ4' | 'LZO' | 'NONE' | 'SNAPPY'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DATA_BLOCK_ENCODING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'DIFF' | 'FAST_DIFF' | 'NONE' | 'PREFIX'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'NONE'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DURABILITY</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'USE_DEFAULT' | 'SKIP_WAL' | 'ASYNC_WAL' | 'SYNC_WAL' | 'FSYNC_WAL'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'SYNC_WAL'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EVICT_BLOCKS_ON_CLOSE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IN_MEMORY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEEP_DELETED_CELLS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>'true'</strong> | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'true' | 'false'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'false'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAX_FILESIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2*1024*1024' - '2<sup>63</sup>-1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'10*1024*1024*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAX_VERSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'1' | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MEMSTORE_FLUSH_SIZE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1024*1024' - '2<sup>63</sup>-1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'128*1024*1024'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MIN_VERSIONS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'0' | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'0'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PREFIX_LENGTH_KEY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>', which should be less than maximum length of the
-key for the table. It applies only if the SPLIT_POLICY is <code>KeyPrefixRegionSplitPolicy</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'<em>positive-integer</em>', which should be less than maximum length of the key for the table.
+It applies only if the SPLIT_POLICY is <code>KeyPrefixRegionSplitPolicy</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REPLICATION_SCOPE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'0' | '1'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'1'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SPLIT_POLICY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'org.apache.hadoop.hbase.regionserver.ConstantSizeRegionSplitPolicy' |
-'org.apache.hadoop.hbase.regionserver.IncreasingToUpperBoundRegionSplitPolicy' |
-'org.apache.hadoop.hbase.regionserver.KeyPrefixRegionSplitPolicy'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'org.apache.hadoop.hbase.regionserver.<br>
+ConstantSizeRegionSplitPolicy' |<br>
+'org.apache.hadoop.hbase.regionserver.<br>
+IncreasingToUpperBoundRegionSplitPolicy' |<br>
+'org.apache.hadoop.hbase.regionserver.<br>
+KeyPrefixRegionSplitPolicy'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'org.apache.hadoop.hbase.regionserver.<br>
+IncreasingToUpperBoundRegionSplitPolicy'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TTL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'-1' (forever) | '<em>positive-integer</em>'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'-1'</p></td>
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Values in boldface are default values.</p>
-</li>
-</ol>
-</div>
 </li>
 </ul>
 </div>

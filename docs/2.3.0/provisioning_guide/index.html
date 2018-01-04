@@ -2599,9 +2599,9 @@ Users that need issue commands as the <code>trafodion</code> ID should do so usi
 <h4 id="requirements-recommended-hbase-configuration-changes">4.4.3. Recommended HBase Configuration Changes</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 30%;">
-<col style="width: 20%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -2612,57 +2612,70 @@ Users that need issue commands as the <code>trafodion</code> ID should do so usi
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.rpc.timeout</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.rpc.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 minutes</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>This setting depends on the tables' size. Sixty (60) seconds is the default.
+<td class="tableblock halign-left valign-top"><p class="tableblock">This setting depends on the tables' size. Sixty (60) seconds is the default.
 Increase this value for big tables. Make it the same value as <code>hbase.client.scanner.timeout.period</code>. We have found
 that increasing the setting to six-hundred (600) seconds will prevent many of the timeout-related errors we encountered,
-such as <code>OutOfOrderNextException</code> errors.</p>
-</div></div></td>
+such as <code>OutOfOrderNextException</code> errors.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.client.scanner.timeout.period</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.client.scanner.timeout.period</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 minutes</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Similar to the <code>hbase.rpc.timeout</code> setting. Sixty (60) seconds is the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to the <code>hbase.rpc.timeout</code> setting. Sixty (60) seconds is the
 default. Depending on the size of a user table, we have experienced timeout failures on count(*) and update statistics commands
 from this setting. The underlying issue is the length of the execution of the coprocessor within HBase.
 <br>
-NOTE: HBase uses the smaller of <code>hbase.rpc.timeout</code> and <code>hbase.client.scanner.timeout.period</code> to calculate the scanner timeout.</p>
-</div></div></td>
+NOTE: HBase uses the smaller of <code>hbase.rpc.timeout</code> and <code>hbase.client.scanner.timeout.period</code> to calculate the scanner timeout.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.snapshot.master.timeoutMillis and hbase.snapshot.region.timeout</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.snapshot.master.timeoutMillis
+</p><p class="tableblock">and
+</p><p class="tableblock">hbase.snapshot.region.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10 minutes</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>HBase&#8217;s default setting is 60000 milliseconds.
+<td class="tableblock halign-left valign-top"><p class="tableblock">HBase&#8217;s default setting is 60000 milliseconds.
 If you experience timeout issues with HBase snapshots when you use the Trafodion Bulk Loader or other statements,
-you can set the value for these two HBase properties to 10 minutes (600,000 milliseconds).</p>
-</div></div></td>
+you can set the value for these two HBase properties to 10 minutes (600,000 milliseconds).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.hregion.max.filesize</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.hregion.max.filesize</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">107374182400 bytes</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>HBase&#8217;s default setting is 10737418240 (10 GB). We have increased the setting to
-107374182400 (100 GB), which reduces the number of HStoreFiles per table and appears to reduce disruptions to active transactions from
-region splitting.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HBase&#8217;s default setting is 10737418240 bytes (10 GB). You can increase the setting to
+107374182400 bytes (100 GB), which reduces the number of HStoreFiles per table and appears to reduce disruptions to active transactions from
+region splitting.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.hstore.blockingStoreFiles</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><a href="http://gbif.blogspot.com/2012/07/optimizing-writes-in-hbase.html" class="bare">http://gbif.blogspot.com/2012/07/optimizing-writes-in-hbase.html</a></p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.hregion.memstore.block.multiplier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7
+</p><p class="tableblock">When you have enough memory, you can increase this value to 7 so that more data can be temporarily accepted before flushing to disk instead of blocking writes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This property blocks any further writes from clients to memstores if the memstores exceed the value of <code>multiplier * flush size</code>.
+</p><p class="tableblock">Default value: 2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>hbase.regionserver.handler.count</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.hregion.memstore.flush.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">536870912 bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HBase uses memstore to buffer data before writing it to disk. Once the data in memstore has outgrown this size, it is flushed as an HFile to disk.
+</p><p class="tableblock">Default value: 134217728 bytes (128M)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.hstore.blockingStoreFiles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://gbif.blogspot.com/2012/07/optimizing-writes-in-hbase.html" class="bare">http://gbif.blogspot.com/2012/07/optimizing-writes-in-hbase.html</a>
+</p><p class="tableblock">This property blocks any further writes from memstores to HFile, after the number of existing HFile hits this limit, until compactions are completed.
+</p><p class="tableblock">Default value: 7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.regionserver.handler.count</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;num&gt;</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>This setting should match the number of concurrent sessions (mxosrvr). The default is 10.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This setting should match the number of concurrent sessions (mxosrvr). The default is 10.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hbase.regionserver.region.split.policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.apache.hadoop.hbase.regionserver.
+ConstantSizeRegionSplitPolicy</code>
+</p><p class="tableblock">Once the regions reach the maximum size configured by <code>hbase.hregion.max.filesize</code> property, they are split into halves.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the split policy of HBase.
+</p><p class="tableblock">Default value: <code>IncreasingToUpperBoundRegionSplitPolicy</code></p></td>
 </tr>
 </tbody>
 </table>
