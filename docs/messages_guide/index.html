@@ -752,6 +752,25 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-1430">3.190. SQL 1430</a></li>
 <li><a href="#SQL-1431">3.191. SQL 1431</a></li>
 <li><a href="#SQL-1432">3.192. SQL 1432</a></li>
+<li><a href="#SQL-1510">3.193. SQL 1510</a></li>
+<li><a href="#SQL-1511">3.194. SQL 1511</a></li>
+<li><a href="#SQL-1514">3.195. SQL 1514</a></li>
+<li><a href="#SQL-1540">3.196. SQL 1540</a></li>
+<li><a href="#SQL-1541">3.197. SQL 1541</a></li>
+<li><a href="#SQL-1550">3.198. SQL 1550</a></li>
+<li><a href="#SQL-1570">3.199. SQL 1570</a></li>
+<li><a href="#SQL-1571">3.200. SQL 1571</a></li>
+<li><a href="#SQL-1572">3.201. SQL 1572</a></li>
+<li><a href="#SQL-1573">3.202. SQL 1573</a></li>
+<li><a href="#SQL-1575">3.203. SQL 1575</a></li>
+<li><a href="#SQL-1576">3.204. SQL 1576</a></li>
+<li><a href="#SQL-1577">3.205. SQL 1577</a></li>
+<li><a href="#SQL-1579">3.206. SQL 1579</a></li>
+<li><a href="#SQL-1582">3.207. SQL 1582</a></li>
+<li><a href="#SQL-1583">3.208. SQL 1583</a></li>
+<li><a href="#SQL-1584">3.209. SQL 1584</a></li>
+<li><a href="#SQL-1590">3.210. SQL 1590</a></li>
+<li><a href="#SQL-1592">3.211. SQL 1592</a></li>
 </ul>
 </li>
 <li><a href="#trafodion-compiler-messages">4. Trafodion Compiler Messages (2000 through 2999)</a>
@@ -5983,7 +6002,7 @@ to attempt this multiple times.</p>
 </div>
 <div class="paragraph">
 <p><strong>Cause:</strong> You attempted to store a LOB value into a LOB column, but the storage type of the LOB value and the target column are not
-compatible. For example, you may have attempted</p>
+compatible.</p>
 </div>
 <div class="paragraph">
 <p><strong>Effect:</strong> The operation fails.</p>
@@ -5991,6 +6010,406 @@ compatible. For example, you may have attempted</p>
 <div class="paragraph">
 <p><strong>Recovery:</strong> Consult the Trafodion SQL Large Objects Guide for more information about LOB storage types. Correct the statement
 and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1510">3.193. SQL 1510</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">IDENTITY column &lt;column-name&gt; can be of the following data types only: LARGEINT, INTEGER UNSIGNED and SMALLINT UNSIGNED.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;column-name&gt; is a column name you specified.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to define an IDENTITY column but you specified a data type other than LARGEINT, INTEGER UNSIGNED or SMALLINT UNSIGNED.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Change the data type of the column to LARGEINT, INTEGER UNSIGNED or SMALLINT UNSIGNED and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1511">3.194. SQL 1511</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">There can only be one IDENTITY column for a table.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to define more than one IDENTITY column in a table.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Change the column definitions so that there is at most one IDENTITY column and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1514">3.195. SQL 1514</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Cannot add an IDENTITY column using ALTER TABLE command.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to add an IDENTITY column to a table using the ALTER TABLE command. Trafodion does not presently support this.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1540">3.196. SQL 1540</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">The NO POPULATE clause is not allowed for index &lt;index-name&gt; on volatile table &lt;table-name&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to execute a CREATE INDEX statement to create an index on a volatile table, and you specified the NO POPULATE option. That option
+is not allowed for indexes on volatile tables.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Remove the NO POPULATE clause from the statement and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1541">3.197. SQL 1541</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Use of BLOB/CLOB datatype as a key of the base table or an index is not allowed.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to execute a CREATE TABLE statement with a BLOB or CLOB column in the primary key, or you attempted to execute a CREATE INDEX
+statement that referenced a CLOB or BLOB column. This is not allowed.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1550">3.198. SQL 1550</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Failed to create UDF &lt;udf-name&gt; with &lt;number&gt; parameters. A scalar UDF can have a maximum of 32 parameters.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;udf-name&gt; is the name of a user defined function that you specified.</p>
+</div>
+<div class="paragraph">
+<p>Where &lt;number&gt; is the number of parameters in the function signature that you specified.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to execute a CREATE FUNCTION statement and you specified more than 32 parameters in the function signature. Trafodion
+only supports up to 32 parameters.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Reduce the number of parameters in the function and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1570">3.199. SQL 1570</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">MAXVALUE must be greater than MINVALUE for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is either "an IDENTITY column" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing a CREATE SEQUENCE statement, you specified a MAXVALUE that is less than or equal to the MINVALUE.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1571">3.200. SQL 1571</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&lt;value-name&gt; value cannot be zero for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;value-name&gt; is one of "INCREMENT BY", "MINVALUE" or "MAXVALUE".</p>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is one of "an IDENTITY column", "ALTER SEQUENCE" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a value of zero for INCREMENT BY,
+MINVALUE or MAXVALUE.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1572">3.201. SQL 1572</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&lt;value-name&gt; value cannot be a negative number for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;value-name&gt; is one of "INCREMENT BY", "MINVALUE" or "MAXVALUE".</p>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is one of "an IDENTITY column", "ALTER SEQUENCE" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a negative value for INCREMENT BY,
+MINVALUE or MAXVALUE.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1573">3.202. SQL 1573</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">START WITH value must be greater than or equal to MINVALUE and less than or equal to MAXVALUE for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is one of "an IDENTITY column", "ALTER SEQUENCE" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a value for START WITH that is
+less than the value for MINVALUE or greater than the value for MAXVALUE.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1575">3.203. SQL 1575</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">INCREMENT BY value cannot be greater than the difference between MINVALUE and MAXVALUE for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is one of "an IDENTITY column", "ALTER SEQUENCE" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a value for INCREMENT BY that is
+greater than the difference between the values for MINVALUE and MAXVALUE.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1576">3.204. SQL 1576</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&lt;value-name&gt; value is greater than maximum allowed for this sequence.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;value-name&gt; is one of "INCREMENT BY", "MAXVALUE" or "START WITH".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When creating an IDENTITY column or when executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a value that is larger than
+permitted for the data type of the column or sequence.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1577">3.205. SQL 1577</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CACHE value must be greater than 1 and less than or equal to (maxValue-startValue+1)/incrementValue for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is "ALTER SEQUENCE" or "CREATE SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When executing an ALTER SEQUENCE or CREATE SEQUENCE statement, you specified a value for CACHE that is less than one
+or is greater than (maxValue - startValue + 1)/incrementValue.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1579">3.206. SQL 1579</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">This sequence has reached its max and cannot provide a new value.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When executing a DML statement that uses the SEQNUM to obtain a value from a sequence, or when
+inserting a row into a table having an IDENTITY column, the underlying sequence had already reached its
+maximum value.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> If desired, use ALTER SEQUENCE to increase the maximum value for the sequence, then resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1582">3.207. SQL 1582</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Internal Error: Sequence information does not exist in metadata.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When executing a DML statement that references a sequence, Trafodion could not find
+the sequence definition in the Trafodion metadata.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Contact the Trafodion distribution list. If the DML statement involves an IDENTITY
+column it is likely the existing data is not at risk, however it may not be possible to create new
+rows using the IDENTITY column&#8217;s underlying sequence. If the DML statement involves getting new
+values from a sequence via the SEQNUM function, it may be possible to create a new sequence with
+a MINVALUE just greater to the last value taken from the sequence, and use the new sequence instead.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1583">3.208. SQL 1583</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Sequence metadata could not be updated.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When executing a DML statement that references a sequence, the sequence metadata could
+not be updated.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Contact the Trafodion distribution list.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1584">3.209. SQL 1584</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Timestamp mismatch detected on Sequence object.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> When executing a DML statement that references a sequence, the Trafodion run-time
+engine discovered a mismatch between the expected state of the sequence and the state found
+at run-time.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Contact the Trafodion distribution list. If this is a PREPAREd statement,
+re-PREPARing it may cure the error.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1590">3.210. SQL 1590</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Column &lt;column-name&gt; is not an IDENTITY column.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;column-name&gt; is the column name you specified.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to execute an ALTER TABLE ALTER COLUMN statement, setting an IDENTITY-column-related
+value such as INCREMENT BY. However, the column specified is not an IDENTITY column.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the table name or column name in the statement and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-1592">3.211. SQL 1592</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">&lt;value-name&gt; cannot be specified for &lt;purpose&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where &lt;value-name&gt; is "MINVALUE" or "START WITH".</p>
+</div>
+<div class="paragraph">
+<p>Where &lt;purpose&gt; is "ALTER SEQUENCE".</p>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to modify the MINVALUE or START WITH values for a sequence in an ALTER SEQUENCE statement but
+this is not allowed.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the statement and resubmit.</p>
 </div>
 </div>
 </div>
@@ -6005,7 +6424,7 @@ and resubmit.</p>
 <h3 id="SQL-2004">4.1. SQL 2004</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Internal error: error from MXCMP; cannot work on this query.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Internal error: error from Compiler; cannot work on this query.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6022,7 +6441,7 @@ and resubmit.</p>
 <h3 id="SQL-2009">4.2. SQL 2009</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">The user transaction must be rolled back (or committed, if that makes sense in the application) before MXCMP can be restarted and proceed.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">The user transaction must be rolled back (or committed, if that makes sense in the application) before Compiler can be restarted and proceed.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6040,7 +6459,7 @@ and resubmit.</p>
 <h3 id="SQL-2011">4.3. SQL 2011</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Server process could not be created - error &lt;number&gt; while resolving program file name &lt;name&gt;.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Server process could not be created - Operating system error &lt;number&gt; while resolving program file name &lt;name&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8200,18 +8619,18 @@ an interval qualifier.</p>
 <h3 id="SQL-3014">5.14. SQL 3014</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">Precision of numeric, &lt;value&gt;, cannot exceed 18.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">Precision of numeric, &lt;value&gt;, cannot exceed &lt;limit&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Cause:</strong> You defined a numeric item, &lt;value&gt;, with precision greater
-than 18, which is not supported.</p>
+than the limit, which is not supported.</p>
 </div>
 <div class="paragraph">
 <p><strong>Effect:</strong> The operation fails.</p>
 </div>
 <div class="paragraph">
-<p><strong>Recovery:</strong> Redefine the item with a precision value of 18 or less.</p>
+<p><strong>Recovery:</strong> Redefine the item with a lower precision value.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -8771,7 +9190,7 @@ numeric type, which is not supported.</p>
 <h3 id="SQL-3045">5.45. SQL 3045</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">The date &lt;value&gt; is not valid.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">The date '&lt;value&gt;' is not valid.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8788,7 +9207,7 @@ numeric type, which is not supported.</p>
 <h3 id="SQL-3046">5.46. SQL 3046</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">The time &lt;value&gt; is not valid.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">The time '&lt;value&gt;' is not valid.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8806,7 +9225,7 @@ numeric type, which is not supported.</p>
 <h3 id="SQL-3047">5.47. SQL 3047</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">The timestamp &lt;value&gt; is not valid.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">The timestamp '&lt;value&gt;' is not valid.</code></pre>
 </div>
 </div>
 <div class="paragraph">
