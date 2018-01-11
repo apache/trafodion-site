@@ -18436,6 +18436,618 @@ lower compaction activity after completion than Trickle Load.</p>
 </div>
 <div class="sect3">
 <h4 id="load_examples">4.2.3. Examples of LOAD</h4>
+<div class="sect4">
+<h5 id="continue_on_error_examples">Examples of <code>CONTINUE ON ERROR</code></h5>
+<div class="paragraph">
+<p>Suppose that we have following tables:</p>
+</div>
+<div class="paragraph">
+<p><em>source_table</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM source_table;
+A            B
+-----------  ----
+          1  aaaa
+          2  bbbb
+          3  cccc
+          4  dd
+          5  ee
+          6  fff
+--- 6 row(s) selected.
+
+SQL&gt;SHOWDDL source_table;
+CREATE TABLE TRAFODION.SEABASE.SOURCE_TABLE
+  (
+    A                                INT DEFAULT NULL NOT SERIALIZED
+  , B                                CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>target_table1</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM target_table1;
+--- 0 row(s) selected.
+
+SQL&gt;SHOWDDL target_table1;
+CREATE TABLE TRAFODION.SEABASE.TARGET_TABLE1
+  (
+    A                                INT DEFAULT NULL NOT SERIALIZED
+  , B                                CHAR(3) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The examples below demonstrate how the LOAD Statement behaves without and with <code>CONTINUE ON ERROR</code>, when ignorable data conversion errors occur.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When loading data from <em>source_table</em> into <em>target_table1</em> if <code>CONTINUE ON ERROR</code> is not specified, the operation fails with a data conversion error.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD INTO target_table1 SELECT * FROM source_table;
+
+UTIL_OUTPUT
+-------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-03 16:15:53.222441
+Task:  CLEANUP         Status: Ended      Time: 2018-01-03 16:15:53.250826
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.028
+Task:  LOADING DATA    Status: Started    Time: 2018-01-03 16:15:53.250909
+*** ERROR[8402] A string overflow occurred during the evaluation of a character expression. Conversion of Source Type:CHAR(REC_BYTE_F_ASCII,4 BYTES,ISO88591) Source Value:aaaa to Target Type:CHAR(REC_BYTE_F_ASCII,3 BYTES,ISO88591). [2018-01-03 16:15:54]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>When loading data from <em>source_table</em> into <em>target_table1</em> if <code>CONTINUE ON ERROR</code> is specified, the operation succeeds after ignorable data conversion errors.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD WITH CONTINUE ON ERROR INTO target_table1 SELECT * FROM source_table;
+
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Ended      Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  PREPARATION     Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+       Rows Processed: 3
+Task:  PREPARATION     Status: Ended      ET: 00:00:03.151
+Task:  COMPLETION      Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  COMPLETION      Status: Ended      ET: 00:00:01.137
+--- 3 row(s) loaded.
+
+UTIL_OUTPUT
+-------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-03 16:19:43.543405
+Task:  CLEANUP         Status: Ended      Time: 2018-01-03 16:19:43.568828
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.025
+Task:  LOADING DATA    Status: Started    Time: 2018-01-03 16:19:43.568899
+       Rows Processed: 6
+       Error Rows:     3
+Task:  LOADING DATA    Status: Ended      Time: 2018-01-03 16:19:44.211150
+Task:  LOADING DATA    Status: Ended      Elapsed Time:    00:00:00.642
+Task:  COMPLETION      Status: Started    Time: 2018-01-03 16:19:44.211192
+       Rows Loaded:    3
+Task:  COMPLETION      Status: Ended      Time: 2018-01-03 16:19:45.171458
+Task:  COMPLETION      Status: Ended      Elapsed Time:    00:00:00.960
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table1;
+A           B
+----------- ----
+          4 dd
+          5 ee
+          6 fff
+--- 3 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="log_error_rows_examples">Examples of <code>LOG ERROR ROWS [TO error-location-name]</code></h5>
+<div class="paragraph">
+<p>Suppose that we have two same tables (<em>source_table</em> and <em>target_table1</em>) as shown in the <a href="#continue_on_error_examples">Examples of <code>CONTINUE ON ERROR</code></a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This example explains how the LOAD statement loads data and logs error rows to the default directory <code>user/trafodion/bulkload/logs</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD WITH LOG ERROR ROWS INTO target_table1 SELECT * FROM source_table;
+
+UTIL_OUTPUT
+-------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-03 16:23:03.142862
+Task:  CLEANUP         Status: Ended      Time: 2018-01-03 16:23:03.151725
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.009
+Logging Location: /user/trafodion/bulkload/logs/ERR_TRAFODION.SEABASE.TARGET_TABLE_20180103_082303
+Task:  LOADING DATA    Status: Started    Time: 2018-01-03 16:23:03.151815
+       Rows Processed: 6
+       Error Rows:     3
+Task:  LOADING DATA    Status: Ended      Time: 2018-01-03 16:23:03.920270
+Task:  LOADING DATA    Status: Ended      Elapsed Time:    00:00:00.768
+Task:  COMPLETION      Status: Started    Time: 2018-01-03 16:23:03.920313
+       Rows Loaded:    3
+Task:  COMPLETION      Status: Ended      Time: 2018-01-03 16:23:04.301579
+Task:  COMPLETION      Status: Ended      Elapsed Time:    00:00:00.381
+--- SQL operation complete.
+
+SQL&gt;select * from target_table1;
+A           B
+----------- ----
+          4 dd
+          5 ee
+          6 fff
+--- 3 row(s) selected.
+
+[root@cent-1 bin]$ hdfs dfs -ls /user/trafodion/bulkload/logs/
+Found 1 items
+drwxr-xr-x   - trafodion trafodion          0 2018-01-13 16:23
+/user/trafodion/bulkload/logs/ERR_TRAFODION.SEABASE.TARGET_TABLE_20180103_082303</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example shows how the LOAD statement loads and logs error rows to the specified directory <code>user/trafodion/bulkload/error_log</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD WITH LOG ERROR ROWS TO '/BULKLOAD/ERROR_LOG' INTO target_table1 SELECT * FROM source_table;
+
+UTIL_OUTPUT
+-------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-03 17:19:43.436689
+Task:  CLEANUP         Status: Ended      Time: 2018-01-03 17:19:43.456761
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.020
+Logging Location: /bulkload/error_log/ERR_TRAFODION.SEABASE.TARGET_TABLE_20180103_091943
+Task:  LOADING DATA    Status: Started    Time: 2018-01-03 17:19:43.456804
+       Rows Processed: 6
+       Error Rows:     3
+Task:  LOADING DATA    Status: Ended      Time: 2018-01-03 17:19:43.722825
+Task:  LOADING DATA    Status: Ended      Elapsed Time:    00:00:00.266
+Task:  COMPLETION      Status: Started    Time: 2018-01-03 17:19:43.722868
+       Rows Loaded:    3
+Task:  COMPLETION      Status: Ended      Time: 2018-01-03 17:19:44.591544
+Task:  COMPLETION      Status: Ended      Elapsed Time:    00:00:00.869
+--- SQL operation complete.
+
+[root@cent-1 bin]$ hdfs dfs -ls /bulkload/error_log
+Found 1 items
+drwxr-xr-x   - trafodion trafodion          0 2018-01-03 17:19
+/bulkload/error_log/ERR_TRAFODION.SEABASE.TARGET_TABLE_20180103_091943</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="stop_after_num_error_rows_examples">Examples of <code>STOP AFTER num ERROR ROWS</code></h5>
+<div class="paragraph">
+<p>Suppose that we have two same tables (<em>source_table</em> and <em>target_table1</em>) as shown in the <a href="#continue_on_error_examples">Examples of <code>CONTINUE ON ERROR</code></a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The examples below illustrate how the LOAD Statement behaves depending on the different <code>num</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD WITH STOP AFTER 2 ERROR ROWS INTO target_table1 SELECT * FROM source_table;
+
+UTIL_OUTPUT
+---------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-05 10:53:52.20569
+Task:  CLEANUP         Status: Ended      Time: 2018-01-05 10:53:52.45689
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.025
+Task:  LOADING DATA    Status: Started    Time: 2018-01-05 10:53:52.45757
+*** WARNING[8114] The number of error rows is 3 [2018-01-05 10:53:53]
+*** ERROR[8113] The maximum number of error rows is exceeded. [2018-01-05 10:53:53]
+*** WARNING[8114] The number of error rows is 3 [2018-01-05 10:53:53]
+
+SQL&gt;SELECT * FROM target_table1;
+--- 0 row(s) selected.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;LOAD WITH STOP AFTER 3 ERROR ROWS INTO target_table1 SELECT * FROM source_table;
+
+UTIL_OUTPUT
+---------------------------------------------------------------------------------------------
+Task:  LOAD            Status: Started    Object: TRAFODION.SEABASE.TARGET_TABLE1
+Task:  CLEANUP         Status: Started    Time: 2018-01-05 15:55:58.975459
+Task:  CLEANUP         Status: Ended      Time: 2018-01-05 15:55:59.20219
+Task:  CLEANUP         Status: Ended      Elapsed Time:    00:00:00.045
+Task:  LOADING DATA    Status: Started    Time: 2018-01-05 15:55:59.20322
+       Rows Processed: 6
+       Error Rows:     3
+Task:  LOADING DATA    Status: Ended      Time: 2018-01-05 15:55:59.960109
+Task:  LOADING DATA    Status: Ended      Elapsed Time:    00:00:00.940
+Task:  COMPLETION      Status: Started    Time: 2018-01-05 15:55:59.960180
+       Rows Loaded:    3
+Task:  COMPLETION      Status: Ended      Time: 2018-01-05 15:56:00.448496
+Task:  COMPLETION      Status: Ended      Elapsed Time:    00:00:00.488
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table1;
+A           B
+----------- ----
+          4 dd
+          5 ee
+          6 fff
+--- 3 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="index_table_only_examples">Examples of <code>INDEX TABLE ONLY</code></h5>
+<div class="paragraph">
+<p>Suppose that we have following tables:</p>
+</div>
+<div class="paragraph">
+<p><em>source_table</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM source_table;
+A            B
+-----------  ----
+          1  aaaa
+          2  bbbb
+          3  cccc
+          4  dd
+          5  ee
+          6  fff
+--- 6 row(s) selected.
+
+SQL&gt;SHOWDDL source_table;
+CREATE TABLE TRAFODION.SEABASE.SOURCE_TABLE
+  (
+    A                                INT DEFAULT NULL NOT SERIALIZED
+  , B                                CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>target_table1</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM target_table1;
+--- 0 row(s) selected.
+
+SQL&gt;SHOWDDL target_table1;
+CREATE TABLE TRAFODION.SEABASE.TARGET_TABLE1
+  (
+    A                                INT DEFAULT NULL NOT SERIALIZED
+  , B                                CHAR(3) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>target_table2</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;select * from target_table2;
+--- 0 row(s) selected.
+
+SQL&gt;showddl target_table2;
+CREATE TABLE TRAFODION.SEABASE.TARGET_TABLE2
+  (
+    A                                INT NO DEFAULT NOT NULL NOT DROPPABLE NOT
+      SERIALIZED
+  , B                                CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  , PRIMARY KEY (A ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>target_table3</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT * FROM target_table3;
+--- 0 row(s) selected.
+
+SHOWDDL target_table3;
+CREATE TABLE TRAFODION.SEABASE.TARGET_TABLE3
+  (
+    A                                INT NO DEFAULT NOT NULL NOT DROPPABLE NOT
+      SERIALIZED
+  , B                                CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  , PRIMARY KEY (A ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>target_table4</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT * FROM target_table4;
+--- 0 row(s) selected.
+
+CREATE TABLE TRAFODION.SEABASE.TARGET_TABLE4
+  (
+    A                                INT DEFAULT NULL NOT SERIALIZED
+  , B                                CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The examples below demonstrate how the index table and target tabel get populated.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The index table gets populated, while the target table does not get populated if <code>NO POPULATE</code> is specified.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE INDEX index_target_table1 ON target_table1(b) NO POPULATE;
+--- SQL operation complete.
+
+SQL&gt;SET PARSERFLAGS 1;
+--- SQL operation complete.
+
+SQL&gt;LOAD WITH INDEX TABLE ONLY INTO TABLE(INDEX_TABLE index_target_table1) SELECT b,a FROM source_table;
+--- SQL operation complete.
+
+SQL&gt;select * from target_table1;
+--- 0 row(s) selected.
+
+select * from table(index_table index_target_table1);
+B@    A
+----  --------------------
+aaaa                     1
+bbbb                     2
+cccc                     3
+dd                       4
+ee                       5
+fff                      6
+--- 6 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The index table gets populated, and the target table gets populated as well if <code>NO POPULATE</code> is not specified.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE INDEX index_target_table1 ON target_table1(b);
+--- SQL operation complete.
+
+SQL&gt;SET PARSERFLAGS 1;
+--- SQL operation complete.
+
+SQL&gt;LOAD WITH INDEX TABLE ONLY INTO TABLE(INDEX_TABLE index_target_table1) SELECT b,a FROM source_table;
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table1;
+A            B
+-----------  ----
+          1  aaaa
+          2  bbbb
+          3  cccc
+          4  dd
+          5  ee
+          6  fff
+--- 6 row(s) selected.
+
+SQL&gt;select * from table(index_table index_target_table1);
+B@    A
+----  --------------------
+aaaa                     1
+bbbb                     2
+cccc                     3
+dd                       4
+ee                       5
+fff                      6
+--- 6 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The examples below illustrate that how to populate index tables depending on different target tables.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <em>target_table2</em> has columns A (primary key column) and B (index column) defined, in this case, populate the index table with columns B and A from the <em>source_table</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE INDEX index_target_table2 ON target_table2(b) NO POPULATE;
+--- SQL operation complete.
+
+SQL&gt;SET PARSERFLAGS 1;
+--- SQL operation complete.
+
+SQL&gt;SHOWDDL TABLE(INDEX_TABLE index_target_table2);
+CREATE TABLE TRAFODION.SEABASE.INDEX_TARGET_TABLE2
+  (
+    &quot;B@&quot;                             CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT NO DEFAULT NOT SERIALIZED
+  , A                                INT NO DEFAULT NOT NULL NOT DROPPABLE NOT
+      SERIALIZED
+  , PRIMARY KEY (&quot;B@&quot; ASC, A ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+
+SQL&gt;LOAD WITH INDEX TABLE ONLY INTO TABLE(INDEX_TABLE index_target_table2) SELECT b,a FROM source_table;
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table2;
+--- 0 row(s) selected.
+
+SQL&gt;SELECT * FROM TABLE(INDEX_TABLE index_target_table2);
+B@    A
+----  --------------------
+aaaa                     1
+bbbb                     2
+cccc                     3
+dd                       4
+ee                       5
+fff                      6
+--- 6 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The <em>target_table3</em> has columns A (primary key column and index column) and B defined, in this case, populate the index table with column A from the <em>source_table</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE INDEX index_target_table3 ON target_table3(a) NO POPULATE;
+--- SQL operation complete.
+
+SQL&gt;SET PARSERFLAGS 1;
+--- SQL operation complete.
+
+SQL&gt;SHOWDDL TABLE(INDEX_TABLE index_target_table3);
+CREATE TABLE TRAFODION.SEABASE.INDEX_TARGET_TABLE3
+  (
+    &quot;A@&quot;                             INT NO DEFAULT NOT NULL NOT DROPPABLE NOT
+      SERIALIZED
+  , PRIMARY KEY (&quot;A@&quot; ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+
+SQL&gt;LOAD WITH INDEX TABLE ONLY INTO TABLE(INDEX_TABLE index_target_table3) SELECT a FROM source_table;
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table3;
+--- 0 row(s) selected.
+
+SQL&gt; SELECT * FROM TABLE(INDEX_TABLE index_target_table3);
+A@
+-----------
+          1
+          2
+          3
+          4
+          5
+          6
+--- 6 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The <em>target_table4</em> has columns A (index column) and B defined, in this case, populate the index table with column A and syskey from the <em>source_table</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt; create index index_target_table4 on target_table4(a) no populate;
+--- SQL operation complete.
+
+SQL&gt;SET PARSERFLAGS 1;
+--- SQL operation complete.
+
+SQL&gt;SHOWDDL TABLE(INDEX_TABLE index_target_table4);
+CREATE TABLE TRAFODION.SEABASE.INDEX_TARGET_TABLE4
+  (
+    &quot;A@&quot;                             INT NO DEFAULT NOT SERIALIZED
+  , SYSKEY                           LARGEINT NO DEFAULT NOT NULL NOT DROPPABLE
+      NOT SERIALIZED
+  , PRIMARY KEY (&quot;A@&quot; ASC, SYSKEY ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+--- SQL operation complete.
+
+SQL&gt;LOAD WITH INDEX TABLE ONLY INTO TABLE(INDEX_TABLE index_target_table4) SELECT a,syskey FROM source_table;
+--- SQL operation complete.
+
+SQL&gt;SELECT * FROM target_table4;
+--- 0 row(s) selected.
+
+SQL&gt;SELECT * FROM TABLE(INDEX_TABLE index_target_table4);
+A@           SYSKEY
+-----------  --------------------
+          1   4239726128363214004
+          2   4239726128363256924
+          3   4239726128363258834
+          4   4239726128363260240
+          5   4239726128363261628
+          6   4239726128363263088
+--- 6 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At this moment, if you want to drop the index, such as <em>index_target_table2</em>, <em>index_target_table3</em> or <em>index_target_table4</em> created above, please populate the index from its parent table before dropping it, see the example below. For more information, see <a href="#populate_index_utility">POPULATE INDEX Utility</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt; DROP INDEX index_target_table4;
+*** ERROR[4254] Object TRAFODION.SEABASE.INDEX_TARGET_TABLE4 has invalid state and cannot be accessed. Use cleanup command to drop it.
+
+SQL&gt; POPULATE INDEX index_target_table4 ON target_table4;
+--- SQL operation complete.
+
+SQL&gt; DROP INDEX index_target_table4;
+--- SQL operation complete.</code></pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -18508,6 +19120,7 @@ Task: POPULATE INDEX Status: Ended ET: 00:00:05.262</code></pre>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect2">
