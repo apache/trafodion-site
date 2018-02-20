@@ -1758,7 +1758,6 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#considerations_for_rollup">7.100.1. Considerations for ROLLUP</a></li>
 <li><a href="#examples_of_rollup">7.100.2. Examples of ROLLUP</a></li>
-<li><a href="#examples_of_null">7.100.3. Examples of NULL</a></li>
 </ul>
 </li>
 <li><a href="#round_function">7.101. ROUND Function</a>
@@ -11002,17 +11001,18 @@ option is:
     COMPONENT PRIVILEGES ON component-name [FOR auth-name]
   | COMPONENTS
   | FUNCTIONS FOR LIBRARY [[catalog-name.]schema-name.]library-name
-  | functions [in schema [catalog-name.]schema-name]
-  | libraries [in schema [catalog-name.]schema-name]
-  | procedures for library [[catalog-name.]schema-name.]library-name
-  | procedures [in schema [catalog-name.]schema-name]
-  | roles [for user database-username]
-  | schemas [in catalog catalog-name]
-  | schemas for [user | role] authorization-id
-  | tables [in schema [catalog-name.]schema-name]
-  | users [for role role-name]
-  | views [in schema [catalog-name.]schema-name]
-  | views on table [[catalog-name.]schema-name.]table-name</code></pre>
+  | FUNCTIONS [IN SCHEMA [catalog-name.]schema-name]
+  | LIBRARIES [IN SCHEMA [catalog-name.]schema-name]
+  | PROCEDURES FOR LIBRARY [[catalog-name.]schema-name.]library-name
+  | PROCEDURES [IN SCHEMA [catalog-name.]schema-name]
+  | ROLES [FOR USER database-username]
+  | SCHEMAS [IN CATALOG catalog-name]
+  | SCHEMAS FOR [USER | ROLE] authorization-id
+  | TABLES [IN SCHEMA [catalog-name.]schema-name]
+  | USERS [FOR ROLE role-name]
+  | VIEWS [IN SCHEMA [catalog-name.]schema-name]
+  | VIEWS ON TABLE [[catalog-name.]schema-name.]table-name
+  | PRIVILEGES FOR {USER database-username | ROLE role-name}</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -11027,16 +11027,12 @@ option is:
 </li>
 <li>
 <p><code>COMPONENT PRIVILEGES ON <em>component-name</em> FOR <em>auth-name</em></code></p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>displays the component privileges that have been granted to the specified authorization name for the specified component.
 The <em>auth-name</em> is either a registered database username or an existing role name and can be a regular or delimited
 case-insensitive identifier. See <a href="#case_insensitive_delimited_identifiers">Case-Insensitive Delimited Identifiers</a>.</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><code>COMPONENTS</code></p>
 <div class="paragraph">
@@ -11070,7 +11066,7 @@ the catalog is TRAFODION, and the schema is SEABASE.</p>
 <li>
 <p><code>libraries</code></p>
 <div class="paragraph">
-<p>displays the names of all the libraries in the catalog and schema of the current session. by default, the catalog is trafodion,
+<p>displays the names of all the libraries in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
@@ -11083,7 +11079,7 @@ and the schema is seabase.</p>
 <li>
 <p><code>procedures</code></p>
 <div class="paragraph">
-<p>displays the names of all the procedures in the catalog and schema of the current session. by default, the catalog is trafodion,
+<p>displays the names of all the procedures in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
@@ -11108,20 +11104,20 @@ and the schema is seabase.</p>
 <li>
 <p><code>roles for user <em>database-username</em></code></p>
 <div class="paragraph">
-<p>displays all the roles that have been granted to the specified database user. the <em>database-username</em> can be a regular or delimited
+<p>displays all the roles that have been granted to the specified database user. The <em>database-username</em> can be a regular or delimited
 case-insensitive identifier. see <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.</p>
 </div>
 </li>
 <li>
 <p><code>schemas</code></p>
 <div class="paragraph">
-<p>displays the names of all the schemas in the catalog of the current session. by default, the catalog is trafodion.</p>
+<p>displays the names of all the schemas in the catalog of the current session. By default, the catalog is trafodion.</p>
 </div>
 </li>
 <li>
 <p><code>schemas in catalog <em>catalog-name</em></code></p>
 <div class="paragraph">
-<p>displays the names of all the schemas in the specified catalog. for the <em>catalog-name</em>, you can specify only trafodion.</p>
+<p>displays the names of all the schemas in the specified catalog. For the <em>catalog-name</em>, you can specify only trafodion.</p>
 </div>
 </li>
 <li>
@@ -11131,7 +11127,7 @@ case-insensitive identifier. see <a href="#case_insensitive_delimited_identifier
 </div>
 </li>
 <li>
-<p>`<em>authorization-id</em></p>
+<p><code><em>authorization-id</em></code></p>
 <div class="paragraph">
 <p>is the name of a user or role. you may specify either user or role for users or roles.</p>
 </div>
@@ -11139,7 +11135,7 @@ case-insensitive identifier. see <a href="#case_insensitive_delimited_identifier
 <li>
 <p><code>tables</code></p>
 <div class="paragraph">
-<p>displays the names of all the tables in the catalog and schema of the current session. by default, the catalog is trafodion,
+<p>displays the names of all the tables in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
@@ -11158,8 +11154,8 @@ and the schema is seabase.</p>
 <li>
 <p><code>users for role <em>role-name</em></code></p>
 <div class="paragraph">
-<p>displays all the database users who have been granted the specified role. the <em>role-name</em> can be a regular or delimited
-case-insensitive identifier. see <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.</p>
+<p>displays all the database users who have been granted the specified role. The <em>role-name</em> can be a regular or delimited
+case-insensitive identifier. For more information, see <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.</p>
 </div>
 </li>
 </ul>
@@ -11170,21 +11166,21 @@ case-insensitive identifier. see <a href="#case_insensitive_delimited_identifier
 <li>
 <p><code>views</code></p>
 <div class="paragraph">
-<p>displays the names of all the views in the catalog and schema of the current session. by default, the catalog is trafodion,
+<p>displays the names of all the views in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
 <li>
 <p><code>views in schema <em class="_catalog-name_.">schema-name</em></code></p>
 <div class="paragraph">
-<p>displays the names of all the views in the specified schema. for the <em>catalog-name</em>, you can specify only trafodion.</p>
+<p>displays the names of all the views in the specified schema. For the <em>catalog-name</em>, you can specify only trafodion.</p>
 </div>
 </li>
 <li>
 <p><code>views on table [[_catalog-name_.]<em>schema-name</em>.]<em>table-name</em></code></p>
 <div class="paragraph">
-<p>displays the names of all the views that were created for the specified table. if you do not qualify the table name with
-catalog and schema names, get uses the catalog and schema of the current session. for the <em>catalog-name</em>, you can specify
+<p>displays the names of all the views that were created for the specified table. If you do not qualify the table name with
+catalog and schema names, get uses the catalog and schema of the current session. For the <em>catalog-name</em>, you can specify
 only trafodion.</p>
 </div>
 </li>
@@ -11200,7 +11196,7 @@ only trafodion.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The GET COMPONENT PRIVILEGES, GET COMPONENTS, GET ROLES FOR USER, and GET USERS FOR ROLE statements work only when
+The GET COMPONENT PRIVILEGES, GET COMPONENTS, GET ROLES FOR USER, GET USERS FOR ROLE statements and GET PRIVILEGES FOR {USER database-username | ROLE role-name} statements work only when
 authentication and authorization are enabled in Trafodion. For more information, see
 <a href="http://trafodion.apache.org/docs/provisioning_guide/index.html#enable-security" class="bare">http://trafodion.apache.org/docs/provisioning_guide/index.html#enable-security</a> [Enable Secure Trafodion].
 </td>
@@ -11379,7 +11375,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays a list of all the existing components:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get components;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET COMPONENTS;</code></pre>
 </div>
 </div>
 </li>
@@ -11387,7 +11383,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays the names of the component privileges available for the SQL_OPERATIONS component:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get component privileges on sql_operations;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET COMPONENT PRIVILEGES ON sql_operations;</code></pre>
 </div>
 </div>
 </li>
@@ -11395,7 +11391,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays the component privileges that have been granted to the DB ROOT user for the SQL_OPERATIONS component:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get component privileges on sql_operations for db root;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET COMPONENT PRIVILEGES ON sql_operations FOR db root;</code></pre>
 </div>
 </div>
 </li>
@@ -11403,7 +11399,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays a list of all the existing roles:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get roles;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET ROLES;</code></pre>
 </div>
 </div>
 </li>
@@ -11411,7 +11407,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays all the roles that have been granted to the DB ROOT user:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get roles for user db root;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET ROLES FOR USER db root;</code></pre>
 </div>
 </div>
 </li>
@@ -11419,7 +11415,7 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays a list of all the registered database users:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get users;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET USERS;</code></pre>
 </div>
 </div>
 </li>
@@ -11427,7 +11423,62 @@ TRAFODION.SEABASE:</p>
 <p>This GET statement displays all the database users who have been granted the DB ROOTROLE role:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">get users for role db rootrole;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GET USERS FOR ROLE db rootrole;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example demonstrates how to grant privileges to the specified database user <em>testuser1</em> and display privileges.</p>
+<div class="paragraph">
+<p>The <em>testuser1</em> grants some privileges to the <em>testuser2</em> on the table <em>project</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT DELETE, INSERT, REFERENCES, SELECT (PROJCODE,PROJDESC), UPDATE ON TABLE project TO testuser2;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This GET statement displays all the privileges that have been granted to the <em>testuser2</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET PRIVILEGES FOR USER testuser2;
+
+-IDU-R-    TRAFODION.SEABASE.PROJECT
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; PROJCODE
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; PROJDESC
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example shows how to grant privileges to the specified role <em>"TECHNICAL_WRITER"</em> and display privileges.</p>
+<div class="paragraph">
+<p>The <em>testuser1</em> grants some privileges to the <em>"TECHNICAL_WRITER"</em> on the table <em>project</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT DELETE, INSERT, REFERENCES, SELECT (start_date,ship_timestamp,est_complete), UPDATE ON TABLE project TO &quot;TECHNICAL_WRITER&quot;;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This GET statement displays all the privileges that have been granted to the <em>"TECHNICAL_WRITER"</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET PRIVILEGES FOR ROLE &quot;TECHNICAL_WRITER&quot;;
+
+-IDU-R-    TRAFODION.SEABASE.PROJECT
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; EST_COMPLETE
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; SHIP_TIMESTAMP
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; START_DATE
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
@@ -12352,7 +12403,7 @@ grantee is:
 <div class="ulist">
 <ul>
 <li>
-<p>`<em>role-name</em> [,<em>role-name</em>] &#8230;</p>
+<p><code><em>role-name</em> [,<em>role-name</em>]_</code></p>
 <div class="paragraph">
 <p>specifies the existing roles to grant.</p>
 </div>
@@ -29439,6 +29490,11 @@ evaluation of the expression argument.</p></td>
 evaluation of the expression argument.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#rollup_function">ROLLUP Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculates multiple levels of subtotals aggregating from right to left through the
+comma-separated list of columns, and provides a grand total.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#stddev_function">STDDEV Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Computes the statistical standard deviation of a group of numbers
 derived from the evaluation of the expression argument of the function.
@@ -38623,7 +38679,7 @@ SET jobdesc = RIGHT (jobdesc, 12);</code></pre>
 <p>The ROLLUP function calculates multiple levels of subtotals aggregating from right to left through the comma-separated list of columns, and provides a grand total.</p>
 </div>
 <div class="paragraph">
-<p>ROLLUP is an extension to the 'GROUP BY' clause. Related features such as the GROUPING function can be used with 'ORDER BY' to control the placement of summary results.</p>
+<p>ROLLUP is an extension to the <code>GROUP BY</code> clause. Related features such as the GROUPING function can be used with <code>ORDER BY</code> to control the placement of summary results.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38839,9 +38895,8 @@ GROUP BY ROLLUP (delivery_year, region, product);</code></pre>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="examples_of_null">7.100.3. Examples of NULL</h4>
+<div class="sect4">
+<h5 id="examples_of_null">Examples of NULL</h5>
 <div class="paragraph">
 <p>The example below demonstrates how ROLLUP treats NULLs in the selected columns and generates NULLs for super-aggregate rows.</p>
 </div>
@@ -38895,6 +38950,7 @@ GROUP BY ROLLUP (delivery_year, region, product);</code></pre>
          NULL NULL   NULL                                             3600
 
 --- 16 row(s) selected.</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
