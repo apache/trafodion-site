@@ -1273,6 +1273,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-4310">6.177. SQL 4310</a></li>
 <li><a href="#SQL-4313">6.178. SQL 4313</a></li>
 <li><a href="#SQL-4320">6.179. SQL 4320</a></li>
+<li><a href="#SQL-4323">6.180. SQL 4323</a></li>
 </ul>
 </li>
 <li><a href="#optimizer-messages">7. Optimizer Messages (6000 through 6999)</a>
@@ -16313,6 +16314,23 @@ the flag ATTEMPT_ASYNCHRONOUS_ACCESS was set to OFF.</p>
 <p><strong>Recovery:</strong> Set the ATTEMPT_ASYNCHRONOUS_ACCESS flag to ON and resubmit.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="SQL-4323">6.180. SQL 4323</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Use of predefined UDF &lt;name&gt; is deprecated and this function will be removed in a future release. Please use the function with the same name in schema TRAFODION.&quot;_LIBMGR_&quot; instead. You may need to issue this command first: INITIALIZE TRAFODION, UPGRADE LIBRARY MANAGEMENT.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> See message.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation succeeds - this is only a warning.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> See message.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -30990,7 +31008,7 @@ contact <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-01-03 21:27:09 UTC
+Last updated 2018-03-12 18:50:29 UTC
 </div>
 </div>
 <script>
