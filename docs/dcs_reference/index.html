@@ -109,7 +109,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2018-03-12T18:58</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2018-03-18T20:56</p></td>
 </tr>
 </tbody>
 </table>
@@ -280,37 +280,9 @@ A restart is needed for servers to pick up changes.</p>
 <div class="sect1">
 <h2 id="_java">3. Java</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Java</caption>
-<colgroup>
-<col style="width: 14%;">
-<col style="width: 14%;">
-<col style="width: 14%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">DCS Version</th>
-<th class="tableblock halign-left valign-top">JDK 6</th>
-<th class="tableblock halign-left valign-top">JDK 7</th>
-<th class="tableblock halign-left valign-top">JDK 8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Running with JDK 8 has not been tested.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Not Supported</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>DCS is configured to use default version of JDK as defined by Trafodion configuration.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -350,12 +322,6 @@ for example, will default to 127.0.1.1 and this will cause problems for you. <em
 <a href="http://en.wikipedia.org/wiki/Network_Time_Protocol">NTP</a> on your cluster, or an equivalent.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_windows">4.5. Windows</h3>
-<div class="paragraph">
-<p>DCS is not supported on Windows.</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -374,7 +340,7 @@ single node, it runs all DCS daemons and a local ZooKeeper all on the same node.
 <p>Multi node is where the daemons are spread across all nodes in the cluster. Before proceeding, ensure you have a working Trafodion instance.</p>
 </div>
 <div class="paragraph">
-<p>Below we describe the different setups. Starting, verification and exploration of your install. Configuration is described in a
+<p>Below sections describe the various configuration files that needs to be set up for starting DCS processes. Configuration is described in a
 section that follows, <a href="#running.and.confirming.your.installation">Running and Confirming Your Installation</a>.</p>
 </div>
 <div class="paragraph">
@@ -388,30 +354,20 @@ etc. Set <code>JAVA_HOME</code> to point at the root of your <em>java</em> insta
 <div class="sect3">
 <h4 id="__em_servers_em">5.2.1. <em>servers</em></h4>
 <div class="paragraph">
-<p>In addition, a multi-node deploy requires that you
-modify <em>conf/servers</em>. The  <em>servers</em> file  lists all hosts that you would have running
+<p>A multi-node deploy requires that you modify <em>conf/servers</em>. The  <em>servers</em> file  lists all hosts that you would have running
 DcsServers, one host per line or the host name followed by the number of master executor servers.
 All servers listed in this file will be started and stopped when DCS start or stop is run.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__em_backup_masters_em">5.2.2. <em>backup-masters</em></h4>
+<h4 id="__em_masters_em">5.2.2. <em>masters</em></h4>
 <div class="paragraph">
-<p>The  <em>backup-masters</em> file lists all hosts that you would have running
-backup DcsMaster processes, one host per line. All servers listed in this file will be started
-and stopped when DCS start or stop is run.</p>
+<p>The  <em>masters</em> file lists the host of the primary and backup DcsMaster processes, one host per line. All servers listed
+in this file will be started and stopped when DCS stop and start is run.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__em_master_em">5.2.3. <em>master</em></h4>
-<div class="paragraph">
-<p>The  <em>master</em> file lists the host of the primary DcsMaster process. Only one host is allowed to
-be the primary master. The server listed in this file will be started
-and stopped when DCS start or stop is run.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_zookeeper_and_dcs">5.2.4. ZooKeeper and DCS</h4>
+<h4 id="_zookeeper_and_dcs">5.2.3. ZooKeeper and DCS</h4>
 <div class="paragraph">
 <p>See section <a href="#zookeeper">Zookeeper</a> for ZooKeeper setup for DCS.</p>
 </div>
@@ -420,8 +376,8 @@ and stopped when DCS start or stop is run.</p>
 <div class="sect2">
 <h3 id="running.and.confirming.your.installation">5.3. Running and Confirming Your Installation</h3>
 <div class="paragraph">
-<p>Make sure Trafodion is running first. Start and stop the Trafodion instance by running <em>sqstart.sh</em> over in the
-<code>TRAF_HOME/sql/scripts</code> directory. You can ensure it started properly by testing with <em>sqcheck</em>.
+<p>Before you start DCS make sure Trafodion is up and running first. Start and stop the Trafodion instance by running <em>sqstart.sh</em> over in the
+<code>$TRAF_HOME/sql/scripts</code> directory. You can ensure it started properly by testing with <em>sqcheck</em>.
 If you are managing your own ZooKeeper, start it and confirm its running else, DCS will start up ZooKeeper
 for you as part of its start process.</p>
 </div>
@@ -1247,19 +1203,14 @@ Each option is fairly well documented.  Add your own environment variables here 
 </div>
 </div>
 <div class="sect2">
-<h3 id="__em_master_em_2">7.5. <em>master</em></h3>
+<h3 id="__em_masters_em_2">7.5. <em>masters</em></h3>
 <div class="paragraph">
-<p>A plain-text file which lists hostname or host IP address  on which the primary master process should be started. Only one host is allowed to be the primary master</p>
+<p>A plain-text file which lists of hostname or host IP address  on which the primary and backup master process should be started. The first entry will be the primary DcsMaster and the renamining lines
+will be the backup DcsMaster nodes. Only one host per line is allowed</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="__em_backup_masters_em_2">7.6. <em>backup-masters</em></h3>
-<div class="paragraph">
-<p>A plain-text file which lists hosts on which the backup master process should be started. Only one host per line is allowed</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="__em_servers_em_2">7.7. <em>servers</em></h3>
+<h3 id="__em_servers_em_2">7.6. <em>servers</em></h3>
 <div class="paragraph">
 <p>A plain-text file which lists hosts on which the DcsServer server process should be started. Only one host per line or the host name followed by the count or number of master executor servers. All servers listed in this file will be started and stopped when DCS start or stop is run.</p>
 </div>
@@ -1334,30 +1285,23 @@ there are two DcsServrs per node each starting a single mxosrvr:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__em_master_em_3">8.1.3. <em>master</em></h4>
+<h4 id="__em_masters_em_3">8.1.3. <em>masters</em></h4>
 <div class="paragraph">
-<p>In this file, you list the node that will run primary DcsMasters.</p>
+<p>In this file, you list all the nodes that will run DcsMasters. The first entry
+will be the primary DcsMaster and the remaining nodes will be the backup DcsMasters.
+In the below example, host4 will be the primary DcsMaster node and host5 and host6 are
+the backup DcsMaster nodes</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">  example4</code></pre>
+<pre class="CodeRay highlight"><code data-lang="console">  host4
+  host5
+  host6</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__em_backup_masters_em_3">8.1.4. <em>backup-masters</em></h4>
-<div class="paragraph">
-<p>In this file, you list the nodes that will run backup DcsMasters. In this case,
-there is a backup master running on the second node:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">  example2</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="__em_dcs_env_sh_em_2">8.1.5. <em>dcs-env.sh</em></h4>
+<h4 id="__em_dcs_env_sh_em_2">8.1.4. <em>dcs-env.sh</em></h4>
 <div class="paragraph">
 <p>Below we use a <em>diff</em> to show the differences from default in the <em>dcs-env.sh</em> file. Here we
 are setting the DCS heap to be 4G instead of the default 128M.</p>
@@ -1392,21 +1336,21 @@ index e70ebc6..96f8c27 100644
 <h2 id="ha.configurations">9. High Availability(HA) Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The master configuration file for DcsMaster may be configured by adding the host name to the <em>conf/master</em> file. If the master is
+<p>The master configuration file for DcsMaster may be configured by adding the host name to the <em>conf/masters</em> file. If the master is
 configured to start on the remote node then, during start of dcs the primary master will be started on the remote
-node. If the <em>conf/master</em> file is empty then the primary master will be started on the host where the dcs start script was run.
-Similarly, DcsMaster backup servers may be configured by adding host names to the <em>conf/backup-masters</em> file. They are
+node. If the <em>conf/masters</em> file is empty then the primary master will be started on the host where the dcs start script was run.
+Similarly, DcsMaster backup servers may be configured by adding additional host names to the <em>conf/masters</em> file. They are
 started and stopped automatically by the <em>bin/master-backup.sh</em> script whenever DCS is started or stopped. Every backup
 DcsMaster follows the current leader DcsMaster watching for it to fail. If failure of the leader occurs, first
 backup DcsMaster in line for succession checks to see if floating IP is enabled. If enabled it executes
 the <em>bin/scripts/dcsbind.sh</em> script to add a floating IP address to an interface on its node. It then continues
 with normal initialization and eventually starts listening for new client connections. It may take
 several seconds for the take over to complete. When a failed node is restored a new DcsMaster backup may
-be started manually by executing the <em>bin/dcs-daemon.sh</em> script on the restored node.</p>
+be started manually by executing the <em>dcstart</em> script from any node.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>&gt;bin/dcs-daemon.sh start master</pre>
+<pre>&gt;`TRAF_HOME/sql/scripts/dcsstart`</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1923,7 +1867,7 @@ To exit , Press Ctrl-D , both the client and server will exit.</pre>
 More comprehensive documentation is available in the <a href="http://asciidoctor.org/docs/user-manual">AsciiDoctor user manual</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. AsciiDoc Cheat Sheet</caption>
+<caption class="title">Table 1. AsciiDoc Cheat Sheet</caption>
 <colgroup>
 <col style="width: 33%;">
 <col style="width: 33%;">
@@ -2434,7 +2378,7 @@ Some of these are preferences, but others can create mysterious build errors or 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-12 18:50:29 UTC
+Last updated 2018-01-03 21:27:09 UTC
 </div>
 </div>
 </body>
