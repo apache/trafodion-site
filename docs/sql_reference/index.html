@@ -30050,172 +30050,224 @@ character set.</p></td>
 return a result of datetime data type:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7-3 Overview of DATETIME Functions</caption>
 <colgroup>
 <col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
 </colgroup>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Name</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Return Data Type</strong></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#add_months_function">ADD_MONTHS Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds the integer number of months specified by <em>intr_expr</em>
 to <em>datetime_expr</em> and normalizes the result.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#converttimestamp_function">CONVERTTIMESTAMP Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a Julian timestamp to a TIMESTAMP value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#current_function">CURRENT Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the current timestamp. You can also use the
 <a href="#current_timestamp_function">CURRENT_TIMESTAMP Function</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#current_date_function">CURRENT_DATE Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the current date.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#current_time_function">CURRENT_TIME Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the current time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIME</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#current_timestamp_function">CURRENT_TIMESTAMP Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the current timestamp. You can also use the <a href="#current_function">CURRENT Function</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#date_add_function">DATE_ADD Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds the interval specified by <em>interval_expression</em>
 to <em>datetime_expr</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#date_part_function_of_an_interval">DATE_PART Function (of an Interval)</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extracts the datetime field specified by <em>text</em> from the interval value
-specified by interval and returns the result as an exact numeric value.</p></td>
+specified by interval and returns the result as an exact numeric.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#date_part_function_of_a_timestamp">DATE_PART Function (of a Timestamp)</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extracts the datetime field specified by <em>text</em> from the datetime value
-specified by timestamp and returns the result as an exact numeric value.</p></td>
+specified by timestamp and returns the result as an exact numeric.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#date_sub_function">DATE_SUB Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Subtracts the specified <em>interval_expression</em> from
 <em>datetime_expr.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE or TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#date_trunc_function">DATE_TRUNC Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the date with the time portion of the day truncated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dateadd_function">DATEADD Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds the interval specified by <em>datepart</em> and <em>num_expr</em>
 to <em>datetime_expr</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE or TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#datediff_function">DATEDIFF Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>datepart</em> units of time
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer for the number of <em>datepart</em> units of time
 between <em>startdate</em> and <em>enddate</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dateformat_function">DATEFORMAT Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Formats a datetime value for display purposes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#day_function">DAY Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 31 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 31 that represents the
 corresponding day of the month. You can also use DAYOFMONTH.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 31)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dayname_function">DAYNAME Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns the name of the day of the week from a date or timestamp
 expression.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dayofmonth_function">DAYOFMONTH Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 31 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 31 that represents the
 corresponding day of the month. You can also use DAY.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 31)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dayofweek_function">DAYOFWEEK Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 7 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 7 that represents the
 corresponding day of the week.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 7)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#dayofyear_function">DAYOFYEAR Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 366 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 366 that represents the
 corresponding day of the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 366)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#extract_function">EXTRACT Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns a specified datetime field from a datetime value expression or
 an interval value expression.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#hour_function">HOUR Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 0 through 23 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 0 through 23 that represents the
 corresponding hour of the day.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 0 to 23)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#juliantimestamp_function">JULIANTIMESTAMP Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a datetime value to a Julian timestamp.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#minute_function">MINUTE Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 0 through 59 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 0 through 59 that represents the
 corresponding minute of the hour.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 0 to 59)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#month_function">MONTH Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 12 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 12 that represents the
 corresponding month of the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 12)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#monthname_function">MONTHNAME Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Returns a character literal that is the name of the month of the year
 (January, February, and so on).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#quarter_function">QUARTER Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 4 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 4 that represents the
 corresponding quarter of the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 4)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#second_function">SECOND Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 0 through 59 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 0 through 59 that represents the
 corresponding second of the minute.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 0 to 59)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#sysdate_function">SYSDATE Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the current date of the server rather than the session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#systimestamp_function">SYSTIMESTAMP Function</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the current date and time (including fractional seconds with six-digit precision) of the server rather than the session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#timestampadd_function">TIMESTAMPADD Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds the interval of time specified by <em>interval-ind</em> and
 <em>num_expr</em> to <em>datetime_expr</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE or TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#timestampdiff_function">TIMESTAMPDIFF Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer value for the number of <em>interval-ind_units of time between _startdate</em> and <em>enddate</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the integer for the number of <em>interval-ind_units of time between _startdate</em> and <em>enddate</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_char_function">TO_CHAR Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a datetime value to a character value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_date_function">TO_DATE Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a date or timestamp value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE or TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_time_function">TO_TIME Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a time value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIME</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#to_timestamp_function">TO_TIMESTAMP Function</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Converts a character value to a timestamp value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#week_function">WEEK Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value in the range 1 through 54 that represents the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer in the range 1 through 54 that represents the
 corresponding week of the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER (from 1 to 54)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#year_function">YEAR Function</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer value that represents the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns an integer that represents the year.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
 </tr>
 </tbody>
 </table>
@@ -33380,7 +33432,7 @@ returned. See <a href="#datetime_value_expressions">Datetime Value Expressions</
 <div class="sect2">
 <h3 id="datediff_function">7.39. DATEDIFF Function</h3>
 <div class="paragraph">
-<p>The DATEDIFF function returns the integer value for the number of
+<p>The DATEDIFF function returns the integer for the number of
 <em>datepart</em> units of time between <em>startdate</em> and <em>enddate</em>.</p>
 </div>
 <div class="paragraph">
@@ -34156,9 +34208,6 @@ TIMESTAMP. See <a href="#datetime_value_expressions">Datetime Value Expressions<
 <p>Return the name of the day of the week from the start date column in the
 project table:</p>
 </div>
-<div class="paragraph">
-<p>+</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SELECT start_date, ship_timestamp, DAYNAME(start_date)
@@ -34177,7 +34226,7 @@ Start/Date Time/Shipped               (EXPR)
 <h3 id="dayofmonth_function">7.45. DAYOFMONTH Function</h3>
 <div class="paragraph">
 <p>The DAYOFMONTH function converts a DATE or TIMESTAMP expression into an
-INTEGER value in the range 1 through 31 that represents the
+INTEGER in the range 1 through 31 that represents the
 corresponding day of the month. The result returned by the DAYOFMONTH
 function is equal to the result returned by the DAY function.</p>
 </div>
@@ -34228,7 +34277,7 @@ Start/Date Time/Shipped               (EXPR)
 <h3 id="dayofweek_function">7.46. DAYOFWEEK Function</h3>
 <div class="paragraph">
 <p>The DAYOFWEEK function converts a DATE or TIMESTAMP expression into an
-INTEGER value in the range 1 through 7 that represents the corresponding
+INTEGER in the range 1 through 7 that represents the corresponding
 day of the week. The value 1 represents Sunday, 2 represents Monday, and
 so forth.</p>
 </div>
@@ -34282,7 +34331,7 @@ Start/Date Time/Shipped               (EXPR)
 <h3 id="dayofyear_function">7.47. DAYOFYEAR Function</h3>
 <div class="paragraph">
 <p>The DAYOFYEAR function converts a DATE or TIMESTAMP expression into an
-INTEGER value in the range 1 through 366 that represents the
+INTEGER in the range 1 through 366 that represents the
 corresponding day of the year.</p>
 </div>
 <div class="paragraph">
@@ -35689,7 +35738,7 @@ tom              91 77 43</code></pre>
 <h3 id="hour_function">7.60. HOUR Function</h3>
 <div class="paragraph">
 <p>The HOUR function converts a TIME or TIMESTAMP expression into an
-INTEGER value in the range 0 through 23 that represents the
+INTEGER in the range 0 through 23 that represents the
 corresponding hour of the day.</p>
 </div>
 <div class="paragraph">
@@ -36955,7 +37004,7 @@ MIN (PARTCOST * QTY_ORDERED)</code></pre>
 <h3 id="minute_function">7.77. MINUTE Function</h3>
 <div class="paragraph">
 <p>The MINUTE function converts a TIME or TIMESTAMP expression into an
-INTEGER value, in the range 0 through 59, that represents the
+INTEGER, in the range 0 through 59, that represents the
 corresponding minute of the hour.</p>
 </div>
 <div class="paragraph">
@@ -41749,7 +41798,7 @@ returned.</p>
 <div class="sect2">
 <h3 id="timestampdiff_function">7.128. TIMESTAMPDIFF Function</h3>
 <div class="paragraph">
-<p>The TIMESTAMPDIFF function returns the integer value for the number of
+<p>The TIMESTAMPDIFF function returns the integer for the number of
 <em>interval-ind</em> units of time between <em>startdate</em> and <em>enddate</em>. If
 <em>enddate</em> precedes <em>startdate</em>, the return value is negative or zero.</p>
 </div>
@@ -43046,7 +43095,7 @@ Start/Date Time/Shipped               (EXPR)
 <h3 id="year_function">7.139. YEAR Function</h3>
 <div class="paragraph">
 <p>The YEAR function converts a DATE or TIMESTAMP expression into an
-INTEGER value that represents the year.</p>
+INTEGER that represents the year.</p>
 </div>
 <div class="paragraph">
 <p>YEAR is a Trafodion SQL extension.</p>
