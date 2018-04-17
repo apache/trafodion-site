@@ -640,9 +640,9 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#_initialize_meta_data">6.4. Initialize Meta-Data</a></li>
 <li><a href="#_upgrade_from_prior_version">6.5. Upgrade from Prior Version</a>
-<ul class="sectlevel4">
-<li><a href="#_upgrade_entire_hdp_stack">Upgrade Entire HDP Stack</a></li>
-<li><a href="#_upgrade_only_trafodion">Upgrade Only Trafodion</a></li>
+<ul class="sectlevel3">
+<li><a href="#_upgrade_entire_hdp_stack">6.5.1. Upgrade Entire HDP Stack</a></li>
+<li><a href="#_upgrade_only_trafodion">6.5.2. Upgrade Only Trafodion</a></li>
 </ul>
 </li>
 </ul>
@@ -1585,20 +1585,25 @@ that matches the security policies of your organization.
 <div class="sect4">
 <h5 id="_example_quick_start_using_a_trafodion_configuration_file">Example: Quick start using a Trafodion Configuration File</h5>
 <div class="paragraph">
-<p>The Trafodion Installer supports a minimum configuration to quick start your installation in two steps.
-1. Copy Trafodion server binary file to your installer directory.</p>
+<p>The Trafodion Installer supports a minimum configuration to quick start your installation in two steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy Trafodion server binary file to your installer directory.</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">cp /path/to/apache-trafodion_server-2.2.0-RH-x86_64.tar.gz python-installer/</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Modify configuration file <code>my_config</code>, add the Hadoop Distribution Manager URL in <code>mgr_url</code>.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Example</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1607,6 +1612,9 @@ that matches the security policies of your organization.
 </div>
 <div class="paragraph">
 <p>Once completed, run the Trafodion Installer with the --config-file option.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -3332,8 +3340,8 @@ and then from the Service Actions menu choose "Initialize" and confirm the actio
 <pre>$ sudo ambari-server restart</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_upgrade_entire_hdp_stack">Upgrade Entire HDP Stack</h5>
+<div class="sect3">
+<h4 id="_upgrade_entire_hdp_stack">6.5.1. Upgrade Entire HDP Stack</h4>
 <div class="paragraph">
 <p>Ambari requires version upgrades to be an entire stack, not single components. If you want to
 include a trafodion upgrade in entire stack version upgrade, first upgrade the traf_ambari
@@ -3345,8 +3353,8 @@ define the Trafodion-2.2 URL that points to a repo server with the new apache-tr
 package.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_upgrade_only_trafodion">Upgrade Only Trafodion</h5>
+<div class="sect3">
+<h4 id="_upgrade_only_trafodion">6.5.2. Upgrade Only Trafodion</h4>
 <div class="paragraph">
 <p>In this case, Ambari will not upgrade a single component, so the apache-trafodion_server
 package must be installed on each node directly (via yum command). Once that is done, the

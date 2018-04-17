@@ -109,7 +109,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.3.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2018-03-26T15:23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2018-04-17T22:53</p></td>
 </tr>
 </tbody>
 </table>
@@ -1182,6 +1182,66 @@ to turn up such configurations is via a reading of the source code itself.</p>
 <div class="paragraph">
 <div class="title">Default</div>
 <p><code>6</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.tcp.keepalive.status" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.tcp.keepalive.status</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>If tcp keepalive is enabled. The default is true. Set false to disable.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>true</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.tcp.keepalive.idletime" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.tcp.keepalive.idletime</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Time in seconds for the interval between the last data packet sent and the first keepalive probe. The default is 300.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>300</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.tcp.keepalive.intervaltime" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.tcp.keepalive.intervaltime</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>Time in seconds for interval between two keepalive probes . The default is 3.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>3</code></p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="dcs.server.user.program.tcp.keepalive.retrycount" class="dlist">
+<dl>
+<dt class="hdlist1"><code>dcs.server.user.program.tcp.keepalive.retrycount</code></dt>
+<dd>
+<div class="paragraph">
+<div class="title">Description</div>
+<p>The maximum number of keepalive probes TCP should send before dropping the connection.</p>
+</div>
+<div class="paragraph">
+<div class="title">Default</div>
+<p><code>3</code></p>
 </div>
 </dd>
 </dl>
