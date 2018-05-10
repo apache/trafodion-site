@@ -556,9 +556,10 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#sql_language">2.1. SQL Language</a></li>
 <li><a href="#using_trafodion_sql_to_access_hbase_tables">2.2. Using Trafodion SQL to Access HBase Tables</a>
 <ul class="sectlevel3">
-<li><a href="#ways_to_access_hbase_tables">2.2.1. Ways to Access HBase Tables</a></li>
-<li><a href="#trafodion_sql_tables_versus_native_hbase_tables">2.2.2. Trafodion SQL Tables Versus Native HBase Tables</a></li>
-<li><a href="#supported_sql_statements_with_hbase_tables">2.2.3. Supported SQL Statements With HBase Tables</a></li>
+<li><a href="#initializing_the_trafodion_metadata">2.2.1. Initializing the Trafodion Metadata</a></li>
+<li><a href="#ways_to_access_hbase_tables">2.2.2. Ways to Access HBase Tables</a></li>
+<li><a href="#trafodion_sql_tables_versus_native_hbase_tables">2.2.3. Trafodion SQL Tables Versus Native HBase Tables</a></li>
+<li><a href="#supported_sql_statements_with_hbase_tables">2.2.4. Supported SQL Statements With HBase Tables</a></li>
 </ul>
 </li>
 <li><a href="#using_trafodion_sql_to_access_hive_tables">2.3. Using Trafodion SQL to Access Hive Tables</a>
@@ -2670,7 +2671,19 @@ identifiers, literals, and predicates. For more information, see:</p>
 <a href="http://trafodion.apache.org/docs/cqd_reference/index.hmtl">Trafodion Control Query Default (CQD) Reference Guide</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="ways_to_access_hbase_tables">2.2.1. Ways to Access HBase Tables</h4>
+<h4 id="initializing_the_trafodion_metadata">2.2.1. Initializing the Trafodion Metadata</h4>
+<div class="paragraph">
+<p>Before using SQL statements for the first time to access HBase tables, you will need to initialize the Trafodion metadata.
+To initialize the Trafodion metadata, run this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">initialize trafodion;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ways_to_access_hbase_tables">2.2.2. Ways to Access HBase Tables</h4>
 <div class="paragraph">
 <p>Trafodion SQL supports these ways to access HBase tables:</p>
 </div>
@@ -2823,7 +2836,7 @@ PRIMARY KEY (ROW_ID)
 </div>
 </div>
 <div class="sect3">
-<h4 id="trafodion_sql_tables_versus_native_hbase_tables">2.2.2. Trafodion SQL Tables Versus Native HBase Tables</h4>
+<h4 id="trafodion_sql_tables_versus_native_hbase_tables">2.2.3. Trafodion SQL Tables Versus Native HBase Tables</h4>
 <div class="paragraph">
 <p>Trafodion SQL tables have many advantages over regular HBase tables:</p>
 </div>
@@ -2855,7 +2868,7 @@ so users lose the flexibility of dynamic columns that comes with HBase.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="supported_sql_statements_with_hbase_tables">2.2.3. Supported SQL Statements With HBase Tables</h4>
+<h4 id="supported_sql_statements_with_hbase_tables">2.2.4. Supported SQL Statements With HBase Tables</h4>
 <div class="paragraph">
 <p>You can use these SQL statements with HBase tables:</p>
 </div>
@@ -31214,7 +31227,7 @@ value) is set to the last valid day of the result month. See
 <h3 id="ascii_function">7.12. ASCII Function</h3>
 <div class="paragraph">
 <p>The ASCII function returns the integer that is the ASCII code of the
-first character in a character string expression associated with either
+first character in a character string expression associated with
 the ISO88591 character set or the UTF8 character set.</p>
 </div>
 <div class="paragraph">
@@ -31228,10 +31241,13 @@ the ISO88591 character set or the UTF8 character set.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>_character-expression</code></p>
+<p><code><em>character-expression</em></code></p>
 <div class="paragraph">
 <p>is an SQL character value expression that specifies a string of
-characters. See <a href="#character_value_expressions">Character Value Expressions</a>.</p>
+characters.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="#character_value_expressions">Character Value Expressions</a>.</p>
 </div>
 </li>
 </ul>
@@ -31239,14 +31255,472 @@ characters. See <a href="#character_value_expressions">Character Value Expressio
 <div class="sect3">
 <h4 id="considerations_for_ascii">7.12.1. Considerations For ASCII</h4>
 <div class="paragraph">
-<p>For a string expression in the UTF8 character set, if the value of the
-first byte in the string is greater than 127, Trafodion SQL returns this
-error message:</p>
+<p>The ASCII function handles string literals and columns differently:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For a string, the value of the character or <strong>the value of each character</strong> in the string cannot be greater than 255, or else it returns the following error:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">*** ERROR[4106] The character set for the operand of function ASCII must be ISO88591</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ERROR[8428] The argument to function ASCII is not valid.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT ASCII('ÿ') FROM DUAL;
+
+(EXPR)
+----------
+       255
+
+--- 1 row(s) selected.</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT ASCII('u') FROM DUAL;
+
+(EXPR)
+----------
+       117
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT ASCII('ÿu') FROM DUAL;
+
+(EXPR)
+----------
+       255
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT ASCII('昱') FROM DUAL;
+
+*** ERROR[4106] The character set for the operand of function ASCII must be ISO88591. [2018-05-07 06:01:55]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT ASCII('ÿu昱') FROM DUAL;
+
+*** ERROR[4106] The character set for the operand of function ASCII must be ISO88591. [2018-05-08 08:21:34]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For a column, the string expression(s) in this column can be only single-byte, or else it returns the following error:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">*** ERROR[8428] The argument to function ASCII is not valid.</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For a string in a column with definition of UTF8, the value of the first byte in the string cannot be greater than 127.</p>
+</li>
+<li>
+<p>For a string in a column with definition of ISO88591, the value of the first byte in the string can be all characters in the ISO88591 character set.</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. UTF8 (with and without error)&#8201;&#8212;&#8201;Table with One Row</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t25;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T25
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T25 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t24;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T24
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T24 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t25;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">昱u
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t24;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">u昱
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t25;
+</p><p class="tableblock">***ERROR[8428] The argument to function ASCII is not valid. [2018-05-08 10:14:08]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t24;
+</p><p class="tableblock"></p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. UTF8 (with and without error)&#8201;&#8212;&#8201;Table with Two Rows</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t26;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T26
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T26 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t27;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T27
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T27 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t26;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">u昱
+</p><p class="tableblock">昱u
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t27;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">u昱
+</p><p class="tableblock">u昱
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t26;
+</p><p class="tableblock">***ERROR[8428] The argument to function ASCII is not valid. [2018-05-08 10:29:03]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t27;
+</p><p class="tableblock"></p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Comparison between UTF8 and ISO88591 (with error)&#8201;&#8212;&#8201;Table with One Row</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ISO99591</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t11;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T11
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T11 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t12;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T12
+  (
+    C1                               CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T12 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t11;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">ÿu
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t12;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">ÿu
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t1;
+</p><p class="tableblock">***ERROR[8428] The argument to function ASCII is not valid. [2018-05-07 02:13:42]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t2;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       255
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Comparison between UTF8 and ISO88591 (without error)&#8201;&#8212;&#8201;Table with One Row</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ISO99591</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t17;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T17
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T17 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t18;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T18
+  (
+    C1                               CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T18 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t17;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t18;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t17;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t18;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 1 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Comparison between UTF8 and ISO88591 (with error)&#8201;&#8212;&#8201;Table with Two Rows</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ISO99591</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t22;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T22
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock"></p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T22 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t23;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T23
+  (
+    C1                               CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T23 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t22;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">ÿu
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t23;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">ÿu
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t22;
+</p><p class="tableblock"><strong>*</strong> ERROR[8428] The argument to function ASCII is not valid. [2018-05-08 10:01:29]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t23;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">       255
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 6. Comparison between UTF8 and ISO88591 (without error)&#8201;&#8212;&#8201;Table with Two Rows</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 45%;">
+<col style="width: 45%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Column Definition</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ISO99591</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Table Structure</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t20;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T20
+  (
+    C1                               CHAR(4 CHARS) CHARACTER SET UTF8 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">&#8201;&#8212;&#8201;GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T20 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SHOWDDL t21;
+</p><p class="tableblock">CREATE TABLE TRAFODION.SEABASE.T21
+  (
+    C1                               CHAR(4) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+</p><p class="tableblock">--- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T21 TO DB__ROOT WITH GRANT OPTION;
+</p><p class="tableblock">--- SQL operation complete.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Data</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t20;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT * FROM t21;
+</p><p class="tableblock">C1
+</p><p class="tableblock">----
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">uÿ
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Result</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t20;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SQL&gt;SELECT ASCII(c1) FROM t21;
+</p><p class="tableblock">(EXPR)
+</p><p class="tableblock">----------
+</p><p class="tableblock">       117
+</p><p class="tableblock">       117
+</p><p class="tableblock">--- 2 row(s) selected.</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
