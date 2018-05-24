@@ -6008,11 +6008,16 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE | UNIQUE] INDEX index ON table
+<pre class="CodeRay highlight"><code data-lang="text">CREATE [VOLATILE | UNIQUE] INDEX index-name ON table
    (column-name [ASC[ENDING] | DESC[ENDING]]
    [,column-name [ASC[ENDING] | DESC[ENDING]]]...)
+   [populate-option]
    [HBASE_OPTIONS (hbase-options-list)]
    [SALT LIKE TABLE]
+
+populate-option is:
+  POPULATE
+| NO POPULATE
 
 hbase-options-list is:
    hbase-option = 'value'[, hbase-option = 'value']...</code></pre>
@@ -6050,7 +6055,7 @@ Multiple NULL values are treated as duplicate values for a column which can cont
 </div>
 </li>
 <li>
-<p><code><em>index</em></code></p>
+<p><code><em>index-name</em></code></p>
 <div class="paragraph">
 <p>is an SQL identifier that specifies the simple name for the new index. You cannot qualify <em>index</em> with its schema
 name. Indexes have their own name space within a schema, so an index name might be the same as a table or constraint
@@ -6077,6 +6082,37 @@ to the order of the columns in the table.</p>
 for the first column, the values in the second column are used to order the rows, and so forth. If duplicate index
 rows occur in a non-unique index, their order is based on the sequence specified for the columns of the key of the
 underlying table. For ordering (but not for other purposes), nulls are greater than other values.</p>
+</div>
+</li>
+<li>
+<p><code>populate-option</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NO POPULATE</code></p>
+<div class="paragraph">
+<p>specifies that the index is not to be populated when it is created.</p>
+</div>
+<div class="paragraph">
+<p>The index’s partition(s) are created, but no data is written to the index, and it is marked “offline”. You can drop an offline index with the DROP INDEX statement.
+The DROP TABLE statement also drops offline indexes of the specified table.
+DML statements have no effect on offline indexes.</p>
+</div>
+<div class="paragraph">
+<p>If an index is created with the intention of using it for a constraint, it must be populated before creating the constraint.
+You can populate an offline index and remove its offline designation by using the POPULATE INDEX utility.</p>
+</div>
+</li>
+<li>
+<p><code>POPULATE</code></p>
+<div class="paragraph">
+<p>specifies that the index is to be created and populated.</p>
+</div>
+<div class="paragraph">
+<p>The default is <code>POPULATE</code>.</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -6436,6 +6472,16 @@ SQL&gt;create unique index idx_t25 on t25(b);
 </div>
 </div>
 </li>
+<li>
+<p>This exmaple creates the index <em>index_test</em> which is not to be populated on the column <em>c1</em> of the table <em>test</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;create index index_test on test (c1) no populate;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
@@ -6496,10 +6542,19 @@ and <a href="#database_object_names">database object names</a>.</p>
 <div class="paragraph">
 <p>specifies the full path of a deployed library file, which either an SPJ&#8217;s jar file or a UDF&#8217;s library file.</p>
 </div>
-<div class="paragraph">
-<p>note: make sure to upload the library file to the trafodion cluster and then copy the library file to the
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure to upload the library file to the trafodion cluster and then copy the library file to the
 same directory on all the nodes in the cluster before running the create library statement. otherwise, you
-will see an error message indicating that the jar or dll file was not found.</p>
+will see an error message indicating that the jar or dll file was not found.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -21094,7 +21149,7 @@ incrementally.</p>
 </div>
 </li>
 <li>
-<p><code>PERIODIC <em>size</em> ROWS EVERY <em>period</em> ROW</code></p>
+<p><code>PERIODIC <em>size</em> ROWS EVERY <em>period</em> ROWS</code></p>
 <div class="paragraph">
 <p>directs Trafodion SQL to choose the first <em>size</em> number of rows from
 each <em>period</em> of rows. The value <em>size</em> must be an integer that is
@@ -48733,7 +48788,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-01-03 21:27:09 UTC
+Last updated 2018-05-10 19:35:17 UTC
 </div>
 </div>
 <script>

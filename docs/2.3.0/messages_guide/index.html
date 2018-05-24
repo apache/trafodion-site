@@ -1244,37 +1244,38 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-4178">6.147. SQL 4178</a></li>
 <li><a href="#SQL-4179">6.148. SQL 4179</a></li>
 <li><a href="#SQL-4180">6.149. SQL 4180</a></li>
-<li><a href="#SQL-4183">6.150. SQL 4183</a></li>
-<li><a href="#SQL-4184">6.151. SQL 4184</a></li>
-<li><a href="#SQL-4189">6.152. SQL 4189</a></li>
-<li><a href="#SQL-4200">6.153. SQL 4200</a></li>
-<li><a href="#SQL-4201">6.154. SQL 4201</a></li>
-<li><a href="#SQL-4202">6.155. SQL 4202</a></li>
-<li><a href="#SQL-4203">6.156. SQL 4203</a></li>
-<li><a href="#SQL-4204">6.157. SQL 4204</a></li>
-<li><a href="#SQL-4205">6.158. SQL 4205</a></li>
-<li><a href="#SQL-4206">6.159. SQL 4206</a></li>
-<li><a href="#SQL-4207">6.160. SQL 4207</a></li>
-<li><a href="#SQL-4208">6.161. SQL 4208</a></li>
-<li><a href="#SQL-4209">6.162. SQL 4209</a></li>
-<li><a href="#SQL-4210">6.163. SQL 4210</a></li>
-<li><a href="#SQL-4212">6.164. SQL 4212</a></li>
-<li><a href="#SQL-4213">6.165. SQL 4213</a></li>
-<li><a href="#SQL-4214">6.166. SQL 4214</a></li>
-<li><a href="#SQL-4215">6.167. SQL 4215</a></li>
-<li><a href="#SQL-4216">6.168. SQL 4216</a></li>
-<li><a href="#SQL-4302">6.169. SQL 4302</a></li>
-<li><a href="#SQL-4303">6.170. SQL 4303</a></li>
-<li><a href="#SQL-4304">6.171. SQL 4304</a></li>
-<li><a href="#SQL-4305">6.172. SQL 4305</a></li>
-<li><a href="#SQL-4306">6.173. SQL 4306</a></li>
-<li><a href="#SQL-4307">6.174. SQL 4307</a></li>
-<li><a href="#SQL-4308">6.175. SQL 4308</a></li>
-<li><a href="#SQL-4309">6.176. SQL 4309</a></li>
-<li><a href="#SQL-4310">6.177. SQL 4310</a></li>
-<li><a href="#SQL-4313">6.178. SQL 4313</a></li>
-<li><a href="#SQL-4320">6.179. SQL 4320</a></li>
-<li><a href="#SQL-4323">6.180. SQL 4323</a></li>
+<li><a href="#SQL-4182">6.150. SQL 4182</a></li>
+<li><a href="#SQL-4183">6.151. SQL 4183</a></li>
+<li><a href="#SQL-4184">6.152. SQL 4184</a></li>
+<li><a href="#SQL-4189">6.153. SQL 4189</a></li>
+<li><a href="#SQL-4200">6.154. SQL 4200</a></li>
+<li><a href="#SQL-4201">6.155. SQL 4201</a></li>
+<li><a href="#SQL-4202">6.156. SQL 4202</a></li>
+<li><a href="#SQL-4203">6.157. SQL 4203</a></li>
+<li><a href="#SQL-4204">6.158. SQL 4204</a></li>
+<li><a href="#SQL-4205">6.159. SQL 4205</a></li>
+<li><a href="#SQL-4206">6.160. SQL 4206</a></li>
+<li><a href="#SQL-4207">6.161. SQL 4207</a></li>
+<li><a href="#SQL-4208">6.162. SQL 4208</a></li>
+<li><a href="#SQL-4209">6.163. SQL 4209</a></li>
+<li><a href="#SQL-4210">6.164. SQL 4210</a></li>
+<li><a href="#SQL-4212">6.165. SQL 4212</a></li>
+<li><a href="#SQL-4213">6.166. SQL 4213</a></li>
+<li><a href="#SQL-4214">6.167. SQL 4214</a></li>
+<li><a href="#SQL-4215">6.168. SQL 4215</a></li>
+<li><a href="#SQL-4216">6.169. SQL 4216</a></li>
+<li><a href="#SQL-4302">6.170. SQL 4302</a></li>
+<li><a href="#SQL-4303">6.171. SQL 4303</a></li>
+<li><a href="#SQL-4304">6.172. SQL 4304</a></li>
+<li><a href="#SQL-4305">6.173. SQL 4305</a></li>
+<li><a href="#SQL-4306">6.174. SQL 4306</a></li>
+<li><a href="#SQL-4307">6.175. SQL 4307</a></li>
+<li><a href="#SQL-4308">6.176. SQL 4308</a></li>
+<li><a href="#SQL-4309">6.177. SQL 4309</a></li>
+<li><a href="#SQL-4310">6.178. SQL 4310</a></li>
+<li><a href="#SQL-4313">6.179. SQL 4313</a></li>
+<li><a href="#SQL-4320">6.180. SQL 4320</a></li>
+<li><a href="#SQL-4323">6.181. SQL 4323</a></li>
 </ul>
 </li>
 <li><a href="#optimizer-messages">7. Optimizer Messages (6000 through 6999)</a>
@@ -15739,7 +15740,28 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4183">6.150. SQL 4183</h3>
+<h3 id="SQL-4182">6.150. SQL 4182</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Function &lt;function-name&gt; operand &lt;operand-position&gt; must be of type &lt;data-type&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> The expression given for the indicated operand of the indicated function
+has the wrong data type.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> Trafodion is unable to compile the statement.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Modify the statement and resubmit. If the expression in question
+is a dynamic parameter and the required
+data type is DATE, TIME, TIMESTAMP or INTERVAL, you must use a CAST expression to force
+the dynamic parameter to the required data type.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-4183">6.151. SQL 4183</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Embedded DELETE statements are not allowed on referenced tables.</code></pre>
@@ -15757,7 +15779,7 @@ table with a referential constraint.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4184">6.151. SQL 4184</h3>
+<h3 id="SQL-4184">6.152. SQL 4184</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Columns that are part of a referential constraint cannot be updated
@@ -15776,7 +15798,7 @@ columns that are part of a referential constraint.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4189">6.152. SQL 4189</h3>
+<h3 id="SQL-4189">6.153. SQL 4189</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">ORDER BY clause in an embedded INSERT, UPDATE, or DELETE statement
@@ -15796,7 +15818,7 @@ DELETE statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4200">6.153. SQL 4200</h3>
+<h3 id="SQL-4200">6.154. SQL 4200</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Stream expressions are not supported for compound statements.</code></pre>
@@ -15815,7 +15837,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4201">6.154. SQL 4201</h3>
+<h3 id="SQL-4201">6.155. SQL 4201</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Embedded &lt;name&gt; expression is not supported for compound statements.</code></pre>
@@ -15834,7 +15856,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4202">6.155. SQL 4202</h3>
+<h3 id="SQL-4202">6.156. SQL 4202</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">SEQUENCE BY is not supported for embedded &lt;name&gt; expressions.</code></pre>
@@ -15853,7 +15875,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4203">6.156. SQL 4203</h3>
+<h3 id="SQL-4203">6.157. SQL 4203</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Insert/Update/Delete operation on non-audited table &lt;name&gt; requires
@@ -15895,7 +15917,7 @@ other messages about that condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4204">6.157. SQL 4204</h3>
+<h3 id="SQL-4204">6.158. SQL 4204</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Stream access is supported for only key-sequenced tables. Table: &lt;name&gt;.</code></pre>
@@ -15914,7 +15936,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4205">6.158. SQL 4205</h3>
+<h3 id="SQL-4205">6.159. SQL 4205</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Embedded &lt;name-1&gt; is supported for only key-sequenced tables. Table: &lt;name-2&gt;.</code></pre>
@@ -15933,7 +15955,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4206">6.159. SQL 4206</h3>
+<h3 id="SQL-4206">6.160. SQL 4206</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Embedded &lt;name&gt; is supported only for updatable views. View: &lt;name-2&gt;.</code></pre>
@@ -15952,7 +15974,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4207">6.160. SQL 4207</h3>
+<h3 id="SQL-4207">6.161. SQL 4207</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Index &lt;name&gt; and other indexes covering a subset of columns do not
@@ -15973,7 +15995,7 @@ index.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4208">6.161. SQL 4208</h3>
+<h3 id="SQL-4208">6.162. SQL 4208</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Index &lt;name&gt; and other indexes covering a subset of columns do not
@@ -15993,7 +16015,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4209">6.162. SQL 4209</h3>
+<h3 id="SQL-4209">6.163. SQL 4209</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Update of nullable column &lt;name&gt; is not permitted on rollback.</code></pre>
@@ -16012,7 +16034,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4210">6.163. SQL 4210</h3>
+<h3 id="SQL-4210">6.164. SQL 4210</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Embedded update/delete statements not supported within an IF statement.</code></pre>
@@ -16031,7 +16053,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4212">6.164. SQL 4212</h3>
+<h3 id="SQL-4212">6.165. SQL 4212</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">&lt;table-name&gt; cannot be used to satisfy order requirement on the
@@ -16051,7 +16073,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4213">6.165. SQL 4213</h3>
+<h3 id="SQL-4213">6.166. SQL 4213</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Use of row sets in a predicate with embedded update/delete is not supported.</code></pre>
@@ -16070,7 +16092,7 @@ statement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4214">6.166. SQL 4214</h3>
+<h3 id="SQL-4214">6.167. SQL 4214</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The SET ON ROLLBACK clause is not allowed on a non-audited table. Table: &lt;name&gt;.</code></pre>
@@ -16088,7 +16110,7 @@ column in a non-audited table.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4215">6.167. SQL 4215</h3>
+<h3 id="SQL-4215">6.168. SQL 4215</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Stream access is not allowed on a non-audited table. Table: &lt;name&gt;.</code></pre>
@@ -16105,7 +16127,7 @@ column in a non-audited table.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4216">6.168. SQL 4216</h3>
+<h3 id="SQL-4216">6.169. SQL 4216</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The FIRST/ANY n syntax cannot be used with an embedded update or embedded delete statement.</code></pre>
@@ -16122,7 +16144,7 @@ column in a non-audited table.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4302">6.169. SQL 4302</h3>
+<h3 id="SQL-4302">6.170. SQL 4302</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Procedure &lt;procedure-name&gt; expects &lt;value-1&gt; parameters but was called with &lt;value-2&gt; parameters.</code></pre>
@@ -16141,7 +16163,7 @@ the compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4303">6.170. SQL 4303</h3>
+<h3 id="SQL-4303">6.171. SQL 4303</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The supplied type for parameter &lt;value&gt; of routine &lt;routine-name&gt; was &lt;type-name-1&gt; which is not compatible with the expected type &lt;type-name-2&gt;.</code></pre>
@@ -16161,7 +16183,7 @@ compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4304">6.171. SQL 4304</h3>
+<h3 id="SQL-4304">6.172. SQL 4304</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Host variable or dynamic parameter &lt;parameter-name&gt; is used in more than one OUT or INOUT parameter for routine &lt;routine-name&gt;. Results may be unpredictable.</code></pre>
@@ -16182,7 +16204,7 @@ parameters.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4305">6.172. SQL 4305</h3>
+<h3 id="SQL-4305">6.173. SQL 4305</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Parameter &lt;value&gt; for user-defined routine &lt;routine-name&gt; is an OUT
@@ -16204,7 +16226,7 @@ retry the compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4306">6.173. SQL 4306</h3>
+<h3 id="SQL-4306">6.174. SQL 4306</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">A CALL statement is not allowed within a compound statement.</code></pre>
@@ -16223,7 +16245,7 @@ retry the compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4307">6.174. SQL 4307</h3>
+<h3 id="SQL-4307">6.175. SQL 4307</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Rowset parameters are not allowed in a CALL statement.</code></pre>
@@ -16243,7 +16265,7 @@ different non-row-set host variable. Retry the compilation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4308">6.175. SQL 4308</h3>
+<h3 id="SQL-4308">6.176. SQL 4308</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Internal error: Unsupported SQL data type &lt;value&gt; specified for a
@@ -16265,7 +16287,7 @@ support.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4309">6.176. SQL 4309</h3>
+<h3 id="SQL-4309">6.177. SQL 4309</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Procedure &lt;procedure-name&gt; is registered to return result sets and
@@ -16291,7 +16313,7 @@ supports stored procedure result sets.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4310">6.177. SQL 4310</h3>
+<h3 id="SQL-4310">6.178. SQL 4310</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">USER(x) is currently supported only in the outermost SELECT list.
@@ -16310,7 +16332,7 @@ outermost SELECT clause. This function is not yet fully supported.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4313">6.178. SQL 4313</h3>
+<h3 id="SQL-4313">6.179. SQL 4313</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Function rand()is not supported.</code></pre>
@@ -16328,7 +16350,7 @@ supported.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4320">6.179. SQL 4320</h3>
+<h3 id="SQL-4320">6.180. SQL 4320</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Stream access not allowed on multi-partitioned table, when flag
@@ -16348,7 +16370,7 @@ the flag ATTEMPT_ASYNCHRONOUS_ACCESS was set to OFF.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-4323">6.180. SQL 4323</h3>
+<h3 id="SQL-4323">6.181. SQL 4323</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Use of predefined UDF &lt;name&gt; is deprecated and this function will be removed in a future release. Please use the function with the same name in schema TRAFODION.&quot;_LIBMGR_&quot; instead. You may need to issue this command first: INITIALIZE TRAFODION, UPGRADE LIBRARY MANAGEMENT.</code></pre>
@@ -31041,7 +31063,7 @@ contact <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-01-03 21:27:09 UTC
+Last updated 2018-05-10 19:35:17 UTC
 </div>
 </div>
 <script>
