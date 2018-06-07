@@ -874,8 +874,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#merge_syntax">3.40.1. Syntax Description of MERGE</a></li>
 <li><a href="#merge_considerations">3.40.2. Considerations for MERGE</a></li>
-<li><a href="#merge_upsert_using_single_row">3.40.3. Upsert Using Single Row</a></li>
-<li><a href="#merge_examples">3.40.4. Examples of MERGE</a></li>
+<li><a href="#merge_examples">3.40.3. Examples of MERGE</a></li>
 </ul>
 </li>
 <li><a href="#prepare_statement">3.41. PREPARE Statement</a>
@@ -5648,18 +5647,33 @@ EXECUTE y;                              -- uses MYSCHEMA;</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Increase the cache refresh time for the histogram cache to two hours (7,200 minutes).</p>
+<p>This example changes the maximum degree of parallelism to 2 for a query. The value must be less than the number of CPUs in the cluster.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CONTROL QUERY DEFAULT CACHE_HISTOGRAMS_REFRESH_INTERVAL '7200';</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CONTROL QUERY DEFAULT PARALLEL_NUM_ESPS '2';
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example resets the <code>PARALLEL_NUM_ESPS</code> attribute to its system value in the current process.
+In this case, the compiler calculates the number of ESPs to be used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CONTROL QUERY DEFAULT PARALLEL_NUM_ESPS 'system';
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Reset the CACHE_HISTOGRAMS_REFRESH_INTERVAL attribute to its initial value in the current process:</p>
+<p>This example allows the optimizer to generate an execution using hash join.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CONTROL QUERY DEFAULT CACHE_HISTOGRAMS_REFRESH_INTERVAL RESET;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CONTROL QUERY DEFAULT HASH_JOIN 'ON';
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
@@ -5697,10 +5711,10 @@ this statement, AUTOCOMMIT must be turned ON (the default) for the session.
        (return-parameter-declaration[, return-parameter-declaration]...)
     EXTERNAL NAME 'character-string-literal'
     LIBRARY [[catalog-name.]schema-name.]library-name
-    [language c]
+    [LANGUAGE c]
     [parameter style sql]
     [no sql]
-    [not deterministic | deterministic]
+    [NOT DETERMINISTIC | DETERMINISTIC]
     [final call | no final call]
     [no state area | state area size]
     [no parallelism | allow any parallelism]
@@ -5844,7 +5858,7 @@ library name, trafodion sql qualifies it according to the schema of the current 
 </div>
 </li>
 <li>
-<p><code>language c</code></p>
+<p><code>LANGUAGE c</code></p>
 <div class="paragraph">
 <p>specifies that the external function is written in the c language. this clause is optional.</p>
 </div>
@@ -5863,7 +5877,7 @@ language. this clause is optional.</p>
 </div>
 </li>
 <li>
-<p><code>deterministic | not deterministic</code></p>
+<p><code>DETERMINISTIC | NOT DETERMINISTIC</code></p>
 <div class="paragraph">
 <p>specifies whether the function always returns the same values for out parameters for a given set of argument
 values (deterministic, the default behavior) or does not return the same values (not deterministic). if the
@@ -6323,6 +6337,12 @@ partitions are not audited and empty.
 <p>If the operation fails after basic semantic checks are performed, the index no longer exists and the entire transaction
 is rolled back even if it is a user-started transaction.</p>
 </div>
+<div class="paragraph">
+<p>If you are creating an index on a large Trafodion table that is already populated,
+you should use the NO POPULATE option, and then run the POPULATE INDEX utility to load the index.
+Because CREATE INDEX executes in a single transaction, it could experience transactional limitations such as a transaction timeout
+if a large amount of data is to be moved.</p>
+</div>
 <div class="sect4">
 <h5 id="create_index_authorization_and_availability_requirements">Authorization and Availability Requirements</h5>
 <div class="paragraph">
@@ -6678,13 +6698,13 @@ AUTOCOMMIT must be turned ON (the default) for the session.
    EXTERNAL NAME 'java-method-name [java-signature]'
    LIBRARY [[catalog-name.]schema-name.]library-name
    [external security external-security-type]
-   language java
+   LANGUAGE java
    parameter style java
    [no sql | contains sql | modifies sql data | reads sql data]
    [dynamic result sets integer]
-   [transaction required | no transaction required]
-   [deterministic | not deterministic]
-   [no isolate | isolate]
+   [TRANSACTION REQUIRED | NO TRANSACTION REQUIRED]
+   [DETERMINISTIC | NOT DETERMINISTIC]
+   [NO ISOLATE| ISOLATE]
 
 procedure-ref is:
    [[catalog-name.]schema-name.]procedure-name
@@ -7015,7 +7035,7 @@ because those users will be able to execute the SPJ without requiring privileges
 <div class="ulist">
 <ul>
 <li>
-<p><code>language java</code></p>
+<p><code>LANGUAGE java</code></p>
 <div class="paragraph">
 <p>specifies that the external user-defined routine is written in the java language.</p>
 </div>
@@ -7050,13 +7070,13 @@ this option, then the default value is 0 (zero), meaning that the SPJ does not r
 </div>
 </li>
 <li>
-<p><code>transaction required | no transaction required</code></p>
+<p><code>TRANSACTION REQUIRED | NO TRANSACTION REQUIRED</code></p>
 <div class="paragraph">
-<p>determines whether the SPJ must run in a transaction inherited from the calling application (<code>transaction required</code>, the default
-option) or whether the SPJ runs without inheriting the calling application’s transaction (<code>no transaction required</code>). Typically,
+<p>determines whether the SPJ must run in a transaction inherited from the calling application (<code>TRANSACTION REQUIRED</code>, the default
+option) or whether the SPJ runs without inheriting the calling application’s transaction (<code>NO TRANSACTION REQUIRED</code>). Typically,
 you want the stored procedure to inherit the transaction from the calling application. However, if the SPJ method does
 not access the database or if you want the stored procedure to manage its own transactions, then you should set the stored
-procedure’s transaction attribute to no transaction required. For more information, see
+procedure’s transaction attribute to <code>NO TRANSACTION REQUIRED</code>. For more information, see
 <a href="#effects_of_the_transaction_attribute_on_spjs">effects of the transaction attribute on SPJs</a>.</p>
 </div>
 </li>
@@ -7066,19 +7086,19 @@ procedure’s transaction attribute to no transaction required. For more informa
 <div class="ulist">
 <ul>
 <li>
-<p><code>deterministic | not deterministic</code></p>
+<p><code>DETERMINISTIC | NOT DETERMINISTIC</code></p>
 <div class="paragraph">
 <p>specifies whether the SPJ always returns the same values for out and inout parameters for a given set of argument values
-(<code>deterministic</code>) or does not return the same values (<code>not deterministic</code>, the default option). If you specify <code>deterministic</code>,
+(<code>DETERMINISTIC</code>) or does not return the same values (<code>NOT DETERMINISTIC</code>, the default option). If you specify <code>DETERMINISTIC</code>,
 Trafodion is not required to call the SPJ each time to produce results; instead, Trafodion caches the results and
 reuses them during subsequent calls, thus optimizing the CALL statement.</p>
 </div>
 </li>
 <li>
-<p><code>no isolate | isolate</code></p>
+<p><code>NO ISOLATE | ISOLATE</code></p>
 <div class="paragraph">
-<p>specifies that the SPJ executes either in the environment of the database server (<code>no isolate</code>) or in an isolated environment
-(<code>isolate</code>, the default option). Trafodion allows both options but always executes the SPJ in the UDR server process (<code>isolate</code>).</p>
+<p>specifies that the SPJ executes either in the environment of the database server (<code>NO ISOLATE</code>) or in an isolated environment
+(<code>ISOLATE</code>, the default option). Trafodion allows both options but always executes the SPJ in the UDR server process (<code>ISOLATE</code>).</p>
 </div>
 </li>
 </ul>
@@ -7623,7 +7643,7 @@ By default, this privilege is granted to PUBLIC, but it can be revoked by DB ROO
 <div class="ulist">
 <ul>
 <li>
-<p>This example creates a private schema schema named MYSCHEMA, which will be owned by the current user:</p>
+<p>This example creates a private schema named MYSCHEMA, which will be owned by the current user:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">CREATE SCHEMA myschema;</code></pre>
@@ -13651,10 +13671,8 @@ key of the table if the MERGE has a <em>when-not-matched-clause</em>. The cluste
 </div>
 <div class="sect3">
 <h4 id="merge_considerations">3.40.2. Considerations for MERGE</h4>
-
-</div>
-<div class="sect3">
-<h4 id="merge_upsert_using_single_row">3.40.3. Upsert Using Single Row</h4>
+<div class="sect4">
+<h5 id="merge_upsert_using_single_row">Upsert Using Single Row</h5>
 <div class="paragraph">
 <p>A MERGE statement allows you to specify a set of column values that should be updated if the row is found, and another
 row to be inserted if the row is not found. The ON predicate must select exactly one row that is to be updated if the
@@ -13708,6 +13726,7 @@ found in table t.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">MERGE INTO t ON a = 10
   WHEN NOT MATCHED THEN INSERT VALUES (10, 30)</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -13853,7 +13872,7 @@ is not found, the insert is done. The restrictions are the same as those for &lt
 </div>
 </div>
 <div class="sect3">
-<h4 id="merge_examples">3.40.4. Examples of MERGE</h4>
+<h4 id="merge_examples">3.40.3. Examples of MERGE</h4>
 <div class="ulist">
 <ul>
 <li>
