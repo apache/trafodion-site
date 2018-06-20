@@ -866,8 +866,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#invoke_syntax">3.39.1. Syntax Description of INVOKE</a></li>
 <li><a href="#invoke_considerations">3.39.2. Considerations for INVOKE</a></li>
-<li><a href="#invoke_required_privileges">3.39.3. Required Privileges</a></li>
-<li><a href="#invoke_examples">3.39.4. Examples of INVOKE</a></li>
+<li><a href="#invoke_examples">3.39.3. Examples of INVOKE</a></li>
 </ul>
 </li>
 <li><a href="#merge_statement">3.40. MERGE Statement</a>
@@ -4549,7 +4548,7 @@ a.b.c might be assigned a name such as a.b.c_123&#8230;_01&#8230;.</p>
 </div>
 </li>
 <li>
-<p><code>drop column [if exists] <em>column-name</em></code></p>
+<p><code>drop [column] [if exists] <em>column-name</em></code></p>
 <div class="paragraph">
 <p>drops the specified column from <em>table</em>, including the column’s data. you cannot drop a primary key column.</p>
 </div>
@@ -5137,7 +5136,7 @@ argument-list is:
 <p>specifies an ANSI logical name of the form:</p>
 </div>
 <div class="paragraph">
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>procedure-name</em></code></p>
+<p><code><em>[[catalog-name.]schema-name.]procedure-name</em></code></p>
 </div>
 <div class="paragraph">
 <p>where each part of the name is a valid sql identifier with a maximum of 128 characters. for more information, see
@@ -5747,7 +5746,7 @@ return-parameter-declaration is:
 <p>specifies an ANSI logical name of the form:</p>
 </div>
 <div class="paragraph">
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>function-name</em></code></p>
+<p><code><em>[[catalog-name.]schema-name.]function-name</em></code></p>
 </div>
 <div class="paragraph">
 <p>where each part of the name is a valid sql identifier with a maximum of 128 characters. for more information, see
@@ -5851,7 +5850,7 @@ trafodion. see <a href="#data_types">data types</a>.</p>
 </div>
 </li>
 <li>
-<p><code>library [[_catalog-name_.]<em>schema-name</em>.]<em>library-name</em></code></p>
+<p><code>library <em>[[catalog-name.]schema-name.]library-name</em></code></p>
 <div class="paragraph">
 <p>specifies the ANSI logical name of a library containing the external function. if you do not fully qualify the
 library name, trafodion sql qualifies it according to the schema of the current session.</p>
@@ -6766,7 +6765,7 @@ the SPJ method.</p>
 <p>specifies an ANSI logical name of the form:</p>
 </div>
 <div class="paragraph">
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>procedure-name</em></code></p>
+<p><code><em>[[catalog-name.]schema-name.]procedure-name</em></code></p>
 </div>
 <div class="paragraph">
 <p>where each part of the name is a valid SQL identifier with a maximum of 128 characters. For more information,
@@ -6983,7 +6982,7 @@ brackets (<code>[ ]</code>), such as <code>java.lang.integer[]</code>.</p>
 </div>
 </li>
 <li>
-<p><code>library [[_catalog-name_.]<em>schema-name</em>.]<em>library-name</em></code></p>
+<p><code>library <em>[[catalog-name.]schema-name.]library-name</em></code></p>
 <div class="paragraph">
 <p>specifies the ANSI logical name of a library containing the SPJ method. If you do not fully qualify the library name,
 then Trafodion qualifies it according to the schema of the current session.</p>
@@ -10410,7 +10409,7 @@ must be turned ON (the default) for the session.
 <div class="ulist">
 <ul>
 <li>
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>function-name</em></code></p>
+<p><code>_[[catalog-name.]schema-name.]function-name</code></p>
 <div class="paragraph">
 <p>specifies the ANSI logical name of the function, where each part of the name is a valid sql identifier with a maximum of
 128 characters. specify the name of a function that has already been registered in the schema. if you do not fully qualify
@@ -10599,7 +10598,7 @@ AUTOCOMMIT must be turned ON (the default) for the session.
 <div class="ulist">
 <ul>
 <li>
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>library-name</em></code></p>
+<p><code><em>[[catalog-name.]schema-name.]library-name</em></code></p>
 <div class="paragraph">
 <p>specifies the ANSI logical name of the library object, where each part of the name is a valid sql identifier with a
 maximum of 128 characters. specify the name of a library object that has already been registered in the schema. if
@@ -10717,7 +10716,7 @@ must be turned ON (the default) for the session.
 <div class="ulist">
 <ul>
 <li>
-<p><code>[[_catalog-name_.]<em>schema-name</em>.]<em>procedure-name</em></code></p>
+<p><code><em>[[catalog-name.]schema-name.]procedure-name</em></code></p>
 <div class="paragraph">
 <p>specifies the ANSI logical name of the stored procedure in java (SPJ), where each part of the name is a valid sql
 identifier with a maximum of 128 characters. specify the name of a procedure that has already been registered in the
@@ -11740,7 +11739,7 @@ option is:
   | USERS [FOR ROLE role-name]
   | VIEWS [IN SCHEMA [catalog-name.]schema-name]
   | VIEWS ON TABLE [[catalog-name.]schema-name.]table-name
-  | PRIVILEGES FOR {USER database-username | ROLE role-name}</code></pre>
+  | PRIVILEGES FOR {USER | ROLE} authorization-id</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -11780,107 +11779,111 @@ the catalog is TRAFODION, and the schema is SEABASE.</p>
 </div>
 </li>
 <li>
-<p><code>FUNCTIONS FOR LIBRARY [[_catalog-name_.]<em>schema-name</em>.]<em>library-name</em></code></p>
+<p><code>FUNCTIONS FOR LIBRARY <em>[[catalog-name.]schema-name.]library-name</em></code></p>
 <div class="paragraph">
 <p>displays the UDFs that reference the specified library.</p>
 </div>
 </li>
 <li>
-<p><code>functions in schema <em class="_catalog-name_.">schema-name</em></code></p>
+<p><code>FUNCTIONS [IN SCHEMA <em>[catalog-name.]schema-name</em></code></p>
 <div class="paragraph">
 <p>displays the names of all the UDFs in the specified schema.</p>
 </div>
 </li>
 <li>
-<p><code>libraries</code></p>
+<p><code>LIBRARIES</code></p>
 <div class="paragraph">
 <p>displays the names of all the libraries in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
 <li>
-<p><code>libraries in schema <em class="_catalog-name_.">schema-name</em></code></p>
+<p><code>LIBRARIES [IN SCHEMA <em>[catalog-name.]schema-name</em></code></p>
 <div class="paragraph">
 <p>displays the libraries in the specified schema.</p>
 </div>
 </li>
 <li>
-<p><code>procedures</code></p>
+<p><code>PROCEDURES</code></p>
 <div class="paragraph">
 <p>displays the names of all the procedures in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
 <li>
-<p><code>procedures for library [[_catalog-name_.]<em>schema-name</em>.]<em>library-name</em></code></p>
+<p><code>PROCEDURES FOR LIBRARY for <em>[[catalog-name.]schema-name.]library-name</em></code></p>
 <div class="paragraph">
 <p>displays the procedures that reference the specified library.</p>
 </div>
 </li>
 <li>
-<p><code>procedures in schema <em class="_catalog-name_.">schema-name</em></code></p>
+<p><code>PROCEDURES [IN SCHEMA <em>[catalog-name.]schema-name</em></code></p>
 <div class="paragraph">
 <p>displays the names of all the procedures in the specified schema.</p>
 </div>
 </li>
 <li>
-<p><code>roles</code></p>
+<p><code>ROLES</code></p>
 <div class="paragraph">
 <p>displays a list of all the existing roles.</p>
 </div>
 </li>
 <li>
-<p><code>roles for user <em>database-username</em></code></p>
+<p><code>ROLES [FOR USER <em>database-username</em>]</code></p>
 <div class="paragraph">
 <p>displays all the roles that have been granted to the specified database user. The <em>database-username</em> can be a regular or delimited
 case-insensitive identifier. see <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.</p>
 </div>
 </li>
 <li>
-<p><code>schemas</code></p>
+<p><code>SCHEMAS</code></p>
 <div class="paragraph">
 <p>displays the names of all the schemas in the catalog of the current session. By default, the catalog is trafodion.</p>
 </div>
 </li>
 <li>
-<p><code>schemas in catalog <em>catalog-name</em></code></p>
+<p><code>SCHEMAS [IN CATALOG <em>catalog-name</em>]</code></p>
 <div class="paragraph">
 <p>displays the names of all the schemas in the specified catalog. For the <em>catalog-name</em>, you can specify only trafodion.</p>
 </div>
 </li>
 <li>
-<p><code>schemas for [user | role] <em>authorization-id</em></code></p>
+<p><code>SCHEMAS FOR [USER | ROLE] <em>authorization-id</em></code></p>
 <div class="paragraph">
 <p>displays all the schemas managed (or owned) by a specified user or role.</p>
 </div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p><code><em>authorization-id</em></code></p>
 <div class="paragraph">
 <p>is the name of a user or role. you may specify either user or role for users or roles.</p>
 </div>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p><code>tables</code></p>
+<p><code>TABLES</code></p>
 <div class="paragraph">
 <p>displays the names of all the tables in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
 <li>
-<p><code>tables in schema <em class="_catalog-name_.">schema-name</em></code></p>
+<p><code>TABLES [IN SCHEMA <em>[catalog-name.]schema-name</em></code></p>
 <div class="paragraph">
 <p>displays the names of all the tables in the specified schema.</p>
 </div>
 </li>
 <li>
-<p><code>users</code></p>
+<p><code>USERS</code></p>
 <div class="paragraph">
 <p>displays a list of all the registered database users.</p>
 </div>
 </li>
 <li>
-<p><code>users for role <em>role-name</em></code></p>
+<p><code>USERS [FOR ROLE <em>role-name</em>]</code></p>
 <div class="paragraph">
 <p>displays all the database users who have been granted the specified role. The <em>role-name</em> can be a regular or delimited
 case-insensitive identifier. For more information, see <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.</p>
@@ -11892,24 +11895,30 @@ case-insensitive identifier. For more information, see <a href="#case_insensitiv
 <div class="ulist">
 <ul>
 <li>
-<p><code>views</code></p>
+<p><code>VIEWS</code></p>
 <div class="paragraph">
 <p>displays the names of all the views in the catalog and schema of the current session. By default, the catalog is trafodion,
 and the schema is seabase.</p>
 </div>
 </li>
 <li>
-<p><code>views in schema <em class="_catalog-name_.">schema-name</em></code></p>
+<p><code>VIEWS [IN SCHEMA <em>[catalog-name.]schema-name</em>]</code></p>
 <div class="paragraph">
 <p>displays the names of all the views in the specified schema. For the <em>catalog-name</em>, you can specify only trafodion.</p>
 </div>
 </li>
 <li>
-<p><code>views on table [[_catalog-name_.]<em>schema-name</em>.]<em>table-name</em></code></p>
+<p><code>VIEWS ON TABLE <em>[[catalog-name.]schema-name.]table-name</em></code></p>
 <div class="paragraph">
 <p>displays the names of all the views that were created for the specified table. If you do not qualify the table name with
 catalog and schema names, get uses the catalog and schema of the current session. For the <em>catalog-name</em>, you can specify
 only trafodion.</p>
+</div>
+</li>
+<li>
+<p><code>PRIVILEGES FOR {USER | ROLE} <em>authorization-id</em></code></p>
+<div class="paragraph">
+<p>displays all privileges for a specified user or role.</p>
 </div>
 </li>
 </ul>
@@ -13315,14 +13324,10 @@ has been granted to PUBLIC by default.</p></td>
 </li>
 <li>
 <p><code>TO <em>grantee</em></code></p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>specifies an <em>auth-name</em> to which you grant component privileges.</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><code><em>auth-name</em></code></p>
 <div class="paragraph">
@@ -13443,7 +13448,7 @@ grantee is:
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>role-name</em> [,<em>role-name</em>]_</code></p>
+<p><code><em>role-name [,role-name]</em></code></p>
 <div class="paragraph">
 <p>specifies the existing roles to grant.</p>
 </div>
@@ -13505,7 +13510,7 @@ view.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO table [(target-col-list)] insert-source
+<pre class="CodeRay highlight"><code data-lang="text">INSERT INTO table-name [(target-col-list)] insert-source
 
 target-col-list is:
     colname [,colname]...
@@ -13519,7 +13524,7 @@ insert-source is:
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>table</em></code></p>
+<p><code><em>table-name</em></code></p>
 <div class="paragraph">
 <p>names the user table or view in which to insert rows. <em>table</em> must be a base table or an updatable view.</p>
 </div>
@@ -13548,14 +13553,14 @@ CREATE TABLE for <em>table</em>. (This order is the same as that of the columns 
 <div class="paragraph">
 <p>specifies the rows of values to be inserted into all columns of <em>table</em> or, optionally, into specified columns of <em>table</em>.</p>
 </div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p><code><em>query-expr</em></code></p>
 <div class="paragraph">
 <p>For the description of <em>query-expr</em>, <em>order-by-clause</em>, and <em>access-clause</em>, see the <a href="#select_statement">SELECT Statement</a>.</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><code>DEFAULT VALUES</code></p>
 <div class="paragraph">
@@ -13726,7 +13731,7 @@ VALUES (1120, 'EXPERT MAILERS', '5769 N. 25TH PL',
 </div>
 <div class="paragraph">
 <p>Unlike the previous example, the insert source of this statement does not contain a value for the CREDIT column, which
-has a default value. Asa result, this INSERT must include the column name list.</p>
+has a default value. As a result, this INSERT must include the column name list.</p>
 </div>
 <div class="paragraph">
 <p>This SELECT statement shows the default value 'C1' for CREDIT:</p>
@@ -13870,10 +13875,8 @@ See <a href="#database_object_names">Database Object Names</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="invoke_considerations">3.39.2. Considerations for INVOKE</h4>
-
-</div>
-<div class="sect3">
-<h4 id="invoke_required_privileges">3.39.3. Required Privileges</h4>
+<div class="sect4">
+<h5 id="invoke_required_privileges">Required Privileges</h5>
 <div class="paragraph">
 <p>To issue an INVOKE statement, one of the following must be true:</p>
 </div>
@@ -13894,8 +13897,9 @@ See <a href="#database_object_names">Database Object Names</a>.</p>
 </ul>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="invoke_examples">3.39.4. Examples of INVOKE</h4>
+<h4 id="invoke_examples">3.39.3. Examples of INVOKE</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -14179,7 +14183,7 @@ contains the <em>select-query</em> whose output is used as the source to the MER
 <div class="paragraph">
 <p>For each row selected out of the select-query, the MERGE statement is evaluated. Values selected are used
 in the <em>on-clause</em> to join with the column of the merged table. If the value is found, it is updated. If it
-is not found, the insert is done. The restrictions are the same as those for &lt;&lt;upsert_using_single_row, Upsert Using Single Row&gt;.</p>
+is not found, the insert is done. The restrictions are the same as those for <a href="#upsert_using_single_row">Upsert Using Single Row</a>.</p>
 </div>
 </div>
 </div>
