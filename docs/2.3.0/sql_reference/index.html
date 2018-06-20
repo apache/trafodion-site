@@ -12541,6 +12541,19 @@ System Version 0.9.1. Expected Version 1.0.0.
 <p>The GRANT statement grants access privileges on an SQL object and its columns to specified users or roles.
 Privileges can be granted on the object, on one or more columns, or both.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The user or role that creates the object becomes the object owner and has all privileges on the object.
+There is no need to grant privileges to the owner, the owner can grant/revoke privileges to/from other users or roles for safety.
+</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -12557,8 +12570,8 @@ authorization are enabled in Trafodion. For more information, see
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">GRANT {privilege [,privilege]... |ALL [PRIVILEGES]}
-  ON [object-type] [schema.]object
+<pre class="CodeRay highlight"><code data-lang="text">GRANT {privilege-name [,privilege-name]... |ALL [PRIVILEGES]}
+  ON [object-type] [schema-name.]object-name
   TO grantee
   [WITH GRANT OPTION]
   [[GRANTED] BY grantor]
@@ -12595,7 +12608,7 @@ column-list is:
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>privilege</em> [,<em>privilege</em> ] &#8230; | all [privileges]</code></p>
+<p><code><em>privilege-name</em> [,<em>privilege-name</em> ] &#8230; | all [privileges]</code></p>
 <div class="paragraph">
 <p>Specifies the privileges to grant. You can specify these privileges for an object.</p>
 </div>
@@ -12632,47 +12645,57 @@ column-list is:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">USAGE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For libraries, can create procedures and functions on library objects.
-For sequence generators, can use the sequence in a SQL statement.</p></td>
+</p><p class="tableblock">For sequence generators, can use the sequence in a SQL statement.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ALL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">All the applicable privileges. When you specify all for a table or view,
-this includes the select, delete, insert, references, and update privileges. When the object is a
-stored procedure or user-defined function (UDF), only the execute privilege is applied. When the
-object is a library, only the update and usage privileges are applied. When the object is a sequence
+<td class="tableblock halign-left valign-top"><p class="tableblock">All the applicable privileges.
+</p><p class="tableblock">When you specify all for a table or view,
+this includes the select, delete, insert, references, and update privileges.
+</p><p class="tableblock">When the object is a
+stored procedure or user-defined function (UDF), only the execute privilege is applied.
+</p><p class="tableblock">When the
+object is a library, only the update and usage privileges are applied.
+</p><p class="tableblock">When the object is a sequence
 generator, only the usage privilege is applied.</p></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p><code>ON [<em>object-type</em>] <em class="_schema_.">object</em></code></p>
+<p><code>ON <em>[object-type][schema-name.]object-name</em></code></p>
 <div class="paragraph">
-<p>Specifies an object on which to grant privileges. If none is specified, it defaults to TABLE.  See <a href="#database_object_names">"Database Object Names</a> for more details. <em>object-type</em> can be:</p>
+<p>Specifies an object on which to grant privileges. For more information, see <a href="#database_object_names">Database Object Names</a>.</p>
+</div>
+<div class="paragraph">
+<p>If none is specified, it defaults to TABLE.</p>
+</div>
+<div class="paragraph">
+<p><code><em>[object-type][schema-name.]object-name</em></code> can be:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>FUNCTION <em class="_schema_.">function-name</em></code>, where <em>function-name</em> is the name of a user-defined function (UDF) in the database.</p>
+<p><code>FUNCTION <em>[schema-name.]function-name</em></code>, where <em>function-name</em> is the name of a user-defined function (UDF) in the database.</p>
 </li>
 <li>
-<p><code>LIBRARY <em class="_schema_.">library-name</em></code>, where <em>library-name</em> is the name of a library object in the database.</p>
+<p><code>LIBRARY <em>[schema-name.]library-name</em></code>, where <em>library-name</em> is the name of a library object in the database.</p>
 </li>
 <li>
-<p><code>PROCEDURE <em class="_schema_.">procedure-name</em></code>, where <em>procedure-name</em> is the name of a stored procedure in java (SPJ)
+<p><code>PROCEDURE <em>[schema-name.]procedure-name</em></code>, where <em>procedure-name</em> is the name of a stored procedure in java (SPJ)
 registered in the database.</p>
 </li>
 <li>
-<p><code>SEQUENCE <em class="_schema_.">sequence-name</em></code>, where <em>sequence-name</em> is the name of a sequence object in the database.</p>
+<p><code>SEQUENCE <em>[schema-name.]sequence-name</em></code>, where <em>sequence-name</em> is the name of a sequence object in the database.</p>
 </li>
 <li>
-<p><code>[TABLE] <em class="_schema_.">object</em></code>, where <em>object</em> is a table or view.</p>
+<p><code>[TABLE] <em>[schema-name.]object</em></code>, where <em>object</em> is a table or view.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>TO {<em>grantee</em> &#8230; }</code></p>
+<p><code>TO {<em>grantee</em>}</code></p>
 <div class="paragraph">
 <p>Specifies the  <em>auth-name</em> to which you grant privileges.</p>
 </div>
@@ -12680,16 +12703,61 @@ registered in the database.</p>
 <li>
 <p><code><em>auth-name</em></code></p>
 <div class="paragraph">
-<p>Specifies the name of an authorization id to which you grant privileges. See <a href="#authorization_ids">authorization ids</a>.
-The authorization id must be a registered database username, an existing role name, or public. the name is a regular
-or delimited case-insensitive identifier. See <a href="#case_insensitive_delimited_identifiers">case-insensitive delimited identifiers</a>.
-If you grant a privilege to public, the privilege remains available to all users, unless it is later revoked from public.</p>
+<p>Specifies the name of an authorization id to which you grant privileges. For more information, see <a href="#authorization_ids">Authorization IDs</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <em>auth-name</em> is a regular or delimited case-insensitive identifier. For more information, see <a href="#case_insensitive_delimited_identifiers">Case-Insensitive Delimited Identifiers</a>.</p>
+</div>
+<div class="paragraph">
+<p>The authorization id must be one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A registered database username</p>
+</li>
+<li>
+<p>An existing role name</p>
+</li>
+<li>
+<p>PUBLIC (If you grant a privilege to public, the privilege remains available to all users, unless it is later revoked from public)</p>
+</li>
+</ul>
 </div>
 </li>
 <li>
 <p><code>WITH GRANT OPTION</code></p>
 <div class="paragraph">
 <p>Specifies that the <em>auth-name</em> to which a privilege is granted may in turn grant the same privilege to other users or roles.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>WITH GRANT OPTION</code> cannot be granted to PUBLIC.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT SELECT ON t1 TO PUBLIC WITH GRANT OPTION;
+
+*** ERROR[1007] The WITH GRANT OPTION is not supported. [2018-06-11 10:56:21]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT ALL PRIVILEGES ON t1 TO PUBLIC WITH GRANT OPTION;
+
+*** ERROR[1007] The WITH GRANT OPTION is not supported. [2018-06-11 10:52:30]</code></pre>
+</div>
 </div>
 </li>
 <li>
@@ -12720,21 +12788,143 @@ granted the privileges with grant option.</p>
 <h4 id="grant_considerations">3.35.2. Considerations for GRANT</h4>
 <div class="sect4">
 <h5 id="grant_authorization_and_availability_requirements">Authorization and Availability Requirements</h5>
-<div class="paragraph">
-<p>To grant a privilege on an object, you must have both that privilege and the right to grant that privilege. Privileges can
-be granted directly to you or to one of the roles you have been granted. You can grant a privilege on an object if you are
-the owner of the object (by which you are implicitly granted all privileges on the object) or the owner of the schema containing
-the object, or if you have been granted both the privilege and the WITH GRANT OPTION for the privilege.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To grant a privilege on an object, you must have both that privilege and the right to grant that privilege.</p>
+</li>
+<li>
+<p>Privileges can be granted directly to you or to one of the roles you have been granted.</p>
+</li>
+<li>
+<p>You can grant a privilege on an object if one of the following is true:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are the owner of the object (by which you are implicitly granted all privileges on the object).</p>
+</li>
+<li>
+<p>The owner of the schema contains the object.</p>
+</li>
+<li>
+<p>If you have been granted both the privilege and the <code>WITH GRANT OPTION</code> for the privilege.</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>If granting privileges on behalf of a role, you must specify the role in the <code>[GRANTED] BY</code> clause.</p>
 <div class="paragraph">
-<p>If granting privileges on behalf of a role, you must specify the role in the [GRANTED] BY clause. To grant the privileges on
-behalf of a role, you must be a member of the role, and the role must have the authority to grant the privileges; that is, the
-role must have been granted the privileges WITH GRANT OPTION.</p>
+<p>To grant the privileges on behalf of a role, you must be a member of the role, and the role must have the authority to grant the privileges;
+that is, the role must have been granted the privileges <code>WITH GRANT OPTION</code>.</p>
 </div>
-<div class="paragraph">
+</li>
+<li>
+<p>If you lack authority to grant:</p>
+<div class="ulist">
+<ul>
+<li>
 <p>If you lack authority to grant one or more of the specified privileges, SQL returns a warning (yet does grant the specified
-privileges for which you do have authority to grant). If you lack authority to grant any of the specified privileges, SQL returns
+privileges for which you do have authority to grant).</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p>The owner of the table <em>customer</em> is the <em>testuser1</em>, who grants <code>DELETE</code>, <code>INSERT</code> and <code>REFERENCES</code> privileges on the table <em>customer</em>
+to the user <em>testuser2</em> with <code>WITH GRANT OPTION</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser1</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT DELETE, INSERT, REFERENCES ON customer TO testuser2 WITH GRANT OPTION;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <em>testuser2</em> tries to grant all privileges on table <em>customer</em> to <em>testuser3</em>.</p>
+</div>
+<div class="paragraph">
+<p>The grant command returns a warning stating that only some of the privileges were granted.</p>
+</div>
+<div class="paragraph">
+<p><code>DELETE</code>, <code>INSERT</code> and <code>REFERENCES</code> privileges are granted because <em>testuser2</em> has been granted these privileges with grant option.</p>
+</div>
+<div class="paragraph">
+<p><code>SELECT</code> and <code>UPDATE</code> privileges are not granted.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser2:</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT ALL PRIVILEGES ON customer TO testuser3;
+
+*** WARNING[1013] Not all privileges were granted.  You lack grant option for the SELECT privilege. [2018-06-11 16:07:34]
+
+*** WARNING[1013] Not all privileges were granted.  You lack grant option for the UPDATE privilege. [2018-06-11 16:07:34]
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now check privileges for the <em>testuser1</em>, <em>testuser2</em> and <em>testuser3</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SHOWDDL customer;
+
+CREATE TABLE TRAFODION.SEABASE.CUSTOMER
+  (
+    CUSTNUM                          NUMERIC(4, 0) UNSIGNED NO DEFAULT NOT NULL
+      NOT DROPPABLE NOT SERIALIZED
+  , CUSTNAME                         CHAR(18) CHARACTER SET ISO88591 COLLATE
+      DEFAULT NO DEFAULT NOT NULL NOT DROPPABLE NOT SERIALIZED
+  , STREET                           CHAR(22) CHARACTER SET ISO88591 COLLATE
+      DEFAULT NO DEFAULT NOT NULL NOT DROPPABLE NOT SERIALIZED
+  , CITY                             CHAR(14) CHARACTER SET ISO88591 COLLATE
+      DEFAULT NO DEFAULT NOT NULL NOT DROPPABLE NOT SERIALIZED
+  , STATE                            CHAR(12) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT _ISO88591' ' NOT NULL NOT DROPPABLE NOT SERIALIZED
+  , PRIMARY KEY (CUSTNUM ASC)
+  )
+ ATTRIBUTES ALIGNED FORMAT NAMESPACE 'TRAF_RSRVD_3'
+;
+
+-- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.CUSTOMER TO TESTUSER1 WITH GRANT OPTION;
+   GRANT INSERT, DELETE, REFERENCES ON TRAFODION.SEABASE.CUSTOMER TO TESTUSER2 WITH GRANT OPTION;
+   GRANT INSERT, DELETE, REFERENCES ON TRAFODION.SEABASE.CUSTOMER TO TESTUSER3 GRANTED BY TESTUSER2;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you lack authority to grant any of the specified privileges, SQL returns
 an error.</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p>(continue from examples above)</p>
+</div>
+<div class="paragraph">
+<p>The user <em>testuser3</em> tries to grant <code>DELETE</code> privilege to the <em>testuser4</em> but fails as the <em>testuser3</em> lacks authority.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT DELETE ON CUSTOMER TO testuser4;
+
+*** ERROR[1012] No privileges were granted.  TESTUSER3 lacks grant option on the specified privileges.  [2018-06-11 16:21:31]</code></pre>
+</div>
+</div>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -12757,6 +12947,128 @@ an error.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">GRANT SELECT ON TABLE invent.partloc TO ajones;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example explains how to grant the <code>SELECT</code> privilege to PUBLIC.</p>
+<div class="paragraph">
+<p>The <em>testuser1</em> creates the table <em>t1</em>. The <em>testuser2</em> and <em>testuser3</em> do not have the <code>SELECT</code> privilege on the table <em>t1</em>.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser2</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM t1;
+
+*** ERROR[4481] The testuser2 does not have SELECT privilege on table or view TRAFODION.SEABASE.T1. [2018-06-11 11:39:16]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>testuser1</em> grants the <code>SELECT</code> privilege to all current (<em>testuser2</em> and <em>testuser3</em>) and future users.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser1</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT SELECT ON t1 TO PUBLIC；
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <em>testuser2</em> and <em>testuser3</em> have the <code>SELECT</code> privilege on the table <em>t1</em>.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser3:</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT * FROM t1;
+
+C1          C2
+----------- -----------
+          1           2
+          3           4
+
+--- 2 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example shows how to grant privileges to the specified role <em>"TECHNICAL_WRITER"</em> and display privileges.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT DELETE, INSERT, REFERENCES, SELECT (start_date,ship_timestamp,est_complete), UPDATE ON TABLE project TO &quot;TECHNICAL_WRITER&quot;;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET PRIVILEGES FOR ROLE &quot;TECHNICAL_WRITER&quot;;
+
+-IDU-R-    TRAFODION.SEABASE.PROJECT
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; EST_COMPLETE
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; SHIP_TIMESTAMP
+S------    TRAFODION.SEABASE.PROJECT &lt;Column&gt; START_DATE
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example demonstrates how to grant the specified role <em>"TECHNICAL_WRITER"</em> to the <em>testuser1</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT ROLE &quot;TECHNICAL_WRITER&quot; TO testuser1;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example illustrates how to grant the <code>USAGE</code> privilege.</p>
+<div class="paragraph">
+<p>The <em>testuser1</em> creates the sequence <em>sequence_testuser1</em>, at this time, the <em>testuser2</em> can not use this sequence generator.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser2</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(sequence_testuser1, NEXT) FROM DUAL;
+
+*** ERROR[4491] The user does not have the USAGE privilege on sequence TRAFODION.SEABASE.SEQUENCE_TESTUSER1. [2018-06-11 16:49:20]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then the <em>testuser1</em> grants the <code>USAGE</code> privilege to the <em>testuser2</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GRANT USAGE ON SEQUENCE sequence_testuser1 TO testuser2;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the <em>testuser2</em> can use the sequence generator.</p>
+</div>
+<div class="paragraph">
+<p><em>testuser2</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(sequence_testuser1, next) FROM DUAL;
+
+(EXPR)
+--------------------
+                  112
+
+--- 1 row(s) selected.</code></pre>
 </div>
 </div>
 </li>
