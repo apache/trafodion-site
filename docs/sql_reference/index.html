@@ -13679,7 +13679,7 @@ insert-source is:
 </div>
 </li>
 <li>
-<p><code><em>(target-col-list)</em></code></p>
+<p><code><em>target-col-list</em></code></p>
 <div class="paragraph">
 <p>names the columns in the table or view in which to insert values. The data type of each target column must be
 compatible with the data type of its corresponding source value. Within the list, each target column must
@@ -13693,8 +13693,8 @@ into the columns that do not appear in the list. See <a href="#column_default_se
 <div class="paragraph">
 <p>If you do not specify <em>target-col-list</em>, row values from the source table are inserted into all columns in <em>table</em>.
 The order of the column values in the source table must be the same order as that of the columns specified in the
-CREATE TABLE for <em>table</em>. (This order is the same as that of the columns listed in the result table of SHOWDDL
-<em>table</em>.)</p>
+CREATE TABLE for <em>table</em>. (This order is the same as that of the columns listed in the result table of <code>SHOWDDL
+table-name</code>.)</p>
 </div>
 </li>
 <li>
@@ -14014,10 +14014,11 @@ definition.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>table-name</em></code>
-_
-specifies the name of a table, view, or index for which to generate a record description.
-See <a href="#database_object_names">Database Object Names</a>.</p>
+<p><code><em>table-name</em></code></p>
+<div class="paragraph">
+<p>specifies the name of a table, view, or index for which to generate a record description.
+For more information, see <a href="#database_object_names">Database Object Names</a>.</p>
+</div>
 </li>
 </ul>
 </div>
@@ -14696,7 +14697,7 @@ to another user is revoked.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EXECUTE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revokes the ability to execute a stored procedure using a CALL statement or revokes the ability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Revokes the ability to execute a stored procedure using a CALL statement or revokes the ability to execute a user-defined function (UDF).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INSERT     [columm-list]</p></td>
@@ -14712,8 +14713,7 @@ to another user is revoked.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UPDATE     [column-list]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Revokes the ability to use the UPDATE statement.
-to execute a user-defined function (UDF).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Revokes the ability to use the UPDATE statement.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">USAGE</p></td>
@@ -14835,46 +14835,65 @@ and you must specify the role in the [GRANTED] BY clause.</p>
 </div>
 </li>
 <li>
-<p>To revoke a user’s SELECT privileges on a table:</p>
+<p>To revoke a user’s SELECT privileges on a table.</p>
+<div class="paragraph">
+<p>User administrator grants the SELECT privilege to <em>JSMITH</em>.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">-- User administrator grants the SELECT privilege to JSMITH:
-GRANT SELECT ON TABLE invent.partloc TO jsmith WITH GRANT OPTION;
-
--- JSMITH grants the SELECT privilege to AJONES:
-GRANT SELECT ON TABLE invent.partloc TO ajones;
-
--- If the user administrator attempts to revoke the SELECT
--- privilege from JSMITH, this would fail because
--- of the privilege granted to AJONES based on the
--- privilege granted to JSMITH.
--- To successfully revoke the SELECT privilege from
--- JSMITH, the SELECT privilege granted to AJONES
--- must be revoked first. For this example:
--- 1. JSMITH revokes the SELECT privilege granted to AJONES:
-REVOKE SELECT ON TABLE invent.partloc FROM ajones;
-
--- 2. User administrator revokes the SELECT privilege on the
--- table from JSMITH:
-REVOKE SELECT ON TABLE invent.partloc FROM jsmith RESTRICT;
-
--- The REVOKE operation succeeds.
--- An easier way to make the REVOKE operation successful is
--- to use the CASCADE option:
-REVOKE SELECT ON TABLE invent.partloc FROM jsmith CASCADE;
-
--- The REVOKE operation succeeds because the CASCADE option
--- causes all specified privileges, and all privileges that
--- were granted based upon the specified privileges, to be
--- removed.</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">GRANT SELECT ON TABLE invent.partloc TO jsmith WITH GRANT OPTION;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>JSMITH</em> grants the SELECT privilege to <em>AJONES</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">GRANT SELECT ON TABLE invent.partloc TO ajones;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the user administrator attempts to revoke the SELECT privilege from <em>JSMITH</em>, this would fail because of
+the privilege granted to <em>AJONES</em> based on the privilege granted to <em>JSMITH</em>. To successfully revoke the SELECT privilege from <em>JSMITH</em>, the SELECT privilege granted to <em>AJONES</em>
+must be revoked first.</p>
+</div>
+<div class="paragraph">
+<p>For this example:</p>
+</div>
+<div class="paragraph">
+<p><em>JSMITH</em> revokes the SELECT privilege granted to <em>AJONES</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">REVOKE SELECT ON TABLE invent.partloc FROM ajones;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>User administrator revokes the SELECT privilege on the table from <em>JSMITH</em>, the REVOKE operation succeeds.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">REVOKE SELECT ON TABLE invent.partloc FROM jsmith RESTRICT;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An easier way to make the REVOKE operation successful is to use the <code>CASCADE option</code>.</p>
+</div>
+<div class="paragraph">
+<p>The REVOKE operation succeeds because the <code>CASCADE option</code> causes all specified privileges, and all privileges that
+were granted based upon the specified privileges, to be removed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">REVOKE SELECT ON TABLE invent.partloc FROM jsmith CASCADE;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Administration in the shipping department decides that the CLERKS role should no longer be able to grant
-privileges on the invent.partloc table. Fred has recently moved to another department, so JSMITH revokes
-the SELECT privilege on the invent.partloc table from Fred, who was granted the privilege by CLERKS. Then,
-JSMITH revokes the grant option from CLERKS:</p>
+<p>Administration in the shipping department decides that the <em>CLERKS</em> role should no longer be able to grant
+privileges on the <em>invent.partloc</em> table. <em>Fred</em> has recently moved to another department, so <em>JSMITH</em> revokes
+the SELECT privilege on the <em>invent.partloc</em> table from <em>Fred</em>, who was granted the privilege by <em>CLERKS</em>. Then,
+<em>JSMITH</em> revokes the grant option from <em>CLERKS</em>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">REVOKE SELECT on table invent.partloc FROM fred GRANTED BY clerks;
@@ -15579,11 +15598,11 @@ operation. new is not allowed. an implicit old.* return list is assumed for a de
 <li>
 <p><code><em>col-expr</em> [[AS] <em>name</em>]</code></p>
 <div class="paragraph">
-<p>specifies a derived column determined by the evaluation of an sql value expression in the list. any column referred to in a value
-expression is from the row in the old table exposed by the delete. the old table refers to column values before the delete operation.</p>
+<p>specifies a derived column determined by the evaluation of an sql value expression in the list. Any column referred to in a value
+expression is from the row in the old table exposed by the delete. The old table refers to column values before the delete operation.</p>
 </div>
 <div class="paragraph">
-<p>By using the as clause, you can associate a derived column, <em>col-expr</em>, with a <em>name</em>. <em>name</em> is an SQL identifier. See
+<p>By using the <code>AS clause</code>, you can associate a derived column, <em>col-expr</em>, with a <em>name</em>. <em>name</em> is an SQL identifier. See
 <a href="#identifiers">Identifier</a>.</p>
 </div>
 <div class="ulist">
@@ -15691,10 +15710,10 @@ AS emp (empno, oldsalary, newsalary, increase).</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">_table-ref_ [_join-type_] JOIN _table-ref join-spec_
-| _table-ref_ NATURAL [_join-type_] JOIN _table-ref_
-| _table-ref_ CROSS JOIN _table-ref_
-| (_joined-table_)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">table-ref [join-type] JOIN table-ref join-spec
+| table-ref NATURAL [join-type] JOIN table-ref
+| table-ref CROSS JOIN table-ref
+| (joined-table)</code></pre>
 </div>
 </div>
 </li>
@@ -15710,18 +15729,18 @@ AS emp (empno, oldsalary, newsalary, increase).</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>join-type</em> is: INNER | LEFT [OUTER] | RIGHT [OUTER] | FULL [OUTER]</code></p>
+<p><code><em>join-type</em></code> is:</p>
 <div class="paragraph">
-<p>is a joined table. You specify the <em>join-type</em> by using the CROSS, INNER, OUTER, LEFT, RIGHT, and FULL keywords.
+<p><code>INNER | LEFT [OUTER] | RIGHT [OUTER] | FULL [OUTER]</code></p>
+</div>
+<div class="paragraph">
+<p>is a joined table. You specify the <code><em>join-type</em></code> by using the CROSS, INNER, OUTER, LEFT, RIGHT, and FULL keywords.
 If you omit the optional OUTER keyword and use LEFT, RIGHT, or FULL in a join, Trafodion SQL assumes the join is
 an outer join.</p>
 </div>
-<div class="paragraph">
-<p>If you specify a CROSS join as the <em>join-type</em>, you cannot specify a NATURAL join or a</p>
-</div>
 </li>
 <li>
-<p><code><em>join-spec</em>.</code></p>
+<p><code><em>join-spec</em></code></p>
 <div class="paragraph">
 <p>If you specify an INNER, LEFT, RIGHT, or FULL join as the <em>join-type</em> and you do not specify a NATURAL join, you
 must use an ON clause as the <em>join-spec</em>, as follows: subqueries are not allowed in the join predicate of FULL OUTER JOIN.</p>
@@ -18602,34 +18621,41 @@ the UPSERT occurs within a transaction.</p>
 <p><code><em>table</em></code></p>
 <div class="paragraph">
 <p>names the user table in which to insert or update rows. <em>table</em> must be
-a base table. (<em>target-col-list</em>)</p>
+a base table.</p>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>names the columns in the table in which to insert or update values. The
-data type of each target</p>
+<p>*<code><em>target-col-list</em></code></p>
 </div>
 <div class="paragraph">
-<p>column must be compatible with the data type of its corresponding source
+<p>+
+names the columns in the table in which to insert or update values. The
+data type of each target column must be compatible with the data type of its corresponding source
 value. Within the list, each target column must have the same position
 as its associated source value, whose position is determined by the
 columns in the table derived from the evaluation of the query expression
-(<em>query-expr</em>).</p>
+(<code><em>query-expr</em></code>).</p>
 </div>
 <div class="paragraph">
-<p>If you do not specify all of the columns in the target <em>table</em> in the
-<em>target-col-list</em>, column default values are inserted into or updated
+<p>+
+If you do not specify all of the columns in the target <em>table</em> in the
+<code><em>target-col-list</em></code>, column default values are inserted into or updated
 in the columns that do not appear in the list. See
 <a href="#column_default_settings">Column Default Settings</a>.</p>
 </div>
 <div class="paragraph">
-<p>If you do not specify <em>target-col-list</em>, row values from the source
+<p>+
+If you do not specify <code><em>target-col-list</em></code>, row values from the source
 table are inserted into or updated in all columns in table. The order of
 the column values in the source table must be the same order as that of
 the columns specified in the CREATE TABLE for <em>table</em>. (This order is
 the same as that of the columns listed in the result table of SHOWDDL
 <em>table</em>.)</p>
 </div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p><code><em>column-name</em></code></p>
 <div class="paragraph">
@@ -18942,7 +18968,7 @@ Trafodion SQL utilities are entered interactively or from script
 files using a client-based tool, such as the Trafodion Command Interface
 (TrafCI). To install and configure a client application that enables you
 to connect to and issue SQL utilities, see the
-<a href="http://trafodion.apache.org/docs/client_installation/index.html"><em>Trafodion Client Installation Guide</em></a>.
+<a href="http://trafodion.apache.org/docs/client_install/index.html">Trafodion Client Installation Guide</a>.
 </td>
 </tr>
 </table>
@@ -19424,8 +19450,10 @@ option is:
   | NO POPULATE INDEXES
   | NO DUPLICATE CHECK
   | NO OUTPUT
+  | NO RECOVERY
   | INDEX TABLE ONLY
-  | REBUILD INDEXES</code></pre>
+  | REBUILD INDEXES
+  | UPSERT USING LOAD</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -19576,6 +19604,12 @@ Bulk Loader is executing.</p>
 </div>
 </li>
 <li>
+<p><code>NO RECOVERY</code></p>
+<div class="paragraph">
+<p>specifies that the Bulk Loader not use HBase snapshots for recovery. By default, the Bulk Loader handles recovery using the HBase snapshots mechanism.</p>
+</div>
+</li>
+<li>
 <p><code>INDEX TABLE ONLY</code></p>
 <div class="paragraph">
 <p>specifies that the target table, which is an index, be populated with
@@ -19595,6 +19629,15 @@ CQD <code>TRAF_LOAD_ALLOW_RISKY_INDEX_MAINTENANCE</code> is turned <strong>ON</s
 In this case, the elapsed time of using LOAD Statement without options is nearly equal to
 using LOAD WITH REBUILD INDEXES, and the elapsed time of the former is less than the latter
 if this CQD is turned ON.</p>
+</div>
+</li>
+<li>
+<p><code>UPSERT USING LOAD</code></p>
+<div class="paragraph">
+<p>specifies that data is inserted into target tables using rowset inserts without transactions.</p>
+</div>
+<div class="paragraph">
+<p>In this case, Trafodion uses regular HBase interface (Put) rather than HBase Bulk Loader when inserting multiple rows at a time.</p>
 </div>
 </li>
 </ul>
