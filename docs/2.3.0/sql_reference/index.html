@@ -11725,21 +11725,37 @@ in the Trafodion instance.</p>
 <pre class="CodeRay highlight"><code data-lang="text">GET option
 
 option is:
-    COMPONENT PRIVILEGES ON component-name [FOR auth-name]
+    CATALOGS
+  | COMPONENT PRIVILEGES ON component-name [FOR auth-name]
   | COMPONENTS
   | FUNCTIONS FOR LIBRARY [[catalog-name.]schema-name.]library-name
   | FUNCTIONS [IN SCHEMA [catalog-name.]schema-name]
+  | HBASE REGISTERED TABLES IN CATALOG TRAFODION
+  | HIVE EXTERNAL TABLES IN CATALOG TRAFODION
+  | HIVE REGISTERED {OBJECTS | SCHEMAS | TABLES | VIEWS} IN CATALOG TRAFODION
+  | INDEXES [IN SCHEMA schema-name]
+  | INDEXES [ON TABLE table-name]
   | LIBRARIES [IN SCHEMA [catalog-name.]schema-name]
   | PROCEDURES FOR LIBRARY [[catalog-name.]schema-name.]library-name
   | PROCEDURES [IN SCHEMA [catalog-name.]schema-name]
   | ROLES [FOR USER database-username]
+  | SEQUENCES [IN CATALOG catalog-name]
+  | SEQUENCES [IN SCHEMA schema-name}]
   | SCHEMAS [IN CATALOG catalog-name]
   | SCHEMAS FOR [USER | ROLE] authorization-id
+  | TABLES [IN CATALOG catalog-name]
   | TABLES [IN SCHEMA [catalog-name.]schema-name]
+  | TABLES [IN VIEW view-name]
   | USERS [FOR ROLE role-name]
+  | VIEWS [IN CATALOG catalog-name]
   | VIEWS [IN SCHEMA [catalog-name.]schema-name]
+  | VIEWS [IN VIEW view-name]
+  | VIEWS [ON VIEW view-name]
   | VIEWS ON TABLE [[catalog-name.]schema-name.]table-name
-  | PRIVILEGES FOR {USER | ROLE} authorization-id</code></pre>
+  | PRIVILEGES FOR {USER database-username | ROLE role-name}
+  | PRIVILEGES ON SEQUENCE sequence-name
+  | PRIVILEGES ON TABLE table-name
+  | PRIVILEGES ON VIEW view-name</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -11877,6 +11893,12 @@ and the schema is seabase.</p>
 </div>
 </li>
 <li>
+<p><code>TABLES [IN VIEW view-name]</code></p>
+<div class="paragraph">
+<p>returns tables that referenced by the view <em>view-name</em>.</p>
+</div>
+</li>
+<li>
 <p><code>USERS</code></p>
 <div class="paragraph">
 <p>displays a list of all the registered database users.</p>
@@ -11908,9 +11930,24 @@ and the schema is seabase.</p>
 </div>
 </li>
 <li>
+<p><code>VIEWS [IN VIEW <em>view-name</em>]</code></p>
+<div class="paragraph">
+<p>returns views that referenced by the view <em>view-name</em>.</p>
+</div>
+</li>
+<li>
+<p><code>VIEWS [ON VIEW <em>view-name</em>]</code></p>
+<div class="paragraph">
+<p>returns views that reference the view <em>view-name</em>.</p>
+</div>
+</li>
+<li>
 <p><code>VIEWS ON TABLE <em>[[catalog-name.]schema-name.]table-name</em></code></p>
 <div class="paragraph">
-<p>displays the names of all the views that were created for the specified table. If you do not qualify the table name with
+<p>returns views that reference the table <em>table-name</em>.</p>
+</div>
+<div class="paragraph">
+<p>If you do not qualify the table name with
 catalog and schema names, get uses the catalog and schema of the current session. For the <em>catalog-name</em>, you can specify
 only trafodion.</p>
 </div>
@@ -12034,6 +12071,118 @@ TRAFODION.SEABASE:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">GET VIEWS ON TABLE T;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example makes comparisons among <code>GET VIEWS [IN VIEW <em>view-name</em>]</code>, <code>GET VIEWS [ON VIEW <em>view-name</em>]</code>, <code>GET VIEWS [ON TABLE <em>table-name</em>]</code>
+and <code>GET TABLES [IN VIEW <em>view-name</em>]</code>.</p>
+<div class="paragraph">
+<p>Creates the table <em>t1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE TABLE t1 (c1 int);
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Creates the view <em>v1</em> based on the table <em>t1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE VIEW v1 AS SELECT * FROM t1;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Creates the view <em>v2</em> based on the view <em>v1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE VIEW v2 AS SELECT * FROM v1;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns nothing as no views are referenced by <em>v1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET VIEWS IN VIEW v1;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns <em>v1</em> as <em>v1</em> is referenced by <em>v2</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET VIEWS IN VIEW v2;
+
+TRAFODION.SEABASE.V1
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns <em>v2</em> as <em>v2</em> references <em>v1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET VIEWS ON VIEW v1;
+
+TRAFODION.SEABASE.V2
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns nothing as no views reference <em>v2</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET VIEWS ON VIEW v2;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statements returns <em>v1</em> as <em>v1</em> references <em>t1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET VIEWS ON TABLE t1;
+
+TRAFODION.SEABASE.V1
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns <em>t1</em> as <em>t1</em> is referenced by <em>v1</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET TABLES IN VIEW v1;
+
+TRAFODION.SEABASE.T1
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This statement returns nothing as no tables are referenced by <em>v2</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;GET TABLES IN VIEW v2;
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
