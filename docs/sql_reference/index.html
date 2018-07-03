@@ -10240,13 +10240,14 @@ delete the last row in the table or view.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Searched DELETE is:
 
-DELETE FROM table
-
-    [WHERE search-condition ]
-       [[for] access-option access]
+DELETE
+[WITH NO ROLLBACK] [&quot;[&quot;FIRST N&quot;]&quot;]
+FROM table-name
+[WHERE search-condition ]
+[[for] access-option access]
 
 access-option is:
-    read committed</code></pre>
+read committed</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -10254,10 +10255,59 @@ access-option is:
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>table</em></code></p>
+<p><code><em>table-name</em></code></p>
 <div class="paragraph">
 <p>names the user table or view from which to delete rows. <em>table</em> must be a base table or an updatable view. To refer to a
 table or view, use the ANSI logical name. See <a href="#database_object_names">Database Object Names</a>.</p>
+</div>
+</li>
+<li>
+<p><code>WITH NO ROLLBACK</code></p>
+<div class="paragraph">
+<p>performs a non-transactional delete.</p>
+</div>
+<div class="paragraph">
+<p>A non-transactional delete is one that happens outside a transaction. It means that if the
+statement is interrupted, any deletes that have been done are still permanent.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This option is only supported if there is no index on the table.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>FIRST <em>N</em></code></p>
+<div class="paragraph">
+<p>specified that <em>N</em> rows are to be deleted (assuming the table has at least <em>N</em> rows and that
+the qualification criteria specified in the WHERE clause, if any, would select at least <em>N</em> rows).</p>
+</div>
+<div class="paragraph">
+<p>You must enclose <code>First <em>N</em></code> in square bracket ([ ]).
+The quotation marks (" ") around each square brackt in the syntax diagram indicate that
+the bracket is a required character that you must type as shown (for example, <code>[FIRST 5]</code>).
+Do not include quotation marks in the FIRST clause.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When using this option without the <code>WITH NO ROLLBACK</code> option, and if you have a large
+<em>N</em> (tens of thousands), break up <em>N</em> into smaller numbers and execute the DELETE statement
+repeatedly for better performance.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -10279,7 +10329,7 @@ See <a href="#data_consistency_and_access_options">Data Consistency and Access O
 <div class="ulist">
 <ul>
 <li>
-<p>`READ `COMMITTED</p>
+<p><code>READ COMMITTED</code></p>
 <div class="paragraph">
 <p>specifies that any data used to evaluate the search condition must come from committed  rows.</p>
 </div>
@@ -10372,6 +10422,49 @@ WHERE salesrep = 220 AND custnum &lt;&gt; 1234;
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">delete from table1 where a in (select a from table1 where b &gt; 200)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example executes a non-transactional delete of first 1000 rows that satisfy the
+WHERE condition.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">DELETE WITH NO ROLLBACK [FIRST 1000]
+FROM test
+WHERE id&lt;30;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example shows that the option <code>WITH NO ROLLBACK</code> is only supported if there is no
+index on the table.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;DELETE WITH NO ROLLBACK FROM test;
+
+*** ERROR[3232] INSERT, UPDATE, or DELETE of table TRAFODION.SEABASE.TEST with dependent Index : TRAFODION.SEABASE.INDEX_TEST is not allowed when NO ROLLBACK transaction setting is in effect. [2018-05-30 05:42:47]
+
+SQL&gt;SHOWDDL test;
+
+CREATE TABLE TRAFODION.SEABASE.TEST
+  (
+    C1                               INT DEFAULT NULL NOT SERIALIZED
+  , C2                               INT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+
+CREATE INDEX INDEX_TEST ON TRAFODION.SEABASE.TEST
+  (
+    C1 ASC
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+
+-- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.TEST TO DB__ROOT WITH GRANT OPTION;
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
@@ -49315,7 +49408,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-03-12 18:11:57 CST
+Last updated 2018-05-10 19:35:17 UTC
 </div>
 </div>
 <script>
