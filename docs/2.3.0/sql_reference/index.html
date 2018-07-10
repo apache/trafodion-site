@@ -8198,9 +8198,9 @@ In this case, if you create a sequence in a private schema, it will be owned by 
 START WITH        1
 INCREMENT BY      1
 MAXVALUE          10000
-NOCYCLE
+NO CYCLE
 CACHE             20
-UNSIGNED SMALLINT</code></pre>
+SMALLINT UNSIGNED</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -21377,12 +21377,16 @@ like TrafCI.</p>
 </div>
 <div class="sect3">
 <h4 id="purgedata_syntax">4.4.1. Syntax Description of PURGEDATA</h4>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p><em>object</em></p>
-</div>
 <div class="paragraph">
 <p>is the name of the table from which to purge the data. See
 <a href="#database object names">Database Object Names</a>.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -22792,11 +22796,11 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Category</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">SQL Designation</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Size or Range<sup>1</sup></th>
+<th class="tableblock halign-center valign-top"><strong>Category</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Type</strong></th>
+<th class="tableblock halign-center valign-top"><strong>SQL Designation</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Size or Range</strong><sup>1</sup></th>
 </tr>
 </thead>
 <tbody>
@@ -22805,43 +22809,43 @@ more information, see <a href="#cast_expression">CAST Expression</a>.</p>
 <td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Fixed-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CHAR[ACTER]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>2</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes <sup>2</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NCHAR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data in predefined national character set</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>3</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>3</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NATIONAL CHAR[ACTER]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed-length character data in predefined national character set</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>3</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>3</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Variable-length character</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>4</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>4</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CHAR[ACTER] VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>4</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NCHAR VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 bytes<sup>4</sup> <sup>7</sup> <sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>3</sup> <sup>4</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NATIONAL CHAR[ACTER] VARYING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable-length ASCII character string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 200000 characters<sup>4</sup> <sup>7</sup> <sup>8</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 to 16,777,216 bytes<sup>2</sup> <sup>3</sup> <sup>4</sup></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">Datetime Data Types</p></td>
@@ -22923,7 +22927,7 @@ Currently the limit defaults to 10G. This limit can be configured as needed usin
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="10"><p class="tableblock">Numeric Data Types</p></td>
-<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Numeric</p></td>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">Numeric<sup>6</sup> <sup>7</sup></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC (1,<em>scale</em>) to + NUMERIC (128,<em>scale</em>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary number with optional scale; signed or unsigned for 1 to 9 digits</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 to 128 digits;<br>
@@ -22954,14 +22958,14 @@ depending on precision</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-2<sup>63</sup> to +(2<sup>63</sup>)-1; stored in 8 bytes</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric (extended numeric precision)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric (extended numeric precision)<sup>7</sup></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NUMERIC (precision 19 to 128)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Binary integer; signed or unsigned</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stored as multiple chunks of 16-bit integers, with a minimum storage
 length of 8 bytes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Floating point number</p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Floating point number<sup>7</sup></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FLOAT[(<em>precision</em>)]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number; precision designates from 1 through 52 bits of precision</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 bytes</p></td>
@@ -22977,58 +22981,67 @@ length of 8 bytes.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 bytes</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decimal number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decimal number<sup>6</sup></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DECIMAL (1,<em>scale</em>) to DECIMAL (18,<em>scale</em>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Decimal number with optional scale; stored as ASCII characters; signed or unsigned for 1 to 9 digits; signed required for 10 or more digits</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 to 18 digits. Byte length equals the number of digits. Sign is stored as the first bit of the leftmost byte.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="ulist">
-<ul>
-<li>
-<p><em>scale</em> is the number of digits to the right of the decimal.</p>
-</li>
-<li>
-<p><em>precision</em> specifies the allowed number of decimal digits.</p>
+<div class="paragraph">
+<p>TIP:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>The size of a column that allows null values is 2 bytes larger than the size for the defined data type.</p>
 </li>
 <li>
-<p>The maximum row size is 32708 bytes, but the actual row size is less than that because of bytes used by
-null indicators, varchar column length indicators, and actual data encoding.</p>
+<p>The maximum number of characters depends on the character set.</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Character Set</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Maximum Number of Characters</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For 8-bit character sets such as <strong>ISO88591</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equal to the maximum storage size in bytes, that is 16,777,216, which is divided 16,777,216 by 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For 16-bit character sets such as <strong>UCS2</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Half the maximum storage size in bytes, that is 8,388,608, which is divided 16,777,216 by 2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For 32-bit character sets such as <strong>UTF8</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One fourth the maximum storage size in bytes, that is 4,194,304, which is divided 16,777,216 by 4</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
-<p>Storage size is the same as that required by CHAR data type but store only half as many characters depending
-on character set selection.</p>
+<p>NCHAR or NATIONAL CHAR implicitly assumes that the character set is UCS2, whether the character set was specified at installation time to be ISO88591 or UTF8, and the character set (UCS2) cannot be specified or altered. This is true for both CREATE and ALTER statement.</p>
 </li>
 <li>
-<p>Storage size is reduced by 4 bytes for storage of the varying character length.</p>
+<p>Storage size is reduced by 4 bytes for storage of the varying character length field.</p>
 </li>
 <li>
 <p>The maximum number of digits in an INTERVAL value is 18, including the digits in all INTERVAL fields of the value.
 Any INTERVAL field that is a starting field can have up to 18 digits minus the number of other digits in the INTERVAL value.</p>
 </li>
 <li>
-<p>The maximum is 32707 if the national character set was specified at installation time to be ISO88591.
-The maximum is 16353 if the national character set was specified at installation time as UTF8.</p>
+<p><em>scale</em> is the number of digits to the right of the decimal.</p>
 </li>
 <li>
-<p>The maximum is 32703 if the national character set was specified at installation time to be ISO88591.
-The maximum is 16351 if the national character set was specified at installation time as UTF8.</p>
-</li>
-<li>
-<p>It defaults to 200000 characters and can be declared explicitly by using the TRAF_MAX_CHARACTER_COL_LENGTH CQD.</p>
-</li>
-<li>
-<p>It defaults to 200000 bytes and can be declared explicitly by using the TRAF_MAX_CHARACTER_COL_LENGTH CQD.</p>
+<p><em>precision</em> specifies the allowed number of decimal digits.</p>
 </li>
 </ol>
-</div>
-</li>
-</ul>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
@@ -49614,7 +49627,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-03-12 18:11:57 CST
+Last updated 2018-05-10 19:35:17 UTC
 </div>
 </div>
 <script>
