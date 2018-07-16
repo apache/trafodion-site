@@ -3207,7 +3207,7 @@ For more information about numeric data type for Hive and Trafodion, see the tab
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>double</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>float(54)</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>float</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -22967,7 +22967,7 @@ length of 8 bytes.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Floating point number<sup>7</sup></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FLOAT[(<em>precision</em>)]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number; precision designates from 1 through 52 bits of precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Floating point number (64 bits); precision designates from 1 through 52 bits of precision</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308; stored in 8 bytes</p></td>
 </tr>
 <tr>
@@ -23933,14 +23933,14 @@ the decimal point.</p>
 <div class="paragraph">
 <p>specifies an approximate numeric column. The column stores
 floating-point numbers and
-designates from 1 through 54 bits of <em>precision</em>.
+designates from 1 through 52 bits of <em>precision</em>.
 The range is from +/- 2.2250738585072014e-308 through +/-1.7976931348623157e+308 stored in 8 bytes.</p>
 </div>
 <div class="paragraph">
 <p>An IEEE FLOAT <em>precision</em> data type is stored as an IEEE DOUBLE, that is, in 8 bytes, with the specified precision.</p>
 </div>
 <div class="paragraph">
-<p>The default <em>precision</em> is 54.</p>
+<p>The default <em>precision</em> is 52.</p>
 </div>
 </li>
 <li>
@@ -42549,7 +42549,7 @@ result table is empty, STDDEV returns NULL.</p>
 <div class="sect4">
 <h5 id="float54_and_double_precision_data">FLOAT(54) and DOUBLE PRECISION Data</h5>
 <div class="paragraph">
-<p>Avoid using large FLOAT(54) or DOUBLE PRECISION values as arguments to
+<p>Avoid using large FLOAT(52) or DOUBLE PRECISION values as arguments to
 STDDEV. If SUM(x * x) exceeds the value of 1.15792089237316192e77 during the computation
 of STDDEV(x), a numeric overflow occurs.</p>
 </div>
@@ -44885,7 +44885,7 @@ result table is empty, VARIANCE returns NULL.</p>
 <div class="sect4">
 <h5 id="float54_and_double_precision_data">FLOAT(54) and DOUBLE PRECISION Data</h5>
 <div class="paragraph">
-<p>Avoid using large FLOAT(54) or DOUBLE PRECISION values as arguments to
+<p>Avoid using large FLOAT(52) or DOUBLE PRECISION values as arguments to
 VARIANCE. If SUM(x * x) exceeds the value of 1.15792089237316192e77 during
 the computation of VARIANCE(x), then a numeric overflow occurs.</p>
 </div>
