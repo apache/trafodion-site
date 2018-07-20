@@ -1276,6 +1276,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-4313">6.179. SQL 4313</a></li>
 <li><a href="#SQL-4320">6.180. SQL 4320</a></li>
 <li><a href="#SQL-4323">6.181. SQL 4323</a></li>
+<li><a href="#SQL-4497">6.182. SQL 4497</a></li>
 </ul>
 </li>
 <li><a href="#optimizer-messages">7. Optimizer Messages (6000 through 6999)</a>
@@ -1322,37 +1323,38 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-8610">9.25. SQL 8610</a></li>
 <li><a href="#SQL-8612">9.26. SQL 8612</a></li>
 <li><a href="#SQL-8613">9.27. SQL 8613</a></li>
-<li><a href="#SQL-8808">9.28. SQL 8808</a></li>
-<li><a href="#SQL-8809">9.29. SQL 8809</a></li>
-<li><a href="#SQL-8819">9.30. SQL 8819</a></li>
-<li><a href="#SQL-8820">9.31. SQL 8820</a></li>
-<li><a href="#SQL-8821">9.32. SQL 8821</a></li>
-<li><a href="#SQL-8824">9.33. SQL 8824</a></li>
-<li><a href="#SQL-8826">9.34. SQL 8826</a></li>
-<li><a href="#SQL-8827">9.35. SQL 8827</a></li>
-<li><a href="#SQL-8832">9.36. SQL 8832</a></li>
-<li><a href="#SQL-8833">9.37. SQL 8833</a></li>
-<li><a href="#SQL-8834">9.38. SQL 8834</a></li>
-<li><a href="#SQL-8836">9.39. SQL 8836</a></li>
-<li><a href="#SQL-8837">9.40. SQL 8837</a></li>
-<li><a href="#SQL-8840">9.41. SQL 8840</a></li>
-<li><a href="#SQL-8841">9.42. SQL 8841</a></li>
-<li><a href="#SQL-8842">9.43. SQL 8842</a></li>
-<li><a href="#SQL-8846">9.44. SQL 8846</a></li>
-<li><a href="#SQL-8850">9.45. SQL 8850</a></li>
-<li><a href="#SQL-8860">9.46. SQL 8860</a></li>
-<li><a href="#SQL-8861">9.47. SQL 8861</a></li>
-<li><a href="#SQL-8862">9.48. SQL 8862</a></li>
-<li><a href="#SQL-8863">9.49. SQL 8863</a></li>
-<li><a href="#SQL-8864">9.50. SQL 8864</a></li>
-<li><a href="#SQL-8865">9.51. SQL 8865</a></li>
-<li><a href="#SQL-8866">9.52. SQL 8866</a></li>
-<li><a href="#SQL-8867">9.53. SQL 8867</a></li>
-<li><a href="#SQL-8882">9.54. SQL 8882</a></li>
-<li><a href="#SQL-8888">9.55. SQL 8888</a></li>
-<li><a href="#SQL-8890">9.56. SQL 8890</a></li>
-<li><a href="#SQL-8901">9.57. SQL 8901</a></li>
-<li><a href="#SQL-8904">9.58. SQL 8904</a></li>
+<li><a href="#SQL-8691">9.28. SQL 8691</a></li>
+<li><a href="#SQL-8808">9.29. SQL 8808</a></li>
+<li><a href="#SQL-8809">9.30. SQL 8809</a></li>
+<li><a href="#SQL-8819">9.31. SQL 8819</a></li>
+<li><a href="#SQL-8820">9.32. SQL 8820</a></li>
+<li><a href="#SQL-8821">9.33. SQL 8821</a></li>
+<li><a href="#SQL-8824">9.34. SQL 8824</a></li>
+<li><a href="#SQL-8826">9.35. SQL 8826</a></li>
+<li><a href="#SQL-8827">9.36. SQL 8827</a></li>
+<li><a href="#SQL-8832">9.37. SQL 8832</a></li>
+<li><a href="#SQL-8833">9.38. SQL 8833</a></li>
+<li><a href="#SQL-8834">9.39. SQL 8834</a></li>
+<li><a href="#SQL-8836">9.40. SQL 8836</a></li>
+<li><a href="#SQL-8837">9.41. SQL 8837</a></li>
+<li><a href="#SQL-8840">9.42. SQL 8840</a></li>
+<li><a href="#SQL-8841">9.43. SQL 8841</a></li>
+<li><a href="#SQL-8842">9.44. SQL 8842</a></li>
+<li><a href="#SQL-8846">9.45. SQL 8846</a></li>
+<li><a href="#SQL-8850">9.46. SQL 8850</a></li>
+<li><a href="#SQL-8860">9.47. SQL 8860</a></li>
+<li><a href="#SQL-8861">9.48. SQL 8861</a></li>
+<li><a href="#SQL-8862">9.49. SQL 8862</a></li>
+<li><a href="#SQL-8863">9.50. SQL 8863</a></li>
+<li><a href="#SQL-8864">9.51. SQL 8864</a></li>
+<li><a href="#SQL-8865">9.52. SQL 8865</a></li>
+<li><a href="#SQL-8866">9.53. SQL 8866</a></li>
+<li><a href="#SQL-8867">9.54. SQL 8867</a></li>
+<li><a href="#SQL-8882">9.55. SQL 8882</a></li>
+<li><a href="#SQL-8888">9.56. SQL 8888</a></li>
+<li><a href="#SQL-8890">9.57. SQL 8890</a></li>
+<li><a href="#SQL-8901">9.58. SQL 8901</a></li>
+<li><a href="#SQL-8904">9.59. SQL 8904</a></li>
 </ul>
 </li>
 <li><a href="#update-stats-messages">10. Update Statistics Messages (9200 through 9299)</a>
@@ -16386,6 +16388,23 @@ the flag ATTEMPT_ASYNCHRONOUS_ACCESS was set to OFF.</p>
 <p><strong>Recovery:</strong> See message.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="SQL-4497">6.182. SQL 4497</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">The &lt;number&gt; operand of builtin-func &lt;name&gt; must be &lt;data type&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to use an invalid type for the given operand of the given function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the syntax and resubmit.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -17118,7 +17137,25 @@ commit or rollback. Trafodion must start any transactions it will later commit o
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8808">9.28. SQL 8808</h3>
+<h3 id="SQL-8691">9.28. SQL 8691</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">Field position must be great than zero.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> You attempted to use an invalid value for the third operand of the split_part function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Correct the syntax and resubmit.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-8808">9.29. SQL 8808</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; contains corrupted or invalid data.</code></pre>
@@ -17140,7 +17177,7 @@ create a valid module file.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8809">9.29. SQL 8809</h3>
+<h3 id="SQL-8809">9.30. SQL 8809</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Open of the module file &lt;name&gt; failed with error &lt;number&gt;.</code></pre>
@@ -17166,7 +17203,7 @@ operation.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8819">9.30. SQL 8819</h3>
+<h3 id="SQL-8819">9.31. SQL 8819</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Begin transaction failed while preparing the statement.</code></pre>
@@ -17183,7 +17220,7 @@ operation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8820">9.31. SQL 8820</h3>
+<h3 id="SQL-8820">9.32. SQL 8820</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Transaction commit failed while closing the statement.</code></pre>
@@ -17201,7 +17238,7 @@ operation.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8821">9.32. SQL 8821</h3>
+<h3 id="SQL-8821">9.33. SQL 8821</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Rollback transaction failed during the process of fetching the statement.</code></pre>
@@ -17218,7 +17255,7 @@ operation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8824">9.33. SQL 8824</h3>
+<h3 id="SQL-8824">9.34. SQL 8824</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The input &lt;module-id&gt; does not have a module name.</code></pre>
@@ -17238,7 +17275,7 @@ structure.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8826">9.34. SQL 8826</h3>
+<h3 id="SQL-8826">9.35. SQL 8826</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The module could not be added.</code></pre>
@@ -17255,7 +17292,7 @@ structure.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8827">9.35. SQL 8827</h3>
+<h3 id="SQL-8827">9.36. SQL 8827</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The request &lt;name&gt; could not be sent.</code></pre>
@@ -17277,7 +17314,7 @@ correct the problem.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8832">9.36. SQL 8832</h3>
+<h3 id="SQL-8832">9.37. SQL 8832</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Transaction has not been started.</code></pre>
@@ -17295,7 +17332,7 @@ it has not been.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8833">9.37. SQL 8833</h3>
+<h3 id="SQL-8833">9.38. SQL 8833</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The input parameter is an invalid SQL transaction command.</code></pre>
@@ -17313,7 +17350,7 @@ it has not been.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8834">9.38. SQL 8834</h3>
+<h3 id="SQL-8834">9.39. SQL 8834</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The SQL installation directory could not be found. Operating system error &lt;number&gt;.</code></pre>
@@ -17335,7 +17372,7 @@ correct your syntax, and resubmit.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8836">9.39. SQL 8836</h3>
+<h3 id="SQL-8836">9.40. SQL 8836</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Application specified an invalid update column for cursor.</code></pre>
@@ -17354,7 +17391,7 @@ The build might not have completed correctly.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8837">9.40. SQL 8837</h3>
+<h3 id="SQL-8837">9.41. SQL 8837</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The user id passed in is invalid.</code></pre>
@@ -17372,7 +17409,7 @@ and that the password is valid and exists on the current system.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8840">9.41. SQL 8840</h3>
+<h3 id="SQL-8840">9.42. SQL 8840</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Object name provided to CLI is not valid.</code></pre>
@@ -17390,7 +17427,7 @@ and that the password is valid and exists on the current system.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8841">9.42. SQL 8841</h3>
+<h3 id="SQL-8841">9.43. SQL 8841</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">User application committed or aborted a transaction started by SQL. This transaction needs to be committed or aborted by calling SQL COMMIT or ROLLBACK WORK.</code></pre>
@@ -17409,7 +17446,7 @@ ROLLBACKWORK.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8842">9.43. SQL 8842</h3>
+<h3 id="SQL-8842">9.44. SQL 8842</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The cursor, &lt;name&gt;, referenced by this statement is not found or is not updatable.</code></pre>
@@ -17431,7 +17468,7 @@ The build might not have completed successfully.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8846">9.44. SQL 8846</h3>
+<h3 id="SQL-8846">9.45. SQL 8846</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">An empty SQL statement was passed in.</code></pre>
@@ -17449,7 +17486,7 @@ prepare was empty.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8850">9.45. SQL 8850</h3>
+<h3 id="SQL-8850">9.46. SQL 8850</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The table specified in this cursor update or delete statement is different than the table specified in the declare cursor statement.</code></pre>
@@ -17469,7 +17506,7 @@ required.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8860">9.46. SQL 8860</h3>
+<h3 id="SQL-8860">9.47. SQL 8860</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete module header.</code></pre>
@@ -17489,7 +17526,7 @@ required.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8861">9.47. SQL 8861</h3>
+<h3 id="SQL-8861">9.48. SQL 8861</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete descriptor location table header.</code></pre>
@@ -17510,7 +17547,7 @@ required.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8862">9.48. SQL 8862</h3>
+<h3 id="SQL-8862">9.49. SQL 8862</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete descriptor location table entry.</code></pre>
@@ -17531,7 +17568,7 @@ table entry.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8863">9.49. SQL 8863</h3>
+<h3 id="SQL-8863">9.50. SQL 8863</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete descriptor header.</code></pre>
@@ -17552,7 +17589,7 @@ table entry.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8864">9.50. SQL 8864</h3>
+<h3 id="SQL-8864">9.51. SQL 8864</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete descriptor entry.</code></pre>
@@ -17572,7 +17609,7 @@ table entry.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8865">9.51. SQL 8865</h3>
+<h3 id="SQL-8865">9.52. SQL 8865</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete procedure location table header.</code></pre>
@@ -17594,7 +17631,7 @@ header.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8866">9.52. SQL 8866</h3>
+<h3 id="SQL-8866">9.53. SQL 8866</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Module file &lt;name&gt; has an obsolete procedure location table entry.</code></pre>
@@ -17615,7 +17652,7 @@ entry.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8867">9.53. SQL 8867</h3>
+<h3 id="SQL-8867">9.54. SQL 8867</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">An error while reading from file &lt;name&gt;.</code></pre>
@@ -17637,7 +17674,7 @@ reading the module file &lt;name&gt;.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8882">9.54. SQL 8882</h3>
+<h3 id="SQL-8882">9.55. SQL 8882</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">Containing SQL is not permitted.</code></pre>
@@ -17658,7 +17695,7 @@ procedure is executing.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8888">9.55. SQL 8888</h3>
+<h3 id="SQL-8888">9.56. SQL 8888</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The underlying insert, update, or delete operation of cursor &lt;cursor-name&gt; is still in progress. Since the cursor is being closed before the operation is complete, all affected rows will be rolled back.</code></pre>
@@ -17682,7 +17719,7 @@ is returned.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8890">9.56. SQL 8890</h3>
+<h3 id="SQL-8890">9.57. SQL 8890</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The SQL compiler failed to initialize properly. Query results may differ from what is expected, due to different compiler defaults.</code></pre>
@@ -17699,7 +17736,7 @@ is returned.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8901">9.57. SQL 8901</h3>
+<h3 id="SQL-8901">9.58. SQL 8901</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The MXUDR server for this statement is no longer running. The statement will be assigned a new MXUDR server if it is executed again.</code></pre>
@@ -17718,7 +17755,7 @@ attempt was made to contact a nonexistent Trafodion UDR server.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8904">9.58. SQL 8904</h3>
+<h3 id="SQL-8904">9.59. SQL 8904</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">{project-name} did not receive a reply from MXUDR, possibly caused by internal errors while executing user-defined routines.</code></pre>
@@ -31063,7 +31100,7 @@ contact <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>
 <div id="footer">
 <div id="footer-text">
 Version 2.3.0<br>
-Last updated 2018-05-10 19:35:17 UTC
+Last updated 2018-03-12 18:11:57 CST
 </div>
 </div>
 <script>
