@@ -1927,8 +1927,9 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#to_char_function">7.132. TO_CHAR Function</a>
 <ul class="sectlevel3">
-<li><a href="#considerations_for_to_char">7.132.1. Considerations for TO_CHAR</a></li>
-<li><a href="#examples_of_to_char">7.132.2. Examples of TO_CHAR</a></li>
+<li><a href="#to_char_syntax">7.132.1. Syntax Description of TO_CHAR</a></li>
+<li><a href="#considerations_for_to_char">7.132.2. Considerations for TO_CHAR</a></li>
+<li><a href="#examples_of_to_char">7.132.3. Examples of TO_CHAR</a></li>
 </ul>
 </li>
 <li><a href="#to_date_function">7.133. TO_DATE Function</a>
@@ -41090,7 +41091,7 @@ GROUP BY ROLLUP (delivery_year, region, product);</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>First-level: the rows marked in <strong>blue</strong> are the total revenue for each year (<em>2016</em> and <em>2017</em>), each region (<em>A</em> and <em>B</em>) and each product (<em>Dress</em> and <em>Pullover</em>), they are caculated by GROUP BY instead of ROLLUP.</p>
+<p>First-level: the rows marked in <strong>blue</strong> are the total revenue for each year (<em>2016</em> and <em>2017</em>), each region (<em>A</em> and <em>B</em>) and each product (<em>Dress</em> and <em>Pullover</em>), they are calculated by GROUP BY instead of ROLLUP.</p>
 </li>
 <li>
 <p>Second-level: the rows marked in <strong>red</strong> provide the total revenue for the given <em>delivery_year</em> and <em>region</em> by <em>product</em>.</p>
@@ -43736,6 +43737,8 @@ second argument describes the format of the character value.</p>
 <pre class="CodeRay highlight"><code data-lang="text">TO_CHAR(character-expression [,format-string])</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="to_char_syntax">7.132.1. Syntax Description of TO_CHAR</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -43746,8 +43749,588 @@ second argument describes the format of the character value.</p>
 </li>
 <li>
 <p><code><em>format-string</em></code></p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. Details of <code><em>format-string</em></code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Supported</strong> <code><em>character-expression</em></code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong><code><em>format-string</em></code></strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Description</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'CC'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Two-digit century.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'D'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Day of week (1-7), where 1 is Sunday, 6 is Saturday.<br>
+This is not configurable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'DD'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Day of month (01-31).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'DDD'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Day of year (001-366).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'DY'</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Name of day, which is a three-letter abbreviation for the day in uppercase.<br></p>
+</div>
 <div class="paragraph">
-<p>is one of the following character string literals:</p>
+<p>The following values are returned:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MON<br></p>
+</li>
+<li>
+<p>TUE<br></p>
+</li>
+<li>
+<p>WED<br></p>
+</li>
+<li>
+<p>THU<br></p>
+</li>
+<li>
+<p>FRI<br></p>
+</li>
+<li>
+<p>SAT<br></p>
+</li>
+<li>
+<p>SUN</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'DAY'</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Name of day, which is full uppercase day name padded with blanks to the length of 9 characters.<br></p>
+</div>
+<div class="paragraph">
+<p>The following values are returned:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MONDAY<br></p>
+</li>
+<li>
+<p>TUESDAY<br></p>
+</li>
+<li>
+<p>WEDSDAY<br></p>
+</li>
+<li>
+<p>THURSDAY<br></p>
+</li>
+<li>
+<p>FRIDAY<br></p>
+</li>
+<li>
+<p>SATURDAY<br></p>
+</li>
+<li>
+<p>SUNDAY</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'HH'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Hour of day in 24-hour format (00-23).<br>
+'HH' behaves the same as 'HH24'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'HH12'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Hour of day in 12-hour format (01-12).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'HH24'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Hour of day in 24-hour format (00-23).<br>
+'HH24' behaves the same as 'HH'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'J'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Julian date (that is, number of days since January 1, 4713 BC).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'MI'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Minute (00-59).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'MM'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Month (01-12).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'MON'</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Month, which is a three-letter abbreviation for the month in uppercase.<br></p>
+</div>
+<div class="paragraph">
+<p>The following values are returned:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JAN<br></p>
+</li>
+<li>
+<p>FEB<br></p>
+</li>
+<li>
+<p>MAR<br></p>
+</li>
+<li>
+<p>APR<br></p>
+</li>
+<li>
+<p>MAY<br></p>
+</li>
+<li>
+<p>JUN<br></p>
+</li>
+<li>
+<p>JUL<br></p>
+</li>
+<li>
+<p>AUG<br></p>
+</li>
+<li>
+<p>SEP<br></p>
+</li>
+<li>
+<p>OCT<br></p>
+</li>
+<li>
+<p>NOV<br></p>
+</li>
+<li>
+<p>DEC</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'Q'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Quarter (1-4).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'SS'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Second (00-59).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'W'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Week of month.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'WW'</p></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>Week of year.<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The value 1 is returned for a datetime that occurs in the first 7 days of the year if the year begins on Sunday.<br>
+Otherwise, the value 1 is returned for a datetime that occurs in the partial week before the start of the first Sunday.</p>
+</li>
+<li>
+<p>The value <strong>53</strong> is returned for a datetime that occurs in the last full or partial week of the year.</p>
+</li>
+<li>
+<p>The value <strong>54</strong> is returned for a datetime that occurs in the last full or partial week of the leap year where begins on Saturday.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'Y'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Last digit of year (0-9).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'YY'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Last two digits of year (00-99).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'YYY'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Last three digits of year (000-999).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">'YYYY'</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Four-digit year (0001-9999).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Besides the <code><em>format-string</em></code> listed above, the following character string literals are also valid:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -43828,36 +44411,798 @@ second argument describes the format of the character value.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>YYYY refers to a four-digit year.</p>
+</li>
+<li>
+<p>YY refers to a two-digit year.</p>
+</li>
+<li>
+<p>MM refers to a two-digit month.</p>
+</li>
+<li>
+<p>MON refers to a three-letter abbreviation for month ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
+'OCT', 'NOV' or 'DEC').</p>
+</li>
+<li>
+<p>MONTH refers to the month spelled out. In the output value, the month abbreviation or month
+will appear in upper case.</p>
+</li>
+<li>
+<p>HH and HH24 refer to a two-digit hour field.</p>
+</li>
+<li>
+<p>MI refers to a two-digit minutes field.</p>
+</li>
+<li>
+<p>SS refers to a two-digit seconds field.</p>
+</li>
+<li>
+<p>If the <code><em>format-string</em></code> argument is omitted, 'YYYY-MM-DD' is used as the
+default for date and timestamp values, and 'HH:MI:SS' is used for time values.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Here, YYYY refers to a 4-digit year. YY refers to a two-digit year. MM refers to a two-digit month. MON refers to
-a three-letter abbreviation for month ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
-'OCT', 'NOV' or 'DEC'). MONTH refers to the month spelled out. In the output value, the month abbreviation or month
-will appear in upper case.</p>
-</div>
-<div class="paragraph">
-<p>HH and HH24 refer to a 2-digit hour field. MI refers to a two-digit minutes field. SS refers to a 2-digit seconds field.</p>
-</div>
-<div class="paragraph">
-<p>If the <em>format-string</em> argument is omitted, 'YYYY-MM-DD' is used as the
-default for date and timestamp values, and 'HH:MI:SS' is used for time values.</p>
-</div>
-<div class="sect3">
-<h4 id="considerations_for_to_char">7.132.1. Considerations for TO_CHAR</h4>
-<div class="paragraph">
-<p>If the <em>format-string</em> contains only hour, minute or seconds fields, the input data type must be time or timestamp.</p>
-</div>
-<div class="paragraph">
-<p>If the <em>format-string</em> contains only year, month or day fields, the input data type must be date or timestamp.</p>
-</div>
-<div class="paragraph">
-<p>If the <em>format-string</em> contains all fields, and the input data type is date, the hour, minute and second fields in the result will be filled with zeroes.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="examples_of_to_char">7.132.2. Examples of TO_CHAR</h4>
+<h4 id="considerations_for_to_char">7.132.2. Considerations for TO_CHAR</h4>
+<div class="paragraph">
+<p>If the <code><em>format-string</em></code> contains only hour, minute or seconds fields, the input data type must be time or timestamp.</p>
+</div>
+<div class="paragraph">
+<p>If the <code><em>format-string</em></code> contains only year, month or day fields, the input data type must be date or timestamp.</p>
+</div>
+<div class="paragraph">
+<p>If the <code><em>format-string</em></code> contains all fields, and the input data type is date, the hour, minute and second fields in the result will be filled with zeroes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="examples_of_to_char">7.132.3. Examples of TO_CHAR</h4>
+<div class="sect4">
+<h5 id="examples_of_to_char_cc">Examples of TO_CHAR (CC)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of century.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-11-02','CC') FROM DUAL;
+
+(EXPR)
+------
+01
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of century.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '9899-12-31 23:59:59','CC') FROM DUAL;
+
+(EXPR)
+------
+99
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_d">Examples of TO_CHAR (D)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of day of week.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2018-01-01','D') FROM DUAL;
+
+(EXPR)
+------
+2
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of day of week.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-04-01 23:59:59','D') FROM DUAL;
+
+(EXPR)
+------
+1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_dd">Examples of TO_CHAR (DD)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of day of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2018-01-01','DD') FROM DUAL;
+
+(EXPR)
+------
+01
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of day of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-12-31 23:59:59','DD') FROM DUAL;
+
+(EXPR)
+------
+31
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_ddd">Examples of TO_CHAR (DDD)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of day of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2018-01-01','DDD') FROM DUAL;
+
+(EXPR)
+------
+001
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of day of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2020-12-31 23:59:59','DDD') FROM DUAL;
+
+(EXPR)
+------
+366
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_dy">Examples of TO_CHAR (DY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of name of day (abbreviation).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2018-12-31','DY') FROM DUAL;
+
+(EXPR)
+------
+MON
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of name of day (abbreviation).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-02-14 23:59:59','DY') FROM DUAL;
+
+(EXPR)
+------
+THU
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_day">Examples of TO_CHAR (DAY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of name of day.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2019-05-12','DAY') FROM DUAL;
+
+(EXPR)
+---------
+SUNDAY
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of name of day.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-12-24 23:59:59','DAY') FROM DUAL;
+
+(EXPR)
+---------
+TUESDAY
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_hh">Examples of TO_CHAR (HH)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>TIME</em></code> value to the character value of hour (24-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIME '00:00:01','HH') FROM DUAL;
+
+(EXPR)
+------
+00
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of hour (24-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 23:59:59','HH') FROM DUAL;
+
+(EXPR)
+------
+23
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_hh12">Examples of TO_CHAR (HH12)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>TIME</em></code> value to the character value of hour (12-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIME '01:00:00','HH12') FROM DUAL;
+
+(EXPR)
+------
+01
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of hour (12-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 12:59:59','HH12') FROM DUAL;
+
+(EXPR)
+------
+12
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_hh24">Examples of TO_CHAR (HH24)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>TIME</em></code> value to the character value of hour (24-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIME '00:00:01','HH24') FROM DUAL;
+
+(EXPR)
+------
+00
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of hour (24-hour format).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 23:59:59','HH24') FROM DUAL;
+
+(EXPR)
+------
+23
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_j">Examples of TO_CHAR (J)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example calculates the number of days since the beginning of the Julian epoch and converts the <code><em>DATE</em></code> value to the character value.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-01-01','J') FROM DUAL;
+
+(EXPR)
+-------
+1721426
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example calculates the number of days since the beginning of the Julian epoch and converts the <code><em>TIMESTAMP</em></code> value to the character value.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-11-02 23:59:59','J') FROM DUAL;;
+
+(EXPR)
+-------
+2458425
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_mi">Examples of TO_CHAR (MI)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>TIME</em></code> value to the character value of minute.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIME '01:00:02','MI') FROM DUAL;
+
+(EXPR)
+------
+00
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of minute.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 23:59:01','MI') FROM DUAL;
+
+(EXPR)
+------
+59
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_mm">Examples of TO_CHAR (MM)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-01-01','MM') FROM DUAL;
+
+(EXPR)
+------
+01
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 23:59:59','MM') FROM DUAL;
+
+(EXPR)
+------
+12
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_mon">Examples of TO_CHAR (MON)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-01-01','MON') FROM DUAL;
+
+(EXPR)
+------
+JAN
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-11-02 23:59:59','MON') FROM DUAL;
+
+(EXPR)
+------
+NOV
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_quarter">Examples of TO_CHAR (QUARTER)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of quarter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-01-01','Q') FROM DUAL;
+
+(EXPR)
+------
+1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of quarter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-11-02 23:59:59','Q') FROM DUAL;
+
+(EXPR)
+------
+4
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_ss">Examples of TO_CHAR (SS)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>TIME</em></code> value to the character value of second.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIME '01:02:00','SS') FROM DUAL;
+
+(EXPR)
+------
+00
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of second.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2019-01-01 23:01:59','SS') FROM DUAL;
+
+(EXPR)
+------
+59
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_w">Examples of TO_CHAR (W)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2019-01-01','W') FROM DUAL;
+
+(EXPR)
+------
+1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of month.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2018-04-30 23:59:59','W') FROM DUAL;
+
+(EXPR)
+------
+5
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_ww">Examples of TO_CHAR (WW)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '2016-01-03','WW') FROM DUAL;
+
+(EXPR)
+------
+02
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '2000-12-31 23:59:59','WW') FROM DUAL;
+
+(EXPR)
+------
+54
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_y">Examples of TO_CHAR (Y)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of year (last digit).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '1000-01-01','Y') FROM DUAL;
+
+(EXPR)
+------
+0
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of year (last digit).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '9999-12-31 23:59:59','Y') FROM DUAL;
+
+(EXPR)
+------
+9
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_yy">Examples of TO_CHAR (YY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of year (last two digits).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '1000-01-01','YY') FROM DUAL;
+
+(EXPR)
+------
+00
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of year (last two digits).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '9999-12-31 23:59:59','YY') FROM DUAL;
+
+(EXPR)
+------
+99
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_yyy">Examples of TO_CHAR (YYY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of year (last three digits).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '1000-01-01','YYY') FROM DUAL;
+
+(EXPR)
+------
+000
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of year (last three digits).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '9999-12-31 23:59:59','YYY') FROM DUAL;
+
+(EXPR)
+------
+999
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_yyyy">Examples of TO_CHAR (YYYY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example converts the <code><em>DATE</em></code> value to the character value of week of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (DATE '0001-01-01','YYYY') FROM DUAL;
+
+(EXPR)
+------
+0001
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example converts the <code><em>TIMESTAMP</em></code> value to the character value of week of year.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT TO_CHAR (TIMESTAMP '9999-12-31 23:59:59','YYYY') FROM DUAL;
+
+(EXPR)
+------
+9999
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_to_char_other">Examples of TO_CHAR (Other)</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -43895,6 +45240,7 @@ default for date and timestamp values, and 'HH:MI:SS' is used for time values.</
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect2">
