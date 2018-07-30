@@ -1523,7 +1523,8 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#extract_function">7.59. EXTRACT Function</a>
 <ul class="sectlevel3">
-<li><a href="#examples_of_extract">7.59.1. Examples of EXTRACT</a></li>
+<li><a href="#extract_function_syntax">7.59.1. Syntax Descriptions of Extract Function</a></li>
+<li><a href="#examples_of_extract">7.59.2. Examples of EXTRACT</a></li>
 </ul>
 </li>
 <li><a href="#filetolob_function">7.60. FILETOLOB Function</a>
@@ -37385,55 +37386,1140 @@ interval value expression. It returns an exact numeric value.</p>
 <pre class="CodeRay highlight"><code data-lang="text">EXTRACT (datetime-field FROM extract-source)</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="extract_function_syntax">7.59.1. Syntax Descriptions of Extract Function</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code><em>datetime-field</em></code> is:</p>
-<div class="paragraph">
-<p>YEAR \| MONTH \| DAY \| HOUR \| MINUTE \| SECOND</p>
+<p><code><em>datetime-field</em></code> and <code><em>extract-source</em></code> are:</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. Details of <code><em>datetime-field</em></code> and <code><em>extract-source</em></code></caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code><em>datetime-filed</em></code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Supported</strong> <code><em>extract-source</em></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>CENTURY</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Century.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAY</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Day.</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of day(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DECADE</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Year field divided by 10.</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of decade(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
 </div>
 </li>
 <li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Day of week (1-7), where 1 is Sunday, 6 is Saturday.<br>
+This is not configurable.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Day of year (1-366).</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EPOCH</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Second(s) since 1970-01-01 00:00:00.<br>
+The value is negative if <code><em>datetime-expression</em></code> precedes 1970-01-01 00:00:00.</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of second(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HOUR</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Hour (0-23).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of hour(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MINUTE</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Minute (0-59).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of minute(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MONTH</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Month (1-12).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of month(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QUARTER</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Quarter of year (1-4).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of quarter(s) in the <code><em>interval-expression</em></code>.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SECOND</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Second (0-59).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of second(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TIME</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEEK</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Week of year.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The value 1 is returned for a datetime that occurs in the first 7 days of the year if the year begins on Sunday.<br>
+Otherwise, the value 1 is returned for a datetime that occurs in the partial week before the start of the first Sunday.</p>
+</li>
+<li>
+<p>The value <strong>53</strong> is returned for a datetime that occurs in the last full or partial week of the year.</p>
+</li>
+<li>
+<p>The value <strong>54</strong> is returned for a datetime that occurs in the last full or partial week of the leap year if the leap year begins on Saturday.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WOM</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Week of month.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YEAR</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code><br>
+Year (0001-9999).</p>
+</li>
+<li>
+<p><code><em>interval-expression</em></code><br>
+Number of year(s) in the <code><em>interval-expression</em></code>.<br></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code><em>datetime-expression</em></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>DATE</p>
+</li>
+<li>
+<p>TIMESTAMP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><em>interval-expression</em></code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
 <p><code><em>extract-source</em></code> is:</p>
+<div class="literalblock">
+<div class="content">
+<pre>  datetime-expression
+| interval-expression</pre>
+</div>
+</div>
 <div class="paragraph">
-<p>datetime-expression \| interval-expression</p>
+<p>For more information, see <a href="#datetime_value_expressions">Datetime Value Expressions</a> and
+<a href="#interval_value_expressions">Interval Value Expressions</a>.</p>
 </div>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See <a href="#datetime_value_expressions">Datetime Value Expressions</a> and
-<a href="#interval_value_expressions">Interval Value Expressions</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="examples_of_extract">7.59.1. Examples of EXTRACT</h4>
+<h4 id="examples_of_extract">7.59.2. Examples of EXTRACT</h4>
+<div class="sect4">
+<h5 id="examples_of_extract_century">Examples of EXTRACT (CENTURY)</h5>
 <div class="ulist">
 <ul>
 <li>
-<p>Extract the year from a DATE value:</p>
+<p>This example extracts the century from <code><em>DATE</em></code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">EXTRACT (YEAR FROM DATE '2007-09-28')</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (CENTURY FROM DATE '0001-02-03') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The result is 2007.</p>
 </div>
 </li>
 <li>
-<p>Extract the year from an INTERVAL value:</p>
+<p>This example extracts the century from <code><em>TIMESTAMP</em></code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">EXTRACT (YEAR FROM INTERVAL '01-09' YEAR TO MONTH)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (CENTURY FROM TIMESTAMP '9899-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+    99
+
+--- 1 row(s) selected.</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The result is 1.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_day">Examples of EXTRACT (DAY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the day from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DAY FROM DATE '2019-02-01') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the day from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SELECT EXTRACT (DAY FROM TIMESTAMP '2019-12-31 11:43:00') FROM DUAL;
+
+(EXPR)
+------
+    31
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of days from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DAY FROM INTERVAL '1' DAY - INTERVAL '99' DAY) FROM DUAL;
+
+(EXPR)
+------
+   -98
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_decade">Examples of EXTRACT (DECADE)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the decade from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DECADE FROM DATE '0010-02-03') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the decade from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DECADE FROM TIMESTAMP '9999-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+   999
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of decades from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DECADE FROM INTERVAL '1'YEAR - INTERVAL '99'YEAR) FROM DUAL;
+
+(EXPR)
+------
+    -9
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_dow">Examples of EXTRACT (DOW)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the DOW from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DOW FROM DATE '2017-12-31') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the DOW from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DOW FROM TIMESTAMP '2018-01-01 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+     2
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_doy">Examples of EXTRACT (DOY)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the DOY from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DOY FROM DATE '2019-01-01') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the DOY from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (DOY FROM TIMESTAMP '2020-12-31 11:36:28') FROM DUAL;
+
+(EXPR)
+------
+   366
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_epoch">Examples of EXTRACT (EPOCH)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the seconds from <code><em>DATE</em></code> since 1970-01-01 00:00:00.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (EPOCH FROM DATE '1970-01-02') FROM DUAL;
+
+(EXPR)
+------------
+       86400
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the seconds from <code><em>TIMESTAMP</em></code> since 1970-01-01 00:00:00.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (EPOCH FROM TIMESTAMP '1969-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------------
+          -1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This is the first example to extract the seconds from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (EPOCH FROM INTERVAL '3' HOUR) FROM DUAL;
+
+(EXPR)
+------------
+       10800
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This is the second example to extract the seconds from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (EPOCH FROM INTERVAL '1' MONTH - INTERVAL '2' YEAR) FROM DUAL;
+
+(EXPR)
+------------
+   -60069600
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_hour">Examples of EXTRACT (HOUR)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the hour from <code><em>TIME</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (HOUR FROM TIME '00:01:02') FROM DUAL;
+
+(EXPR)
+------
+     0
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the hour from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (HOUR FROM TIMESTAMP '1990-11-02 23:16:26') FROM DUAL;
+
+(EXPR)
+------
+    23
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of hours from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (HOUR FROM INTERVAL '1' HOUR - INTERVAL '99' HOUR) FROM DUAL;
+
+(EXPR)
+------
+   -98
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_minute">Examples of EXTRACT (MINUTE)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the minute from <code><em>TIME</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (MINUTE FROM TIME '01:00:02') FROM DUAL;
+
+(EXPR)
+------
+     0
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the minute from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (MINUTE FROM TIMESTAMP '1990-11-02 23:59:16') FROM DUAL;
+
+(EXPR)
+------
+    59
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of minutes from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT(MINUTE FROM INTERVAL '1' MINUTE - INTERVAL '99' MINUTE) FROM DUAL;
+
+(EXPR)
+------
+   -98
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_month">Examples of EXTRACT (MONTH)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the month from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (MONTH FROM DATE '2019-01-02') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the month from <code><em>TIME</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (MONTH FROM TIMESTAMP '2019-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+    12
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of months from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT(MONTH FROM INTERVAL '1' MONTH - INTERVAL '99' MONTH) FROM DUAL;
+
+(EXPR)
+------
+   -98
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_quarter">Examples of EXTRACT (QUARTER)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the quarter from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (QUARTER FROM DATE '2019-01-01') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the quarter from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (QUARTER FROM TIMESTAMP '1990-11-02 08:16:26') FROM DUAL;
+
+(EXPR)
+------
+     4
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of quarters from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (QUARTER FROM INTERVAL '97' MONTH) FROM DUAL;
+
+(EXPR)
+------
+    33
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_second">Examples of EXTRACT (SECOND)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the second from <code><em>TIME</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (SECOND FROM TIME '01:02:00') FROM DUAL;
+
+(EXPR)
+------
+     0
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the second from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (SECOND FROM TIMESTAMP '1990-11-02 23:16:59') FROM DUAL;
+
+(EXPR)
+------
+    59
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of seconds from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT(SECOND FROM INTERVAL '1' SECOND - INTERVAL '99' SECOND) FROM DUAL;
+
+(EXPR)
+-----------
+ -98.000000
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_week">Examples of EXTRACT (WEEK)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the week from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (WEEK FROM DATE '2019-01-01') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the week from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (WEEK FROM TIMESTAMP '2000-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+    54
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_wom">Examples of EXTRACT (WOM)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the WOM from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (WOM FROM DATE '2019-01-01') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the WOM from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (WOM FROM TIMESTAMP '2020-02-29 01:02:30') FROM DUAL;
+
+(EXPR)
+------
+     5
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples_of_extract_year">Examples of EXTRACT (YEAR)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example extracts the year from <code><em>DATE</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (YEAR FROM DATE '0001-02-03') FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the year from <code><em>TIMESTAMP</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (YEAR FROM TIMESTAMP '9999-12-31 23:59:59') FROM DUAL;
+
+(EXPR)
+------
+  9999
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the year from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT (YEAR FROM INTERVAL '01-09' YEAR TO MONTH) FROM DUAL;
+
+(EXPR)
+------
+     1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This example extracts the number of years from <code><em>interval-expression</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT EXTRACT(YEAR FROM INTERVAL '1' YEAR - INTERVAL '99' YEAR) FROM DUAL;
+
+(EXPR)
+------
+   -98
+
+--- 1 row(s) selected.</code></pre>
+</div>
 </div>
 </li>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -43749,8 +44835,11 @@ second argument describes the format of the character value.</p>
 </li>
 <li>
 <p><code><em>format-string</em></code></p>
+<div class="paragraph">
+<p>is one of the following character string literals:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. Details of <code><em>format-string</em></code></caption>
+<caption class="title">Table 8. Details of <code><em>format-string</em></code> and <code><em>character-expression</em></code></caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
