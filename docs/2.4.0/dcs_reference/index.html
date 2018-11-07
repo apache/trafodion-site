@@ -109,7 +109,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2018-08-21T03:34</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2018-11-07T02:05</p></td>
 </tr>
 </tbody>
 </table>
@@ -1692,13 +1692,13 @@ reload and compile the changed script.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>DcsMaster: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-master-&lt;hostname&gt;.log</p>
+<p>DcsMaster: $TRAF_LOG/dcs/dcs-&lt;user&gt;-&lt;instance&gt;-master-&lt;hostname&gt;.log</p>
 </li>
 <li>
-<p>DcsServer: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-server-&lt;hostname&gt;.log</p>
+<p>DcsServer: $TRAF_LOG/dcs/dcs-&lt;user&gt;-&lt;instance&gt;-server-&lt;hostname&gt;.log</p>
 </li>
 <li>
-<p>ZooKeeper: $DCS_HOME/logs/dcs-&lt;user&gt;-&lt;instance&gt;-zookeeper-&lt;hostname&gt;.log</p>
+<p>ZooKeeper: $TRAF_LOG/dcs/dcs-&lt;user&gt;-&lt;instance&gt;-zookeeper-&lt;hostname&gt;.log</p>
 </li>
 </ul>
 </div>
@@ -1857,7 +1857,7 @@ and DCS are running in.</p>
 <h2 id="trouble-ha">22. High Availability</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On Linux cluster, if you run into issues please check dcs log files located in $DCS_INSTALL_DIR/logs folder.</p>
+<p>On Linux cluster, if you run into issues please check dcs log files located in $TRAF_LOG/dcs folder.</p>
 </div>
 <div class="paragraph">
 <p>Validate that the interace is set up correctly. This command should only show one additional interface for HA configuration</p>

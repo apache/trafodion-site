@@ -593,6 +593,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#hbase-rowset-vsbb-size">4.7. HBASE_ROWSET_VSBB_SIZE</a></li>
 <li><a href="#hbase-small-scanner">4.8. HBASE_SMALL_SCANNER</a></li>
 <li><a href="#scratch-dirs">4.9. SCRATCH_DIRS</a></li>
+<li><a href="#sequence_retry_time">4.10. TRAF_SEQUENCE_RETRY_TIMES</a></li>
 </ul>
 </li>
 <li><a href="#manage-histograms">5. Manage Histograms</a>
@@ -1080,14 +1081,14 @@ The optimizer may also decide to run the query with no parallelism if the resour
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Values</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Unsigned Integer.<br>
 <br>
-The default value is <strong>'16'</strong>.</p></td>
+The default value is <strong>2</strong>.</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Usage</strong></p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For systems running at higher levels of concurrency with workloads that include a large
 number of small queries, reducing the default degree of parallelism may help achieve higher throughput.<br>
 <br>
-With the default of 16, for 32-node systems, adaptive segmentation can use two 16-node virtual segments to execute queries that
+If the degree of parallelism is 16, for 32-node systems, adaptive segmentation can use two 16-node virtual segments to execute queries that
 do not require a degree of parallelism of 32.  This default setting can, for example, be changed to 8 for a 16-node system,
 to allow adaptive segmentation to leverage a lower degree of parallelism.</p></td>
 </tr>
@@ -3109,6 +3110,68 @@ If you enable small scanner on large size scan incorrectly, then you are likely 
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="sequence_retry_time">4.10. TRAF_SEQUENCE_RETRY_TIMES</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the max retry time when concurrent processes try to get next sequence conflict</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Values</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric value.
+The default value is <strong>'100'</strong>.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Usage</strong></p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Multiple clients try to do NEXT operation on a same sequence, when cache runs out, all of the clients try to get the next range and go into race. So one client may get a range that another client already got. So Trafodion needs to do concurrent control in this case.
+After the SQL engine gets the next range from system metadata table, it will set an upate timestamp. Each time it get the next range,  it will check the updated timestamp, if it is same as the timestampt set by itself, then it is successful. Otherwise, the range is obtained by some other concurrent clients. Then the engine wait and retry.</p>
+</div>
+<div class="paragraph">
+<p>When concurrency conflict is very high, for example a query is running with high DOP and processing billions of rows, it is possible to fail due to run out of retry time. In that case, user will get SQL ERROR-1583.</p>
+</div>
+<div class="paragraph">
+<p>This CQD is to set the retry number. It is set to 100 by default. When specific query using sequence run into SQL ERROR-1583, one can increase this CQD to allow SQL engine to retry for more times, and avoid the SQL ERROR-1583.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Production Usage</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Please contact <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Impact</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It will allow the user to avoid 1583 ERROR in high concurrent use cases.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Level</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">System.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Conflicts/Synergies</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Real Problem Addressed</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Introduced In Release</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trafodion 2.1.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Deprecated In Release</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not applicable.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -4623,7 +4686,7 @@ before evicting the oldest unused plan(s) to make room for the latest cacheable 
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Values</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Up through 4294967295</strong>: Kilobytes of memory allocated to query cache.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Up through 200,000</strong>: Kilobytes of memory allocated to query cache.<br>
 <strong>'0'</strong>: Turns off query plan caching.<br>
 <br>
 The default value is <strong>'16384'</strong> (16 MB).</p></td>
