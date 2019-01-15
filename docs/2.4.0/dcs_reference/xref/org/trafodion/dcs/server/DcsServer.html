@@ -95,7 +95,7 @@
 <a class="jxr_linenumber" name="85" href="#85">85</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../org/trafodion/dcs/server/ServerManager.html">ServerManager</a> serverManager;
 <a class="jxr_linenumber" name="86" href="#86">86</a>      <strong class="jxr_keyword">private</strong> ExecutorService pool=<strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="87" href="#87">87</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../org/trafodion/dcs/server/DcsServer.html">JVMShutdownHook</a> jvmShutdownHook;
-<a class="jxr_linenumber" name="88" href="#88">88</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String trafodionHome;
+<a class="jxr_linenumber" name="88" href="#88">88</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String trafodionLog;
 <a class="jxr_linenumber" name="89" href="#89">89</a>      
 <a class="jxr_linenumber" name="90" href="#90">90</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/trafodion/dcs/server/DcsServer.html">JVMShutdownHook</a> <strong class="jxr_keyword">extends</strong> Thread {
 <a class="jxr_linenumber" name="91" href="#91">91</a>      	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
@@ -137,7 +137,7 @@
 <a class="jxr_linenumber" name="127" href="#127">127</a> 			System.exit(1);
 <a class="jxr_linenumber" name="128" href="#128">128</a> 		}
 <a class="jxr_linenumber" name="129" href="#129">129</a> 		
-<a class="jxr_linenumber" name="130" href="#130">130</a> 		trafodionHome = System.getProperty(Constants.DCS_TRAFODION_HOME);
+<a class="jxr_linenumber" name="130" href="#130">130</a> 		trafodionLog = System.getProperty(Constants.DCS_TRAFODION_LOG);
 <a class="jxr_linenumber" name="131" href="#131">131</a> 
 <a class="jxr_linenumber" name="132" href="#132">132</a> 		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="133" href="#133">133</a> 			zkc = <strong class="jxr_keyword">new</strong> <a href="../../../../org/trafodion/dcs/zookeeper/ZkClient.html">ZkClient</a>();	   
@@ -246,8 +246,8 @@
 <a class="jxr_linenumber" name="236" href="#236">236</a> 		<strong class="jxr_keyword">return</strong> serverManager.getUserProgramHome();
 <a class="jxr_linenumber" name="237" href="#237">237</a> 	}
 <a class="jxr_linenumber" name="238" href="#238">238</a> 	
-<a class="jxr_linenumber" name="239" href="#239">239</a> 	<strong class="jxr_keyword">public</strong> String getTrafodionHome() {
-<a class="jxr_linenumber" name="240" href="#240">240</a> 		<strong class="jxr_keyword">return</strong> trafodionHome;
+<a class="jxr_linenumber" name="239" href="#239">239</a> 	<strong class="jxr_keyword">public</strong> String getTrafodionLog() {
+<a class="jxr_linenumber" name="240" href="#240">240</a> 		<strong class="jxr_keyword">return</strong> trafodionLog;
 <a class="jxr_linenumber" name="241" href="#241">241</a> 	}
 <a class="jxr_linenumber" name="242" href="#242">242</a> 	
 <a class="jxr_linenumber" name="243" href="#243">243</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String [] args) {

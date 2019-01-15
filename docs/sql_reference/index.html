@@ -4270,7 +4270,7 @@ within a table. These statistics are used to devise optimized access plans.</p><
 <div class="sect2">
 <h3 id="alter_sequence_statement">3.2. ALTER SEQUENCE Statement</h3>
 <div class="paragraph">
-<p>The ALTER SEQUENCE Statement changes the future behavior of exiting sequence, including INCREMENT, MAXVALUE, CACHE and CYCLE.</p>
+<p>The ALTER SEQUENCE Statement changes the future behavior of exiting sequence, including <code>INCREMENT</code>, <code>MAXVALUE</code>, <code>CACHE</code> and <code>CYCLE</code>.</p>
 </div>
 <div class="paragraph">
 <p>Multiple options can be concurrently specified and separated by a space. Any options not altered will
@@ -4284,7 +4284,7 @@ retain their previous settings.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">ALTER SEQUENCE [[catalog-name.]schema-name.]sequence
+<pre class="CodeRay highlight"><code data-lang="text">ALTER SEQUENCE [[catalog-name.]schema-name.]sequence-name
 [INCREMENT BY integer]
 [MAXVALUE integer | NO MAXVALUE]
 [CACHE integer]
@@ -4303,13 +4303,71 @@ retain their previous settings.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>START WITH, MINVALUE, NO CACHE and DATA TYPE cannot be changed. Instead, drop and recreate the sequence specifying the desired options.</p>
+<p><code>START WITH</code>, <code>MINVALUE</code>, <code>NO CACHE</code> and <code>DATA TYPE</code> cannot be changed. Instead, drop and recreate the sequence with desired options.</p>
 </li>
 <li>
 <p>The unused preallocated values will be lost if a sequence is altered.</p>
 </li>
 <li>
-<p>Some sequence values will be skipped if you change the INCREMENT BY before the first reference to <code>seqnum(SEQUENCE, next)</code>.</p>
+<p>Some sequence values will be skipped if you change the <code>INCREMENT BY</code> before the first reference to <code>SEQNUM(<em>sequence-name</em>, NEXT)</code>.</p>
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create <em>sequence1</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;CREATE SEQUENCE sequence1
+START WITH        1
+INCREMENT BY      1;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change <code>INCREMENT BY</code> to 6.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;ALTER SEQUENCE sequence1
+INCREMENT BY 6;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>It always returns the initial value of the sequence by calling <code>SEQNUM(<em>sequence-name</em>, CURRENT)</code> or <code>SEQNUM(<em>sequence-name</em>, NEXT)</code> for the first time, so the fisrt reference to <code>SEQNUM(<em>sequence1</em>, NEXT)</code> is 1.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(sequence1, NEXT) FROM DUAL;
+
+(EXPR)
+--------------------
+                   1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>It returns a new incremented value of the sequence with each subsequent reference to <code>SEQNUM(<em>sequence-name</em>, NEXT)</code>. 2, 3, 4, 5 and 6 are skipped because <code>INCREMENT BY</code> is changed to 6 before the first reference to <code>SEQNUM(<em>sequence1</em>, NEXT)</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(sequence1, NEXT) FROM DUAL;
+
+(EXPR)
+--------------------
+                   7
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -4335,7 +4393,7 @@ retain their previous settings.</p>
 <div class="sect3">
 <h4 id="alter_sequence_examples">3.2.3. Examples of ALTER SEQUENCE</h4>
 <div class="paragraph">
-<p>The following statement changes the MAXVALUE and CACHE for the sequence named <code>employee_seq</code>, which is created in <a href="#create_sequence_examples">Examples of CRAETE SEQUENCE</a>.</p>
+<p>The following statement changes the <code>MAXVALUE</code> and <code>CACHE</code> for the sequence <code><em>employee_seq</em></code>, which is created in <a href="#create_sequence_examples">Examples of CRAETE SEQUENCE</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8015,7 +8073,7 @@ By default, this privilege is granted to PUBLIC, but it can be revoked by DB ROO
 <div class="sect2">
 <h3 id="create_sequence_statement">3.16. CREATE SEQUENCE Statement</h3>
 <div class="paragraph">
-<p>The CREATE SEQUENCE Statement produces an automatic ascending sequence of numeric values, which can be used by multiple users as primary key values. For example, to generate only odd numbers in a sequence, you can create a sequence defined with START WITH=1, INCREMENT BY=2.</p>
+<p>The CREATE SEQUENCE Statement produces an automatic ascending sequence of numeric values, which can be used by multiple users as primary key values. For example, to generate only odd numbers in a sequence, you can create a sequence defined with <code>START WITH=1, INCREMENT BY=2</code>.</p>
 </div>
 <div class="paragraph">
 <p>Multiple options can be concurrently specified and separated by a space.</p>
@@ -8026,29 +8084,29 @@ By default, this privilege is granted to PUBLIC, but it can be revoked by DB ROO
 <div class="ulist">
 <ul>
 <li>
-<p><code>seqnum(SEQUENCE, current)</code>: get the current value which is returned from the sequence on the current session rather than the current value of the sequence.</p>
+<p><code>SEQNUM(<em>sequence-name</em>, CURRENT)</code>: get the current value which is returned from the sequence on the current session rather than the current value of the sequence.</p>
 <div class="paragraph">
-<p>For example, a sequence object called <code>employee_seq</code> which starts with 1 and caches up to 25 with only three users.</p>
+<p>For example, a sequence object called <em>employee_seq</em> which starts with 1 and caches up to 25 with only three users.</p>
 </div>
 <div class="paragraph">
-<p>If User A calls <code>seqnum(SEQUENCE, current)</code>, it will return 1 and reserve from 1 to 25, and User B immediately calls <code>seqnum(SEQUENCE, current)</code> and it will return 26 and reserve from 26 to 51, then User C immediately calls <code>seqnum(SEQUENCE, current)</code> and it will return 51 and reserve from 51 to 75.</p>
+<p>If User A calls <code>SEQNUM(<em>employee_seq</em>, CURRENT)</code>, it will return 1 and reserve from 1 to 25, and User B immediately calls <code>SEQNUM(<em>sequence-name</em>, CURRENT)</code> and it will return 26 and reserve from 26 to 51, then User C immediately calls <code>SEQNUM(<em>sequence-name</em>, CURRENT)</code> and it will return 51 and reserve from 51 to 75.</p>
 </div>
 <div class="paragraph">
-<p>Now, if User A immediately calls <code>seqnum(SEQUENCE, next)</code>, it will return 2 rather than 76. 76 will be returned if User A immediately calls <code>seqnum(SEQUENCE, next)</code> after achieving 25 where the cache for User A is exhausted.</p>
+<p>Now, if User A immediately calls <code>SEQNUM(<em>employee_seq</em>, NEXT)</code>, it will return 2 rather than 76. 76 will be returned if User A immediately calls <code>SEQNUM(<em>employee_seq</em>, NEXT)</code> after achieving 25 where the cache for User A is exhausted.</p>
 </div>
 </li>
 <li>
-<p><code>seqnum(SEQUENCE, next)</code>: advance the sequence and retrieve the next value. For an ascending sequence, this value is increasing.</p>
+<p><code>SEQNUM(<em>employee_seq</em>, NEXT)</code>: advance the sequence and retrieve the next value. For an ascending sequence, this value is increasing.</p>
 <div class="paragraph">
 <p>NOTE:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>It always returns the initial value of the sequence by calling <code>seqnum(SEQUENCE, current)</code> or <code>seqnum(SEQUENCE, next)</code> for the first time.</p>
+<p>It always returns the initial value of the sequence by calling <code>SEQNUM(<em>sequence-name</em>, CURRENT)</code> or <code>SEQNUM(<em>sequence-name</em>, NEXT)</code> for the first time.</p>
 </li>
 <li>
-<p>It returns a new incremented value of the sequence with each subsequent reference to <code>seqnum(SEQUENCE, next)</code>.</p>
+<p>It returns a new incremented value of the sequence with each subsequent reference to <code>SEQNUM(<em>sequence-name</em>, NEXT)</code>.</p>
 </li>
 </ul>
 </div>
@@ -8063,10 +8121,10 @@ By default, this privilege is granted to PUBLIC, but it can be revoked by DB ROO
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">CREATE SEQUENCE [[catalog-name.]schema-name.]sequence
+<pre class="CodeRay highlight"><code data-lang="text">CREATE SEQUENCE [[catalog-name.]schema-name.]sequence-name
 [START WITH integer]
 [INCREMENT BY integer]
-[MAXVALUE integer | NOMAXVALUE]
+[MAXVALUE integer | NO MAXVALUE]
 [MINVALUE integer]
 [CACHE integer | NO CACHE]
 [CYCLE | NO CYCLE]
@@ -8074,15 +8132,15 @@ By default, this privilege is granted to PUBLIC, but it can be revoked by DB ROO
 </div>
 </div>
 <div class="paragraph">
-<p>By default, it is an ascending sequence that starts with 1, increments by 1, has cache value of 25 and the
-maximum value of 2<sup>63</sup>-2, does not cycle and belongs to LARGEINT data type.</p>
+<p>By default, it is an ascending sequence that <strong>starts with 1, increments by 1, has cache value of 25 and the
+maximum value of 2<sup>63</sup>-2, does not cycle and belongs to LARGEINT data type</strong>.</p>
 </div>
 <div class="sect3">
 <h4 id="create_sequence_syntax">3.16.1. Syntax Description of CREATE SEQUENCE</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>[[catalog-name.]schema-name.]sequence</code></p>
+<p><code><em>[[catalog-name.]schema-name.]sequence-name</em></code></p>
 <div class="paragraph">
 <p>Specifies the name of the sequence to be created, with optional catalog and schema name, where each part of the name is a valid sql identifier with a maximum of 128 characters.</p>
 </div>
@@ -8096,7 +8154,7 @@ maximum value of 2<sup>63</sup>-2, does not cycle and belongs to LARGEINT data t
 <li>
 <p><code>START WITH</code></p>
 <div class="paragraph">
-<p>Specifies the initial value. This value can only be positive, and must be greater than or equal to MINVALUE (if NO CACHE is specified) and less than MAXVALUE.</p>
+<p>Specifies the initial value. This value can only be positive, and must be greater than or equal to <code>MINVALUE</code> (if <code>NO CACHE</code> is specified) and less than <code>MAXVALUE</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8105,13 +8163,13 @@ maximum value of 2<sup>63</sup>-2, does not cycle and belongs to LARGEINT data t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the initial value is beyond the range specified by MINVALUE or MAXVALUE, an error will be raised.
+If the initial value is beyond the range specified by <code>MINVALUE</code> or <code>MAXVALUE</code>, an error will be raised.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If not specified, the START WITH defaults to 1. For an ascending sequence, this value is MINVALUE.</p>
+<p>If not specified, the <code>START WITH</code> defaults to 1. For an ascending sequence, this value is <code>MINVALUE</code>.</p>
 </div>
 </li>
 <li>
@@ -8126,22 +8184,22 @@ If the initial value is beyond the range specified by MINVALUE or MAXVALUE, an e
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This value can only be positive, so that Trafodion only supports ascending sequence. The value must be smaller than or equal to the difference between MAXVALUE and MINVALUE.
+This value can only be positive, so that Trafodion only supports ascending sequence. The value must be smaller than or equal to the difference between <code>MAXVALUE</code> and <code>MINVALUE</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If not specified, the INCREMENT BY defaults to 1.</p>
+<p>If not specified, the <code>INCREMENT BY</code> defaults to 1.</p>
 </div>
 </li>
 <li>
 <p><code>MAXVALUE</code></p>
 <div class="paragraph">
-<p>Specifies the maximum value where an ascending sequence stops generating values or cycles. The default is 2<sup>^63</sup>-2.</p>
+<p>Specifies the maximum value where an ascending sequence stops generating values or cycles. The default is 2<sup>63</sup>-2.</p>
 </div>
 <div class="paragraph">
-<p>The MAXVALUE of a sequence depends on the maximum value supported by the data type, and you can also specify a MAXVALUE within the range.</p>
+<p>The <code>MAXVALUE</code> of a sequence depends on the maximum value supported by the data type, and you can also specify a <code>MAXVALUE</code> within the range.</p>
 </div>
 <div class="paragraph">
 <p>NOTE:</p>
@@ -8149,18 +8207,18 @@ This value can only be positive, so that Trafodion only supports ascending seque
 <div class="ulist">
 <ul>
 <li>
-<p>An error is returned if MAXVALUE is beyond supported range, or if subsequent value is generated for an ascending sequence when the MAXVALUE is exceeded with NO CYCLE specified.</p>
+<p>An error is returned if <code>MAXVALUE</code> is beyond supported range, or if subsequent value is generated for an ascending sequence when the <code>MAXVALUE</code> is exceeded with <code>NO CYCLE</code> specified.</p>
 </li>
 <li>
-<p>MAXVALUE might not be same as the actual maximum value that the sequence generated if the INCREAMENT BY is a value other than 1. For example, when a sequence is specified with START WITH 3, INCREMENT 4 and MAXVALUE 12 will return a maximum value of 11.</p>
+<p><code>MAXVALUE</code> might not be same as the actual maximum value that the sequence generated if the <code>INCREAMENT BY</code> is a value other than 1. For example, when a sequence is specified with <code>START WITH 3, INCREMENT 4</code> and <code>MAXVALUE 12</code> will return a maximum value of 11.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>NONMAXVALUE</code></p>
+<p><code>NO MAXVALUE</code></p>
 <div class="paragraph">
-<p>If NOMAXVALUE is specified, for an ascending sequence, the MAXVALUE is the value you specified or the maximum value supported by the data type.</p>
+<p>If <code>NO MAXVALUE</code> is specified, for an ascending sequence, the <code>MAXVALUE</code> is the value you specified or the maximum value supported by the data type.</p>
 </div>
 </li>
 <li>
@@ -8169,28 +8227,28 @@ This value can only be positive, so that Trafodion only supports ascending seque
 <p>Specifies the minimum value where an ascending sequence cycles after hitting the maximum limit. The default is 1.</p>
 </div>
 <div class="paragraph">
-<p>The MINVALUE of a sequence depends on the minimum value supported by the data type, and you can also specify a MINVALUE within the range.</p>
+<p>The <code>MINVALUE</code> of a sequence depends on the minimum value supported by the data type, and you can also specify a <code>MINVALUE</code> within the range.</p>
 </div>
 <div class="paragraph">
-<p>If MINVALUE and START WITH are not specified, for an ascending sequence, the MINVALUE defaults to 1.</p>
+<p>If <code>MINVALUE</code> and <code>START WITH</code> are not specified, for an ascending sequence, the <code>MINVALUE</code> defaults to 1.</p>
 </div>
 </li>
 <li>
 <p><code>CYCLE</code></p>
 <div class="paragraph">
-<p>Specifies that the sequence exhausts its range and wraps around after reaching its MAXVALUE.</p>
+<p>Specifies that the sequence exhausts its range and wraps around after reaching its <code>MAXVALUE</code>.</p>
 </div>
 <div class="paragraph">
-<p>If specified, for an ascending sequence, it restarts from MINVALUE after reaching MAXVALUE.</p>
+<p>If specified, for an ascending sequence, it restarts from <code>MINVALUE</code> after reaching <code>MAXVALUE</code>.</p>
 </div>
 </li>
 <li>
-<p><code>NOCYCLE</code></p>
+<p><code>NO CYCLE</code></p>
 <div class="paragraph">
-<p>Specifies that the sequence cannot cycle once the MAXVALUE is reached, and throws an exception when generating subsequent value if the limit is exceeded.</p>
+<p>Specifies that the sequence cannot cycle once the <code>MAXVALUE</code> is reached, and throws an exception when generating subsequent value if the limit is exceeded.</p>
 </div>
 <div class="paragraph">
-<p>NOCYCLE is the default.</p>
+<p><code>NO CYCLE</code> is the default.</p>
 </div>
 </li>
 <li>
@@ -8220,19 +8278,19 @@ This value can only be positive, so that Trafodion only supports ascending seque
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The unused preallocated values will be lost and leave unintended gaps if unexpected shutdown occurs or the sequence object is manually restarted, Trafodion will continue to cache new values from where it left off, so that the same value will never appear twice unless CYCLE is specified.
+The unused preallocated values will be lost and leave unintended gaps if unexpected shutdown occurs or the sequence object is manually restarted, Trafodion will continue to cache new values from where it left off, so that the same value will never appear twice unless <code>CYCLE</code> is specified.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p><code>NOCACHE</code></p>
+<p><code>NO CACHE</code></p>
 <div class="paragraph">
 <p>Specifies the values of the sequence are not preallocated, which lowers the risk of losing values even if it might cause performance degradation. In this case, every request for a new value will be synchronously updated in the system table.</p>
 </div>
 <div class="paragraph">
-<p>If both CACHE and NOCACHE are not specified, it will cache 25 values by default.</p>
+<p>If both <code>CACHE</code> and <code>NO CACHE</code> are not specified, it will cache 25 values by default.</p>
 </div>
 </li>
 <li>
@@ -8253,12 +8311,12 @@ The unused preallocated values will be lost and leave unintended gaps if unexpec
 <td class="tableblock halign-left valign-top"><p class="tableblock">Maximum value</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UNSIGNED SMALLINT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SMALLINT UNSIGNED</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2<sup>16</sup>-1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UNSIGHED INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER UNSIGHED</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2<sup>32</sup>-1</p></td>
 </tr>
@@ -8270,7 +8328,7 @@ The unused preallocated values will be lost and leave unintended gaps if unexpec
 </tbody>
 </table>
 <div class="paragraph">
-<p>If not specified, the default data type is LARGEINT.</p>
+<p>If not specified, the default data type is <strong>LARGEINT</strong>.</p>
 </div>
 </li>
 </ul>
@@ -8315,13 +8373,13 @@ In this case, if you create a sequence in a private schema, it will be owned by 
 <div class="sect3">
 <h4 id="create_sequence_examples">3.16.3. Examples of CREATE SEQUENCE</h4>
 <div class="paragraph">
-<p>The following statement creates a sequence named <code>employee_seq</code>, that starts with 1, increments by 1, has maximum value of 10000, does not cycle, caches 20 at a time and belongs to UNSIGNED SAMLLINT.</p>
+<p>The following statement creates the sequence <em>employee_seq</em>, that starts with 1, increments by 2, has maximum value of 10000, does not cycle, caches 20 at a time and belongs to SMALLINT UNSIGNED.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">CREATE SEQUENCE   employee_seq
 START WITH        1
-INCREMENT BY      1
+INCREMENT BY      2
 MAXVALUE          10000
 NO CYCLE
 CACHE             20
@@ -8329,7 +8387,32 @@ SMALLINT UNSIGNED</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first reference to <code>seqnum(empolyee_seq, next)</code> will return 10000, and the second reference will return 10001. Each subsequent reference will return a value 1 greater than the previous value.</p>
+<p>The first reference to <code>SEQNUM(<em>empolyee_seq</em>, NEXT)</code> returns 1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(employee_seq, NEXT) FROM DUAL;
+
+(EXPR)
+--------------------
+                   1
+
+--- 1 row(s) selected.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The second reference to <code>SEQNUM(<em>empolyee_seq</em>, NEXT)</code> returns 2. Each subsequent reference returns a value 2 greater than the previous value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SQL&gt;SELECT SEQNUM(employee_seq, NEXT) FROM DUAL;
+
+(EXPR)
+--------------------
+                   3
+
+--- 1 row(s) selected.</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -11494,7 +11577,7 @@ DDL statements are not currently supported in transactions. That means that you 
 </table>
 </div>
 <div class="paragraph">
-<p>If you want to change the initial value of a sequence, you can drop and then recreate a sequence with the same name and different START WITH value.</p>
+<p>If you want to change the initial value of a sequence, you can drop and then recreate a sequence with the same name and a different <code>START WITH</code> value.</p>
 </div>
 <div class="paragraph">
 <p>DROP SEQUENCE is a Trafodion SQL extension.</p>
@@ -11504,7 +11587,7 @@ DDL statements are not currently supported in transactions. That means that you 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="text">DROP SEQUENCE [[catalog-name.]schema-name.]sequence</code></pre>
+<pre class="CodeRay highlight"><code data-lang="text">DROP SEQUENCE [[catalog-name.]schema-name.]sequence-name</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -11513,7 +11596,7 @@ DDL statements are not currently supported in transactions. That means that you 
 <div class="ulist">
 <ul>
 <li>
-<p><code>[[catalog-name.]schema-name.]sequence</code></p>
+<p><code><em>[[catalog-name.]schema-name.]sequence-name</em></code></p>
 <div class="paragraph">
 <p>Specifies the name of the sequence to be dropped, with optional catalog and schema name, where each part of the name is a valid sql identifier with a maximum of 128 characters.</p>
 </div>
@@ -52659,7 +52742,7 @@ or 256 bytes of UTF8 text, whichever is less.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.4.0<br>
-Last updated 2018-03-12 18:11:57 CST
+Last updated 2018-12-15 13:12:46 CST
 </div>
 </div>
 <script>

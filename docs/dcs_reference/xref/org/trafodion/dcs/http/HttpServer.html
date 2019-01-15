@@ -246,10 +246,10 @@
 <a class="jxr_linenumber" name="236" href="#236">236</a>       setContextAttributes(logContext);
 <a class="jxr_linenumber" name="237" href="#237">237</a>       defaultContexts.put(logContext, <strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="238" href="#238">238</a>     }
-<a class="jxr_linenumber" name="239" href="#239">239</a>     logDir = System.getProperty(Constants.DCS_TRAFODION_HOME);
+<a class="jxr_linenumber" name="239" href="#239">239</a>     logDir = System.getProperty(Constants.DCS_TRAFODION_LOG);
 <a class="jxr_linenumber" name="240" href="#240">240</a>     <strong class="jxr_keyword">if</strong> (logDir != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="241" href="#241">241</a>       Context logContext = <strong class="jxr_keyword">new</strong> Context(parent, <span class="jxr_string">"/TrafodionLogs"</span>);
-<a class="jxr_linenumber" name="242" href="#242">242</a>       logContext.setResourceBase(logDir + <span class="jxr_string">"/logs"</span>);
+<a class="jxr_linenumber" name="242" href="#242">242</a>       logContext.setResourceBase(logDir);
 <a class="jxr_linenumber" name="243" href="#243">243</a>       logContext.addServlet(DefaultServlet.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"/"</span>);
 <a class="jxr_linenumber" name="244" href="#244">244</a>       logContext.getInitParams().put(
 <a class="jxr_linenumber" name="245" href="#245">245</a>             <span class="jxr_string">"org.mortbay.jetty.servlet.Default.aliases"</span>, <span class="jxr_string">"true"</span>);
