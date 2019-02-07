@@ -3048,7 +3048,7 @@ If you enable small scanner on large size scan incorrectly, then you are likely 
 <li>
 <p>Specify this location at installation time.</p>
 <div class="paragraph">
-<p>Currently the scratch directory locations are set at installation time. The code that manages scratch and temporary files reads environment variables in $TRAF_HOME/etc/ms.env to determine where to create scratch files.</p>
+<p>Currently the scratch directory locations are set at installation time. The code that manages scratch and temporary files reads environment variables in $TRAF_VAR/ms.env to determine where to create scratch files.</p>
 </div>
 <div class="paragraph">
 <p>The CQD overrides the STFS_HDD_LOCATION (disk) and STFS_SSD_LOCATION (SSD disk) environment variables.</p>
@@ -3073,7 +3073,7 @@ If you enable small scanner on large size scan incorrectly, then you are likely 
 <li>
 <p>If the scratch directory location is not set at installation time, this CQD is valid only for the duration of the session.</p>
 <div class="paragraph">
-<p>These settings will not be stored in $TRAF_HOME/etc/ms.env and will override the environment variables settings as long as the CQD is in effect.</p>
+<p>These settings will not be stored in $TRAF_VAR/ms.env and will override the environment variables settings as long as the CQD is in effect.</p>
 </div>
 </li>
 </ul>
@@ -5044,7 +5044,7 @@ Default: <strong>'0'</strong>.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 2.4.0<br>
-Last updated 2018-12-15 13:12:46 CST
+Last updated 2018-08-14 16:07:35 UTC
 </div>
 </div>
 <script>
