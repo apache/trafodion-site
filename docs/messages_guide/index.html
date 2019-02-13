@@ -1355,8 +1355,10 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#SQL-8882">9.56. SQL 8882</a></li>
 <li><a href="#SQL-8888">9.57. SQL 8888</a></li>
 <li><a href="#SQL-8890">9.58. SQL 8890</a></li>
-<li><a href="#SQL-8901">9.59. SQL 8901</a></li>
-<li><a href="#SQL-8904">9.60. SQL 8904</a></li>
+<li><a href="#SQL-8892">9.59. SQL 8892</a></li>
+<li><a href="#SQL-8893">9.60. SQL 8893</a></li>
+<li><a href="#SQL-8901">9.61. SQL 8901</a></li>
+<li><a href="#SQL-8904">9.62. SQL 8904</a></li>
 </ul>
 </li>
 <li><a href="#update-stats-messages">10. Update Statistics Messages (9200 through 9299)</a>
@@ -17786,7 +17788,44 @@ is returned.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8901">9.59. SQL 8901</h3>
+<h3 id="SQL-8892">9.59. SQL 8892</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">The statement argument count exceeds the descriptor entry count.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> The output descriptor used by sqlci or mxosrvr on a CALL statement is insufficiently wide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Re-prepare and re-execute the statement.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="SQL-8893">9.60. SQL 8893</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">The statement argument count does not match the descriptor entry count.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Cause:</strong> The output descriptor used by sqlci or mxosrvr on a non-CALL statement has a different size than the statement output. This has been
+observed, for example, when SELECTing from a Hive table, where an ALTER TABLE ADD COLUMN command has been done in the Hive shell between
+the time the Trafodion SELECT was prepared and when it was executed, or when a cached query plan has been used.</p>
+</div>
+<div class="paragraph">
+<p><strong>Effect:</strong> The operation fails.</p>
+</div>
+<div class="paragraph">
+<p><strong>Recovery:</strong> Re-execute the statement.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="SQL-8901">9.61. SQL 8901</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">The MXUDR server for this statement is no longer running. The statement will be assigned a new MXUDR server if it is executed again.</code></pre>
@@ -17805,7 +17844,7 @@ attempt was made to contact a nonexistent Trafodion UDR server.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="SQL-8904">9.60. SQL 8904</h3>
+<h3 id="SQL-8904">9.62. SQL 8904</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">{project-name} did not receive a reply from MXUDR, possibly caused by internal errors while executing user-defined routines.</code></pre>
@@ -31150,7 +31189,7 @@ contact <a href="mailto:user@trafodion.apache.org">user@trafodion.apache.org</a>
 <div id="footer">
 <div id="footer-text">
 Version 2.4.0<br>
-Last updated 2018-08-14 16:07:35 UTC
+Last updated 2019-02-13 17:27:06 UTC
 </div>
 </div>
 <script>
