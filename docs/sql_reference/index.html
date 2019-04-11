@@ -8661,6 +8661,12 @@ key-column-list is:
 like-spec is:
     LIKE source-table [include-option]...
 
+include-option is:
+    WITH CONSTRAINTS
+  | WITHOUT DIVISION
+  | WITHOUT LOB COLUMNS
+  | WITHOUT SALT
+
 hbase-options-list is:
     hbase-option = 'value'[, hbase-option = 'value']...</code></pre>
 </div>
@@ -9196,6 +9202,13 @@ the NOT NULL column constraints that exist for the source table with different c
 <div class="paragraph">
 <p>directs Trafodion SQL to not use divisioning from <em>source-table</em>. If this clause is omitted, then
 the <em>table</em> will have the same divisioning as the <em>source-table</em>.</p>
+</div>
+</li>
+<li>
+<p><code>WITHOUT LOB COLUMNS</code></p>
+<div class="paragraph">
+<p>directs Trafodion SQL to not include LOB columns from the <em>source-table</em>. If this clause is omitted, then
+the <em>table</em> will have the same LOB columns as the <em>source-table</em>.</p>
 </div>
 </li>
 <li>
@@ -9988,6 +10001,49 @@ columns. You cannot specify some columns with just the name and others with name
 <pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE t1 (c1 int not null primary key, c2 char(50));
 
 CREATE TABLE t2 (c1 int, c2 char (50) UPSHIFT NOT NULL) AS SELECT * FROM t1;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect4">
+<h5 id="create_table_examples_create_table_like">Examples of CREATE TABLE LIKE</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>This example shows how to use the CREATE TABLE LIKE statement without using the LOB columns <em>c3</em> and <em>c4</em>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE t1 (c1 INT, c2 CHAR(99), c3 BLOB, c4 CLOB(9999));
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">CREATE TABLE t2 LIKE t1 WITHOUT LOB COLUMNS;
+
+--- SQL operation complete.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">SHOWDDL t2;
+
+CREATE TABLE TRAFODION.SEABASE.T2
+  (
+    C1                               INT DEFAULT NULL NOT SERIALIZED
+  , C2                               CHAR(99) CHARACTER SET ISO88591 COLLATE
+      DEFAULT DEFAULT NULL NOT SERIALIZED
+  )
+ ATTRIBUTES ALIGNED FORMAT
+;
+
+-- GRANT SELECT, INSERT, DELETE, UPDATE, REFERENCES ON TRAFODION.SEABASE.T2 TO DB__ROOT WITH GRANT OPTION;
+
+--- SQL operation complete.</code></pre>
 </div>
 </div>
 </li>
