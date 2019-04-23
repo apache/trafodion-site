@@ -3001,10 +3001,25 @@ odb provides mapping/transformation capabilities though <strong>mapfiles</strong
 </div>
 </li>
 <li>
-<p><code>EMPTYASNULL</code>: loads empty strings in the input file as NULLs (default is to load empty string as empty strings)</p>
+<p><code>EMPTYASEMPTY</code>: loads empty strings in the input file as empty strings (default is to load empty string as NULLs).</p>
 </li>
 <li>
-<p><code>EMPTYASCONST:&lt;CONSTANT&gt;</code>: loads empty fields in the input file as <code>&lt;CONSTANT&gt;</code></p>
+<p><code>EMPTYASCONST:&lt;CONSTANT&gt;</code>: loads empty fields in the input file as <code>&lt;CONSTANT&gt;</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Currently, only <code>EMPTYASEMPTY</code> and <code>EMPTYASCONST</code> are valid empty mapping options. If the empty mapping option is specified in the mapfile, then an empty string is treated as an empty string or a constant.<br>
+If <code>ns</code> option is specified, then an empty string is treated as an empty string.<br>
+odb always prefers to use the empty mapping option if it conflicts with the <code>ns</code> option.<br>
+If both the empty mapping option and the <code>ns</code> option are not specified, then an empty string is treated as NULL.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p><code>NULL</code>: inserts <code>NULL</code></p>
@@ -6191,7 +6206,7 @@ to code odb:</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.4.0<br>
-Last updated 2018-12-15 13:12:46 CST
+Last updated 2018-12-15 13:12:46 +08:00
 </div>
 </div>
 <script>
