@@ -92,7 +92,7 @@ under the License.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2019-02-20T05:05</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2019-08-07T16:09</p></td>
 </tr>
 </tbody>
 </table>
@@ -292,7 +292,7 @@ requirements have been satisfied. Failure to do so will cause you grief debuggin
 </div>
 <div class="paragraph">
 <p>Trafodion REST uses the same configuration mechanism as Apache Hadoop.
-All configuration files are located in the <em>$REST_INSTALL_DIR/conf/</em> directory.</p>
+All configuration files are located in the <em>$TRAF_CONF/rest/</em> directory.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -318,7 +318,7 @@ ensure well-formedness of your document after an edit session.</p>
 <td class="content">
 <div class="title">Keep Configuration In Sync Across the Cluster</div>
 <div class="paragraph">
-<p>After you make an edit to any configuration file, make sure you copy the content of the <em>$REST_INSTALL_DIR/conf</em> directory to all nodes of the cluster.
+<p>After you make an edit to any configuration file, make sure you copy the content of the <em>$TRAF_CONF/rest</em> directory to all nodes of the cluster.
 The server will not do this for you. Use rsync, scp, or another secure mechanism for copying the configuration files to your nodes.
 A restart is needed for servers to pick up changes.</p>
 </div>
@@ -371,7 +371,7 @@ This <code>rest.zookeeper.quorum</code> property defaults to a single ensemble m
 <div class="sect2">
 <h3 id="__em_rest_site_xml_em_and_em_rest_default_xml_em">7.1. <em>rest-site.xml</em> and <em>rest-default.xml</em></h3>
 <div class="paragraph">
-<p>You add site-specific configuration to the file <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>. For the list of configurable properties,
+<p>You add site-specific configuration to the file <em>$TRAF_CONF/rest/rest-site.xml</em>. For the list of configurable properties,
 see <a href="#rest_default_configurations">REST Default Configuration</a> below or view the raw <em>rest-default.xml</em> source
 file in the source code at <em>src/main/resources</em>.</p>
 </div>
@@ -545,7 +545,7 @@ to discover such configurations is via a reading of the source code itself.</p>
 <div class="paragraph">
 <p>Set server environment variables in this file. Examples include options to pass the JVM on start of
 the server such as heap size and garbarge collector configs. You can also set configurations for server configuration, log directories,
-niceness, ssh options, where to locate process pid files, etc. Open the file at <em>$REST_INSTALL_DIR/conf/rest-env.sh</em> and peruse its content.
+niceness, ssh options, where to locate process pid files, etc. Open the file at <em>$TRAF_CONF/rest/rest-env.sh</em> and peruse its content.
 Each option is fairly well documented.  Add your own environment variables here if you want them read by the server on startup.</p>
 </div>
 <div class="paragraph">
@@ -564,7 +564,7 @@ Each option is fairly well documented.  Add your own environment variables here 
 <div class="sect2">
 <h3 id="rest.keystore">7.5. <em>rest-keystore</em></h3>
 <div class="paragraph">
-<p>This file will only be present if the property <em>rest.https.password</em> has been set in <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>.
+<p>This file will only be present if the property <em>rest.https.password</em> has been set in <em>$TRAF_CONF/rest/rest-site.xml</em>.
 Please see <a href="#important.configurations">Important Configurations</a> for more detail.</p>
 </div>
 </div>
@@ -584,7 +584,7 @@ waiting for client HTTP connections. The value may need to be changed
 if this port number conflicts with other ports in use on your cluster.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+<p>To change this configuration, edit <em>$TRAF_CONF/rest/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 </div>
 <div class="sect2">
@@ -598,7 +598,7 @@ if this port number conflicts with other ports in use on your cluster.</p>
 <div class="sect2">
 <h3 id="__code_rest_ssl_password_code">8.3. <code>rest.ssl.password</code></h3>
 <div class="paragraph">
-<p>This property is not present by default in <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>. Typically the Trafodion
+<p>This property is not present by default in <em>$TRAF_CONF/rest/rest-site.xml</em>. Typically the Trafodion
 installer sets this property to an obfuscated password string. If this property is present then the server
 will setup HTTPS in the embedded Jetty server. To create an obfuscated password for this property use
 the following command:</p>
@@ -619,10 +619,10 @@ MD5:{obfuscated password string}</pre>
 </div>
 <div class="paragraph">
 <p>Copy/paste the entire string including "OBF:" into this property.
-The server will use this property when creating the <em>$REST_INSTALL_DIR/conf/rest-keystore</em> directory.</p>
+The server will use this property when creating the <em>$TRAF_CONF/rest/rest-keystore</em> directory.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+<p>To change this configuration, edit <em>$TRAF_CONF/rest/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -662,7 +662,7 @@ CRYPT:{obfuscated password string}</pre>
 uses to connect to Trafodion DCS.</p>
 </div>
 <div class="paragraph">
-<p>To change this configuration, edit <em>$REST_INSTALL_DIR/conf/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
+<p>To change this configuration, edit <em>$TRAF_CONF/rest/rest-site.xml</em>, copy the changed file around the cluster and restart.</p>
 </div>
 </div>
 </div>
@@ -2070,7 +2070,7 @@ Some of these are preferences, but others can create mysterious build errors or 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-15 13:12:42 CST
+Last updated 2019-04-02 21:53:02 UTC
 </div>
 </div>
 </body>
