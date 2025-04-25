@@ -20,7 +20,7 @@
 *
 * @@@ END COPYRIGHT @@@ 
  */
-@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(oswald.css);
 
 .brand-apache {
         color: white;
