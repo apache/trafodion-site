@@ -44,9 +44,12 @@
 	color: red;
 }
 
+/*
+No sign of the image anywhere
 body {
 	background-image:url(../images/bg.png);
 }
+*/
 
 body[class*="page-themes-bootswatch"] {
 	background-image: none;
